@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentIntractionDetail" table="STUDENTINTRACTIONDETAIL">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentIntractionDetailId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="refno" type="string">
+        <column length="20" name="REFNO"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="intractiondate" type="date">
+      <column length="7" name="INTRACTIONDATE" not-null="true">
+        <comment>Date &amp; Time of intraction</comment>
+      </column>
+    </property>
+    <property name="intractionwith" type="string">
+      <column length="1" name="INTRACTIONWITH" not-null="true">
+        <comment>[E]mployee / [O]ther Staff</comment>
+      </column>
+    </property>
+    <property name="staffid" type="string">
+      <column length="20" name="STAFFID" not-null="true">
+        <comment>Employee / Other Staff ID</comment>
+      </column>
+    </property>
+    <property name="loginid" type="string">
+      <column length="100" name="LOGINID">
+        <comment>if any</comment>
+      </column>
+    </property>
+    <property name="relatedto" type="string">
+      <column length="100" name="RELATEDTO"/>
+    </property>
+    <property name="studentcomment" type="string">
+      <column length="1000" name="STUDENTCOMMENT"/>
+    </property>
+    <property name="intractioncomment" type="string">
+      <column length="1000" name="INTRACTIONCOMMENT"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="1000" name="REMARKS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" name="studentintractionrefdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="INTRACTIONREFNO" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentIntractionRefDetail"/>
+    </set>
+  </class>
+</hibernate-mapping>

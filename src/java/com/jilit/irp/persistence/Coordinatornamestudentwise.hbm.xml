@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 10, 2011 11:08:29 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.CoordinatorNameStudentWise" table="COORDINATORNAMESTUDENTWISE">
+    <composite-id class="com.jilit.irp.persistence.dto.CoordinatorNameStudentWiseId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="coordinatortypeid" type="string">
+        <column length="20" name="COORDINATORTYPEID"/>
+      </key-property>
+      <key-property name="stafftype" type="string">
+        <column length="1" name="STAFFTYPE"/>
+      </key-property>
+      <key-property name="staffid" type="string">
+        <column length="20" name="STAFFID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="fromdate" type="date">
+        <column length="7" name="FROMDATE"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.CoordinatorType" fetch="select" insert="false" lazy="false" name="coordinatortype" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="COORDINATORTYPEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="todate" type="date">
+      <column length="7" name="TODATE"/>
+    </property>
+    <property name="tagdate" type="date">
+      <column length="7" name="TAGDATE"/>
+    </property>
+    <property name="tagby" type="string">
+      <column length="20" name="TAGBY"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="stynumber" type="int">
+      <column length="4" name="STYNUMBER"/>
+    </property>
+  </class>
+</hibernate-mapping>

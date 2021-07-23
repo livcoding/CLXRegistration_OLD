@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 Oct, 2011 11:34:18 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentCertificateSetup" table="STUDENTCERTIFICATESETUP">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentCertificateSetupId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="certificateid" type="string">
+        <column length="20" name="CERTIFICATEID"/>
+      </key-property>
+      <key-property name="slno" type="byte">
+        <column name="SLNO" precision="2" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentCertificateMaster" fetch="select" insert="false" lazy="false" name="studentcertificatemaster" update="false">
+      <column length="20" name="CERTIFICATEID" not-null="true"/>
+    </many-to-one>
+    <property name="include" type="string">
+      <column length="30" name="INCLUDE" not-null="true">
+        <comment>Institute Code, Academic Year, Program Code, Section Code</comment>
+      </column>
+    </property>
+    <property name="runningnowidth" type="byte">
+      <column name="RUNNINGNOWIDTH" not-null="true" precision="2" scale="0"/>
+    </property>
+    <property name="academicyearwise" type="string">
+      <column length="1" name="ACADEMICYEARWISE"/>
+    </property>
+  </class>
+</hibernate-mapping>

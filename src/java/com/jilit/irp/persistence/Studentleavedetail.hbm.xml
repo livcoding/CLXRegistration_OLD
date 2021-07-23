@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 31, 2014 4:00:35 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentLeaveDetail" table="STUDENTLEAVEDETAIL">
+    <comment>Student Leave Detail</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.StudentLeaveDetailId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="11" name="STUDENTID"/>
+      </key-property>
+      <key-property name="leaveid" type="string">
+        <column length="20" name="LEAVEID"/>
+      </key-property>
+      <key-property name="startdate" type="date">
+        <column length="7" name="STARTDATE"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentLeaveMaster" fetch="select" insert="false" lazy="false" name="studentleavemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="LEAVEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="enddate" type="date">
+      <column length="7" name="ENDDATE"/>
+    </property>
+    <property name="starthalfday" type="string">
+      <column length="1" name="STARTHALFDAY"/>
+    </property>
+    <property name="endhalfday" type="string">
+      <column length="1" name="ENDHALFDAY"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="500" name="REMARKS"/>
+    </property>
+    <property name="entryby" type="string">
+      <column length="30" name="ENTRYBY"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="finalized" type="string">
+      <column length="1" name="FINALIZED"/>
+    </property>
+    <property name="finalizedremarks" type="string">
+      <column length="500" name="FINALIZEDREMARKS"/>
+    </property>
+    <property name="finalizedby" type="string">
+      <column length="20" name="FINALIZEDBY"/>
+    </property>
+    <property name="finalizeddate" type="timestamp">
+      <column length="7" name="FINALIZEDDATE"/>
+    </property>
+  </class>
+</hibernate-mapping>

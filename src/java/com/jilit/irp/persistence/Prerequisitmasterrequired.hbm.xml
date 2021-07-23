@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.PreRequisitMasterRequired" table="PREREQUISITMASTERREQUIRED">
+    <comment>PreRequisit Required Subjects</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.PreRequisitMasterRequiredId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="subjectsetid" type="string">
+        <column length="20" name="SUBJECTSETID"/>
+      </key-property>
+      <key-property name="prereqsubjectid" type="string">
+        <column length="20" name="PREREQSUBJECTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PREREQSUBJECTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.PreRequisitMaster" fetch="select" insert="false" lazy="false" name="prerequisitmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTSETID" not-null="true"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>

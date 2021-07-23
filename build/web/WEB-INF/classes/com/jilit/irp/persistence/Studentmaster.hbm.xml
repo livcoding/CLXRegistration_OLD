@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.StudentMaster" select-before-update="true" table="STUDENTMASTER">
+    <id name="studentid" type="string">
+      <column length="20" name="STUDENTID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentCategory" fetch="select" insert="false" lazy="false" name="studentcategory" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="STUDENTCATEGORY"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.BranchMaster" fetch="select" insert="false" lazy="false" name="branchmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID"/>
+      <column length="20" name="BRANCHID"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Academicyear" fetch="select" insert="false" lazy="false" name="academicyear" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentQuota" fetch="select" insert="false" lazy="false" name="studentquota" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="QUOTAID"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SectionMaster" fetch="select" insert="false" lazy="false" name="sectionmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SECTIONID"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentAdmissionSubCategory" fetch="select" insert="false" lazy="false" name="studentadmissionsubcategory" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="ADMITTEDCATEGORYID"/>
+      <column length="20" name="ADMITTEDSUBCATEGORYID"/>
+    </many-to-one>
+    <property name="instituteid" type="string">
+      <column length="20" name="INSTITUTEID" not-null="true">
+            </column>
+    </property>
+    <property name="acadyear" type="string">
+      <column length="8" name="ACADEMICYEAR">
+            </column>
+    </property>
+    <property name="studcategory" type="string">
+      <column length="20" name="STUDENTCATEGORY">
+            </column>
+    </property>
+    <property name="programid" type="string">
+      <column length="20" name="PROGRAMID">
+            </column>
+    </property>
+    <property name="branchid" type="string">
+      <column length="20" name="BRANCHID">
+            </column>
+    </property>
+    <property name="quotaid" type="string">
+      <column length="20" name="QUOTAID">
+            </column>
+    </property>
+    <property name="rank" type="string">
+      <column length="20" name="RANK"/>
+    </property>
+    <property name="enrollmentno" type="string">
+      <column length="20" name="ENROLLMENTNO"/>
+    </property>
+    <property name="name" type="string">
+      <column length="60" name="NAME" not-null="true"/>
+    </property>
+    <property name="stynumber" type="java.lang.Byte">
+      <column name="STYNUMBER" precision="2" scale="0">
+        <comment>Student`s Current Semester / Trimester / Yearly</comment>
+      </column>
+    </property>
+    <property name="sectionid" type="string">
+      <column length="20" name="SECTIONID">
+        <comment>Current Section</comment>
+      </column>
+    </property>
+    <property name="subsectionid" type="string">
+      <column length="20" name="SUBSECTIONID">
+        <comment>Current SubSection</comment>
+      </column>
+    </property>
+    <property name="nextsectionid" type="string">
+      <column length="20" name="NEXTSECTIONID">
+        <comment>Up coming semester Section</comment>
+      </column>
+    </property>
+    <property name="nextsubsectionid" type="string">
+      <column length="20" name="NEXTSUBSECTIONID">
+        <comment>Up coming SubSection</comment>
+      </column>
+    </property>
+    <property name="dateofbirth" type="date">
+      <column length="7" name="DATEOFBIRTH"/>
+    </property>
+    <property name="lastpromotiondate" type="date">
+      <column length="7" name="LASTPROMOTIONDATE"/>
+    </property>
+    <property name="gender" type="string">
+      <column length="1" name="GENDER">
+        <comment>Male / Female</comment>
+      </column>
+    </property>
+    <property name="fathersname" type="string">
+      <column length="60" name="FATHERSNAME"/>
+    </property>
+    <property name="mothersname" type="string">
+      <column length="60" name="MOTHERSNAME"/>
+    </property>
+    <property name="nationality" type="string">
+      <column length="100" name="NATIONALITY">
+        <comment>Linked with CountryMaster</comment>
+      </column>
+    </property>
+    <property name="stateofdomicle" type="string">
+      <column length="100" name="STATEOFDOMICLE">
+        <comment>Linked with States Master</comment>
+      </column>
+    </property>
+    <property name="residencestatus" type="string">
+      <column length="1" name="RESIDENCESTATUS">
+        <comment>[C]ity / [V]illage</comment>
+      </column>
+    </property>
+    <property name="mothertongue" type="string">
+      <column length="50" name="MOTHERTONGUE"/>
+    </property>
+    <property name="religion" type="string">
+      <column length="50" name="RELIGION"/>
+    </property>
+    <property name="parentoccupation" type="string">
+      <column length="100" name="PARENTOCCUPATION"/>
+    </property>
+    <property name="parentannualincome" type="big_decimal">
+      <column name="PARENTANNUALINCOME" precision="14" scale="2">
+        <comment>Annual Income in Lacks</comment>
+      </column>
+    </property>
+    <property name="parenteducationalbackground" type="string">
+      <column length="100" name="PARENTEDUCATIONALBACKGROUND"/>
+    </property>
+    <property name="activestatus" type="string">
+      <column length="1" name="ACTIVESTATUS">
+        <comment>[A]ctive / [D]eactive / Program [C]omplete / E[X]pelled / [S]uspended (null is active)</comment>
+      </column>
+    </property>
+    <property name="statusdate" type="date">
+      <column length="7" name="STATUSDATE"/>
+    </property>
+    <property name="statusremarks" type="string">
+      <column length="500" name="STATUSREMARKS"/>
+    </property>
+    <property name="tempenrollmentno" type="string">
+      <column length="20" name="TEMPENROLLMENTNO"/>
+    </property>
+    <property name="maritalstatus" type="string">
+      <column length="1" name="MARITALSTATUS"/>
+    </property>
+    <property name="bloodgroup" type="string">
+      <column length="6" name="BLOODGROUP"/>
+    </property>
+    <property name="bankname" type="string">
+      <column length="50" name="BANKNAME"/>
+    </property>
+    <property name="accountno" type="string">
+      <column length="20" name="ACCOUNTNO"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="150" name="REMARKS"/>
+    </property>
+    <property name="physicallyhandicapt" type="string">
+      <column length="1" name="PHYSICALLYHANDICAPT"/>
+    </property>
+    <property name="physicallyhandicaptdesc" type="string">
+      <column length="250" name="PHYSICALLYHANDICAPTDESC"/>
+    </property>
+    <property name="admissionyear" type="string">
+      <column length="8" name="ADMISSIONYEAR"/>
+    </property>
+    <property name="studentprid" type="string">
+      <column length="20" name="STUDENTPRID"/>
+    </property>
+    <property name="lateralentry" type="string">
+      <column length="20" name="LATERALENTRY"/>
+    </property>
+   <!-- <property name="finalentrancetestscore" type="big_decimal">
+      <column name="FINALENTRANCETESTSCORE" precision="12" scale="2">
+        <comment>Annual Income in Lacks</comment>
+      </column>
+    </property>
+    <property name="xthmarkspercentage" type="big_decimal">
+      <column name="XTHMARKSPERCENTAGE" precision="12" scale="2">
+        <comment>Annual Income in Lacks</comment>
+      </column>
+    </property>
+    <property name="qlyexammarkspercentage" type="big_decimal">
+      <column name="QLYEXAMMARKSPERCENTAGE" precision="12" scale="2">
+        <comment>Annual Income in Lacks</comment>
+      </column>
+    </property>-->
+    <!--  <property name="studentprid" type="string">
+            <column length="20" name="STUDENTPRID"/>
+    </property>  -->
+    <property name="birthplace" type="string">
+      <column length="100" name="BIRTHPLACE"/>
+    </property>
+    <property name="mediumprevstudy" type="string">
+      <column length="100" name="MEDIUMPREVSTUDY"/>
+    </property>
+    <property name="relationithapplicant" type="string">
+      <column length="100" name="RELATIONITHAPPLICANT"/>
+    </property>
+    <property name="parentorgname" type="string">
+      <column length="100" name="PARENTORGNAME"/>
+    </property>
+    <property name="parentorgaddress1" type="string">
+      <column length="100" name="PARENTORGADDRESS1"/>
+    </property>
+    <property name="parentorgaddress2" type="string">
+      <column length="100" name="PARENTORGADDRESS2"/>
+    </property>
+    <property name="parentorgcity" type="string">
+      <column length="100" name="PARENTORGCITY"/>
+    </property>
+    <property name="parentorgstate" type="string">
+      <column length="100" name="PARENTORGSTATE"/>
+    </property>
+    <property name="parentorgpin" type="string">
+      <column length="10" name="PARENTORGPIN"/>
+    </property>
+    <property name="parentorgphone1" type="string">
+      <column length="10" name="PARENTORGPHONE1"/>
+    </property>
+    <property name="parentorgmobile" type="string">
+      <column length="10" name="PARENTORGMOBILE"/>
+    </property>
+    <property name="interestgames" type="string">
+      <column length="60" name="INTERESTGAMES"/>
+    </property>
+    <property name="interestgamesothers" type="string">
+      <column length="60" name="INTERESTGAMESOTHERS"/>
+    </property>
+    <property name="hobbies" type="string">
+      <column length="60" name="HOBBIES"/>
+    </property>
+    <property name="hobbiesothers" type="string">
+      <column length="60" name="HOBBIESOTHERS"/>
+    </property>
+    <property name="softwarepackageknown" type="string">
+      <column length="300" name="SOFTWAREPACKAGEKNOWN"/>
+    </property>
+    <property name="computerlangknown" type="string">
+      <column length="300" name="COMPUTERLANGKNOWN"/>
+    </property>
+    <property name="blooddonatewill" type="string">
+      <column length="1" name="BLOODDONATEWILL"/>
+    </property>
+    <property name="admittedcategoryid" type="string">
+      <column length="20" name="ADMITTEDCATEGORYID"/>
+    </property>
+    <property name="admittedsubcategoryid" type="string">
+      <column length="20" name="ADMITTEDSUBCATEGORYID"/>
+    </property>
+    <property name="parentorgdesignation" type="string">
+      <column length="60" name="PARENTORGDESIGNATION"/>
+    </property>
+    <property name="fatherguardianflag" type="string">
+      <column length="1" name="FATHERGUARDIANFLAG"/>
+    </property>
+    <property name="guardianname" type="string">
+      <column length="60" name="GUARDIANNAME"/>
+    </property>
+    <property name="regby" type="string">
+      <column length="20" name="REGBY"/>
+    </property>
+    <property name="regdate" type="timestamp">
+      <column name="REGDATE"/>
+    </property>
+    <property name="regstatus" type="string">
+      <column name="REGSTATUS"/>
+    </property>
+    <property name="siblings" type="string">
+      <column name="SIBLINGS"/>
+    </property>
+    <property name="siblingsstudentid" type="string">
+      <column name="SIBLINGSSTUDENTID"/>
+    </property>
+    <property name="groupemployee" type="string">
+      <column name="GROUPEMPLOYEE"/>
+    </property>
+    <property name="relationwithgroupemployee" type="string">
+      <column length="50" name="RELATIONWITHGROUPEMPLOYEE"/>
+    </property>
+    <property name="relativeorganization" type="string">
+      <column length="100" name="RELATIVEORGANIZATION"/>
+    </property>
+    <property name="relativedesignation" type="string">
+      <column length="50" name="RELATIVEDESIGNATION"/>
+    </property>
+    <property name="relativeemployeecode" type="string">
+      <column length="20" name="RELATIVEEMPLOYEECODE"/>
+    </property>
+    <property name="relativerelation" type="string">
+      <column length="50" name="RELATIVERELATION"/>
+    </property>
+    <property name="groupid" type="string">
+      <column length="20" name="GROUPID"/>
+    </property>
+
+    <!--     new by mohit -->
+     <property name="dcoumentverified" type="string">
+      <column  name="DCOUMENTVERIFIED">
+            </column>
+    </property>
+     <property name="documentverifiedby" type="string">
+      <column length="20" name="DOCUMENTVERIFIEDBY">
+            </column>
+    </property>
+     <property name="documentverficationtype" type="string">
+      <column  name="DOCUMENTVERFICATIONTYPE">
+          <comment>[A]utomatic / [F]orcibly </comment>
+            </column>
+    </property>
+     <property name="nameinssc" type="string">
+      <column length="60" name="NAMEINSSC">
+            </column>
+    </property>
+
+ <property name="aadharcardno" type="string">
+      <column length="30" name="AADHARCARDNO">
+            </column>
+    </property>
+
+    <set inverse="true" lazy="extra" name="prfacultystudenttaggings">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PRFacultyStudentTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="facultystudenttaggings">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.FacultyStudentTagging"/>
+    </set>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="studentadddresses">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentAdddress"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentdisciplinaryactions">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentDisciplinaryAction"/>
+    </set>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="studentdocumentdetails">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentDocumentDetail"/>
+    </set>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="studenthosteldetails">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentHostelDetail"/>
+    </set>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="studentindetails">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentInDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentnrsubjectses">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentNRSubjects"/>
+    </set>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="studentoutdetails">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentOutDetail"/>
+    </set>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="studentphones">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentPhone"/>
+    </set>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="studentqualifications">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentQualification"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentregistrations">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentRegistration"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentpreviousattendences">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentPreviousAttendence"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentattendances">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentAttendance"/>
+    </set>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="studentlgs">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentLg"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentpersinfochangerequests">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true" unique="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentPersInfoChangeRequest"/>
+    </set>
+  
+    <set inverse="true" lazy="extra" name="defaulterInPreregs">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Temp_DefaulterInPrereg"/>
+    </set>
+    <set inverse="true" lazy="extra" name="updatestynumbers">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.UpdateStyNumber"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentshortattendances">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentShortAttendance"/>
+    </set>
+    <set inverse="true" lazy="extra" name="committeeactiondetails">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeActionDetail"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="scholarshipapplicants">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ScholarshipApplicants"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="coordinatornamestudentwises">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CoordinatorNameStudentWise"/>
+    </set>
+
+   <set inverse="true" lazy="extra" name="branchchangerequests">
+      <key>
+        <column length="20" name="STUDENTID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.BranchChangeRequest"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="scholarshippayments">
+      <key>
+        <column length="20" name="STUDENTID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ScholarshipPayment"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="studentotherachievementreqs">
+      <key>
+        <column length="20" name="STUDENTID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentOtherAchievementReq"/>
+    </set>
+    <set inverse="true" lazy="extra" name="nocapplicantses">
+      <key>
+        <column length="20" name="STUDENTID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.NOCApplicants"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="studentleavedetails">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentLeaveDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentactivitydetails">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentActivityDetail"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="tmp_studattendsummaries">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Tmp_StudAttendSummary"/>
+    </set>
+
+
+    <set inverse="true" lazy="extra" name="studentnotoffersubject">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentNotOfferSubject"/>
+    </set>
+    <set inverse="true" lazy="extra" name="branchchangelog">
+      <key>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.BranchChangeLog"/>
+    </set>
+  </class>
+  <query name="branchSTYNumberFromStudentMaster">
+
+      select distinct bm.id.branchid ,pm.stypattern ,pm.startsty,pm.endsty,bm.branchcode
+	  from StudentMaster sm , ProgramMaxSty pm ,BranchMaster bm
+	  where
+	  sm.instituteid=pm.id.instituteid
+      and sm.instituteid= ?
+      and sm.acadyear= ?
+      and sm.programid= ?
+	  and sm.acadyear=pm.id.academicyear
+	  and sm.programid=pm.id.programid
+      and coalesce(pm.deactive,'N')='N'
+      and bm.id.instituteid=sm.instituteid
+      and bm.id.programid=sm.programid
+      and bm.id.branchid=sm.branchid
+
+
+    </query>
+  <query name="getDistinctStyNumber">
+
+   select  distinct stynumber
+      from StudentMaster
+          where instituteid = ?
+           and  acadyear = ?
+           and  programid = ?
+           and coalesce(activestatus,'A')='A'
+
+
+    </query>
+  <query name="getStudentMasterData_SelectedProgram">
+
+    select distinct a.id.studentid,a.enrollmentno,a.name
+     from StudentMaster a
+        where a.instituteid = :instituteid
+            and a.acadyear = :academicyear
+            and a.programid in (:programid)
+            and coalesce(a.activestatus,'A')= 'A'
+            order by a.enrollmentno
+
+    </query>
+  <query name="getStudentMasterData_SelectedProgramBEmailId">
+
+    select distinct a.id.studentid,sp.semailid,a.name
+     from StudentMaster a , StudentPhone sp
+        where a.instituteid = :instituteid
+            and a.acadyear = :academicyear
+            and a.programid in (:programid)
+            and a.id.studentid = sp.studentid
+            and coalesce(a.activestatus,'A')= 'A'
+            order by sp.semailid
+
+    </query>
+  <query name="getAllStudentMasterData">
+
+    select distinct a.id.studentid,a.enrollmentno,a.name
+     from StudentMaster a
+        where a.instituteid = :instituteid
+            and a.acadyear = :academicyear
+            and coalesce(a.activestatus,'A')= 'A'
+            order by a.enrollmentno
+
+    </query>
+  <query name="getStudentMasterData">
+
+       select a.enrollmentno, a.name, b.programcode, c.branchcode, a.studentid
+       from StudentMaster a, ProgramMaster b, BranchMaster c
+           where a.id.instituteid = b.id.instituteid
+             and a.id.programid = b.id.programid
+             and a.id.instituteid = c.id.instituteid
+             and a.id.branchid = c.id.branchid
+             and a.id.studentid = ?
+             order by b.programcode
+
+    </query>
+  <query name="getNewStudentMasterData">
+
+       select a.enrollmentno, a.name, b.programcode, c.branchcode,a.studentid
+       from StudentMaster a, ProgramMaster b, BranchMaster c
+           where a.id.instituteid = b.id.instituteid
+             and a.id.programid = b.id.programid
+             and a.id.instituteid = c.id.instituteid
+             and a.id.branchid = c.id.branchid
+             and a.id.studentid = ?
+             order by b.programcode
+
+    </query>
+  <query name="getMemberCodeForLockedStatusForStudents">
+      select a.enrollmentno , a.name ,p.programcode,p.programdesc ,b.branchcode ,b.branchdesc,a.studentid
+        from StudentMaster a , ProgramMaster p, BranchMaster b
+        where a.branchid=b.id.branchid
+        and a.instituteid=b.id.instituteid
+        and a.instituteid=p.id.instituteid
+        and a.programid=p.id.programid
+        and a.studentid in (:employeeid)
+        and a.instituteid in (:instituteid)
+        and coalesce(a.activestatus,'A')= 'A'
+    </query>
+  <query name="findAllEnrollmentNo_StudentRegistrationForProficiency">
+
+      select a.studentid,a.programid,a.branchid,a.enrollmentno,a.name,a.acadyear,srI.sectionid,d.programdesc,e.branchdesc,b.stynumber
+             from StudentMaster a, StudentRegistration b,ProgramMaster d, BranchMaster e ,StudentRegistration_info srI
+                  where a.instituteid = srI.id.instituteid
+                        and a.instituteid = b.id.instituteid
+                        and a.studentid = srI.id.studentid
+                        and b.id.registrationid = srI.id.registrationid
+                        and a.studentid = b.id.studentid
+                        and a.instituteid = d.id.instituteid
+                        and a.programid = d.id.programid
+                        and a.instituteid = e.id.instituteid
+                        and a.programid = e.id.programid
+                        and a.branchid = e.id.branchid
+                        and a.instituteid = ?
+                        and b.id.registrationid= ?
+                        and coalesce(b.regallow,'N') = 'Y'
+                        order by a.enrollmentno
+                        
+    </query>
+  <query name="findAllEnrollmentNoForFeePaidConfirmation">
+
+    select a
+        from StudentRegistration a
+            where a.id.instituteid = ?
+              and a.id.registrationid = ?  
+              
+
+    </query>
+  <query name="findEnrollmentNoForFeePaidConfirmation">
+
+       select a    from StudentRegistration a
+            where a.id.instituteid = ?
+             and a.id.registrationid = ?
+             and exists(
+                         select b.studentid from StudentMaster b
+                            where b.instituteid = a.id.instituteid
+                              and b.studentid = a.id.studentid
+                              and b.instituteid = ?
+                              and b.enrollmentno = ?
+                       )
+
+    </query>
+  <query name="getStudentFromStudentmaster">
+
+        select a.id.studentid
+              from StudentMaster a
+                where a.instituteid = :instituteid
+                and a.enrollmentno = :usercode
+                
+
+    </query>
+  <query name="findAllStudentForFeeCollection">
+
+        select a   from StudentMaster a
+                where a.instituteid = ?
+                and a.acadyear = ?
+                and a.programid = ?
+                and a.branchid = ?
+                and a.stynumber = ?
+                and exists(
+                         select b.id.studentid from StudentRegistration b
+                            where a.instituteid = b.id.instituteid
+                              and a.id.studentid = b.id.studentid
+                              and b.id.instituteid = ? and b.id.registrationid = ?
+                       )
+                order by a.enrollmentno asc
+
+
+    </query>
+  <query name="findStudent">
+
+        select a.studentid,a.programid,a.branchid
+              from StudentMaster a   where a.instituteid = ?
+                and a.enrollmentno = ?
+                
+
+
+    </query>
+  <query name="findEnrollmentNoProficiency">
+               select a.studentid,a.programid,a.branchid,a.studcategory,a.name,a.acadyear,srI.sectionid,d.programdesc,e.branchdesc,b.stynumber
+               from StudentMaster a, StudentRegistration b,ProgramMaster d, BranchMaster e ,StudentRegistration_info srI
+                  where a.instituteid = srI.id.instituteid
+                        and a.instituteid = b.id.instituteid
+                        and a.studentid = srI.id.studentid
+                        and a.studentid = b.id.studentid
+                        and a.instituteid = d.id.instituteid
+                        and a.programid = d.id.programid
+                        and a.instituteid = e.id.instituteid
+                        and a.programid = e.id.programid
+                        and a.branchid = e.id.branchid
+                        and a.enrollmentno = ?
+                        and a.instituteid = ?
+                        and b.id.registrationid= ?   and coalesce(b.regallow,'N') = 'Y'
+                        
+    </query>
+  <query name="findAllStudents">
+        select a.studentid,a.enrollmentno,a.name
+        from StudentMaster a
+        where a.instituteid = ?
+        and coalesce(a.activestatus,'A') = 'A'
+        and exists(select 1 from StudentRegistration b where b.id.studentid=a.studentid
+        and b.id.instituteid = a.instituteid
+        and b.id.registrationid = ?  and coalesce(b.regallow,'N') = 'Y')
+        
+    </query>
+  <query name="findAllStudents_SSCM">
+        select a.studentid,a.enrollmentno,a.name
+        from StudentMaster a  where a.instituteid = ?
+        and exists(
+        select b.id.studentid from StudentSubjectChoiceMaster b
+        where b.id.studentid = a.studentid
+        and b.id.instituteid = a.instituteid
+        and b.id.registrationid = ?
+        )
+        order by a.enrollmentno
+        
+    </query>
+  <query name="findExitStudents">
+        select a.studentid,a.enrollmentno,a.name
+        from StudentMaster a where a.instituteid = ?
+        and a.enrollmentno = ?
+        and coalesce(a.activestatus,'A') = 'A'
+        and exists(select 1 from StudentRegistration b where b.id.studentid=a.studentid
+        and b.id.instituteid = a.instituteid
+        and b.id.registrationid = ? and coalesce(b.regallow,'N') = 'Y')
+        
+    </query>
+  <query name="findStudent_SSCM">
+        select a
+        from StudentMaster a
+        where a.instituteid = ?  and a.enrollmentno = ?
+        and exists(
+        select b.id.studentid from StudentSubjectChoiceMaster b
+        where b.id.studentid = a.studentid
+        and b.id.instituteid = a.instituteid
+        and b.id.registrationid = ?
+        )
+        order by a.enrollmentno
+        
+    </query>
+    <query name="findAllStudentsForRoleAssign">
+
+        select a.studentid,a.enrollmentno,a.name
+        from StudentMaster a
+        where a.instituteid = ?   and coalesce(a.activestatus,'A') = 'A'
+        
+
+    </query>
+    <query name="findAllStudents_PhdSelfcourseRegistration">
+
+        select a.studentid,a.enrollmentno,a.name
+        from StudentMaster a   where a.instituteid = ?
+        and exists(
+        select b.id.studentid from PhdSelfcourseRegistration b
+        where b.id.studentid = a.studentid
+        and b.id.instituteid = a.instituteid
+        and b.id.registrationid = ?
+        )
+        order by a.enrollmentno
+    
+
+    </query>
+    <query name="findStudent_PhdSelfcourseRegistration">
+
+        select a
+        from StudentMaster a
+        where a.instituteid = ?  and a.enrollmentno = ?
+        and exists(
+        select b.id.studentid from PhdSelfcourseRegistration b
+        where b.id.studentid = a.studentid
+        and b.id.instituteid = a.instituteid
+        and b.id.registrationid = ?
+        )
+        order by a.enrollmentno
+    
+
+    </query>
+    <query name="findAllStudents_PhdResearchRegistration">
+
+        select a.studentid,a.enrollmentno,a.name
+        from StudentMaster a  where a.instituteid = ?
+        and exists(
+        select b.id.studentid from PhdResearchRegistration b
+        where b.id.studentid = a.studentid
+        and b.id.instituteid = a.instituteid
+        and b.id.registrationid = ?
+        )
+        order by a.enrollmentno
+    
+
+    </query>
+    <query name="findStudent_PhdResearchRegistration">
+
+        select a
+        from StudentMaster a  where a.instituteid = ?
+        and a.enrollmentno = ?
+        and exists(
+        select b.id.studentid from PhdResearchRegistration b
+        where b.id.studentid = a.studentid
+        and b.id.instituteid = a.instituteid
+        and b.id.registrationid = ?
+        )
+        order by a.enrollmentno
+    
+
+    </query>
+    <query name="findAllStudentsPHD">
+        select a.studentid,a.enrollmentno,a.name
+        from StudentMaster a where a.instituteid = ?
+        and a.programid = ?
+        and coalesce(a.activestatus,'A') = 'A'
+        and exists(select 1 from StudentRegistration b where b.id.studentid=a.studentid
+        and b.id.instituteid = a.instituteid
+        and b.id.registrationid = ?
+        and coalesce(b.regallow,'N') = 'Y')
+        order by a.enrollmentno ASC
+        
+    </query>
+    <query name="findExitStudentsPHD">
+
+        select a.studentid,a.enrollmentno,a.name
+        from StudentMaster a
+        where a.instituteid = ?  and a.enrollmentno = ?
+        and a.programid = ?
+        and coalesce(a.activestatus,'A') = 'A'
+        and exists(select 1 from StudentRegistration b where b.id.studentid=a.studentid
+        and b.id.instituteid = a.instituteid
+        and b.id.registrationid = ?
+        and coalesce(b.regallow,'N') = 'Y')
+        
+
+    </query>
+    <query name="findStudentForLockUnlock">
+
+        select a.studentid,a.enrollmentno,a.name
+        from StudentMaster a   where a.instituteid = ?
+        and a.studentid = ?
+               
+
+    </query>
+    <query name="findEnrollmentNoToLockUnlockUser">
+        select a
+        from StudentMaster a
+        where a.instituteid = ? and a.enrollmentno = ?
+        and exists(
+        select b.data2 from Sct_IrpMlp b
+        where b.data3 = ?
+        and b.data5 = ?
+        and coalesce(b.data11,'Fkj18Uswuqg=') = ?
+        )
+                   
+    </query>
+    <query name="findStudent_StudAcadRegistration">
+
+        select a.enrollmentno, a.name, a.studentid
+        from StudentMaster a
+        where a.instituteid = ?
+        and exists(
+        select b.id.studentid from StudentRegistration b
+        where b.id.studentid = a.studentid
+        and b.id.instituteid = a.instituteid
+        and b.id.registrationid = ?
+        and coalesce(b.regallow,'N') = 'Y'
+        )
+        order by a.enrollmentno
+    </query>
+    <query name="findEnrollmentNoForHostelConfirmation">
+
+        select a
+        from StudentRegistration a
+        where a.id.instituteid = ?
+        and a.id.registrationid = ?
+        and exists(
+        select b.studentid from StudentMaster b
+        where b.instituteid = a.id.instituteid
+        and b.studentid = a.id.studentid
+        and b.instituteid = ?   and b.enrollmentno = ?
+        ) 
+
+
+    </query>
+    <query name="findAllStyNumber">
+
+        select  distinct a.stynumber
+        from StudentMaster a
+        where a.instituteid = ?
+        and  a.studentid = ?  and coalesce(a.activestatus,'A')='A'
+        order by a.stynumber 
+
+
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <query name="programLOV_branchexist">
+         select distinct m.programmaster from BranchMaster m where coalesce(m.deactive,'N')='N' and coalesce(m.programmaster.deactive,'N')='N'  and m.id.instituteid=?
+    </query>
+    <query name="findAcademicYear_studentmasterexist">
+         select distinct m.academicyear from StudentMaster m where coalesce(m.activestatus,'A')='A' and coalesce(m.academicyear.deactive,'N')='N' and m.instituteid=?
+    </query>
+    <query name="updateStudentRegistration">
+        update StudentRegistration  set regallow=:regallow where id.registrationid = :registrationid and id.instituteid = :instituteid
+    </query>
+    <query name="updateStudentRegistration_date">
+         update StudentRegistration  set  preventfrom=:preventfrom , preventto=:preventto where id.studentid in (:studentids) and id.registrationid = :registrationid and id.instituteid = :instituteid
+    </query>
+    <query name="findAcademicYear_programaxstyexist">
+         select distinct m.academicyear from ProgramMaxSty m where coalesce(m.deactive,'N')='N' and m.id.instituteid=? 
+    </query>
+    <query name="deleteRollNumberingSetUpDetail_groupid">
+         delete RollNumberingSetupDetail m where m.id.groupid=:groupid
+    </query>
+    <query name="deleteRoomUsedForTagging_roomid">
+         delete RoomUsedForTagging m where m.id.roomid=:roomid and m.id.instituteid = :instituteid
+    </query>
+    <query name="findProgramTypeId_ProgramTypeProgramTagging">
+         select distinct m.id.programtypeid from ProgramTypeProgramTagging m where coalesce(m.deactive,'N')='N' and m.id.instituteid = ? and m.id.programid = ?
+    </query>
+    <query name="maxLastNo_RollNumberingControl">
+         select coalesce(max(r.lastno),0) from RollNumberingControl r where  r.id.instituteid = ? and r.id.groupid = ? 
+    </query>
+    <query name="maxLastNo_TempRollNumberingControl">
+         select coalesce(max(r.lastrunningno),0) from TempRollNumberControl r where  r.id.instituteid = ? and r.id.groupid = ? 
+    </query>
+    <query name="maxRunningNo_RollNumberingControl">
+         select coalesce(max(r.lastno),0) from RollNumberingControl r where  r.id.instituteid = ? and r.id.groupid = ? 
+    </query>
+    <query name="findAcademicYear_programminmaxlimitexist">
+         select distinct m.programmaxsty.academicyear from ProgramMinMaxLimit m where coalesce(m.deactive,'N')='N' and m.id.instituteid=? and m.sectiontype=?
+    </query>
+    <query name="findRegistrationID">
+         select distinct A.id.registrationid , A.id.eventno
+         from PRFacultyEvent A, InstituteRegistrationEvents B
+         where A.id.instituteid = B.id.instituteid
+         and  A.id.registrationid = B.id.registrationid
+         and coalesce(A.deactive,'N')='N'
+         and coalesce(B.preregistrationallowed,'N')='N'
+         order by A.id.registrationid
+    </query>
+    <query name="excludeSubjectComponentfromPRFacultyDayTimePreference">
+        select  subcomponent
+        from    SubjectComponent subcomponent
+        where   subcomponent.id.instituteid = ?
+                and     coalesce(subcomponent.deactive,'N') = 'N'
+                and     subcomponent.id.subjectcomponentid  not in (
+                        select  distinct prf.id.subjectcomponentid
+                            from    PRFacultyDayTimePreference prf
+                            where   prf.id.instituteid = subcomponent.id.instituteid
+                                    and     prf.id.registrationid =?
+                                    and     prf.id.eventno =? )
+    </query>
+    <query name="checkExistingDataFromPrfacultyEventTagging">
+  select prf.eventfrom,prf.eventto,prf.sendtohod,prf.sentby,prf.sentdate,prf.deactive
+,vstaff.employeecode,vstaff.employeename,vstaff.employeeid,vstaff.departmentid,vstaff.designationid,vstaff.stafftype,vstaff.designation,vstaff.department  from PRFacultyEventTagging prf,V_Staff vstaff where prf.id.staffid=vstaff.employeeid
+             and prf.id.stafftype=vstaff.stafftype and prf.id.registrationid=? and prf.id.eventno=? and prf.id.instituteid=?
+
+    </query>
+    <query name="findLoadDistributionGrantDepartmentStatus">
+           select distinct master from LoadDistributionGrant master
+         where master.id.instituteid=?
+         and master.id.registrationid=?
+         and master.id.stafftype=?
+         and master.id.staffid=?
+    </query>
+    <query name="deletePRFacultyDayTimePreference_subjectcomponentid">
+         delete  PRFacultyDayTimePreference m
+                 where m.id.instituteid = :instituteid
+                  and  m.id.registrationid = :registrationid
+                  and  m.id.eventno = :eventno
+                  and  m.id.stafftype = :stafftype
+                  and  m.id.staffid = :staffid
+                  and  m.id.subjectcomponentid = :subjectcomponentid
+
+    </query>
+    <query name="getSubjectComponent_From_ProgramSchemeDetail">
+        select  distinct m.id.subjectcomponentid,n.subjectcomponentdesc from ProgramSchemeDetail m, SubjectComponent n
+         where m.id.instituteid = n.id.instituteid
+         and m.id.subjectcomponentid = n.id.subjectcomponentid
+         and m.id.instituteid = ?
+         and coalesce(m.deactive,'N')='N'
+    </query>
+    <query name="findSubjectMaster_selfAttendanceEntry">
+
+        select  subjmast.id.subjectid, subjmast.subjectcode, subjmast.subjectdesc
+        from    SubjectMaster subjmast
+        where   subjmast.id.instituteid = :instituteid
+        and     subjmast.id.subjectid in
+        (
+            select t.subjectid from TT_TimeTableAllocation t
+            where
+            (
+                 t.id.instituteid = :instituteid
+                and t.id.registrationid = :regid
+                and t.staffid = :staffid
+            )
+        )
+        order by subjmast.subjectcode, subjmast.subjectdesc
+    </query>
+    <query name="findSubjectMaster_otherAttendanceEntry">
+<!--select  distinct subjmast-->
+       select  subjmast.id.subjectid, subjmast.subjectcode, subjmast.subjectdesc
+        from    SubjectMaster subjmast
+        where   subjmast.id.instituteid = :instituteid
+        and     subjmast.id.subjectid in
+        (
+            select fst.subjectid from FacultySubjectTagging fst
+            where fst.id.fstid in
+            (
+                select mfst.id.fstid
+                from MultiFacultySubjectTagging mfst
+                where mfst.id.instituteid = :instituteid
+                and mfst.id.staffid = :staffid
+                and coalesce(mfst.deactive,'N') = 'N'
+            )
+            and fst.id.fstid in (select fstudt.fstid from FacultyStudentTagging fstudt where fstudt.id.instituteid = :instituteid and coalesce(fstudt.deactive,'N') = 'N')
+            and fst.registrationid = :regid
+        )
+        order by subjmast.subjectcode, subjmast.subjectdesc
+    </query>
+    <query name="findSubjectComponent_selfAttendanceEntry">
+<!--distinct subjcomp-->
+        select  distinct subjcomp.id.subjectcomponentid, subjcomp.subjectcomponentcode
+        from    SubjectComponent subjcomp
+        where   subjcomp.id.instituteid = :instituteid
+        and     subjcomp.id.subjectcomponentid in
+        (
+            select fst.subjectcomponent.id.subjectcomponentid from FacultySubjectTagging fst,TT_TimeTableAllocation t
+            where  t.ttreferenceid=fst.ttreferenceid and t.id.registrationid=fst.registrationid and t.id.instituteid=fst.id.instituteid
+            and fst.id.instituteid = :instituteid
+            and fst.registrationid = :regid
+            and fst.subjectid = :subjectid
+            and t.staffid = :staffid
+            and coalesce(fst.deactive,'N') = 'N'
+            and fst.id.fstid in (select fstudt.fstid from FacultyStudentTagging fstudt where fstudt.id.instituteid = :instituteid and coalesce(fstudt.deactive,'N') = 'N')
+        )
+    </query>
+    <query name="findSubjectComponent_otherAttendanceEntry">
+<!--distinct subjcomp-->
+        select  distinct subjcomp.id.subjectcomponentid, subjcomp.subjectcomponentcode
+        from    SubjectComponent subjcomp
+        where   subjcomp.id.instituteid = :instituteid
+        and     subjcomp.id.subjectcomponentid in
+        (
+            select fst.subjectcomponent.id.subjectcomponentid from FacultySubjectTagging fst
+            where fst.id.fstid in
+            (
+                select mfst.id.fstid
+                from MultiFacultySubjectTagging mfst
+                where mfst.id.instituteid = :instituteid
+                and mfst.id.staffid = :staffid
+                and coalesce(mfst.deactive,'N') = 'N'
+            )
+            and fst.id.fstid in (select fstudt.fstid from FacultyStudentTagging fstudt where fstudt.id.instituteid = :instituteid and coalesce(fstudt.deactive,'N') = 'N')
+            and fst.registrationid = :regid
+            and fst.subjectid = :subjectid
+        )
+    </query>
+    <query name="excludeSubjectFromPRFacultySubjectTimePreference">
+            select b.id.subjectcomponentid, b.subjectcomponentcode, b.subjectcomponentdesc, c.subjectdesc, c.subjectcode, c.id.subjectid, d.roomtypecode,d.roomtypedesc,d.id.roomtypeid
+              from PRFacultySubjectChoices a, SubjectComponent b, SubjectMaster c, RoomTypeMaster d
+                   where     a.id.instituteid = b.id.instituteid
+                         and a.id.subjectcomponentid = b.id.subjectcomponentid
+                         and a.id.instituteid = c.id.instituteid
+                         and a.id.subjectid = c.id.subjectid
+                         and a.id.instituteid = d.id.instituteid
+                         and a.reqroomtype = d.id.roomtypeid
+                         and a.id.instituteid = ?
+                         and a.id.registrationid = ?
+                         and a.id.eventno = ?
+                         and a.id.staffid = ?
+                         and a.id.stafftype = ?
+                         and coalesce(a.deactive,'N') = 'N'
+                         and a.id.subjectid not in
+                                               (select n.id.subjectid
+                                                       from PRFacultySubjectTimePreference n
+                                                            where     n.id.instituteid = ?
+                                                                  and n.id.registrationid = ?
+                                                                  and n.id.eventno = ?
+                                                                  and n.id.staffid = ?
+                                                                  and n.id.stafftype = ?
+                                                                  and coalesce(n.deactive,'N') = 'N')
+    </query>
+    <query name="deletePRFacultySubjectTimePreference">
+         delete  PRFacultySubjectTimePreference m
+                 where m.id.instituteid = :instituteid
+                  and  m.id.registrationid = :registrationid
+                  and  m.id.eventno = :eventno
+                  and  m.id.stafftype = :stafftype
+                  and  m.id.staffid = :staffid
+                  and  m.id.subjectid = :subjectid
+                  and  m.id.subjectcomponentid = :subjectcomponentid
+
+    </query>
+    <query name="findStudentDetailData_ForAttendanceView">
+        select distinct vscd.fstid, vscd.studentid, vscd.enrollmentno, vscd.name, vscd.programcode, vscd.sectioncode, vscd.subsectioncode, vscd.programid, vscd.sectionid, vscd.subsectionid, vscd.stynumber
+        from V_StudentComponentDetail vscd
+        where vscd.instituteid=:instituteid
+        and vscd.registrationid=:regid
+        and vscd.subjectid=:subjectid
+        and vscd.subjectcomponentid=:subjectcomponentid
+        and vscd.academicyear in (:academicyears)
+        and vscd.stynumber in (:stynumbers)
+        and vscd.programid in (:programids)
+        and vscd.sectionid in (:sectionids)
+        and vscd.subsectionid in (:subsectionids)
+        order by vscd.enrollmentno
+    </query>
+  <!--End Of Student Class Attendance By Faculty-->
+  <!--Start Of Pre Registration Status Report By Faculty-->
+    <query name="findStudentData_PreRegSubmitView">
+        select a.enrollmentno, a.name, b.stynumber, b.id.studentid, c.id.branchid, c.branchcode, c.branchdesc, d.id.programid, d.programcode, d.programdesc, a.acadyear, e.sectionid
+        from StudentMaster a, StudentRegistration b, BranchMaster c, ProgramMaster d, StudentRegistration_info e
+        where a.instituteid=b.id.instituteid
+        and a.id.studentid=b.id.studentid
+        and e.id.instituteid=b.id.instituteid
+        and e.id.studentid=b.id.studentid
+        and e.id.registrationid=b.id.registrationid
+        and a.instituteid=c.id.instituteid
+        and a.instituteid=d.id.instituteid
+        and a.branchid=c.id.branchid
+        and a.programid=c.id.programid
+        and a.programid=d.id.programid
+        and b.id.instituteid=:instituteid
+        and b.id.registrationid=:regid
+        and coalesce(b.regallow,'N') = 'Y'
+        and b.id.studentid in (select e.id.studentid from StudentSubjectChoiceMaster e where e.id.studentid=b.id.studentid and e.id.registrationid=b.id.registrationid and e.id.stynumber=b.stynumber
+        and (e.basketid in (Select f.id.basketid from BasketMasterDetail f where f.id.instituteid = b.id.instituteid and f.subjecttypeid in (select g.id.subjecttypeid from SubjectTypeMaster g where g.id.instituteid = b.id.instituteid and g.subjecttype in (:subjecttype2)))
+        or e.basketid in (Select f.id.basketid from BasketMaster f where f.id.instituteid = b.id.instituteid and f.subjecttypeid in (select g.id.subjecttypeid from SubjectTypeMaster g where g.id.instituteid = b.id.instituteid and g.subjecttype in (:subjecttype2)))))
+        order by a.enrollmentno
+    </query>
+    <query name="findStudentData_PreRegPendingView">
+        select a.enrollmentno, a.name, b.stynumber, b.id.studentid, c.id.branchid, c.branchcode, c.branchdesc, d.id.programid, d.programcode, d.programdesc, a.acadyear, e.sectionid
+        from StudentMaster a, StudentRegistration b, BranchMaster c, ProgramMaster d, StudentRegistration_info e
+        where a.instituteid=b.id.instituteid
+        and a.id.studentid=b.id.studentid
+        and e.id.instituteid=b.id.instituteid
+        and e.id.studentid=b.id.studentid
+        and e.id.registrationid=b.id.registrationid
+        and a.instituteid=c.id.instituteid
+        and a.instituteid=d.id.instituteid
+        and a.branchid=c.id.branchid
+        and a.programid=c.id.programid
+        and a.programid=d.id.programid
+        and b.id.instituteid=:instituteid
+        and b.id.registrationid=:regid
+        and coalesce(b.regallow,'N') = 'Y'
+        and b.id.studentid not in (select e.id.studentid from StudentSubjectChoiceMaster e where e.id.studentid=b.id.studentid and e.id.registrationid=b.id.registrationid and e.id.stynumber=b.stynumber
+        and (e.basketid in (Select f.id.basketid from BasketMasterDetail f where f.id.instituteid = b.id.instituteid and f.subjecttypeid in (select g.id.subjecttypeid from SubjectTypeMaster g where g.id.instituteid = b.id.instituteid and g.subjecttype in (:subjecttype2)))
+        or  e.basketid in (Select f.id.basketid from BasketMaster f where f.id.instituteid = b.id.instituteid and f.subjecttypeid in (select g.id.subjecttypeid from SubjectTypeMaster g where g.id.instituteid = b.id.instituteid and g.subjecttype in (:subjecttype2)))))
+        order by a.enrollmentno
+    </query>
+    <query name="findNRSubject_PreReg">
+        select a.id.subjectid from StudentNRSubjects a where a.id.instituteid=:instituteid and a.id.studentid=:studentid and coalesce(a.deactive,'N') = 'N' and
+        (
+        a.id.subjectid in (select b.id.programsubjectid from ProgramSubjectTagging b where b.id.instituteid=:instituteid and b.id.registrationid=:regid and coalesce(b.deactive,'N') = 'N')
+        OR
+        a.id.subjectid in (select b.odsubjectid from OfferedODSubjectTagging b where b.id.instituteid=:instituteid and b.id.registrationid=:regid and coalesce(b.deactive,'N') = 'N')
+        )
+    </query>
+    <query name="findFailSubject_PreReg">
+        select a.id.subjectid from StudentResult a where a.id.instituteid=:instituteid and a.id.studentid=:studentid and coalesce(a.fail,'N') = 'Y' and coalesce(a.deactive,'N') = 'N' and
+        (
+        a.id.subjectid in (select b.id.programsubjectid from ProgramSubjectTagging b where b.id.instituteid=:instituteid and b.id.registrationid=:regid and coalesce(b.deactive,'N') = 'N')
+        OR
+        a.id.subjectid in (select b.odsubjectid from OfferedODSubjectTagging b where b.id.instituteid=:instituteid and b.id.registrationid=:regid and coalesce(b.deactive,'N') = 'N')
+        )
+    </query>
+    <query name="findCorePlusElectiveSubject_PreReg">
+        select a.subjectid from ProgramSubjectTagging a where a.id.instituteid=:instituteid and a.id.registrationid=:regid and coalesce(a.deactive,'N') = 'N'
+        and a.academicyear=:academicyear and a.programid=:programid and a.sectionid=:sectionid and a.stynumber=:stynumber and
+        (
+        a.basketid in (Select f.id.basketid from BasketMaster f where f.id.instituteid = a.id.instituteid and f.subjecttypeid in (select g.id.subjecttypeid from SubjectTypeMaster g where g.id.instituteid = a.id.instituteid and g.subjecttype in (:subjecttype1)))
+        OR
+        a.basketid in (Select f.id.basketid from BasketMasterDetail f where f.id.instituteid = a.id.instituteid and f.subjecttypeid in (select g.id.subjecttypeid from SubjectTypeMaster g where g.id.instituteid = a.id.instituteid and g.subjecttype in (:subjecttype1)))
+        )
+        and a.id.programsubjectid in (select g.id.programsubjectid from ProgramSubjectDetail g where g.id.instituteid=a.id.instituteid and g.id.registrationid=a.id.registrationid)
+    </query>
+    <query name="findStudSubjChoice_PreRegSubmit">
+        select b.id.studentid
+        from StudentRegistration b
+        where b.id.instituteid=:instituteid
+        and b.id.registrationid=:regid
+        and b.id.studentid=:studentid
+        and coalesce(b.regallow,'N') = 'Y'
+        and b.id.studentid in (select e.id.studentid from StudentSubjectChoiceMaster e where e.id.subjectid in (:ElegSubj) and e.id.studentid=b.id.studentid and e.id.registrationid=b.id.registrationid and e.id.stynumber=b.stynumber
+        and (e.basketid in (Select f.id.basketid from BasketMaster f where f.id.instituteid = b.id.instituteid and f.subjecttypeid in (select g.id.subjecttypeid from SubjectTypeMaster g where g.id.instituteid = b.id.instituteid and g.subjecttype in (:reporttype)))
+        or e.basketid in (Select f.id.basketid from BasketMasterDetail f where f.id.instituteid = b.id.instituteid and f.subjecttypeid in (select g.id.subjecttypeid from SubjectTypeMaster g where g.id.instituteid = b.id.instituteid and g.subjecttype in (:reporttype)))))
+    </query>
+    <query name="findStudSubjChoice_PreRegPending">
+        select b.id.studentid
+        from StudentRegistration b
+        where b.id.instituteid=:instituteid
+        and b.id.registrationid=:regid
+        and b.id.studentid=:studentid
+        and coalesce(b.regallow,'N') = 'Y'
+        and b.id.studentid not in (select e.id.studentid from StudentSubjectChoiceMaster e where e.id.subjectid in (:ElegSubj) and e.id.studentid=b.id.studentid and e.id.registrationid=b.id.registrationid and e.id.stynumber=b.stynumber and e.basketid in (Select f.id.basketid from BasketMasterDetail f where f.id.instituteid = b.id.instituteid and f.subjecttypeid in (select g.id.subjecttypeid from SubjectTypeMaster g where g.id.instituteid = b.id.instituteid and g.subjecttype in (:reporttype))))
+    </query>
+  <!--End Of Pre Registration Status Report By Faculty-->
+  <!--Start Of Student Add/Drop Subjects By Faculty-->
+  <!--<query name="findStudentWiseSubsectionMasterData">
+       <![CDATA[
+        select a.id.subsectionid, a.subsectioncode, a.subsectiondesc from ProgramWiseSubsection a
+        where coalesce(a.deactive,'N') = 'N'
+        and (a.id.instituteid, a.id.programid, a.id.sectionid, a.id.subsectionid) in
+        (
+        select b.instituteid, b.academicyear, b.programid, b.stynumber, b.sectionid, b.subsectionid from StudentMaster b where b.studentid=:studentid and b.subsectionid=:subsectionid
+        )
+        ]]>
+  </query>-->
+    <query name="findStudentWiseSubsectionMasterData">
+
+        select a.id.subsectionid, a.subsectioncode, a.subsectiondesc from ProgramWiseSubsection a
+        where coalesce(a.deactive,'N') = 'N'
+        and (a.id.instituteid, a.id.academicyear, a.id.programid, a.id.sectionid, a.id.subsectionid) in
+        (
+        select b.instituteid, b.acadyear, b.programid, b.sectionid, b.subsectionid from StudentMaster b where b.studentid=:studentid and b.subsectionid=:subsectionid
+        )
+
+    </query>
+    <query name="findStudentSubjectComponentHeader_AddDrop">
+
+        select distinct b.id.subjectcomponentid, c.subjectcomponentcode
+        from ProgramSubjectTagging a, ProgramSubjectDetail b, SubjectComponent c
+        where a.id.instituteid=b.id.instituteid
+        and a.id.registrationid=b.id.registrationid
+        and a.id.programsubjectid=b.id.programsubjectid
+        and a.id.instituteid=c.id.instituteid
+        and b.id.subjectcomponentid=c.id.subjectcomponentid
+        and a.id.instituteid=:instid
+        and a.id.registrationid=:regid
+        and a.academicyear=:acadyear
+        and a.programid=:prid
+        and a.sectionid=:secid
+        and a.stynumber=:styno
+        and a.subjectid = :subjectid
+        order by c.subjectcomponentcode
+
+    </query>
+  <!--<query name="findStudentSubjectData_AddDrop">
+       <![CDATA[
+        select a.subjectid, c.subjectcode, c.subjectdesc, b.ltppassingmarks, b.totalccpmarks, a.basketid, d.basketcode, a.stynumber, b.id.subjectcomponentid, e.subjectcomponentcode
+        from ProgramSubjectTagging a, ProgramSubjectDetail b, SubjectMaster c, BasketMaster d, SubjectComponent e
+        where a.id.instituteid=b.id.instituteid
+        and a.id.registrationid=b.id.registrationid
+        and a.id.programsubjectid=b.id.programsubjectid
+        and a.id.instituteid=c.id.instituteid
+        and a.subjectid=c.id.subjectid
+        and a.id.instituteid=d.id.instituteid
+        and a.basketid=d.id.basketid
+        and a.id.instituteid=e.id.instituteid
+        and b.id.subjectcomponentid=e.id.subjectcomponentid
+        and a.id.instituteid=:instid
+        and a.id.registrationid=:regid
+        and a.academicyear=:acadyear
+        and a.programid=:prid
+        and a.sectionid=:secid
+        and a.stynumber=:styno
+        group by a.subjectid, c.subjectcode, c.subjectdesc, b.ltppassingmarks, b.totalccpmarks, a.basketid, d.basketcode, a.stynumber, b.id.subjectcomponentid, e.subjectcomponentcode
+        order by c.subjectdesc, e.subjectcomponentcode
+        ]]>
+  </query>-->
+    <query name="findStudentSubjectData_AddDrop">
+
+        select a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc
+        from ProgramSubjectTagging a, ProgramSubjectDetail b, SubjectMaster c, BasketMasterDetail d, SubjectComponent e
+        where a.id.instituteid=b.id.instituteid
+        and a.id.registrationid=b.id.registrationid
+        and a.id.programsubjectid=b.id.programsubjectid
+        and a.id.instituteid=c.id.instituteid
+        and a.subjectid=c.id.subjectid
+        and a.id.instituteid=d.id.instituteid
+        and a.basketid=d.id.basketid
+        and a.id.instituteid=e.id.instituteid
+        and b.id.subjectcomponentid=e.id.subjectcomponentid
+        and a.id.instituteid=:instid
+        and a.id.registrationid=:regid
+        and a.academicyear=:acadyear
+        and a.programid=:prid
+        and a.sectionid=:secid
+        and a.stynumber=:styno
+        and a.subjectid not in (select f.id.subjectid from StudentNRSubjects f where f.id.instituteid=:instid and f.id.studentid=:studid and coalesce(f.deactive,'N') = 'N')
+        and a.subjectid not in (select f.id.subjectid from StudentResult f where f.id.instituteid=:instid and f.id.studentid=:studid and coalesce(f.fail,'N') = 'Y' and coalesce(f.deactive,'N') = 'N')
+        group by a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc
+        order by c.subjectdesc
+
+    </query>
+    <query name="findSubjectWiseStudentSubjectComponentValue_AddDrop">
+
+        select b.id.subjectcomponentid, e.subjectcomponentcode, b.ltppassingmarks
+        from ProgramSubjectTagging a, ProgramSubjectDetail b, SubjectMaster c, BasketMasterDetail d, SubjectComponent e
+        where a.id.instituteid=b.id.instituteid
+        and a.id.registrationid=b.id.registrationid
+        and a.id.programsubjectid=b.id.programsubjectid
+        and a.id.instituteid=c.id.instituteid
+        and a.subjectid=c.id.subjectid
+        and a.id.instituteid=d.id.instituteid
+        and a.basketid=d.id.basketid
+        and a.id.instituteid=e.id.instituteid
+        and b.id.subjectcomponentid=e.id.subjectcomponentid
+        and a.id.instituteid=:instid
+        and a.id.registrationid=:regid
+        and a.academicyear=:acadyear
+        and a.programid=:prid
+        and a.sectionid=:secid
+        and a.stynumber=:styno
+        and c.id.subjectid=:subjectid
+        and d.id.basketid=:basketid
+        and b.id.subjectcomponentid=:subjcompid
+        group by b.id.subjectcomponentid, e.subjectcomponentcode, b.ltppassingmarks
+        order by e.subjectcomponentcode
+
+    </query>
+    <query name="checkIfRegCodeWiseStudentMasterExist">
+
+        Select a.id.studentid, a.name, a.enrollmentno, f.id.academicyear, a.programid, c.programcode, b.stynumber, a.branchid, d.branchcode, a.sectionid, e.sectioncode, a.subsectionid
+        From StudentMaster a, StudentRegistration b, ProgramMaster c, BranchMaster d, SectionMaster e, Academicyear f
+        where a.instituteid=b.id.instituteid
+        and a.id.studentid=b.id.studentid
+        and a.instituteid=c.id.instituteid
+        and a.programid=c.id.programid
+        and a.instituteid=d.id.instituteid
+        and a.programid=d.id.programid
+        and a.branchid=d.id.branchid
+        and a.instituteid=e.id.instituteid
+        and a.sectionid=e.id.sectionid
+        and a.instituteid=f.id.instituteid
+        and a.acadyear=f.id.academicyear
+        and a.instituteid=:instituteid
+        and a.enrollmentno=:enrollmentno
+        and b.id.registrationid=:regid
+        and coalesce(b.regallow,'N')='Y'
+        and rownum=1
+        group by a.id.studentid, a.name, a.enrollmentno, f.id.academicyear, a.programid, c.programcode, b.stynumber, a.branchid, d.branchcode, a.sectionid, e.sectioncode, a.subsectionid
+        order by b.stynumber desc
+
+    </query>
+    <query name="findStudentMasterRegCodeWiseData">
+
+        Select a.id.studentid, a.name, a.enrollmentno, f.id.academicyear, a.programid, c.programcode, b.stynumber, a.branchid, d.branchcode, a.sectionid, e.sectioncode, a.subsectionid
+        From StudentMaster a, StudentRegistration b, ProgramMaster c, BranchMaster d, SectionMaster e, Academicyear f
+        where a.instituteid=b.id.instituteid
+        and a.id.studentid=b.id.studentid
+        and a.instituteid=c.id.instituteid
+        and a.programid=c.id.programid
+        and a.instituteid=d.id.instituteid
+        and a.programid=d.id.programid
+        and a.branchid=d.id.branchid
+        and a.instituteid=e.id.instituteid
+        and a.sectionid=e.id.sectionid
+        and a.instituteid=f.id.instituteid
+        and a.acadyear=f.id.academicyear
+        and a.instituteid=:instituteid
+        and b.id.registrationid=:regid
+        and coalesce(b.regallow,'N')='Y'
+        order by a.enrollmentno asc
+
+    </query>
+    <query name="findNRSubject_AddDrop">
+        select a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc
+        from ProgramSubjectTagging a, ProgramSubjectDetail b, SubjectMaster c, BasketMasterDetail d, SubjectComponent e
+        where a.id.instituteid=b.id.instituteid
+        and a.id.registrationid=b.id.registrationid
+        and a.id.programsubjectid=b.id.programsubjectid
+        and a.id.instituteid=c.id.instituteid
+        and a.subjectid=c.id.subjectid
+        and a.id.instituteid=d.id.instituteid
+        and a.basketid=d.id.basketid
+        and a.id.instituteid=e.id.instituteid
+        and b.id.subjectcomponentid=e.id.subjectcomponentid
+        and a.id.instituteid=:instid
+        and a.id.registrationid=:regid
+        and a.academicyear=:acadyear
+        and a.programid=:prid
+        and a.sectionid=:secid
+        and a.stynumber=:styno
+        and a.subjectid in (select f.id.subjectid from StudentNRSubjects f where f.id.instituteid=:instid and f.id.studentid=:studid and coalesce(f.deactive,'N') = 'N')
+        and a.subjectid in (select ost.odsubjectid from OfferedODSubjectTagging ost where ost.id.instituteid=:instid and ost.id.registrationid=:regid and coalesce(ost.deactive,'N') = 'N')
+        and coalesce(a.deactive,'N') = 'N'
+        group by a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc
+        order by c.subjectdesc
+
+    </query>
+    <query name="findFailSubject_AddDrop">
+
+        select a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc
+        from ProgramSubjectTagging a, ProgramSubjectDetail b, SubjectMaster c, BasketMasterDetail d, SubjectComponent e
+        where a.id.instituteid=b.id.instituteid
+        and a.id.registrationid=b.id.registrationid
+        and a.id.programsubjectid=b.id.programsubjectid
+        and a.id.instituteid=c.id.instituteid
+        and a.subjectid=c.id.subjectid
+        and a.id.instituteid=d.id.instituteid
+        and a.basketid=d.id.basketid
+        and a.id.instituteid=e.id.instituteid
+        and b.id.subjectcomponentid=e.id.subjectcomponentid
+        and a.id.instituteid=:instid
+        and a.id.registrationid=:regid
+        and a.academicyear=:acadyear
+        and a.programid=:prid
+        and a.sectionid=:secid
+        and a.stynumber=:styno
+        and a.subjectid in (select f.id.subjectid from StudentResult f where f.id.instituteid=:instid and f.id.studentid=:studid and coalesce(f.fail,'N') = 'Y' and coalesce(f.deactive,'N') = 'N')
+        and a.subjectid in (select ost.odsubjectid from OfferedODSubjectTagging ost where ost.id.instituteid=:instid and ost.id.registrationid=:regid and coalesce(ost.deactive,'N') = 'N')
+        and coalesce(a.deactive,'N') = 'N'
+        group by a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc
+        order by c.subjectdesc
+
+    </query>
+    <query name="findSubjectComponent_AddDrop_FSTPopup">
+
+        select distinct b.id.subjectcomponentid, c.subjectcomponentcode, c.subjectcomponentdesc, c.subjectcomponentdesc||' ('||c.subjectcomponentcode||')'
+        from ProgramSubjectTagging a, ProgramSubjectDetail b, SubjectComponent c
+        where a.id.instituteid=b.id.instituteid
+        and a.id.registrationid=b.id.registrationid
+        and a.id.programsubjectid=b.id.programsubjectid
+        and a.id.instituteid=c.id.instituteid
+        and b.id.subjectcomponentid=c.id.subjectcomponentid
+        and a.id.instituteid=:instituteid
+        and a.id.registrationid=:regid
+        and a.subjectid=:subjectid
+        order by c.subjectcomponentcode
+
+    </query>
+    <query name="findSubjCompFSTExists_AddDrop_FSTPopup">
+
+        select t.staffid from TT_TimeTableAllocation  t, FacultySubjectTagging a
+        where t.ttreferenceid=a.ttreferenceid and t.id.registrationid=a.registrationid and t.id.instituteid=a.id.instituteid
+        and a.id.instituteid=:instid
+        and a.registrationid=:regid
+        and a.academicyear=:acadyr
+        and a.programid=:progid
+        and a.sectionid=:secid
+        and a.subsectionid=:subsecid
+        and a.stynumber=:stynumber
+        and a.basketid=:basketid
+        and a.subjectid=:subjid
+        and a.subjectcomponentid=:subjcompid
+
+    </query>
+    <query name="findFSTFromFacultyStudent">
+    select a.id.studentfstid, a.deactive from FacultyStudentTagging a where a.id.instituteid=:instituteid and a.fstid=:fstid and a.id.studentid=:studentid
+    </query>
+    <query name="findAcademicYear_programaxsty">
+         select distinct m.id.academicyear from ProgramMaxSty m where coalesce(m.deactive,'N')='N' and m.id.instituteid=? order by m.id.academicyear desc
+    </query>
+    <query name="findSubjectMaster_loadTransferAttendanceEntry">
+        select  subjmast.id.subjectid, subjmast.subjectcode, subjmast.subjectdesc
+        from    SubjectMaster subjmast
+        where   subjmast.id.instituteid = :instituteid
+        and     subjmast.id.subjectid in
+        (
+            select fst.subjectid from FacultySubjectTagging fst,TT_TimeTableAllocation t, TT_TimeTableLoadTransfer ld
+            where
+            (   t.ttreferenceid=fst.ttreferenceid and t.id.registrationid=fst.registrationid and t.id.instituteid=fst.id.instituteid
+                and fst.id.instituteid = :instituteid
+                and fst.registrationid = :regid
+                and exists( select 1 from TT_TimeTableLoadTransfer ld
+                            where ld.tttransid = t.id.tttransid
+                            and ld.registrationid = t.id.registrationid
+                            and t.id.instituteid = ld.instituteid
+                            and ld.loadtransfertostaffid = :staffid )
+                and coalesce(fst.deactive,'N') = 'N'
+            )
+        )
+        order by subjmast.subjectcode, subjmast.subjectdesc
+    </query>
+    <query name="findSubjectComponent_loadTransferAttEntry">
+        select  distinct subjcomp.id.subjectcomponentid, subjcomp.subjectcomponentcode
+        from    SubjectComponent subjcomp
+        where   subjcomp.id.instituteid = :instituteid
+        and     subjcomp.id.subjectcomponentid in
+        (
+            select fst.subjectcomponent.id.subjectcomponentid from FacultySubjectTagging fst,TT_TimeTableAllocation t
+            where  t.ttreferenceid=fst.ttreferenceid and t.id.registrationid=fst.registrationid and t.id.instituteid=fst.id.instituteid
+            and fst.id.instituteid = :instituteid
+            and fst.registrationid = :regid
+            and fst.subjectid = :subjectid
+            and exists( select 1 from TT_TimeTableLoadTransfer ld
+                            where ld.tttransid = t.id.tttransid
+                            and ld.registrationid = t.id.registrationid
+                            and t.id.instituteid = ld.instituteid
+                            and ld.loadtransfertostaffid = :staffid )
+            and coalesce(fst.deactive,'N') = 'N'
+            and fst.id.fstid in (select fstudt.fstid from FacultyStudentTagging fstudt where fstudt.id.instituteid = :instituteid and coalesce(fstudt.deactive,'N') = 'N')
+        )
+    </query>
+    <query name="findAllRegistrationMasterForAttendanceEntryNew">
+          select distinct r.id.registrationid,r.registrationcode, r.registrationdatefrom, r.registrationdateto, r.attendancefromdate from RegistrationMaster r,InstituteRegistrationEvents m
+         where coalesce(r.deactive,'N')='N' and r.id.instituteid= ?
+         and r.id.instituteid=m.id.instituteid
+         and r.id.registrationid=m.id.registrationid
+         and coalesce(m.attendentryallowed,'N')='Y'
+    </query>
+  <query name="findAllRegistrationMasterForAttendanceEntry">
+          select distinct r.id.registrationid,r.registrationcode, r.registrationdatefrom, r.registrationdateto,r.attendancefromdate from RegistrationMaster r,InstituteRegistrationEvents m
+         where coalesce(r.deactive,'N')='N' and r.id.instituteid=:instituteid
+         and r.id.instituteid=m.id.instituteid
+         and r.id.registrationid=m.id.registrationid
+         and coalesce(m.attendentryallowed,'N')='Y'
+    </query>
+
+
+      <query name="findAllRegistrationMaster">
+          select distinct r.id.registrationid,r.registrationcode, r.registrationdatefrom, r.registrationdateto,r.attendancefromdate from RegistrationMaster r,InstituteRegistrationEvents m
+         where coalesce(r.deactive,'N')='N' and r.id.instituteid=?
+         and r.id.instituteid=m.id.instituteid
+         and r.id.registrationid=m.id.registrationid
+         and coalesce(m.preregistrationallowed,'N')='Y'
+    </query>
+
+    </hibernate-mapping>

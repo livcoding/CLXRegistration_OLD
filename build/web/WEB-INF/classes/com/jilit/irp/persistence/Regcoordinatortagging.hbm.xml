@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 7, 2015 10:44:31 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.RegCoordinatorTagging" table="REGCOORDINATORTAGGING">
+    <comment>Registration CoOrdinator / Advisor</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.RegCoordinatorTaggingId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="coordinatortypeid" type="string">
+        <column length="20" name="COORDINATORTYPEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="stafftype" type="string">
+        <column length="1" name="STAFFTYPE"/>
+      </key-property>
+      <key-property name="staffid" type="string">
+        <column length="20" name="STAFFID"/>
+      </key-property>
+      <key-property name="groupid" type="string">
+        <column length="50" name="GROUPID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentRegistration" fetch="select" insert="false" lazy="false" name="studentregistration" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="20" name="STUDENTID" not-null="true">
+        <comment>Student ID</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.CoordinatorType" fetch="select" insert="false" lazy="false" name="coordinatortype" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="COORDINATORTYPEID" not-null="true"/>
+    </many-to-one>
+    <property name="stynumber" type="short">
+      <column name="STYNUMBER" not-null="true" precision="4" scale="0">
+        <comment>0 means all semester</comment>
+      </column>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE">
+        <comment>Tagging Date and Time</comment>
+      </column>
+    </property>
+    <property name="entryby" type="string">
+      <column length="20" name="ENTRYBY"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

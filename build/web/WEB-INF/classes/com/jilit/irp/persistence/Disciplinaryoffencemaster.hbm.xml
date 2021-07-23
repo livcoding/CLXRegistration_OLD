@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Nov, 2013 4:13:30 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.DisciplinaryOffenceMaster" table="DISCIPLINARYOFFENCEMASTER">
+    <comment>Disciplinary Offence Master like 'Low /Middle / High / Intolerable Pririty Disciplinary Offence</comment>
+    <id name="offenceid" type="string">
+      <column length="20" name="OFFENCEID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="offencecode" type="string">
+      <column length="20" name="OFFENCECODE" not-null="true" unique="true">
+        <comment>Offence Code</comment>
+      </column>
+    </property>
+    <property name="offencedesc" type="string">
+      <column length="50" name="OFFENCEDESC" not-null="true" unique="true">
+        <comment>Offence Desc</comment>
+      </column>
+    </property>
+    <property name="offencelevel" type="short">
+      <column name="OFFENCELEVEL" not-null="true" precision="4" scale="0">
+        <comment>Offence Level - Lower the number lower the level of offence</comment>
+      </column>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0">
+        <comment>For Sequencing</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="studentdisciplinaryactions">
+      <key>
+        <column length="20" name="OFFENCEID" not-null="true">
+          <comment>Offence ID</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentDisciplinaryAction"/>
+    </set>
+  </class>
+</hibernate-mapping>

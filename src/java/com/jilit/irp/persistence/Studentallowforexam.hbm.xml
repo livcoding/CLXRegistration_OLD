@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 24, 2014 11:51:25 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentAllowForExam" table="STUDENTALLOWFOREXAM">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentAllowForExamId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="subjectid" type="string">
+        <column length="20" name="SUBJECTID"/>
+      </key-property>
+      <key-property name="debarstatus" type="string">
+        <column length="1" name="DEBARSTATUS">
+      </column>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <property name="enrollmentno" type="string">
+      <column length="20" name="ENROLLMENTNO" not-null="true"/>
+    </property>
+    <property name="name" type="string">
+      <column length="60" name="NAME" not-null="true"/>
+    </property>
+    <property name="programid" type="string">
+      <column length="20" name="PROGRAMID"/>
+    </property>
+    <property name="branchid" type="string">
+      <column length="20" name="BRANCHID"/>
+    </property>
+    <property name="stynumber" type="java.lang.Byte">
+      <column name="STYNUMBER" precision="2" scale="0"/>
+    </property>
+    <property name="sectionid" type="string">
+      <column length="20" name="SECTIONID"/>
+    </property>
+    <property name="subsectionid" type="string">
+      <column length="20" name="SUBSECTIONID"/>
+    </property>
+    <property name="subjectcode" type="string">
+      <column length="20" name="SUBJECTCODE"/>
+    </property>
+    <property name="subjectdesc" type="string">
+      <column length="160" name="SUBJECTDESC"/>
+    </property>
+    <property name="attendanceinpercentage" type="string">
+      <column length="160" name="ATTENDANCEINPERCENTAGE"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="50" name="REMARKS"/>
+    </property>
+    <property name="allowforexam" type="string">
+      <column length="1" name="ALLOWFOREXAM">
+        <comment>Like Y/N</comment>
+      </column>
+    </property>
+    <property name="debarremarks" type="string">
+      <column length="160" name="DEBARREMARKS">
+      </column>
+    </property>
+  </class>
+</hibernate-mapping>

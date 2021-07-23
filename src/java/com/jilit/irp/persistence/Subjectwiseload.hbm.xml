@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 26, 2014 11:55:09 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.SubjectWiseLoad" table="SUBJECTWISELOAD">
+    <comment>This table will keep the information about the subject wise load define</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.SubjectWiseLoadId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="departmentid" type="string">
+        <column length="20" name="DEPARTMENTID"/>
+      </key-property>
+      <key-property name="subjectid" type="string">
+        <column length="20" name="SUBJECTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.Academicyear" fetch="select" insert="false" lazy="false" name="academicyear" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.DepartmentMaster" fetch="select" insert="false" lazy="false" name="departmentmaster" update="false">
+      <column length="20" name="DEPARTMENTID" not-null="true">
+        <comment>Subject Belongs to Department</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.BranchMaster" fetch="select" insert="false" lazy="false" name="branchmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+      <column length="20" name="BRANCHID" not-null="true"/>
+    </many-to-one>
+    <property name="acadyear" type="string">
+        <column length="20" name="ACADEMICYEAR"/>
+      </property>
+      <property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </property>
+      <property name="branchid" type="string">
+        <column length="20" name="BRANCHID"/>
+      </property>
+      <property name="stynumber" type="string">
+        <column length="20" name="STYNUMBER"/>
+      </property>
+    <property name="subjectcount" type="java.lang.Integer">
+      <column name="SUBJECTCOUNT" precision="5" scale="0">
+        <comment>No of Students who opt for this subject</comment>
+      </column>
+    </property>
+    <property name="lbatch" type="java.lang.Integer">
+      <column name="LBATCH" precision="5" scale="0">
+        <comment>No of Division in Branch</comment>
+      </column>
+    </property>
+    <property name="tbatch" type="java.lang.Integer">
+      <column name="TBATCH" precision="5" scale="0">
+        <comment>No of Tutorial Batch in a Subject</comment>
+      </column>
+    </property>
+    <property name="pbatch" type="java.lang.Integer">
+      <column name="PBATCH" precision="5" scale="0">
+        <comment>No of Practical Batch in a Subject</comment>
+      </column>
+    </property>
+    <property name="lload" type="java.lang.Integer">
+      <column name="LLOAD" precision="5" scale="0">
+        <comment>Subject Load For Lecture i.e (Division * No of Hours * L)</comment>
+      </column>
+    </property>
+    <property name="tload" type="java.lang.Integer">
+      <column name="TLOAD" precision="5" scale="0">
+        <comment>Subject Load For Tutorial i.e (Tutorial Batch * No of Hours * T)</comment>
+      </column>
+    </property>
+    <property name="pload" type="java.lang.Integer">
+      <column name="PLOAD" precision="5" scale="0">
+        <comment>Subject Load For Practical i.e (Practical Batch * No of Hours * T)</comment>
+      </column>
+    </property>
+    <property name="totalworkload" type="java.lang.Integer">
+      <column name="TOTALWORKLOAD" precision="5" scale="0">
+        <comment>Total Workload for this Subject in this Department</comment>
+      </column>
+    </property>
+    <property name="remarks" type="string">
+      <column length="60" name="REMARKS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentSubjectFacultyChoices" table="STUDENTSUBJECTFACULTYCHOICES">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentSubjectFacultyChoicesId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="stynumber" type="byte">
+        <column name="STYNUMBER" precision="2" scale="0"/>
+      </key-property>
+      <key-property name="subjectid" type="string">
+        <column length="20" name="SUBJECTID"/>
+      </key-property>
+      <key-property name="subjectcomponentid" type="string">
+        <column length="20" name="SUBJECTCOMPONENTID"/>
+      </key-property>
+      <key-property name="preferenceno" type="byte">
+        <column name="PREFERENCENO" precision="2" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationMaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectComponent" fetch="select" insert="false" lazy="false" name="subjectComponent" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTCOMPONENTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectMaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentRegistration" fetch="select" insert="false" lazy="false" name="studentRegistration" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="stafftype" type="string">
+      <column length="1" name="STAFFTYPE"/>
+    </property>
+    <property name="staffid" type="string">
+      <column length="20" name="STAFFID"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

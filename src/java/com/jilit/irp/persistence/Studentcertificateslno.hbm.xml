@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 Oct, 2011 6:05:06 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentCertificateSlno" table="STUDENTCERTIFICATESLNO">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentCertificateSlnoId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="academicyear" type="string">
+        <column length="8" name="ACADEMICYEAR"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="branchid" type="string">
+        <column length="20" name="BRANCHID"/>
+      </key-property>
+      <key-property name="stynumber" type="byte">
+        <column name="STYNUMBER" precision="2" scale="0"/>
+      </key-property>
+      <key-property name="stytypeid" type="string">
+        <column length="20" name="STYTYPEID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="certificateid" type="string">
+        <column length="20" name="CERTIFICATEID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" lazy="false" name="programmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.BranchMaster" fetch="select" insert="false" lazy="false" name="branchmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+      <column length="20" name="BRANCHID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Academicyear" fetch="select" insert="false" lazy="false" name="academicyear" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentCertificateMaster" fetch="select" insert="false" lazy="false" name="studentcertificatemaster" update="false">
+      <column length="20" name="CERTIFICATEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentRegistration" fetch="select" insert="false" lazy="false" name="studentregistration" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="certificateno" type="string">
+      <column length="30" name="CERTIFICATENO" not-null="true"/>
+    </property>
+    <property name="certificateissuedate" type="date">
+      <column length="7" name="CERTIFICATEISSUEDATE"/>
+    </property>
+    <property name="certificateissueby" type="string">
+      <column length="30" name="CERTIFICATEISSUEBY"/>
+    </property>
+    <property name="certificateissuecount" type="java.lang.Byte">
+      <column name="CERTIFICATEISSUECOUNT" precision="2" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

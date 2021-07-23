@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Sct_IrpModules" table="SCT_IRPMODULES">
+    <id name="moduleid" type="string">
+      <column length="20" name="MODULEID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.Sct_IrpModules" fetch="select" insert="false" lazy="false" name="sct_irpmodules" update="false">
+      <column length="20" name="PARENTID"/>
+    </many-to-one>
+    <property name="modulecode" type="string">
+      <column length="50" name="MODULECODE" not-null="true" unique="true"/>
+    </property>
+    <property name="parentid" type="string">
+      <column length="50" name="PARENTID"/>
+    </property>
+    <property name="moduledesc1" type="string">
+      <column length="100" name="MODULEDESC1"/>
+    </property>
+    <property name="moduledesc2" type="string">
+      <column length="100" name="MODULEDESC2"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0"/>
+    </property>
+    <property name="moduletype" type="string">
+      <column length="1" name="MODULETYPE">
+        <comment>[W]EBKIOSK, [M]ODULE WISE APPLICATION</comment>
+      </column>
+    </property>
+    <property name="counsellingmodule" type="string">
+      <column length="1" name="COUNSELLINGMODULE">
+        <comment>[W]EBKIOSK, [M]ODULE WISE APPLICATION</comment>
+      </column>
+    </property>
+    <property name="appliacablefor" type="string">
+      <column length="10" name="APPLIACABLEFOR">
+        <comment>i.e. ESG means Employee, Student and Guest</comment>
+      </column>
+    </property>
+    <property name="commonmodule" type="string">
+      <column length="1" name="COMMONMODULE">
+      </column>
+    </property>
+    <set inverse="true" lazy="extra" name="parameterss">
+      <key>
+        <column length="20" name="MODULEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Parameters"/>
+    </set>
+    <set inverse="true" lazy="extra" name="sct_irpmoduleses">
+      <key>
+        <column length="20" name="PARENTID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Sct_IrpModules"/>
+    </set>
+   
+  </class>
+</hibernate-mapping>

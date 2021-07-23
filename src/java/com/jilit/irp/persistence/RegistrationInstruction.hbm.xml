@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.RegistrationInstruction" table="REGISTRATIONINSTRUCTION">
+        <composite-id class="com.jilit.irp.persistence.dto.RegistrationInstructionId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+        </many-to-one>
+        <property name="coursereginstruction" type="binary">
+            <column name="COURSEREGINSTRUCTION"/>
+        </property>
+        
+        <property name="electiveinstruction" type="binary">
+            <column name="ELECTIVEINSTRUCTION"/>
+        </property>
+        <property name="supplinstruction" type="binary">
+            <column name="SUPPLINSTRUCTION"/>
+        </property>
+        <property name="entryby" type="string">
+            <column length="100" name="ENTRYBY" not-null="false"/>
+        </property>
+        <property name="entrydate" type="date">
+            <column length="7" name="ENTRYDATE" not-null="false"/>
+        </property>
+        <property name="updatedby" type="string">
+            <column length="100" name="UPDATEDBY" not-null="false"/>
+        </property>
+        <property name="updationdate" type="date">
+            <column length="7" name="UPDATIONDATE" not-null="false"/>
+        </property>
+        <property name="gipinstruction" type="binary">
+            <column name="GIPINSTRUCTION"/>
+        </property>
+    </class>
+</hibernate-mapping>

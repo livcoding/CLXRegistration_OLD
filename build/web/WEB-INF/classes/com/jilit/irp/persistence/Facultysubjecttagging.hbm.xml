@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.FacultySubjectTagging" table="FACULTYSUBJECTTAGGING">
+        <composite-id class="com.jilit.irp.persistence.dto.FacultySubjectTaggingId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="fstid" type="string">
+                <column length="20" name="FSTID"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.SubjectComponent" fetch="select" insert="false" lazy="false" name="subjectcomponent" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+                <comment>[O]ver All, [L], [T], [P], [X]</comment>
+            </column>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.StyType" fetch="select" insert="false" lazy="false" name="stytype" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="STYTYPEID" not-null="true"/>
+        </many-to-one>
+
+        <property name="registrationid" type="string">
+            <column length="20" name="REGISTRATIONID" not-null="true"/>
+        </property>
+
+        <property name="academicyear" type="string">
+            <column length="8" name="ACADEMICYEAR" not-null="true"/>
+        </property>
+        <property name="programid" type="string">
+            <column length="20" name="PROGRAMID" not-null="true"/>
+        </property>
+        <property name="subjectcomponentid" type="string">
+            <column length="20" name="SUBJECTCOMPONENTID" not-null="true"/>
+        </property>
+        <property name="stytypeid" type="string">
+            <column length="20" name="STYTYPEID" not-null="true"/>
+        </property>
+        <property name="sectionid" type="string">
+            <column length="20" name="SECTIONID" not-null="true"/>
+        </property>
+        <property name="subsectionid" type="string">
+            <column length="20" name="SUBSECTIONID" not-null="true"/>
+        </property>
+        <property name="stynumber" type="byte">
+            <column name="STYNUMBER" not-null="true" precision="2" scale="0"/>
+        </property>
+        <property name="basketid" type="string">
+            <column length="20" name="BASKETID" not-null="true"/>
+        </property>
+        <property name="subjectid" type="string">
+            <column length="20" name="SUBJECTID" not-null="true"/>
+        </property>
+        <property name="reqroomtype" type="string">
+            <column length="6" name="REQROOMTYPE"/>
+        </property>
+        <property name="mergewithfstid" type="string">
+            <column length="20" name="MERGEWITHFSTID"/>
+        </property>
+        <property name="durationofclass" type="big_decimal">
+            <column name="DURATIONOFCLASS" precision="5"/>
+        </property>
+        <property name="noofclassinaweek" type="big_decimal">
+            <column name="NOOFCLASSINAWEEK" precision="5"/>
+        </property>
+        <property name="ttreferenceid" type="string">
+            <column length="20" name="TTREFERENCEID"/>
+        </property>
+        <property name="totalclasses" type="big_decimal">
+            <column name="TOTALCLASSES" precision="4">
+                <comment>TOTALCLASSES = No. of Clasees on which % of attendance will be calculated</comment>
+            </column>
+        </property>
+        <property name="multifaculty" type="string">
+            <column length="1" name="MULTIFACULTY">
+                <comment>Yes / No</comment>
+            </column>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="subjecttypeid" type="string">
+            <column length="20" name="SUBJECTTYPEID"/>
+        </property>
+        <property name="subjecttype" type="string">
+            <column length="1" name="SUBJECTTYPE"/>
+        </property>
+	
+        <set cascade="all" inverse="true" lazy="extra" name="facultystudenttaggings">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="FSTID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.FacultyStudentTagging"/>
+        </set>
+        <set inverse="true" lazy="extra" name="prfacultystudenttaggings">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="FSTID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.PRFacultyStudentTagging"/>
+        </set>
+        <set inverse="true" lazy="extra" name="multifacultysubjecttaggings">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="FSTID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.MultiFacultySubjectTagging"/>
+        </set>
+        <set inverse="true" lazy="extra" name="exameventsubjecttagging">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="FSTID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.ExamEventSubjectTagging"/>
+        </set>
+        <!--    <set inverse="true" lazy="extra" name="subjectcoordinators">
+          <key>
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="FSTID" not-null="true"/>
+          </key>
+          <one-to-many class="com.jilit.irp.persistence.dto.SubjectCoordinator"/>
+        </set>-->
+        <set inverse="true" lazy="extra" name="fstwisecoordinators">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="FSTID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.FSTwiseCoordinator"/>
+        </set>
+
+
+   
+    </class>
+    <query name="getDateSheetDataFormFST_RegistrationAndComponentWise">
+
+        select fst.academicyear,
+        fst.programid, pm.programcode,
+        fst.sectionid, sm.sectioncode,
+        fst.stynumber, fst.stytypeid,
+        st.stytype, count(distinct sft.id.studentid),
+        fst.subjectcomponentid
+        from
+        FacultySubjectTagging fst,
+        FacultyStudentTagging sft,
+        ProgramMaster pm,
+        SectionMaster sm,
+        StyType st
+        where
+        fst.id.instituteid=:instituteid
+        and fst.registrationid=:registrationid
+        and fst.subjectcomponentid in (:subjectcomponentid)
+        and fst.subjectid = :subjectid
+        and fst.id.instituteid=pm.id.instituteid
+        and fst.id.instituteid=sm.id.instituteid
+        and fst.id.instituteid=st.id.instituteid
+        and fst.sectionid=sm.id.sectionid
+        and fst.programid=pm.id.programid
+        and fst.stytypeid=st.id.stytypeid
+        and coalesce(fst.deactive,'N')='N'
+        and coalesce(sm.deactive,'N')='N'
+        and coalesce(pm.deactive,'N')='N'
+        and coalesce(st.deactive,'N')='N'
+        and fst.id.instituteid = sft.id.instituteid
+        and fst.id.fstid = sft.fstid
+        group by fst.academicyear,
+        fst.programid,pm.programcode,
+        fst.sectionid,sm.sectioncode,
+        fst.stynumber,fst.stytypeid,st.stytype,
+        fst.subjectcomponentid
+        order by
+        fst.academicyear,
+        fst.programid,pm.programcode,
+        fst.sectionid,sm.sectioncode,
+        fst.stynumber,fst.stytypeid,st.stytype,
+        fst.subjectcomponentid
+
+    </query>
+    <query name="findAllFSTID">
+
+        select a.id.fstid
+        from
+        FacultySubjectTagging a, TT_TimeTableAllocation t
+        where t.ttreferenceid=a.ttreferenceid and t.id.registrationid=a.registrationid and t.id.instituteid=a.id.instituteid
+        and a.id.instituteid = ?
+        and a.registrationid = ?
+        and a.subjectid = ?
+        and t.staffid = ?
+        and a.programid = ?
+        and a.sectionid = ?
+        and a.subsectionid = ?
+        and a.stynumber = ?
+        and a.subjectcomponentid= ?
+        and coalesce(a.deactive,'N') = 'N'
+
+    </query>
+    <query name="countAllFaculty">
+
+        select a.staffid
+        from TT_TimeTableAllocation a
+        where a.id.instituteid = ?
+        and a.id.registrationid = ?
+        and a.subjectid = ?
+        and coalesce(a.deactive,'N') = 'N'
+        and coalesce(a.status,'D') = 'A'
+        group by a.staffid
+
+    </query>
+    <query name="getDateSheetSubjectListSubQuery">
+        select sc.id.subjectcomponentid, sc.subjectcomponentcode from SubjectComponent sc
+        where sc.id.instituteid=:instituteid
+        and sc.id.subjectcomponentid in (:subjectcomponentid)
+        and exists(select 1 from FacultySubjectTagging fst
+        where fst.registrationid=:registrationid
+        and fst.subjectcomponentid = sc.id.subjectcomponentid
+        and fst.id.instituteid = sc.id.instituteid
+        and fst.subjectid = :subjectid )
+    </query>
+    <query name="getSubjectsForFaculty">
+        select a.subjectid
+        from TT_TimeTableAllocation a
+        where a.id.instituteid = ?
+        and a.id.registrationid = ?
+        and a.staffid=?
+        and a.stafftype=?
+        and coalesce(a.deactive,'N') = 'N'
+        and coalesce(a.status,'D') = 'A'
+        group by a.subjectid
+    </query>
+    <query cacheable="false" name="getDateSheetDataFormFST_RegistrationAndComponentWiseSingleRow">
+        select fst.academicyear, fst.programid, fst.stynumber from FacultySubjectTagging fst,
+        FacultyStudentTagging sft, ProgramMaster pm, SectionMaster sm, StyType st
+        where fst.id.instituteid=:instituteid and fst.registrationid=:registrationid
+        and fst.subjectcomponentid= :subjectcomponentid and fst.subjectid= :subjectid
+        and fst.id.instituteid=pm.id.instituteid and fst.id.instituteid=sm.id.instituteid
+        and fst.id.instituteid=st.id.instituteid and fst.sectionid=sm.id.sectionid
+        and fst.programid=pm.id.programid and fst.stytypeid=st.id.stytypeid
+        and coalesce(fst.deactive,'N')='N' and coalesce(sm.deactive,'N')='N'
+        and coalesce(pm.deactive,'N')='N' and coalesce(st.deactive,'N')='N'
+        and fst.id.instituteid = sft.id.instituteid and fst.id.fstid = sft.fstid
+        group by fst.academicyear, fst.programid, fst.stynumber order by fst.academicyear, fst.programid, fst.stynumber
+    </query>
+  
+    <query name="findAllFstidWithOutTimeTableBased">
+
+        select a.id.fstid
+        from
+        FacultySubjectTagging a
+        where 
+        a.id.instituteid = ?
+        and a.registrationid = ?
+        and a.subjectid = ?
+        and a.programid = ?
+        and a.sectionid = ?
+        and a.subsectionid = ?
+        and a.stynumber = ?
+        and a.subjectcomponentid= ?
+        and coalesce(a.deactive,'N') = 'N'
+
+    </query>
+</hibernate-mapping>

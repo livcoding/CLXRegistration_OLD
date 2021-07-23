@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17 Sep, 2016 3:23:02 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Sdl_ScheduleMailTask" table="SDL_SCHEDULEMAILTASK">
+    <comment>List of Scheduled Mails to be sent</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.Sdl_ScheduleMailTaskId" name="id">
+      <key-property name="schedularid" type="string">
+        <column length="20" name="SCHEDULARID"/>
+      </key-property>
+      <key-property name="taskid" type="string">
+        <column length="20" name="TASKID"/>
+      </key-property>
+      <key-property name="senderemailid" type="string">
+        <column length="200" name="SENDEREMAILID"/>
+      </key-property>
+      <key-property name="toemailid" type="string">
+        <column length="200" name="TOEMAILID"/>
+      </key-property>
+    <key-property name="enrollmentno" type="string">
+        <column name="ENROLLMENTNO" length="20" />
+    </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.Sdl_ScheduleTaskMaster" fetch="select" insert="false" name="sdl_scheduletaskmaster" update="false">
+      <column length="20" name="SCHEDULARID" not-null="true">
+        <comment>SchedularID</comment>
+      </column>
+      <column length="20" name="TASKID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Sdl_SchedularMaster" fetch="select" insert="false" name="sdl_schedularmaster" update="false">
+      <column length="20" name="SCHEDULARID" not-null="true">
+        <comment>SchedularID</comment>
+      </column>
+    </many-to-one>
+    <property name="sendername" type="string">
+      <column length="200" name="SENDERNAME"/>
+    </property>
+    <property name="senderdesignation" type="string">
+      <column length="200" name="SENDERDESIGNATION"/>
+    </property>
+    <property name="emailsubject" type="string">
+      <column length="200" name="EMAILSUBJECT"/>
+    </property>
+    <property name="emailbody" type="string">
+      <column length="2000" name="EMAILBODY"/>
+    </property>
+    <property name="toemailname" type="string">
+      <column length="200" name="TOEMAILNAME"/>
+    </property>
+    <property name="hasattachement" type="string">
+      <column length="1" name="HASATTACHEMENT">
+        <comment>[Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="priority" type="java.lang.Boolean">
+      <column name="PRIORITY" precision="1" scale="0">
+        <comment>1=Very High 2=High 3 = Normal</comment>
+      </column>
+    </property>
+    <property name="scheduleddatetime" type="date">
+      <column length="7" name="SCHEDULEDDATETIME">
+        <comment>Scheduled Date Time</comment>
+      </column>
+    </property>
+    <property name="actualsendingdatetime" type="date">
+      <column length="7" name="ACTUALSENDINGDATETIME">
+        <comment>Actual Sending Date Time</comment>
+      </column>
+    </property>
+    <property name="status" type="string">
+      <column length="1" name="STATUS">
+        <comment>[S]ent/[F]ail</comment>
+      </column>
+    </property>
+    <property name="resenddate1" type="date">
+      <column length="7" name="RESENDDATE1">
+        <comment>Re Send Date &amp; Time 1</comment>
+      </column>
+    </property>
+    <property name="resendstatus" type="string">
+      <column length="1" name="RESENDSTATUS">
+        <comment>[S]ent/[F]ail</comment>
+      </column>
+    </property>
+    <property name="resenddate2" type="date">
+      <column length="7" name="RESENDDATE2">
+        <comment>Re Send Date &amp; Time 2</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE">
+        <comment>[Y]es/[N]o</comment>
+      </column>
+    </property>
+  </class>
+</hibernate-mapping>

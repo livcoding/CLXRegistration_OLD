@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 26, 2014 10:38:19 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.HostelRoomBedMaster" table="HOSTELROOMBEDMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.HostelRoomBedMasterId" name="id">
+      <key-property name="hostelid" type="string">
+        <column length="20" name="HOSTELID"/>
+      </key-property>
+      <key-property name="roomid" type="string">
+        <column length="20" name="ROOMID"/>
+      </key-property>
+      <key-property name="bedid" type="string">
+        <column length="20" name="BEDID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.HostelRoomMaster" fetch="select" insert="false" lazy="false" name="hostelroommaster" update="false">
+      <column length="20" name="HOSTELID" not-null="true"/>
+      <column length="20" name="ROOMID" not-null="true"/>
+    </many-to-one>
+    <property name="bedno" type="string">
+      <column length="20" name="BEDNO" not-null="true"/>
+    </property>
+    <property name="beddesc" type="string">
+      <column length="75" name="BEDDESC" not-null="true"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="250" name="REMARKS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="entryby" type="string">
+      <column length="20" name="ENTRYBY"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="studenthosteldetails">
+      <key>
+        <column length="20" name="HOSTELID" not-null="true"/>
+        <column length="20" name="ROOMID" not-null="true"/>
+        <column length="20" name="BEDID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentHostelDetail"/>
+    </set>
+  </class>
+</hibernate-mapping>

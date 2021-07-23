@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentGroupMaster" table="STUDENTGROUPMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentGroupMasterId" name="id">
+      <key-property name="groupid" type="string">
+        <column length="20" name="GROUPID"/>
+      </key-property>
+      <key-property name="clientid" type="string">
+        <column length="20" name="CLIENTID"/>
+      </key-property>
+    </composite-id>
+    <property name="groupcode" type="string">
+      <column length="20" name="GROUPCODE"/>
+    </property>
+    <property name="groupname" type="string">
+      <column length="60" name="GROUPNAME"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="studentgroupcrlimit">
+      <key>
+        <column length="20" name="GROUPID" not-null="true"/>
+        <column length="20" name="CLIENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentGroupCrLimit"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.OtherStaffMaster" table="OTHERSTAFFMASTER">
+    <comment>This table will create Other Staff resources and in case of Student OR Employee from other Company will have Original ID information</comment>
+    <id name="osid" type="string">
+      <column length="20" name="OSID"/>
+      <generator class="assigned"/>
+    </id>
+     
+    <property name="companyid" type="string">
+      <column length="20" name="COMPANYID" not-null="true">
+        <comment>added by sunny</comment>
+      </column>
+    </property>
+    <property name="ostype" type="string">
+      <column length="1" name="OSTYPE" not-null="true">
+        <comment>Employee on Other [C]ompany role/ [S]tudent / [V]isiting / [O]ther</comment>
+      </column>
+    </property>
+    <property name="orig_instituteorcompany" type="string">
+      <column length="1" name="ORIG#INSTITUTEORCOMPANY">
+        <comment>[I]nstitute/[C]ompany (if any)</comment>
+      </column>
+    </property>
+    <property name="orig_instituteidcompanyid" type="string">
+      <column length="20" name="ORIG#INSTITUTEIDCOMPANYID">
+        <comment>Institute ID or Company ID (if any)</comment>
+      </column>
+    </property>
+    <property name="orig_empvfstudentid" type="string">
+      <column length="20" name="ORIG#EMPVFSTUDENTID">
+        <comment>Employee ID or Visiting Faculty ID or Student ID (if any)</comment>
+      </column>
+    </property>
+    <property name="remarks" type="string">
+      <column length="250" name="REMARKS">
+        <comment>if any</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="employeetypeid" type="string">
+      <column length="20" name="EMPLOYEETYPEID">
+      </column>
+    </property>
+    <set cascade="save-update,delete" inverse="true" lazy="extra" name="otherstaffmasterdetails">
+      <key>
+        <column length="20" name="OSID" not-null="true" unique="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.OtherStaffMasterDetail"/>
+    </set>
+  </class>
+</hibernate-mapping>

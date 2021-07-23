@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 15, 2011 2:52:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.PhdResearchRegistration" table="PHDRESEARCHREGISTRATION">
+    <composite-id class="com.jilit.irp.persistence.dto.PhdResearchRegistrationId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentRegistration" fetch="select" insert="false" lazy="false" name="studentregistration" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="internalguide1" type="string">
+      <column length="20" name="INTERNALGUIDE1"/>
+    </property>
+    <property name="internalguide1type" type="string">
+      <column length="1" name="INTERNALGUIDE1TYPE"/>
+    </property>
+    <property name="internalguide2" type="string">
+      <column length="20" name="INTERNALGUIDE2"/>
+    </property>
+    <property name="internalguide2type" type="string">
+      <column length="1" name="INTERNALGUIDE2TYPE"/>
+    </property>
+    <property name="externalguide" type="string">
+      <column length="80" name="EXTERNALGUIDE"/>
+    </property>
+    <property name="thesistopic" type="string">
+      <column length="500" name="THESISTOPIC"/>
+    </property>
+    <property name="thesisabstract" type="string">
+      <column length="1000" name="THESISABSTRACT"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="1" name="ENTRYDATE"/>
+    </property>
+  </class>
+  <query name="findAllRegistrationCode_PhdResearchRegistration">
+     
+      select a
+         from RegistrationMaster a
+            where a.id.instituteid = ?
+                  and coalesce(a.deactive,'N')='N'
+                  and exists(
+                              select b.id.registrationid
+                                     from PhdResearchRegistration b, InstituteRegistrationEvents c
+                                           where a.id.instituteid = b.id.instituteid
+                                             and a.id.registrationid = b.id.registrationid
+                                             and c.id.instituteid = b.id.instituteid
+                                             and c.id.registrationid = b.id.registrationid
+                                             and coalesce(c.preregistrationallowed,'N') = 'Y'
+                                             and b.id.instituteid = ? )
+     
+     </query>
+  <query name="findRegistrationCode_PhdResearchRegistration">
+     
+      select a
+         from RegistrationMaster a
+            where a.id.instituteid = ?
+                  and a.registrationcode = ?
+                  and coalesce(a.deactive,'N')='N'
+                  and exists(
+                              select b.id.registrationid
+                                     from PhdResearchRegistration b, InstituteRegistrationEvents c
+                                           where a.id.instituteid = b.id.instituteid
+                                             and a.id.registrationid = b.id.registrationid
+                                             and c.id.instituteid = b.id.instituteid
+                                             and c.id.registrationid = b.id.registrationid
+                                             and coalesce(c.preregistrationallowed,'N') = 'Y'
+                                             and b.id.instituteid = ? )
+     
+     </query>
+  <query name="findSubjectsFromPhdResearchRegistration">
+     
+      select a
+         from PhdResearchRegistration a
+            where a.id.instituteid = ?
+                  and a.id.registrationid = ?
+                  and a.id.studentid = ?
+                  and coalesce(a.deactive,'N')='N'
+
+     
+     </query>
+</hibernate-mapping>

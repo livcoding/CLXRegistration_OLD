@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.RollNumberingControl" table="ROLLNUMBERINGCONTROL">
+        <comment>Enrollment No Generation Table</comment>
+        <composite-id class="com.jilit.irp.persistence.dto.RollNumberingControlId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="groupid" type="string">
+                <column length="20" name="GROUPID"/>
+            </key-property>
+            <key-property name="ym" type="string">
+                <column length="6" name="YM"/>
+            </key-property>
+            <key-property name="programid" type="string">
+                <column length="20" name="programid"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.RollNumberingSetup" fetch="select" insert="false" lazy="false" name="rollnumberingsetup" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="GROUPID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" lazy="false" name="programmaster" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="PROGRAMID" not-null="true"/>
+        </many-to-one>
+        <property name="lastno" type="string">
+            <column length="20" name="LASTNO"/>
+        </property>
+        <property name="lastrunningno" type="big_decimal">
+            <column name="LASTRUNNINGNO" precision="20" scale="0"/>
+        </property>
+        <property name="lastgenerationdate" type="date">
+            <column length="7" name="LASTGENERATIONDATE"/>
+        </property>
+    </class>
+</hibernate-mapping>

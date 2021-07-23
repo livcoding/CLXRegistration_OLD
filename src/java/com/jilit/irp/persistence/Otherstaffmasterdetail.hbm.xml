@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 21, 2009 11:52:05 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.OtherStaffMasterDetail" table="OTHERSTAFFMASTERDETAIL">
+    <comment>This will be used in case of Visiting faculty and other staff and Emp.from other company is not avl.in the db</comment>
+    <id name="osid" type="string">
+      <column length="20" name="OSID"/>
+      <generator class="assigned"/>
+    </id>
+     
+    <many-to-one class="com.jilit.irp.persistence.dto.OtherStaffMaster" fetch="select" insert="false" lazy="false" name="otherstaffmaster" update="false">
+      <column length="20" name="OSID" not-null="true" unique="true"/>
+    </many-to-one>
+    
+    <property name="oscode" type="string">
+      <column length="20" name="OSCODE" not-null="true">
+        <comment>Other Staff Code</comment>
+      </column>
+    </property>
+    <property name="osname" type="string">
+      <column length="60" name="OSNAME" not-null="true"/>
+    </property>
+    <property name="shortname" type="string">
+      <column length="8" name="SHORTNAME" unique="true">
+        <comment>Unique in EmployeeMaster &amp; OtherStaffMaster</comment>
+      </column>
+    </property>
+    <property name="otherdepartment" type="string">
+      <column length="100" name="OTHERDEPARTMENT">
+        <comment>If not from Department Master, free field</comment>
+      </column>
+    </property>
+    <property name="otherdesignation" type="string">
+      <column length="100" name="OTHERDESIGNATION">
+        <comment>If not from Designation Master, free field</comment>
+      </column>
+    </property>
+    <property name="salutationid" type="string">
+      <column length="20" name="SALUTATIONID">
+      </column>
+    </property>
+    <property name="departmentid" type="string">
+      <column length="20" name="DEPARTMENTID">
+      </column>
+    </property>
+    <property name="designationid" type="string">
+      <column length="20" name="DESIGNATIONID">
+      </column>
+    </property>
+    <property name="emailid" type="string">
+      <column length="100" name="EMAILID">
+      </column>
+    </property>
+    <property name="contactnumber" type="string">
+      <column length="30" name="CONTACTNUMBER">
+      </column>
+    </property>
+  </class>
+</hibernate-mapping>

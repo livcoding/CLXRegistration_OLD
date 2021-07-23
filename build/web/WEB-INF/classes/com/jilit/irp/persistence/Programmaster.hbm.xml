@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ProgramMaster" table="PROGRAMMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.ProgramMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="programcode" type="string">
+      <column length="20" name="PROGRAMCODE" not-null="true"/>
+    </property>
+    <property name="programdesc" type="string">
+      <column length="100" name="PROGRAMDESC"/>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0"/>
+    </property>
+    <property name="enrollmentcode" type="string">
+      <column length="6" name="ENROLLMENTCODE">
+        <comment>Help in Enrollment No Generation</comment>
+      </column>
+    </property>
+    <property name="certificatecode" type="string">
+      <column length="6" name="CERTIFICATECODE"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="nooftimesmercy" type="java.lang.Short">
+      <column name="NOOFTIMESMERCY" precision="2" scale="0"/>
+    </property>
+     <property name="fromrange" type="java.lang.Short">
+      <column name="FROMRANGE" precision="5" scale="0"/>
+    </property>
+    <property name="torange" type="java.lang.Short">
+      <column name="TORANGE" precision="5" scale="0"/>
+    </property>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="programtypeprogramtaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramTypeProgramTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="categoryprogramdocumenttaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CategoryProgramDocumentTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="branchmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.BranchMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prsubjecttypewiseapprovals">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PRSubjectTypeWiseApproval"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programschemes">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramScheme"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programwisesubsections">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramWiseSubsection"/>
+    </set>
+    <set inverse="true" lazy="extra" name="basketmasterdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.BasketMasterDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentpreviousattendences">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentPreviousAttendence"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prerequisitforregistrations">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitForRegistration"/>
+    </set>
+    <set inverse="true" lazy="extra" name="mentorMasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.MentorMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="committeeactiondetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeActionDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="basketmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.BasketMaster"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="prerequisitacademicyearwises">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitAcademicYearwise"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prerequisitmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programschemeacadyearwises">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramSchemeAcadyearWise"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programsubjecttaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramSubjectTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentnrsubjectses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentNRSubjects"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="studentcertificatesetupdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentCertificateSetupDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentcertificateslnos">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentCertificateSlno"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="examgrademasterdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ExamGradeMasterDetail"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="tt_programwiseslots">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.TT_ProgramWiseSlot"/>
+    </set>
+    
+    <set inverse="true" lazy="extra" name="attendancecutoffpercentages">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.AttendanceCutoffPercentage"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentnotoffersubject">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentNotOfferSubject"/>
+    </set>
+  </class>
+  <query name="findAllProgramMasterData">
+
+    select a.id.programid,a.programcode,a.programdesc
+            from ProgramMaster a
+                 where a.id.instituteid = ?
+                       and coalesce(a.deactive,'N') = 'N'
+
+    </query>
+  <!--<set inverse="true" lazy="extra" name="programsubjecttaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REGISTRATIONID" not-null="true"/>
+        <column length="20" name="PROGRAMSUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramSubjectTagging"/>
+    </set>-->
+  <!-- <query name="findProgramCodeRegistrationWise">
+    select p.programcode,p.programdesc from ProgramMaster p
+    where p.id.instituteid=:instituteid
+    and coalesce(p.deactive,'N')='N'
+    and p.id.programid in (select pst.programid from ProgramSubjectTagging pst where pst.id.instituteid=:instituteid and pst.id.registrationid=:registrationid and coalesce(pst.deactive,'N')='N')
+</query>-->
+  <query name="findProgramCodeRegistrationWise">
+    select p from ProgramMaster p
+    where p.id.instituteid=?
+    and coalesce(p.deactive,'N')='N'
+    and p.id.programid in (select pst.programid from ProgramSubjectTagging pst where pst.id.instituteid=? and pst.id.registrationid=? and coalesce(pst.deactive,'N')='N')
+    </query>
+  <query name="findAllSemester">
+
+       select a.stynumber
+       from ProgramSubjectTagging a
+       where a.id.instituteid = ?
+         and a.id.registrationid = ?
+         and a.programid = ?
+         and coalesce(a.deactive,'N') = 'N'
+         group by a.stynumber
+         order by a.stynumber
+
+    </query>
+  <query name="findAllProgramMasterData_StudentRegistration">
+
+         select a
+             from ProgramMaster a
+                       where a.id.instituteid = ?
+                            and coalesce(a.deactive,'N') = 'N'
+                            and exists(
+                                      select b.programid
+                                             from StudentMaster b, StudentRegistration c
+                                                  where b.instituteid = a.id.instituteid
+                                                    and b.programid = a.id.programid
+                                                    and b.instituteid = c.id.instituteid
+                                                    and b.studentid = c.id.studentid
+                                                    and b.acadyear = ?
+                                                    and c.id.registrationid = ?
+                                       )
+                              order by a.programcode desc
+
+    </query>
+  <query name="findProgramCode_PST">
+
+        select p from ProgramMaster p
+            where p.id.instituteid=?
+                  and coalesce(p.deactive,'N')='N'
+                  and p.id.programid in
+                                       (
+                                         select pst.programid
+                                               from ProgramSubjectTagging pst
+                                                     where pst.id.instituteid=?
+                                                       and pst.academicyear = ?
+                                                   and pst.id.registrationid=?
+                                                       and coalesce(pst.deactive,'N')='N'
+                                       )
+                                       order by p.programcode
+
+
+
+    </query>
+  <query name="getProgramCode_PST">
+
+        select p from ProgramMaster p
+            where p.id.instituteid=?
+                  and coalesce(p.deactive,'N')='N'
+                  and p.programcode = ?
+                  and p.id.programid in
+                                       (
+                                         select pst.programid
+                                               from ProgramSubjectTagging pst
+                                                     where pst.id.instituteid=?
+                                                       and pst.academicyear = ?
+                                                       and pst.id.registrationid=?
+                                                       and coalesce(pst.deactive,'N')='N'
+                                       )
+
+    </query>
+  <query name="findProgramCode">
+
+      select a from ProgramMaster a
+      where a.id.instituteid = ?
+      and coalesce(a.deactive,'N') = 'N'
+
+    </query>
+  <query name="checkProgramCodeInstitute_Wise">
+
+      select a from ProgramMaster a
+      where a.id.instituteid = ?
+      and a.programcode = ?
+      order by a.programcode
+
+    </query>
+    <query name="findProgramCode_PSTWithoutRegistrationId">
+
+        select p from ProgramMaster p
+        where p.id.instituteid=?
+        and coalesce(p.deactive,'N')='N'
+        and p.id.programid in
+        (
+        select pst.programid
+        from ProgramSubjectTagging pst
+        where pst.id.instituteid=?
+        and coalesce(pst.deactive,'N')='N'
+        )
+        order by p.programcode
+
+
+
+    </query>
+    <query name="getProgramCode_PSTWithoutRegistrationId">
+
+        select p from ProgramMaster p
+        where p.id.instituteid=?
+        and coalesce(p.deactive,'N')='N'
+        and p.programcode = ?
+        and p.id.programid in
+        (
+        select pst.programid
+        from ProgramSubjectTagging pst
+        where pst.id.instituteid=?
+        and coalesce(pst.deactive,'N')='N'
+        )
+
+    </query>
+</hibernate-mapping>

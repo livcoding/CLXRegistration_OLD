@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.InstituteMaster" table="INSTITUTEMASTER">
+    <id name="instituteid" type="string">
+      <column length="20" name="INSTITUTEID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="institutecode" type="string">
+      <column length="20" name="INSTITUTECODE" not-null="true" unique="true"/>
+    </property>
+    <property name="institutename" type="string">
+      <column length="150" name="INSTITUTENAME" not-null="true" unique="true"/>
+    </property>
+    <property name="affiliation" type="string">
+      <column length="100" name="AFFILIATION"/>
+    </property>
+    <property name="address1" type="string">
+      <column length="100" name="ADDRESS1" not-null="true"/>
+    </property>
+    <property name="address2" type="string">
+      <column length="40" name="ADDRESS2"/>
+    </property>
+    <property name="address3" type="string">
+      <column length="40" name="ADDRESS3"/>
+    </property>
+    <property name="city" type="string">
+      <column length="100" name="CITY" not-null="true"/>
+    </property>
+    <property name="state" type="string">
+      <column length="100" name="STATE" not-null="true"/>
+    </property>
+    <property name="country" type="string">
+      <column length="100" name="COUNTRY"/>
+    </property>
+    <property name="pin" type="string">
+      <column length="10" name="PIN"/>
+    </property>
+    <property name="stdcode" type="string">
+      <column length="10" name="STDCODE"/>
+    </property>
+    <property name="phonenos" type="string">
+      <column length="100" name="PHONENOS"/>
+    </property>
+    <property name="faxnos" type="string">
+      <column length="100" name="FAXNOS"/>
+    </property>
+    <property name="website" type="string">
+      <column length="100" name="WEBSITE"/>
+    </property>
+    <property name="emailid" type="string">
+      <column length="100" name="EMAILID"/>
+    </property>
+    <property name="contactperson" type="string">
+      <column length="100" name="CONTACTPERSON"/>
+    </property>
+    <property name="designation" type="string">
+      <column length="100" name="DESIGNATION"/>
+    </property>
+    <property name="mobile" type="string">
+      <column length="15" name="MOBILE"/>
+    </property>
+    <property name="contactpersonemail" type="string">
+      <column length="100" name="CONTACTPERSONEMAIL"/>
+    </property>
+    <property name="heading1" type="string">
+      <column length="100" name="HEADING1"/>
+    </property>
+    <property name="heading2" type="string">
+      <column length="100" name="HEADING2"/>
+    </property>
+    <property name="heading3" type="string">
+      <column length="100" name="HEADING3"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="uniqueid" type="string">
+      <column length="4" name="UNIQUEID" unique="true"/>
+    </property>
+    <property name="enrollmentcode" type="string">
+      <column length="6" name="ENROLLMENTCODE"/>
+    </property>
+    <property name="certificatecode" type="string">
+      <column length="6" name="CERTIFICATECODE"/>
+    </property>
+    <property name="counsellingdeactive" type="string">
+      <column length="1" name="COUNSELLINGDEACTIVE"/>
+    </property>
+    <property name="logofilename" type="string">
+      <column length="200" name="LOGOFILENAME"/>
+    </property>
+    <property name="watermarkfilename" type="string">
+      <column length="200" name="WATERMARKFILENAME"/>
+    </property>
+    <property name="counsellingname" type="string">
+      <column length="150" name="COUNSELLINGNAME"/>
+    </property>
+    <property name="clientid" type="string">
+      <column length="20" name="CLIENTID"/>
+    </property>
+    <property name="placeofpostingid" type="string">
+      <column length="20" name="PLACEOFPOSTINGID"/>
+    </property>
+    <property name="profitcenterid" type="string">
+      <column length="20" name="PROFITCENTERID"/>
+    </property>
+    <set inverse="true" lazy="extra" name="academicyears">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Academicyear"/>
+    </set>
+    <set inverse="true" lazy="extra" name="basketmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.BasketMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="designationmasterdetails">
+      <key>
+        <column length="20" name="DESIGNATIONID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.DesignationMasterDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="instituteidcontrols">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.InstituteIdControl"/>
+    </set>
+    <set inverse="true" lazy="extra" name="instituteregisterationeventses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.InstituteRegistrationEvents"/>
+    </set>
+    <set inverse="true" lazy="extra" name="parameterses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Parameters"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prerequisitacademicsubjectses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitAcademicSubjects"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prerequisitacademicyearwises">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitAcademicYearwise"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prerequisitmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programtypes">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramType"/>
+    </set>
+  
+    <set inverse="true" lazy="extra" name="registrationmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.RegistrationMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="rollnumberingsetups">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.RollNumberingSetup"/>
+    </set>
+    <set inverse="true" lazy="extra" name="roommasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.RoomMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="roomtypemasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.RoomTypeMaster"/>
+    </set>
+ 
+    <set inverse="true" lazy="extra" name="sct_irpmoduleses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Sct_IrpModules"/>
+    </set>
+    <set inverse="true" lazy="extra" name="sct_kioskmarqueetexts">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Sct_KioskMarqueeText"/>
+    </set>
+   
+    <set inverse="true" lazy="extra" name="sct_modulerightsmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Sct_ModuleRightsMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="sct_rolemasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Sct_RoleMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="sectionmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.SectionMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentcategories">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentCategory"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentquotas">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentQuota"/>
+    </set>
+    <set inverse="true" lazy="extra" name="stytypes">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StyType"/>
+    </set>
+    <set inverse="true" lazy="extra" name="stydescs">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StyDesc"/>
+    </set>
+    <set inverse="true" lazy="extra" name="subjectmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.SubjectMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="subjecttypemasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.SubjectTypeMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="staffdutydetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StaffDutyDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="departmentwisehods">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.DepartmentWiseHod"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="studentattendanceexcuseds">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentAttendanceExcused"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentpreviousattendences">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentPreviousAttendence"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentattendances">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentAttendance"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentpersinfochangerequests">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentPersInfoChangeRequest"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prerequisitforregistrations">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitForRegistration"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentresults">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentResult"/>
+    </set>
+    <set inverse="true" name="institutecampustaggings">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.InstituteCampusTagging"/>
+    </set>
+    <set inverse="true" name="examGradeMasters">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ExamGradeMaster"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="committeeactiontypes">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeActionType"/>
+    </set>
+    <set inverse="true" lazy="extra" name="committeemasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="committeedesignations">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeDesignations"/>
+    </set>
+
+
+  <set inverse="true" lazy="extra" name="electivemasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ElectiveMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="coordinatortypes">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true">
+          <comment>For sequencing purpose</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CoordinatorType"/>
+    </set>
+  
+
+    <set inverse="true" lazy="extra" name="employeeacademicduties">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.EmployeeAcademicDuty"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="vacationmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.VacationMaster"/>
+    </set>
+    
+    <set inverse="true" lazy="extra" name="sct_userhierarchys">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Sct_UserHierarchy"/>
+    </set>
+   
+    <set inverse="true" lazy="extra" name="notify_parameterses">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Notify_Parameters"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentleavemasters">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentLeaveMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentactivitymasters">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentActivityMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentadmissioncategories">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentAdmissionCategory"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentattendancecategories">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentAttendanceCategory"/>
+    </set>
+    <set inverse="true" lazy="extra" name="ex_patternmasters">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Ex_PatternMaster"/>
+    </set>
+  
+    <set inverse="true" lazy="extra" name="specializationmasters">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.SpecializationMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="specializationcategorys">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.SpecializationCategory"/>
+    </set>
+    <set inverse="true" lazy="extra" name="streammasters">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StreamMaster"/>
+    </set>
+    
+  </class>
+  <query name="findInstituteCode">
+      select im
+      from InstituteMaster im
+      where im.institutecode = ?
+      order by im.institutecode
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 12, 2010 11:07:25 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.CommitteeActionDetail" table="COMMITTEEACTIONDETAIL">
+    <composite-id class="com.jilit.irp.persistence.dto.CommitteeActionDetailId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="committeeid" type="string">
+        <column length="20" name="COMMITTEEID"/>
+      </key-property>
+      <key-property name="agendaid" type="string">
+        <column length="20" name="AGENDAID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="actiontypeid" type="string">
+        <column length="20" name="ACTIONTYPEID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" lazy="false" name="programmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Academicyear" fetch="select" insert="false" lazy="false" name="academicyear" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="8" name="ACADEMICYEAR"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.CommitteeActionType" fetch="select" insert="false" lazy="false" name="committeeactiontype" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="ACTIONTYPEID" not-null="true">
+        <comment>[P]unishment, [R]eleased, [Y]ear Drop,[S]emester Drop</comment>
+      </column>
+      <column length="20" name="COMMITTEEID" not-null="true"/>
+    </many-to-one>
+    <!--<many-to-one class="com.jilit.irp.persistence.dto.CommitteeActionType" fetch="select" insert="false" lazy="false" name="committeeactiontype1" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="MERCYACTIONTYPEID" not-null="false"/>
+    </many-to-one>-->
+    <many-to-one class="com.jilit.irp.persistence.dto.MeetingAgendaMaster" fetch="select" insert="false" lazy="false" name="meetingagendamaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="COMMITTEEID" not-null="true"/>
+      <column length="20" name="AGENDAID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <property name="actiondate" type="date">
+      <column length="7" name="ACTIONDATE"/>
+    </property>
+    <property name="actiontaken" type="string">
+      <column length="1000" name="ACTIONTAKEN"/>
+    </property>
+    <property name="sectionbranch" type="string">
+      <column length="20" name="SECTIONBRANCH"/>
+    </property>
+    <property name="stynumber" type="java.lang.Short">
+      <column name="STYNUMBER" precision="4" scale="0"/>
+    </property>
+    <property name="mercyappeal" type="string">
+      <column length="1" name="MERCYAPPEAL">
+        <comment>Yes / No</comment>
+      </column>
+    </property>
+    <property name="mercyappealdate" type="date">
+      <column length="7" name="MERCYAPPEALDATE"/>
+    </property>
+    <property name="mercyactiondate" type="date">
+      <column length="7" name="MERCYACTIONDATE"/>
+    </property>
+    <property name="mercyactiontypeid" type="string">
+      <column length="20" name="MERCYACTIONTYPEID"/>
+    </property>
+    <property name="mercyactiontaken" type="string">
+      <column length="1000" name="MERCYACTIONTAKEN"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class lazy="false" mutable="false" name="com.jilit.irp.persistence.dto.V_Staff" optimistic-lock="none" table="V_STAFF">
+        <synchronize table="DEPARTMENTMASTER"/>
+        <synchronize table="DESIGNATIONMASTER"/>
+        <synchronize table="EMPLOYEEMASTER"/>
+        <synchronize table="OTHERSTAFFMASTERDETAIL"/>
+        <synchronize table="OTHERSTAFFMASTER"/>
+        <synchronize table="STUDENTMASTER"/>
+        <composite-id>
+            <key-property column="COMPANYID" name="companyid"/>
+            <key-property column="EMPLOYEEID" name="employeeid"/>
+            <!--<key-property column="SALUTATIONID" name="salutationid"/>
+            <key-property column="DEPARTMENTID" name="departmentid"/>
+            <key-property column="DESIGNATIONID" name="designationid"/>
+            <key-property column="STAFFTYPE" name="stafftype"/>
+            <key-property column="SHORTNAME" name="shortname"/>-->
+        </composite-id>
+        <property name="employeecode" type="string">
+            <column length="20" name="EMPLOYEECODE" not-null="false"/>
+        </property>
+        <property name="salutationid" type="string">
+            <column length="20" name="SALUTATIONID" not-null="false"/>
+        </property>
+        <property name="employeename" type="string">
+            <column length="100" name="EMPLOYEENAME" not-null="false"/>
+        </property>
+        <property name="departmentid" type="string">
+            <column length="20" name="DEPARTMENTID" not-null="false"/>
+        </property>
+        <property name="departmentcode" type="string">
+            <column length="20" name="DEPARTMENTCODE" not-null="false"/>
+        </property>
+        <property name="department" type="string">
+            <column length="100" name="DEPARTMENT" not-null="false"/>
+        </property>
+        <property name="designationid" type="string">
+            <column length="20" name="DESIGNATIONID" not-null="false"/>
+        </property>
+        <property name="designationcode" type="string">
+            <column length="20" name="DESIGNATIONCODE" not-null="false"/>
+        </property>
+        <property name="designation" type="string">
+            <column length="100" name="DESIGNATION" not-null="false"/>
+        </property>
+        <property name="stafftype" type="string">
+            <column length="1" name="STAFFTYPE" not-null="false"/>
+        </property>
+        <property name="shortname" type="string">
+            <column length="8" name="SHORTNAME" not-null="false"/>
+        </property>
+        <property name="employeetypeid" type="string">
+            <column length="20" name="EMPLOYEETYPEID" not-null="false"/>
+        </property>
+        <property name="employeetype" type="string">
+            <column length="20" name="employeetype" not-null="false"/>
+        </property>
+        
+         <property name="emailid" type="string">
+            <column length="60" name="EMAILID" not-null="false"/>
+        </property>
+        
+         <property name="mobileno" type="string">
+            <column length="15" name="MOBILENO" not-null="false"/>
+        </property>
+         <property name="payrollareaid" type="string">
+            <column length="20" name="PAYROLLAREAID"/>
+        </property>
+         <property name="gender" type="string">
+            <column length="1" name="GENDER" not-null="false"/>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="placeofpostingid" type="string">
+            <column length="20" name="PLACEOFPOSTINGID"/>
+        </property>
+    </class>
+  <query name="findAllCoordinatorDepartmentWise">
+         select
+            distinct
+                view.departmentcode,
+                view.department,
+                view.departmentid,
+                view.employeecode,
+                view.employeename,
+                view.stafftype,
+                view.employeeid
+         from  V_Staff view
+         where
+                view.payrollareaid=?
+                and coalesce(view.deactive,'N')='N'
+                and coalesce(view.departmentid,'N')!='N'
+    </query>
+  <query name="findAllV_Staff">
+        select a
+             from V_Staff a
+               where a.payrollareaid = ?
+               and coalesce(a.deactive,'N')='N'
+               order by a.employeecode
+    </query>
+  <query name="findAllV_StaffAsSubjectCoOrdinator">
+        select a
+             from V_Staff a
+                  where a.employeeid in(
+                                        select b.id.staffid
+                                               from SubjectCoordinator b
+                                                     where b.id.instituteid = ?
+                                                        and coalesce(b.deactive,'N')='N'
+                                                        and b.id.subjectid in (
+                                                                            select c.id.fstid
+                                                                                   from FacultySubjectTagging  c
+                                                                                             where  c.id.instituteid = ?
+                                                                                                and c.registrationid =?
+                                                                                                and c.subjectid = ?
+                                                                                                and coalesce(c.deactive,'N')='N'
+                                                                                                group by c.subjectid
+                                                                           )
+                                                         group by b.id.staffid
+                                        )
+                          order by a.employeecode
+    </query>
+  <query name="getV_StaffData_Enrollment">
+
+    select a.employeeid
+     from V_Staff a
+        where a.payrollareaid = :companyid
+            and a.employeecode = :usercode
+            and a.stafftype = :membertype
+            and coalesce(a.deactive,'N')= 'N'
+
+    </query>
+  <query name="getV_StaffData_EmailId">
+      select a.employeeid
+        from V_Staff a  
+         where a.payrollareaid = :companyid 
+            and a.emailid = :usercode
+            and a.employeeid = :employeeid
+            and a.stafftype = :membertype
+            and coalesce(a.deactive,'N')= 'N'
+    </query>
+  <query name="getMemberCode">
+    select a.employeecode , a.employeename ,a.designationcode,a.designation ,a.departmentcode ,a.department,a.employeeid ,a.payrollareaid
+     from V_Staff a
+        where a.stafftype = ?
+           and a.payrollareaid = ?
+           and coalesce(a.deactive,'N')= 'N'
+    </query>
+  <query name="getMemberCodeForLockedStatus">
+   select a.employeecode , a.employeename ,a.designationcode,a.designation ,a.departmentcode ,a.department,a.employeeid
+     from V_Staff a
+        where a.stafftype = :memberType
+        and a.employeeid in (:employeeid)
+        and coalesce(a.deactive,'N')= 'N'
+
+    </query>
+  <query name="findMemberFromV_StaffToLock">
+        
+        select a from V_Staff a
+             where a.stafftype = ?
+             and a.employeecode = ?
+             and exists (
+                          select b.id.data2 from Sct_IrpMlp b
+                                where b.data3 = ?
+                                  and b.data4 = ?
+                                  and coalesce(b.data11,'Fkj18Uswuqg=') = 'Fkj18Uswuqg='
+                                    )
+        
+
+    </query>
+    <query name="findMemberFromV_StaffToLockNew">
+
+        select a from V_Staff a
+             where a.employeecode = ? and a.payrollareaid=? and a.stafftype=?
+             and exists (
+                          select b.id.data2 from Sct_IrpMlp b                                
+                                  where b.data5 = ?
+                                  and coalesce(b.data11,'Fkj18Uswuqg=') = 'Fkj18Uswuqg='
+                                    )
+
+
+    </query>
+  <query name="findMemberFromV_StaffToUnlock">
+        
+        select a from V_Staff a
+             where a.stafftype = ?
+             and a.employeecode = ?
+             and exists (
+                          select b.id.data2 from Sct_IrpMlp b
+                                where b.data3 = ?
+                                  and b.data4 = ?
+                                  and b.data11 = 'YUUA7OJGtu4='
+                                    )
+        
+
+    </query>
+     <query name="findMemberFromV_StaffToUnlockNew">
+
+        select a from V_Staff a
+             where a.employeecode = ? and a.payrollareaid = ? and a.stafftype=?
+             and exists (
+                          select b.id.data2 from Sct_IrpMlp b
+                                where b.data5 = ?
+                                  and b.data11 = 'YUUA7OJGtu4='
+                                    )
+
+
+    </query>
+  <query name="getAllMemberFromV_StaffToUnlock">
+
+         select b.data3, b.data5 from Sct_IrpMlp b
+                                where b.data3 = ?
+                                  and b.data11 = 'YUUA7OJGtu4='
+    </query>
+  <query name="getAllMemberFromV_StaffToLock">
+        select b.data3, b.data5 from Sct_IrpMlp b
+                                where b.data3 = ?
+                                  and coalesce(b.data11,'Fkj18Uswuqg=') = 'Fkj18Uswuqg='
+    </query>
+  <query name="findMemberFromV_StaffToLockUnlock">
+          select a from V_Staff a
+                  where a.stafftype = ?
+                      and a.employeeid = ?
+    </query>
+   <query name="findMemberFromV_StaffToLockUnlockNew">
+          select a from V_Staff a where a.payrollareaid = ?
+                  and   a.stafftype = ?
+                  and   a.employeeid = ?
+
+    </query>
+  <query name="findMemberFromV_StaffToExpire">
+        
+        select a from V_Staff a
+             where a.stafftype = ?
+             and a.employeecode = ?
+              
+
+
+    </query>
+  <query name="getV_StaffData_code_type">
+
+    select a.employeeid
+     from V_Staff a
+        where a.payrollareaid = :companyid
+            and a.employeecode = :usercode
+            and a.stafftype = :membertype
+            and coalesce(a.deactive,'N')= 'N'
+
+    </query>
+  <query name="getMemberCodeAllCompany">
+    select a.employeecode , a.employeename ,a.designationcode,a.designation ,a.departmentcode ,a.department,a.employeeid ,a.payrollareaid
+     from V_Staff a
+        where a.stafftype = ?
+           and coalesce(a.deactive,'N')= 'N'
+    </query>
+</hibernate-mapping>

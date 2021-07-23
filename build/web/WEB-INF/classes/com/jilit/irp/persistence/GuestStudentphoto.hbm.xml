@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <!--<class name="com.jilit.irp.persistence.dto.StudentPhoto" schema="JCAMPUSFINALPHOTO" table="STUDENTPHOTO">-->
+  <class name="com.jilit.irp.persistence.dto.GuestStudentPhoto" table="GUESTSTUDENTPHOTO">
+    <id name="gueststudentid" type="string">
+      <column length="20" name="GUESTSTUDENTID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="sphoto" type="binary">
+      <column name="SPHOTO"/>
+    </property>
+    <property name="ssignature" type="binary">
+      <column name="SSIGNATURE"/>
+    </property>
+  </class>
+</hibernate-mapping>

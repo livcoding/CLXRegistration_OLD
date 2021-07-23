@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 10, 2011 11:08:29 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.FSTwiseCoordinator" table="FSTWISECOORDINATOR">
+    <composite-id class="com.jilit.irp.persistence.dto.FSTwiseCoordinatorId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="coordinatortypeid" type="string">
+        <column length="20" name="COORDINATORTYPEID"/>
+      </key-property>
+      <key-property name="stafftype" type="string">
+        <column length="1" name="STAFFTYPE"/>
+      </key-property>
+      <key-property name="staffid" type="string">
+        <column length="20" name="STAFFID"/>
+      </key-property>
+      <key-property name="fstid" type="string">
+        <column length="20" name="FSTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.CoordinatorType" fetch="select" insert="false" lazy="false" name="coordinatortype" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="COORDINATORTYPEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.FacultySubjectTagging" fetch="select" insert="false" lazy="false" name="facultysubjecttagging" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="FSTID" not-null="true"/>
+    </many-to-one>
+    <property name="fromdate" type="date">
+      <column length="7" name="FROMDATE">
+        <comment>FST wise CoOrdinator From</comment>
+      </column>
+    </property>
+    <property name="todate" type="date">
+      <column length="7" name="TODATE">
+        <comment>FST wise CoOrdinator To</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="subjectid" type="string">
+      <column length="20" name="SUBJECTID"/>
+    </property>
+  </class>
+   <query name="findDataInSubjectCoordinator">
+       
+       select 'Y' from FSTwiseCoordinator a
+       where a.id.instituteid = ?
+             and a.id.fstid in(
+                           select b.id.fstid from FacultySubjectTagging b
+                            where b.id.instituteid = ?
+                                  and b.registrationid = ?
+                                  and b.subjectid = ?
+                                  and subjectcomponentid = ?
+                                  and coalesce(b.deactive,'N') = 'N'
+                          )
+             and coalesce(a.deactive,'N') = 'N'
+        
+    </query>
+  <query name="findAllFSTIDToDelete">
+       
+      select a
+       from
+            FSTwiseCoordinator a
+                 where a.id.fstid in(
+                                 select b.id.fstid from FacultySubjectTagging b
+                                          where b.id.instituteid = ?
+                                          and b.registrationid = ?
+                                          and b.subjectid = ?
+                                          and subjectcomponentid = ?
+                                          and coalesce(b.deactive,'N') = 'N'
+                               )
+        
+    </query>
+  <query name="findAllRegistrationIdfFromFacultySubjectTagging">
+       
+       select a from RegistrationMaster a
+        where a.id.instituteid = ?
+           and a.id.registrationid in (
+           select b.registrationid from FacultySubjectTagging b
+           where b.id.instituteid = ?
+           and coalesce(b.deactive,'N') = 'N'
+           )
+           and coalesce(a.deactive,'N') = 'N'
+           order by a.registrationcode desc
+        
+    </query>
+</hibernate-mapping>

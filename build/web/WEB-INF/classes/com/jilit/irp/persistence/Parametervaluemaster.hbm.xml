@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ParameterValueMaster" table="PARAMETERVALUEMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.ParameterValueMasterId" name="id">
+      <key-property name="parameterid" type="string">
+        <column length="20" name="PARAMETERID"/>
+      </key-property>
+      <key-property name="seqid" type="java.lang.Short">
+        <column name="SEQID" precision="4" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.Parameters" fetch="select" insert="false" name="parameters" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="MODULEID" not-null="true"/>
+      <column length="20" name="PARAMETERID" not-null="true"/>
+    </many-to-one>
+    <property name="parametervaluedescription" type="string">
+      <column length="50" name="PARAMETERVALUEDESCRIPTION"/>
+    </property>
+    <property name="parametervaluecode" type="string">
+      <column length="50" name="PARAMETERVALUECODE"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

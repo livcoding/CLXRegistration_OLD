@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 7, 2016 10:49:29 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.FacultyAttendancesUnlocking" table="FACULTYATTENDANCESUNLOCKING">
+        <composite-id name="id" class="com.jilit.irp.persistence.dto.FacultyAttendancesUnlockingId">
+            <key-property name="instituteid" type="string">
+                <column name="INSTITUTEID" length="20" />
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column name="REGISTRATIONID" length="20" />
+            </key-property>
+             <key-property name="facultyid" type="string">
+            <column name="FACULTYID" length="20" />
+        </key-property>
+        </composite-id>
+       
+        <property name="facultycode" type="string">
+            <column name="FACULTYCODE" length="20" not-null="true" />
+        </property>
+        <property name="facultyname" type="string">
+            <column name="FACULTYNAME" length="100" not-null="true" />
+        </property>
+        <property name="attendancedatefrom" type="date">
+            <column name="ATTENDANCEDATEFROM" length="7" not-null="true" />
+        </property>
+        <property name="attendancedateto" type="date">
+            <column name="ATTENDANCEDATETO" length="7" not-null="true" />
+        </property>
+        <property name="attendancefleg" type="string">
+            <column name="ATTENDANCEFLEG" length="1" />
+        </property>
+        <property name="entrydate" type="date">
+            <column name="ENTRYDATE" length="7" />
+        </property>
+        <property name="remarks" type="string">
+            <column name="REMARKS" length="160" />
+        </property>
+        <property name="deactive" type="string">
+            <column name="DEACTIVE" length="1" />
+        </property>
+         <property name="numberofdays" type="java.lang.Short">
+      <column name="NUMBEROFDAYS" precision="3" scale="0"/>
+    </property>
+    </class>
+</hibernate-mapping>

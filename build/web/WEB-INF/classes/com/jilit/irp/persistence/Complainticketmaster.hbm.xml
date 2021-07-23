@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 Jan, 2014 2:25:38 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ComplainTicketMaster" table="COMPLAINTICKETMASTER">
+    <id name="ctid" type="string">
+      <column length="20" name="CTID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ComplainTicketPerson" fetch="select" insert="false" lazy="false" name="complainticketperson" update="false">
+      <column length="20" name="TOPERSONID" not-null="true"/>
+    </many-to-one>
+    <property name="ctnumber" type="string">
+      <column length="20" name="CTNUMBER" not-null="true" unique="true"/>
+    </property>
+    <property name="typeofcomplain" type="string">
+      <column length="1" name="TYPEOFCOMPLAIN" not-null="true"/>
+    </property>
+    <property name="modeofcomplain" type="string">
+      <column length="1" name="MODEOFCOMPLAIN" not-null="true"/>
+    </property>
+    <property name="fromuserid" type="string">
+      <column length="20" name="FROMUSERID"/>
+    </property>
+    <property name="fromusername" type="string">
+      <column length="60" name="FROMUSERNAME" not-null="true"/>
+    </property>
+    <property name="frommailid" type="string">
+      <column length="150" name="FROMMAILID"/>
+    </property>
+    <property name="fromcellnumber" type="string">
+      <column length="25" name="FROMCELLNUMBER"/>
+    </property>
+    <property name="fromphonenumber" type="string">
+      <column length="25" name="FROMPHONENUMBER"/>
+    </property>
+    <property name="tomailid" type="string">
+      <column length="150" name="TOMAILID"/>
+    </property>
+    <property name="problemdesc" type="string">
+      <column length="500" name="PROBLEMDESC" not-null="true"/>
+    </property>
+    <property name="problemattachementfile" type="string">
+      <column length="250" name="PROBLEMATTACHEMENTFILE"/>
+    </property>
+    <property name="ctdatetime" type="date">
+      <column length="7" name="CTDATETIME" not-null="true"/>
+    </property>
+    <property name="ipaddress" type="string">
+      <column length="20" name="IPADDRESS"/>
+    </property>
+    <property name="complainlevel" type="string">
+      <column length="1" name="COMPLAINLEVEL"/>
+    </property>
+    <property name="complainrelatedto" type="string">
+      <column length="1" name="COMPLAINRELATEDTO"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="topersonid" type="string">
+      <column length="20" name="TOPERSONID"/>
+    </property>
+    <set inverse="true" lazy="extra" name="complainticketreplies">
+      <key>
+        <column length="20" name="CTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ComplainTicketReply"/>
+    </set>
+  </class>
+</hibernate-mapping>

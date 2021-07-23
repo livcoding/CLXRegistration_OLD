@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated June 22, 2018 11:04:23 AM by Mohit1.kumar -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.BulkStudentPhoto" table="STUDENTPHOTO">
+    <id name="studentid" type="string">
+      <column length="20" name="STUDENTID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="photo" type="binary">
+      <column name="PHOTO"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="signature" type="binary">
+      <column name="SIGNATURE"/>
+    </property>
+    <property name="fatherphoto" type="binary">
+      <column name="FATHERPHOTO"/>
+    </property>
+    <property name="motherphoto" type="binary">
+      <column name="MOTHERPHOTO"/>
+    </property>
+    <property name="guadianphoto" type="binary">
+      <column name="GUADIANPHOTO"/>
+    </property>
+  </class>
+</hibernate-mapping>

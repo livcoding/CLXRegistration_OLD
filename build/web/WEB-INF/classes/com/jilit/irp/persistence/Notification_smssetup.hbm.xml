@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 5, 2014 3:06:56 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Notification_SmsSetup" table="NOTIFICATION_SMSSETUP">
+    <id name="templatecode" type="string">
+      <column length="20" name="TEMPLATECODE"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="templateurl" type="string">
+      <column length="200" name="TEMPLATEURL" not-null="true"/>
+    </property>
+    <property name="uname" type="string">
+      <column length="200" name="UNAME" not-null="true"/>
+    </property>
+    <property name="pwd" type="string">
+      <column length="200" name="PWD" not-null="true"/>
+    </property>
+    <property name="senderid" type="string">
+      <column length="200" name="SENDERID" not-null="true"/>
+    </property>
+    <property name="templatemsg" type="string">
+      <column length="500" name="TEMPLATEMSG" not-null="true"/>
+    </property>
+    <property name="route" type="string">
+      <column length="1" name="ROUTE" not-null="true"/>
+    </property>
+    <set inverse="true" lazy="extra" name="notify_notificationalertmasters">
+      <key>
+        <column length="20" name="TEMPLATECODE" not-null="true">
+          <comment>From Module Where Notification has been raised</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Notify_NotificationAlertMaster"/>
+    </set>
+  </class>
+</hibernate-mapping>

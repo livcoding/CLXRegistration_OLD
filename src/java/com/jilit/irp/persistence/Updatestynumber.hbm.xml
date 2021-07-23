@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 11, 2010 1:58:39 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.UpdateStyNumber" table="UPDATESTYNUMBER">
+    <composite-id class="com.jilit.irp.persistence.dto.UpdateStyNumberId" name="id">
+      <key-property name="institutecode" type="string">
+        <column length="20" name="INSTITUTECODE"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="prestynumber" type="byte">
+        <column name="PRESTYNUMBER" precision="2" scale="0"/>
+      </key-property>
+      <key-property name="docmode" type="char">
+        <column length="1" name="DOCMODE"/>
+      </key-property>
+      <key-property name="flag" type="char">
+        <column length="1" name="FLAG"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="updatestynumber" type="java.lang.Byte">
+      <column name="UPDATESTYNUMBER" precision="2" scale="0"/>
+    </property>
+    <property name="programcompletdate" type="date">
+      <column length="7" name="PROGRAMCOMPLETDATE"/>
+    </property>
+    <property name="reasonofupdate" type="string">
+      <column length="500" name="REASONOFUPDATE"/>
+    </property>
+    <property name="approvalgivenby" type="string">
+      <column length="60" name="APPROVALGIVENBY"/>
+    </property>
+    <property name="approvalgivendate" type="date">
+      <column length="7" name="APPROVALGIVENDATE"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+  </class>
+</hibernate-mapping>

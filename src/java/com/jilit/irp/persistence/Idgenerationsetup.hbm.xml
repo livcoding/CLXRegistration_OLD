@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 3, 2009 3:32:18 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.IdGenerationSetup" table="IDGENERATIONSETUP">
+    <comment>"This table will be pre-populated and will help to generate unique ID Institute OR Company ID + YYYY + MM + Alpha + 9N.." Prefix of 4 chars of every
+        IDCode</comment>
+    <id name="idcode" type="string">
+      <column length="50" name="IDCODE"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="slno" type="java.lang.Short">
+      <column name="SLNO" not-null="true" precision="4" scale="0" unique="true"/>
+    </property>
+    <property name="iddesc" type="string">
+      <column length="150" name="IDDESC" not-null="true"/>
+    </property>
+    <property name="tablename" type="string">
+      <column length="30" name="TABLENAME" not-null="true"/>
+    </property>
+    <property name="modulecode" type="string">
+      <column length="30" name="MODULECODE" not-null="true"/>
+    </property>
+    <property name="prefix" type="string">
+      <column length="4" name="PREFIX" not-null="true" unique="true">
+        <comment>Prefix of 4 chars of every IDCode</comment>
+      </column>
+    </property>
+    <set inverse="true" lazy="extra" name="idgenerationcontrols">
+      <key>
+        <column length="50" name="IDCODE" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.IdGenerationControl"/>
+    </set>
+  </class>
+</hibernate-mapping>

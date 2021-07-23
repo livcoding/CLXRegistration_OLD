@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 3, 2009 3:32:18 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.IdGenerationControl" table="IDGENERATIONCONTROL">
+    <comment>This table will help to generate last ID</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.IdGenerationControlId" name="id">
+      <key-property name="icid" type="string">
+        <column length="20" name="ICID"/>
+      </key-property>
+      <key-property name="idcode" type="string">
+        <column length="50" name="IDCODE"/>
+      </key-property>
+      <key-property name="year" type="string">
+        <column length="4" name="YEAR"/>
+      </key-property>
+      <key-property name="month" type="string">
+        <column length="2" name="MONTH"/>
+      </key-property>
+      <key-property name="alpha" type="char">
+        <column length="1" name="ALPHA"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.IdGenerationSetup" fetch="select" insert="false" lazy="false" name="idgenerationsetup" update="false">
+      <column length="50" name="IDCODE" not-null="true"/>
+    </many-to-one>
+    <property name="lastid" type="string">
+      <column length="20" name="LASTID">
+        <comment>Institute OR Company ID + Prefix + YYYY + MM + Alpha + 9N..</comment>
+      </column>
+    </property>
+    <property name="lastrunningno" type="big_decimal">
+      <column name="LASTRUNNINGNO" precision="20" scale="0">
+        <comment>9N..</comment>
+      </column>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.StudentAdddress" select-before-update="true" table="STUDENTADDDRESS">
+    <id name="studentid" type="string">
+      <column length="20" name="STUDENTID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="caddress1" type="string">
+      <column length="50" name="CADDRESS1"/>
+    </property>
+    <property name="caddress2" type="string">
+      <column length="50" name="CADDRESS2"/>
+    </property>
+    <property name="caddress3" type="string">
+      <column length="50" name="CADDRESS3"/>
+    </property>
+    <property name="ccityname" type="string">
+      <column length="100" name="CCITYNAME"/>
+    </property>
+    <property name="cdistrict" type="string">
+      <column length="100" name="CDISTRICT">
+        <comment>Linked with District Master</comment>
+      </column>
+    </property>
+    <property name="cpostoffice" type="string">
+      <column length="50" name="CPOSTOFFICE"/>
+    </property>
+    <property name="crailstation" type="string">
+      <column length="50" name="CRAILSTATION"/>
+    </property>
+    <property name="cpolicestation" type="string">
+      <column length="50" name="CPOLICESTATION"/>
+    </property>
+    <property name="cstatename" type="string">
+      <column length="100" name="CSTATENAME">
+        <comment>Linked from State Master</comment>
+      </column>
+    </property>
+    <property name="cpin" type="java.lang.Integer">
+      <column name="CPIN" precision="6" scale="0"/>
+    </property>
+    <property name="ccountryname" type="string">
+      <column length="100" name="CCOUNTRYNAME">
+        <comment>Linked from country Master</comment>
+      </column>
+    </property>
+    <!--<property name="cstdcode" type="string">
+      <column length="10" name="CSTDCODE"/>
+    </property>
+    <property name="cphoneno" type="string">
+      <column length="30" name="CPHONENO"/>
+    </property>
+    <property name="cmobileno" type="string">
+      <column length="30" name="CMOBILENO"/>
+    </property>-->
+    <property name="paddress1" type="string">
+      <column length="50" name="PADDRESS1"/>
+    </property>
+    <property name="paddress2" type="string">
+      <column length="50" name="PADDRESS2"/>
+    </property>
+    <property name="paddress3" type="string">
+      <column length="50" name="PADDRESS3"/>
+    </property>
+    <property name="pcityname" type="string">
+      <column length="100" name="PCITYNAME"/>
+    </property>
+    <property name="pdistrict" type="string">
+      <column length="100" name="PDISTRICT">
+        <comment>Linked with District Master</comment>
+      </column>
+    </property>
+    <property name="ppostoffice" type="string">
+      <column length="50" name="PPOSTOFFICE"/>
+    </property>
+    <property name="prailstation" type="string">
+      <column length="50" name="PRAILSTATION"/>
+    </property>
+    <property name="ppolicestation" type="string">
+      <column length="50" name="PPOLICESTATION"/>
+    </property>
+    <property name="pstatename" type="string">
+      <column length="100" name="PSTATENAME">
+        <comment>Linked from State Master</comment>
+      </column>
+    </property>
+    <property name="ppin" type="java.lang.Integer">
+      <column name="PPIN" precision="6" scale="0"/>
+    </property>
+    <property name="pcountryname" type="string">
+      <column length="100" name="PCOUNTRYNAME">
+        <comment>Linked from country Master</comment>
+      </column>
+    </property>
+  </class>
+</hibernate-mapping>

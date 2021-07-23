@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 26, 2013 4:29:32 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Sct_UserHierarchy" table="SCT_USERHIERARCHY">
+    <composite-id class="com.jilit.irp.persistence.dto.Sct_UserHierarchyId" name="id">
+      <key-property name="userid" type="string">
+        <column length="20" name="USERID"/>
+      </key-property>
+      <key-property name="uhtype" type="string">
+        <column length="1" name="UHTYPE"/>
+      </key-property>
+      <key-property name="slno" type="short">
+        <column name="SLNO" precision="3" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID"/>
+    </many-to-one>
+    <property name="instituteid" type="string">
+      <column length="20" name="INSTITUTEID"/>
+    </property>
+    <property name="companyid" type="string">
+      <column length="20" name="COMPANYID"/>
+    </property>
+    <property name="fromdate" type="date">
+      <column length="7" name="FROMDATE" not-null="true"/>
+    </property>
+    <property name="todate" type="date">
+      <column length="7" name="TODATE"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="mobilenumber" type="string">
+      <column length="20" name="MOBILENUMBER"/>
+    </property>
+    <property name="alternatemobileno" type="string">
+      <column length="20" name="ALTERNATEMOBILENO"/>
+    </property>
+    <property name="emailid" type="string">
+      <column length="100" name="EMAILID"/>
+    </property>
+    <property name="alternateemailid" type="string">
+      <column length="100" name="ALTERNATEEMAILID"/>
+    </property>
+  </class>
+</hibernate-mapping>

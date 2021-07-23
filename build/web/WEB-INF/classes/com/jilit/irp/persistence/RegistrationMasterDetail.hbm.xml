@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.RegistrationMasterDetail" table="REGISTRATIONMASTERDETAIL">
+        <composite-id class="com.jilit.irp.persistence.dto.RegistrationMasterDetailId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+            <key-property name="programid" type="string">
+                <column length="20" name="PROGRAMID"/>
+            </key-property>
+            <key-property name="branchid" type="string">
+                <column length="20" name="BRANCHID"/>
+            </key-property>
+            <key-property name="academicyear" type="string">
+                <column length="8" name="ACADEMICYEAR"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="REGISTRATIONID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.BranchMaster" fetch="select" insert="false" lazy="false" name="branchmaster" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="PROGRAMID" not-null="true"/>
+            <column length="20" name="BRANCHID" not-null="true"/>
+        </many-to-one>
+        <property name="regdatefrom" type="date">
+            <column length="7" name="REGDATEFROM" not-null="false"/>
+        </property>
+        <property name="regdateto" type="date">
+            <column length="7" name="REGDATETO" not-null="false"/>
+        </property>
+        <property name="extendedtilldate" type="date">
+            <column length="7" name="EXTENDEDTILLDATE" not-null="false"/>
+        </property>
+        <property name="remarks" type="string">
+            <column length="200" name="REMARKS" not-null="true"/>
+        </property>
+        <property name="lateregfeeamount" type="java.math.BigDecimal">
+            <column name="LATEREGFEEAMOUNT" precision="9" scale="2">
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

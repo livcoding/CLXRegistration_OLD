@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 4, 2010 3:48:01 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ExamEventSubjectTagging" table="EXAMEVENTSUBJECTTAGGING">
+    <composite-id class="com.jilit.irp.persistence.dto.ExamEventSubjectTaggingId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="exameventid" type="string">
+        <column length="20" name="EXAMEVENTID"/>
+      </key-property>
+      <key-property name="fstid" type="string">
+        <column length="20" name="FSTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.FacultySubjectTagging" fetch="select" insert="false" lazy="false" name="facultysubjecttagging" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="FSTID" not-null="true"/>
+    </many-to-one>
+
+    <property name="fromdate" type="date">
+      <column length="7" name="FROMDATE"/>
+    </property>
+    <property name="todate" type="date">
+      <column length="7" name="TODATE"/>
+    </property>
+    <property name="published" type="string">
+      <column length="1" name="PUBLISHED">
+        <comment>[Y]es / [N]o</comment>
+      </column>
+    </property>
+    <property name="locked" type="string">
+      <column length="1" name="LOCKED">
+        <comment>[Y]es / [N]o</comment>
+      </column>
+    </property>
+    <property name="weightage" type="big_decimal">
+      <column name="WEIGHTAGE" precision="10">
+        <comment>Weightage of the Subject</comment>
+      </column>
+    </property>
+    <property name="marksorpercentage" type="string">
+      <column length="1" name="MARKSORPERCENTAGE">
+        <comment>[M]arks / [P]ercentage</comment>
+      </column>
+    </property>
+    <property name="maxmarks" type="java.lang.Short">
+      <column name="MAXMARKS" precision="3" scale="0">
+        <comment>Full Marks</comment>
+      </column>
+    </property>
+    <property name="passingmarks" type="java.lang.Short">
+      <column name="PASSINGMARKS" precision="3" scale="0">
+        <comment>Passing Marks</comment>
+      </column>
+    </property>
+    <property name="doubleentry" type="string">
+      <column length="1" name="DOUBLEENTRY">
+        <comment>[Y]es / [N]o</comment>
+      </column>
+    </property>
+    <property name="firstentrycompleted" type="string">
+      <column length="1" name="FIRSTENTRYCOMPLETED"/>
+    </property>
+    <property name="secondentrycompleted" type="string">
+      <column length="1" name="SECONDENTRYCOMPLETED"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE">
+        <comment>[Y]es / [N]o</comment>
+      </column>
+    </property>
+    <property name="weightageeditable" type="string">
+      <column length="1" name="WEIGHTAGEEDITABLE">
+        <comment>[Y]es / [N]o</comment>
+      </column>
+    </property>
+    <property name="entryallowuser" type="string">
+      <column length="1" name="ENTRYALLOWUSER">
+        <comment>[C]oordinator / [F]aculty / [B]oth</comment>
+      </column>
+    </property>
+    <property column="EXAMTYPEID" length="20" name="examtypeid"/>
+     <property name="conditionalpassapplicable" type="string">
+      <column length="1" name="CONDITIONALPASSAPPLICABLE"/>
+    </property>
+  </class>
+  
+</hibernate-mapping>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Jun, 2012 6:27:18 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.WorkingDays" table="WORKINGDAYS">
+    <comment>Working Days and Weekly Off Days - General</comment>
+    <id name="instituteid" type="string">
+      <column length="20" name="INSTITUTEID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true" unique="true"/>
+    </many-to-one>
+    <property name="monday" type="string">
+      <column length="1" name="MONDAY" not-null="true">
+        <comment>[W]orking Days / Weekly [O]ff Days</comment>
+      </column>
+    </property>
+    <property name="tuesday" type="string">
+      <column length="1" name="TUESDAY" not-null="true">
+        <comment>[W]orking Days / Weekly [O]ff Days</comment>
+      </column>
+    </property>
+    <property name="wednesday" type="string">
+      <column length="1" name="WEDNESDAY" not-null="true">
+        <comment>[W]orking Days / Weekly [O]ff Days</comment>
+      </column>
+    </property>
+    <property name="thursday" type="string">
+      <column length="1" name="THURSDAY" not-null="true">
+        <comment>[W]orking Days / Weekly [O]ff Days</comment>
+      </column>
+    </property>
+    <property name="friday" type="string">
+      <column length="1" name="FRIDAY" not-null="true">
+        <comment>[W]orking Days / Weekly [O]ff Days</comment>
+      </column>
+    </property>
+    <property name="saturday" type="string">
+      <column length="1" name="SATURDAY" not-null="true">
+        <comment>[W]orking Days / Weekly [O]ff Days</comment>
+      </column>
+    </property>
+    <property name="sunday" type="string">
+      <column length="1" name="SUNDAY" not-null="true">
+        <comment>[W]orking Days / Weekly [O]ff Days</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

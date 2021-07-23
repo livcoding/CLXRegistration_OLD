@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 21, 2011 3:02:43 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.FeeFinalization" table="FEEFINALIZATION">
+        <composite-id class="com.jilit.irp.persistence.dto.FeeFinalizationId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="stynumber" type="byte">
+                <column name="STYNUMBER" precision="2" scale="0"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+            <key-property name="slno" type="int">
+                <column name="SLNO" precision="5" scale="0"/>
+            </key-property>
+            <key-property name="stytypeid" type="string">
+                <column length="20" name="STYTYPEID"/>
+            </key-property>
+            <key-property name="quotaid" type="string">
+                <column length="20" name="QUOTAID"/>
+            </key-property>
+            <key-property name="feeheadid" type="string">
+                <column length="20" name="FEEHEADID"/>
+            </key-property>
+            <key-property name="currencyid" type="string">
+                <column length="20" name="CURRENCYID"/>
+            </key-property>
+            <key-property name="studentid" type="string">
+                <column length="20" name="STUDENTID"/>
+            </key-property>
+        </composite-id>
+        <property name="feeamount" type="java.math.BigDecimal">
+            <column name="FEEAMOUNT" precision="18" scale="2">
+            </column>
+        </property>
+        <property name="acceptablecurrency" type="string">
+            <column length="1" name="ACCEPTABLECURRENCY"/>
+        </property>
+        <property name="partiallyacceptable" type="string">
+            <column length="1" name="PARTIALLYACCEPTABLE"/>
+        </property>
+        <property name="feerefundable" type="string">
+            <column length="1" name="FEEREFUNDABLE"/>
+        </property>
+        <property name="sourcetransaction" type="string">
+            <column length="60" name="SOURCETRANSACTION"/>
+        </property>
+        <property name="conversionfactor" type="java.math.BigDecimal">
+            <column  name="CONVERSIONFACTOR" precision="10" scale="2"/>
+        </property>
+        <property name="finalizationstatus" type="string">
+            <column length="1" name="FINALIZATIONSTATUS"/>
+        </property>
+        <property name="glpostingstatus" type="string">
+            <column length="1" name="GLPOSTINGSTATUS"/>
+        </property>
+        <property name="processid" type="string">
+            <column length="20" name="PROCESSID"/>
+        </property>
+        <property name="postingamount" type="java.math.BigDecimal">
+            <column name="POSTINGAMOUNT" precision="18" scale="2"/>
+        </property>
+        <property name="processdatetime" type="timestamp">
+            <column length="7" name="PROCESSDATETIME"/>
+        </property>
+        <property name="processby" type="string">
+            <column length="20" name="PROCESSBY"/>
+        </property>
+        <property name="finalizationdatetime" type="timestamp">
+            <column length="7" name="FINALIZATIONDATETIME"/>
+        </property>
+        <property name="finalizationby" type="string">
+            <column length="20" name="FINALIZATIONBY"/>
+        </property>
+        <property name="concessionamount" type="java.math.BigDecimal">
+            <column name="CONCESSIONAMOUNT" precision="18" scale="2"/>
+        </property>
+        <property name="receiveamount" type="java.math.BigDecimal">
+            <column name="RECEIVEAMOUNT" precision="18" scale="2"/>
+        </property>
+        <property name="dueamount" type="java.math.BigDecimal">
+            <column name="DUEAMOUNT" precision="18" scale="2"/>
+        </property>
+        <property name="waiveramount" type="java.math.BigDecimal">
+            <column name="WAIVERAMOUNT" precision="18" scale="2"/>
+        </property>
+        <property name="refundamount" type="java.math.BigDecimal">
+            <column name="REFUNDAMOUNT" precision="18" scale="2"/>
+        </property>
+        <property name="transferinamount" type="java.math.BigDecimal">
+            <column name="TRANSFERINAMOUNT" precision="18" scale="2"/>
+        </property>
+        <property name="transferoutamount" type="java.math.BigDecimal">
+            <column name="TRANSFEROUTAMOUNT" precision="18" scale="2"/>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="feecollectionfromdate" type="timestamp">
+            <column length="7" name="FEECOLLECTIONFROMDATE"/>
+        </property>
+        <property name="feecollectiontodate" type="timestamp">
+            <column length="7" name="FEECOLLECTIONTODATE"/>
+        </property>
+        <property name="programid" type="string">
+            <column length="20" name="PROGRAMID"/>
+        </property>
+        <property name="branchid" type="string">
+            <column length="20" name="BRANCHID"/>
+        </property>
+        <property name="academicyear" type="string">
+            <column length="8" name="ACADEMICYEAR"/>
+        </property>
+        <property name="feepostingdate" type="timestamp">
+            <column length="7" name="FEEPOSTINGDATE"/>
+        </property>
+        <property name="adjustmentdramonut" type="java.math.BigDecimal">
+            <column name="ADJUSTMENTDRAMONUT" precision="18" scale="2"/>
+        </property>
+        <property name="adjustmentcredit" type="java.math.BigDecimal">
+            <column name="ADJUSTMENTCREDIT" precision="18" scale="2"/>
+        </property>
+        <property name="remarks" type="string">
+            <column length="200" name="REMARKS"/>
+        </property>
+        <property name="feerefunded" type="string">
+            <column length="1" name="FEEREFUNDED"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.HostelMaster" table="HOSTELMASTER">
+    <id name="hostelid" type="string">
+      <column length="20" name="HOSTELID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.HostelType" fetch="select" insert="false" lazy="false" name="hosteltype" update="false">
+      <column length="20" name="HOSTELTYPEID">
+        <comment>Like UG, PG etc</comment>
+      </column>
+    </many-to-one>
+    <property name="hosteltypeid" type="string">
+      <column length="20" name="HOSTELTYPEID" not-null="true" unique="true"/>
+    </property>
+    <property name="hostelcode" type="string">
+      <column length="20" name="HOSTELCODE" not-null="true" unique="true"/>
+    </property>
+    <property name="hosteldescription" type="string">
+      <column length="75" name="HOSTELDESCRIPTION" not-null="true"/>
+    </property>
+    <property name="hostelopeningyyyymm" type="string">
+      <column length="6" name="HOSTELOPENINGYYYYMM">
+        <comment>Hostel is operating since</comment>
+      </column>
+    </property>
+    <property name="address1" type="string">
+      <column length="50" name="ADDRESS1"/>
+    </property>
+    <property name="address2" type="string">
+      <column length="50" name="ADDRESS2"/>
+    </property>
+    <property name="cityname" type="string">
+      <column length="100" name="CITYNAME">
+        <comment>Linked with City Master</comment>
+      </column>
+    </property>
+    <property name="pin" type="java.lang.Integer">
+      <column name="PIN" precision="6" scale="0"/>
+    </property>
+    <property name="phonenos" type="string">
+      <column length="30" name="PHONENOS"/>
+    </property>
+    <property name="nameofwarden" type="string">
+      <column length="50" name="NAMEOFWARDEN"/>
+    </property>
+    <property name="wardenphoneno" type="string">
+      <column length="30" name="WARDENPHONENO"/>
+    </property>
+    <property name="wardencellno" type="string">
+      <column length="30" name="WARDENCELLNO"/>
+    </property>
+    <property name="hostelfor" type="string">
+      <column length="1" name="HOSTELFOR">
+        <comment>[B]oys / [G]irls</comment>
+      </column>
+    </property>
+    <property name="hostellocation" type="string">
+      <column length="1" name="HOSTELLOCATION">
+        <comment>[I]n Campus / [O]ut Campus</comment>
+      </column>
+    </property>
+    <property name="noofrooms" type="java.lang.Short">
+      <column name="NOOFROOMS" precision="4" scale="0"/>
+    </property>
+    <property name="totalbedcapacity" type="java.lang.Short">
+      <column name="TOTALBEDCAPACITY" precision="4" scale="0"/>
+    </property>
+    <property name="noofbedsineachroom" type="java.lang.Short">
+      <column name="NOOFBEDSINEACHROOM" precision="4" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="studentdisciplinaryactions">
+      <key>
+        <column length="20" name="HOSTELID">
+          <comment>Hostel (in case of Initiated by is `H`)</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentDisciplinaryAction"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studenthosteldetails">
+      <key>
+        <column length="20" name="HOSTELID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentHostelDetail"/>
+    </set>
+     
+    <set inverse="true" lazy="extra" name="hostelroommasters">
+      <key>
+        <column length="20" name="HOSTELID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.HostelRoomMaster"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Nov, 2013 4:13:30 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentOtherAchievementFinal" table="STUDENTOTHERACHIEVEMENTFINAL">
+    <comment>Award/achievement and seminar detail - Request Table</comment>
+    <id name="requestid" type="string">
+      <column length="20" name="REQUESTID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentOtherAchievementReq" fetch="select" insert="false" lazy="false" name="studentotherachievementreq" update="false">
+      <column length="20" name="REQUESTID" not-null="true" unique="true"/>
+    </many-to-one>
+    <property name="docmode" type="string">
+      <column length="1" name="DOCMODE" not-null="true">
+        <comment>[D]raft / [F]inal /[A]pproved / [C]ancel</comment>
+      </column>
+    </property>
+    <property name="approvedby" type="string">
+      <column length="20" name="APPROVEDBY">
+        <comment>Approved By User ID</comment>
+      </column>
+    </property>
+    <property name="approvaldate" type="date">
+      <column length="7" name="APPROVALDATE">
+        <comment>Date &amp; Time of Approval</comment>
+      </column>
+    </property>
+    <property name="approvalremarks" type="string">
+      <column length="250" name="APPROVALREMARKS">
+        <comment>Approval Remarks</comment>
+      </column>
+    </property>
+  </class>
+</hibernate-mapping>

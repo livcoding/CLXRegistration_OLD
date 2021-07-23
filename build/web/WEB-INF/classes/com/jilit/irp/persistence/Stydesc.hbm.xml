@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.StyDesc" table="STYDESC">
+    <comment>Semester/Trimester/Year Description Table</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.StyDescId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="stypattern" type="string">
+        <column length="1" name="STYPATTERN"/>
+      </key-property>
+      <key-property name="stynumber" type="java.lang.Short">
+        <column name="STYNUMBER" precision="2" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="stydesc" type="string">
+      <column length="30" name="STYDESC" not-null="true"/>
+    </property>
+    <property name="styyear" type="java.lang.Short">
+      <column name="STYYEAR" precision="4" scale="0"/>
+    </property>
+    <property name="styyeardesc" type="string">
+      <column length="30" name="STYYEARDESC"/>
+    </property>
+  </class>
+  <query name="getAllStyDesc">
+
+      select a
+        from StyDesc a
+        where
+               a.id.instituteid = ?
+           and exists
+                     (select b.stynumber
+                         from ProgramSubjectTagging b
+                            where  a.id.stynumber = b.stynumber
+                               and coalesce(b.deactive,'N') = 'N'
+                     )
+               order by a.id.stynumber
+
+
+     </query>
+  <query name="checkifstyExists">
+
+      select a
+        from StyDesc a
+        where
+               a.id.instituteid = ?
+               and a.id.stynumber= ?
+               order by a.id.stynumber
+
+
+  </query>
+  <query name="getAllStyNumber_PST">
+      
+        select p from StyDesc p
+            where p.id.instituteid = ?
+                  and p.id.stynumber in
+                                       (
+                                         select pst.stynumber
+                                                from ProgramSubjectTagging pst
+                                                     where pst.id.instituteid = ?
+                                                       and pst.academicyear = ?
+                                                       and pst.id.registrationid = ?
+                                                       and pst.programid = ?
+                                                       and coalesce(pst.deactive,'N')='N'
+                                       )
+                                       order by p.id.stynumber
+
+      
+
+</query>
+  <query name="findStyNumber_PST">
+      
+        select p from StyDesc p
+            where p.id.instituteid = ?
+                  and p.id.stynumber = ?
+                  and p.id.stynumber in
+                                       (
+                                         select pst.stynumber
+                                                from ProgramSubjectTagging pst
+                                                     where pst.id.instituteid=?
+                                                       and pst.academicyear = ?
+                                                       and pst.id.registrationid=?
+                                                       and pst.programid = ?
+                                                       and pst.stynumber = ?
+                                                       and coalesce(pst.deactive,'N')='N'
+                                       )
+      
+</query>
+</hibernate-mapping>

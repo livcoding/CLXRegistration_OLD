@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.RoomUsedForTagging" table="ROOMUSEDFORTAGGING">
+    <composite-id class="com.jilit.irp.persistence.dto.RoomUsedForTaggingId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="roomid" type="string">
+        <column length="20" name="ROOMID"/>
+      </key-property>
+      <key-property name="roomusedforid" type="string">
+        <column length="20" name="ROOMUSEDFORID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.RoomUsedForMaster" fetch="select" insert="false" lazy="false" name="roomusedformaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="ROOMUSEDFORID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.RoomMaster" fetch="select" insert="false" lazy="false" name="roommaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="ROOMID" not-null="true"/>
+    </many-to-one>
+    <property name="preferenceno" type="string">
+      <column length="20" name="PREFERENCENO" not-null="true"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

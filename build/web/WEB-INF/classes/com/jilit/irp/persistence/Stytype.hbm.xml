@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StyType" table="STYTYPE">
+    <comment>Semester/Trimester/Year Type like Regular, Summer etc.</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.StyTypeId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="stytypeid" type="string">
+        <column length="20" name="STYTYPEID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="stytype" type="string">
+      <column length="20" name="STYTYPE" not-null="true"/>
+    </property>
+    <property name="stytypedesc" type="string">
+      <column length="50" name="STYTYPEDESC" not-null="true"/>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0"/>
+    </property>
+    <property name="etod" type="string">
+      <column length="1" name="ETOD">
+        <comment>ETOD = [Y]es / [N]o</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="studenthosteldetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="STYTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentHostelDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prsubjectfinalizationcriterias">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="STYTYPEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PRSubjectFinalizationCriteria"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentregistrations">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="STYTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentRegistration"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentregistration_infos">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="STYTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentRegistration_info"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentsubjectchoicemasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="STYTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentSubjectChoiceMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="facultysubjecttaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="STYTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.FacultySubjectTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentpreviousattendences">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="STYTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentPreviousAttendence"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="tt_timetableallocationdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="STYTYPEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.TT_TimeTableAllocationDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="tt_suspendedslotsdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="STYTYPEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.TT_SuspendedSlotsDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="tmp_studattendsummaries">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="STYTYPEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Tmp_StudAttendSummary"/>
+    </set>
+  </class>
+  <query name="checkStyType_Institute_Wise">
+      select st from StyType st
+      where st.id.instituteid = ?
+      and st.stytype = ?
+      order by st.stytype
+  </query>
+</hibernate-mapping>

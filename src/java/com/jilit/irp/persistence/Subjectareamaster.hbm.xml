@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 1, 2010 3:09:11 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.SubjectAreaMaster" table="SUBJECTAREAMASTER">
+    <id name="subjectareaid" type="string">
+      <column length="20" name="SUBJECTAREAID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="subjectareacode" type="string">
+      <column length="20" name="SUBJECTAREACODE" not-null="true"/>
+    </property>
+    <property name="subjectareadescription" type="string">
+      <column length="100" name="SUBJECTAREADESCRIPTION" not-null="true"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="departmentsubjecttaggings">
+      <key>
+        <column length="20" name="SUBJECTAREAID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.DepartmentSubjectTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="instituteelectivetempdatas">
+      <key>
+        <column length="20" name="SUBJECTAREAID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.InstituteElectiveTempData"/>
+    </set>
+  </class>
+</hibernate-mapping>

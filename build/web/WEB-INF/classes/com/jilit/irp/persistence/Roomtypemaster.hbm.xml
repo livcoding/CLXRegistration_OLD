@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.RoomTypeMaster" table="ROOMTYPEMASTER">
+    <comment>Room Type like Digital Room, Non Digital Room etc</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.RoomTypeMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="roomtypeid" type="string">
+        <column length="20" name="ROOMTYPEID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="roomtypecode" type="string">
+      <column length="20" name="ROOMTYPECODE" not-null="true"/>
+    </property>
+    <property name="roomtypedesc" type="string">
+      <column length="100" name="ROOMTYPEDESC" not-null="true"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="prfacultysubjecttimepreferences">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REQROOMTYPE">
+          <comment>RoomTypeID</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PRFacultySubjectTimePreference"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prfacultysubjectchoiceses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REQROOMTYPE">
+          <comment>RoomTypeID</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PRFacultySubjectChoices"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prfacultydaytimepreferences">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REQROOMTYPE">
+          <comment>RoomType</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PRFacultyDayTimePreference"/>
+    </set>
+    <set inverse="true" lazy="extra" name="teachingloaddistributions">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REQROOMTYPE">
+          <comment>RoomType</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.TeachingLoadDistribution"/>
+    </set>
+  </class>
+</hibernate-mapping>

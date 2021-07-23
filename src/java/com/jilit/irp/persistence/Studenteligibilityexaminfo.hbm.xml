@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 7, 2017 10:18:07 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentEligibilityExamInfo" table="STUDENTELIGIBILITYEXAMINFO">
+    <comment>Students Entrance Eligibility Citeria based inpout Field Values required ie. Program-&gt;BTECH-&gt;JEE-&gt; YEAROFAPPEARANCE filed Values</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.StudentEligibilityExamInfoId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="eeexamid" type="string">
+        <column length="20" name="EEEXAMID"/>
+      </key-property>
+      <key-property name="eeinfoid" type="string">
+        <column length="20" name="EEINFOID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.EligibilityExamInfoDetail" fetch="select" insert="false" name="eligibilityexaminfodetail" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="EEEXAMID" not-null="true"/>
+      <column length="20" name="EEINFOID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="eeinfovalue" type="string">
+      <column length="200" name="EEINFOVALUE"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 6, 2011 11:20:11 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ScholarshipType" table="SCHOLARSHIPTYPE">
+    <id name="scholarshiptypeid" type="string">
+      <column length="20" name="SCHOLARSHIPTYPEID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="scholarshiptypecode" type="string">
+      <column length="20" name="SCHOLARSHIPTYPECODE" not-null="true">
+        <comment>"Pocket allowance, Free messing"</comment>
+      </column>
+    </property>
+    <property name="scholarshiptypedesc" type="string">
+      <column length="80" name="SCHOLARSHIPTYPEDESC" not-null="true"/>
+    </property>
+    <property name="paymentFrequency" type="string">
+      <column length="1" name="PAYMENTFREQUENCY" not-null="true"/>
+    </property>
+    <property name="feeAdjustment" type="string">
+      <column length="1" name="FEEADJUSTMENT" not-null="true"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="scholarshipcriterias">
+      <key>
+        <column length="20" name="SCHOLARSHIPTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ScholarshipCriteria"/>
+    </set>
+    <set inverse="true" lazy="extra" name="scholarshipapplicantses">
+      <key>
+        <column length="20" name="SCHOLARSHIPTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ScholarshipApplicants"/>
+    </set>
+  </class>
+</hibernate-mapping>

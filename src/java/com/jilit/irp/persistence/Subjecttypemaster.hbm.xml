@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.SubjectTypeMaster" table="SUBJECTTYPEMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.SubjectTypeMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="subjecttypeid" type="string">
+        <column length="20" name="SUBJECTTYPEID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="subjecttype" type="string">
+      <column length="1" name="SUBJECTTYPE" not-null="true">
+        <comment>[C]ore, [E]lective, [F]ree Elective, [D]epartmental Elective, [P] Elective Preferences, [O]thers Elective etc</comment>
+      </column>
+    </property>
+    <property name="subjecttypedesc" type="string">
+      <column length="60" name="SUBJECTTYPEDESC" not-null="true"/>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="8" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="basketmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTTYPEID" not-null="true">
+          <comment>Subject Type must be unique is</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.BasketMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="basketmasterdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.BasketMasterDetail"/>
+    </set>
+<!--    <set inverse="true" lazy="extra" name="subjectmaster">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+        <column length="20" name="SUBJECTTYPEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.SubjectMaster"/>
+    </set>-->
+    <set inverse="true" lazy="extra" name="electivesubjectapproval">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ElectiveSubjectApproval"/>
+    </set>
+     <set inverse="true" lazy="extra" name="offeredodsubjecttaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.OfferedODSubjectTagging"/>
+    </set>
+  </class>
+<!--  <query name="findAllSubjectType_SSC">
+      
+       select s
+            from SubjectTypeMaster s
+                where s.id.instituteid = ?
+                  and s.id.subjecttypeid in
+                   (
+                    select b.subjecttypeid
+                           from StudentSubjectChoiceMaster a, SubjectMaster b
+                                where a.id.instituteid = b.id.instituteid
+                                and a.id.subjectid = b.id.subjectid
+                                and a.id.instituteid = ?
+                                and a.id.registrationid = ?
+                                and coalesce(a.deactive,'N') = 'N'
+                                and coalesce(b.deactive,'N') = 'N'
+                                group by b.subjecttypeid
+                    )
+                    and coalesce(s.deactive,'N') = 'N'
+                    order by s.subjecttype
+      
+    </query>-->
+<!--  <query name="findSubjectType_SSC">-->
+    <!--  <![CDATA[
+       select s
+            from SubjectTypeMaster s
+                where s.id.instituteid = ?
+                  and s.subjecttype = ?
+                  and s.subjecttypeid in
+                   (
+                    select b.subjecttypeid
+                           from StudentSubjectChoiceMaster a, SubjectMaster b
+                                where a.id.instituteid = b.id.instituteid
+                                and a.id.subjectid = b.id.subjectid
+                                and a.id.instituteid = ?
+                                and a.id.registrationid = ?
+                                and coalesce(a.deactive,'N') = 'N'
+                                and coalesce(b.deactive,'N') = 'N'
+                                group by b.subjecttypeid
+                    )
+                    and coalesce(s.deactive,'N') = 'N'
+                    order by s.subjecttype
+      ]]>-->
+      
+<!--       select s
+            from SubjectTypeMaster s
+                where s.id.instituteid = ?
+                  and s.subjecttype = ?
+                  and exists
+                   (
+                    select b.subjecttypeid
+                           from StudentSubjectChoiceMaster a, SubjectMaster b
+                                where b.id.instituteid = s.id.instituteid
+                                and b.subjecttypeid = s.id.subjecttypeid
+                                and a.id.instituteid = b.id.instituteid
+                                and a.id.subjectid = b.id.subjectid
+                                and a.id.instituteid = ?
+                                and a.id.registrationid = ?
+                                and coalesce(a.deactive,'N') = 'N'
+                                and coalesce(b.deactive,'N') = 'N'
+                                group by b.subjecttypeid
+                    )
+                    and coalesce(s.deactive,'N') = 'N'
+                    order by s.subjecttype
+      
+    </query>-->
+</hibernate-mapping>

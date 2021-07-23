@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 Oct, 2011 6:05:06 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentCertificateMaster" table="STUDENTCERTIFICATEMASTER">
+    <id name="certificateid" type="string">
+      <column length="20" name="CERTIFICATEID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="certificatecode" type="string">
+      <column length="20" name="CERTIFICATECODE" not-null="true" unique="true">
+        <comment>Unique</comment>
+      </column>
+    </property>
+    <property name="certificatedesc" type="string">
+      <column length="80" name="CERTIFICATEDESC"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="studentcertificateslnos">
+      <key>
+        <column length="20" name="CERTIFICATEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentCertificateSlno"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentcertificatesetups">
+      <key>
+        <column length="20" name="CERTIFICATEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentCertificateSetup"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentcertificatesetupdetails">
+      <key>
+        <column length="20" name="CERTIFICATEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentCertificateSetupDetail"/>
+    </set>
+  </class>
+</hibernate-mapping>

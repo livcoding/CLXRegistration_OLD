@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.OldvsNewSubject" table="OLDVSNEWSUBJECT">
+        <composite-id class="com.jilit.irp.persistence.dto.OldvsNewSubjectId" name="id">
+             <key-property name="instituteid" type="string">
+               <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+            <key-property name="subjectid" type="string">
+                <column length="20" name="SUBJECTID"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+            <column length="20" name="instituteid" not-null="true"/>
+            <column length="20" name="registrationid" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmaster" update="false">
+            <column length="20" name="instituteid" not-null="true"/>
+            <column length="20" name="subjectid" not-null="true"/>
+        </many-to-one>
+        <property name="newsubjectid" type="string">
+            <column length="20" name="NEWSUBJECTID"/>
+        </property>
+        <property name="wef" type="date">
+            <column length="7" name="WEF"/>
+        </property>
+        <property name="remarks" type="string">
+            <column length="250" name="REMARKS"/>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="entryby" type="string">
+            <column length="20" name="ENTRYBY"/>
+        </property>
+        <property name="entrydatetime" type="date">
+            <column length="7" name="ENTRYDATETIME"/>
+        </property>
+    </class>
+</hibernate-mapping>

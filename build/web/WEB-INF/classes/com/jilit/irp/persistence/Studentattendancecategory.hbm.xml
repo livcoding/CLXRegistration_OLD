@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 17, 2014 2:37:41 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentAttendanceCategory" table="STUDENTATTENDANCECATEGORY">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentAttendanceCategoryId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="attcategoryid" type="string">
+        <column length="20" name="ATTCATEGORYID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="attcategorycode" type="string">
+      <column length="5" name="ATTCATEGORYCODE" not-null="true"/>
+    </property>
+    <property name="attcategorydesc" type="string">
+      <column length="60" name="ATTCATEGORYDESC" not-null="true"/>
+    </property>
+    <property name="attfromrange" type="big_decimal">
+      <column name="ATTFROMRANGE" not-null="true" precision="7"/>
+    </property>
+    <property name="atttorange" type="big_decimal">
+      <column name="ATTTORANGE" not-null="true" precision="7"/>
+    </property>
+    <property name="attdeatinedflag" type="string">
+      <column length="1" name="ATTDEATINEDFLAG"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="entryby" type="string">
+      <column length="20" name="ENTRYBY"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+  </class>
+</hibernate-mapping>

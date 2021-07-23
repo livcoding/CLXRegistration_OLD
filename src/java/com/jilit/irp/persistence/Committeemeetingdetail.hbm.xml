@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 12, 2010 11:07:25 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.CommitteeMeetingDetail" table="COMMITTEEMEETINGDETAIL">
+    <composite-id class="com.jilit.irp.persistence.dto.CommitteeMeetingDetailId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="meetingid" type="string">
+        <column length="20" name="MEETINGID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.CommitteeMaster" fetch="select" insert="false" lazy="false" name="committeemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="COMMITTEEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.MeetingAgendaMaster" fetch="select" insert="false" lazy="false" name="meetingagendamaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="COMMITTEEID" not-null="true"/>
+      <column length="20" name="AGENDAID" not-null="true"/>
+    </many-to-one>
+    <property name="committeeid" type="string">
+      <column length="20" name="COMMITTEEID" not-null="true">
+        <comment>Date and Time</comment>
+      </column>
+    </property>
+    <property name="agendaid" type="string">
+      <column length="20" name="AGENDAID" not-null="true">
+        <comment>Date and Time</comment>
+      </column>
+    </property>
+    <property name="meetingdate" type="date">
+      <column length="7" name="MEETINGDATE" not-null="true">
+        <comment>Date and Time</comment>
+      </column>
+    </property>
+    <property name="meetingscheduled" type="date">
+      <column length="7" name="MEETINGSCHEDULED">
+        <comment>Date and Time</comment>
+      </column>
+    </property>
+    <property name="startdatetime" type="date">
+      <column length="7" name="STARTDATETIME">
+        <comment>Start Date and Time of Meeting</comment>
+      </column>
+    </property>
+    <property name="enddatetime" type="date">
+      <column length="7" name="ENDDATETIME">
+        <comment>End Date and Time of Meeting</comment>
+      </column>
+    </property>
+    <property name="placeofmeeting" type="string">
+      <column length="175" name="PLACEOFMEETING">
+        <comment>Place of the meeting</comment>
+      </column>
+    </property>
+    <!--  <property name="physicalfile" type="blob">
+            <column name="PHYSICALFILE">
+                <comment>FileName (if any)</comment>
+            </column>
+        </property>-->
+    <property name="meetingstatus" type="string">
+      <column length="1" name="MEETINGSTATUS">
+        <comment>[P]ostponed / P[r]e-pond / [C]ancel / [O]thers</comment>
+      </column>
+    </property>
+    <property name="meetingstatusremarks" type="string">
+      <column length="1000" name="MEETINGSTATUSREMARKS">
+        <comment>if any</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE">
+        <comment>Yes / No</comment>
+      </column>
+    </property>
+    <set inverse="true" lazy="extra" name="committeemeetingparticipentses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="MEETINGID" not-null="true">
+          <comment>System Generated ID</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeMeetingParticipents"/>
+    </set>
+  </class>
+</hibernate-mapping>

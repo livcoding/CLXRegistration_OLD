@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class lazy="false" mutable="false" name="com.jilit.irp.persistence.dto.V_ProgramSubjectTagging" optimistic-lock="none" table="V_PROGRAMSUBJECTTAGGING">
+    <synchronize table="PROGRAMMASTER"/>
+    <synchronize table="BRANCHMASTER"/>
+    <synchronize table="PROGRAMMINMAXLIMIT"/>
+    <synchronize table="PROGRAMWISESUBSECTION"/>
+    <synchronize table="PROGRAMMAXSTY"/>
+    <synchronize table="SECTIONMASTER"/>
+    <synchronize table="SUBJECTTYPEMASTER"/>
+    <composite-id>
+      <key-property column="INSTITUTEID" name="instituteid"/>
+      <key-property column="REGISTRATIONID" name="registrationid"/>
+      <key-property column="PROGRAMSUBJECTID" name="programsubjectid"/>
+      <key-property column="ACADEMICYEAR" name="academicyear"/>
+      <key-property column="PROGRAMID" name="programid"/>
+      <key-property column="SECTIONID" name="sectionid"/>
+      <key-property column="BASKETID" name="basketid"/>
+      <key-property column="SUBJECTID" name="subjectid"/>
+      <key-property column="DEPARTMENTID" name="departmentid"/>
+      <key-property column="SUBJECTCOMPONENTID" name="subjectcomponentid"/>
+    </composite-id>
+    <property name="basketcode" type="string">
+      <column length="20" name="BASKETCODE"/>
+    </property>
+    <property name="basketdesc" type="string">
+      <column length="50" name="BASKETDESC"/>
+    </property>
+    <property name="registrationcode" type="string">
+      <column length="20" name="REGISTRATIONCODE"/>
+    </property>
+    <property name="registrationdesc" type="string">
+      <column length="100" name="REGISTRATIONDESC"/>
+    </property>
+    <property name="programcode" type="string">
+      <column length="1" name="PROGRAMCODE"/>
+    </property>
+    <property name="programdesc" type="string">
+      <column length="100" name="PROGRAMDESC"/>
+    </property>
+    <property name="sectioncode" type="string">
+      <column length="20" name="SECTIONCODE"/>
+    </property>
+    <property name="sectiondesc" type="string">
+      <column length="60" name="SECTIONDESC"/>
+    </property>
+    <property name="stynumber" type="java.lang.Short">
+      <column name="STYNUMBER" precision="2" scale="0"/>
+    </property>
+    <property name="subjectcode" type="string">
+      <column length="20" name="SUBJECTCODE"/>
+    </property>
+    <property name="subjectdesc" type="string">
+      <column length="160" name="SUBJECTDESC"/>
+    </property>
+    <property name="pstpopulated" type="string">
+      <column length="1" name="PSTPOPULATED"/>
+    </property>
+    <property name="subjectrunning" type="string">
+      <column length="1" name="SUBJECTRUNNING"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="customfinalized" type="string">
+      <column length="1" name="CUSTOMFINALIZED"/>
+    </property>
+    <property name="departmentcode" type="string">
+      <column length="20" name="DEPARTMENTCODE"/>
+    </property>
+    <property name="department" type="string">
+      <column length="75" name="DEPARTMENT"/>
+    </property>
+    <property name="subjecttypedesc" type="string">
+      <column length="60" name="SUBJECTTYPEDESC"/>
+    </property>
+    <property name="ltppassingmarks" type="big_decimal">
+      <column name="LTPPASSINGMARKS" not-null="true" precision="6"/>
+    </property>
+    <property name="totalccpmarks" type="big_decimal">
+      <column name="TOTALCCPMARKS" not-null="true" precision="6"/>
+    </property>
+    <property name="noofhours" type="big_decimal">
+      <column name="NOOFHOURS" precision="6">
+        <comment>Per Class duration in Hours</comment>
+      </column>
+    </property>
+    <property name="noofclassinaweek" type="big_decimal">
+      <column name="NOOFCLASSINAWEEK" precision="6">
+        <comment>No of class in a week</comment>
+      </column>
+    </property>
+    <property name="subjectcomponentdesc" type="string">
+      <column length="60" name="SUBJECTCOMPONENTDESC" not-null="true"/>
+    </property>
+    <property name="classperweekformula" type="java.lang.Short">
+      <column name="CLASSPERWEEKFORMULA" precision="3" scale="0">
+        <comment>Like 100%,50% etc; stored as default value</comment>
+      </column>
+    </property>
+    <property name="subjectcomponentcode" type="string">
+      <column length="60" name="SUBJECTCOMPONENTCODE" not-null="true">
+        <comment>Like L/T/P etc</comment>
+      </column>
+    </property>
+    <property name="calccpmarks" type="big_decimal">
+      <column name="CALCCPMARKS" precision="3">
+            </column>
+    </property>
+    <property name="noofstudents" type="java.lang.Short">
+      <column name="NOOFSTUDENTS" precision="5">
+            </column>
+    </property>
+    <property name="alloted" type="java.lang.Short">
+      <column name="ALLOTED" precision="5">
+            </column>
+    </property>
+    <property name="subjecttypeid" type="string">
+      <column length="20" name="SUBJECTTYPEID">
+            </column>
+    </property>
+    <property name="subjecttype" type="string">
+      <column length="1" name="SUBJECTTYPE">
+            </column>
+    </property>
+    <property name="credits" type="java.lang.Short">
+      <column name="CREDITS" precision="3">
+            </column>
+    </property>
+  </class>
+  <query name="studentsubjectchoicedetailviaview">
+
+        select  distinct vpsbs.subjectcode,
+                vpsbs.subjectdesc,
+                stm.subjecttype,
+                vpsbs.totalccpmarks,
+                pwss.subsectioncode,
+                vpsbs.stynumber,
+                st.stytype,
+                vpsbs.calccpmarks,
+                sscm.id.subjectid,
+                sscd.id.subjectcomponentid,
+                vpsbs.subjectcomponentcode
+          from  BasketMaster bm,
+                SubjectTypeMaster stm,
+                V_ProgramSubjectTagging vpsbs,
+                StyType st,
+                ProgramWiseSubsection pwss,
+                StudentSubjectChoiceMaster sscm,
+                StudentSubjectChoiceDetail  sscd
+         where  bm.id.instituteid = sscm.id.instituteid
+            and bm.id.basketid = sscm.basketid
+            and sscd.id.instituteid = sscm.id.instituteid
+            and sscd.id.studentid = sscm.id.studentid
+            and sscd.id.subjectid = sscm.id.subjectid
+            and stm.id.instituteid = sscm.id.instituteid
+            and stm.id.subjecttypeid = bm.subjecttypeid
+            and vpsbs.instituteid = sscm.id.instituteid
+            and vpsbs.subjectid = sscm.id.subjectid
+            and st.id.instituteid = sscm.id.instituteid
+            and st.id.stytypeid = sscm.stytypeid
+            and pwss.id.academicyear = vpsbs.academicyear
+            and pwss.id.instituteid = sscm.id.instituteid
+            and pwss.id.subsectionid = sscd.subsectionid
+              and pwss.id.programid=vpsbs.programid
+                                        and pwss.id.sectionid=vpsbs.sectionid
+                                        and pwss.id.stynumber=vpsbs.stynumber
+                                         and vpsbs.subjectrunning='Y'
+            and vpsbs.instituteid = sscd.id.instituteid
+            and vpsbs.subjectid = sscd.id.subjectid
+            and vpsbs.subjectcomponentid = sscd.id.subjectcomponentid
+            and sscm.subjectrunning = 'Y'
+            and sscm.id.instituteid=?
+            and sscm.id.studentid=?
+            and sscm.id.registrationid=?
+            and sscm.id.registrationid=vpsbs.registrationid
+            order by vpsbs.subjectcode, sscd.id.subjectcomponentid
+
+    </query>
+  <!--  <query name="studentsubjectchoicedetailviaview1">
+
+       select d.id.sectionid, d.sectioncode, a.id.academicyear, a.id.programid, p.programcode, a.id.sectionid, a.id.subsectionid, a.subsectioncode, a.maxstudent, a.id.stynumber,
+        count(distinct c.id.studentid)
+        from ProgramWiseSubsection a, StudentMaster b, StudentSubjectChoiceMaster c, SectionMaster d, ProgramMaster p
+        where a.id.instituteid=b.instituteid
+        and a.id.academicyear=b.acadyear
+        and a.id.programid=b.programid
+        and a.id.stynumber=b.stynumber
+        and a.id.sectionid=b.sectionid
+        and c.id.instituteid=b.id.instituteid
+        and c.id.studentid=b.id.studentid
+        and c.id.stynumber=a.id.stynumber
+        and d.id.instituteid=a.id.instituteid
+        and d.id.sectionid=d.id.sectionid
+        and b.instituteid=p.id.instituteid
+        and b.programid=p.id.programid
+        and a.id.instituteid=p.id.instituteid
+        and a.id.programid=p.id.programid
+        and c.id.instituteid=p.id.instituteid
+        and d.id.instituteid=p.id.instituteid
+        and (b.activestatus='A' or b.activestatus is null)
+        and (coalesce(a.deactive,'Y')!='Y' or a.deactive is null)
+        and (coalesce(c.deactive,'Y')!='Y' or c.deactive is null)
+        and c.id.instituteid=?
+        and c.id.registrationid=?
+        and d.sectioncode in('A','A1','A10','A11','A12','A13')
+        and (coalesce(c.subjectrunning,'Y')!='Y' or c.subjectrunning is null)
+        group by d.id.sectionid, d.sectioncode, a.id.academicyear, a.id.programid, p.programcode, a.id.sectionid, a.id.subsectionid, a.subsectioncode,a.maxstudent,a.id.stynumber
+        order by  d.sectioncode, a.id.programid,a.id.academicyear , a.subsectioncode
+
+    </query>-->
+  <query name="findSubjectPSTRegDeptSubjTypewise">
+        select vpst.subjectid, vpst.subjectcode , vpst.subjectdesc
+        from V_ProgramSubjectTagging vpst
+        where vpst.instituteid =?
+        and vpst.registrationid =?
+        and vpst.departmentid = ?
+        and vpst.subjecttypeid =?
+        group by  vpst.subjectid, vpst.subjectcode , vpst.subjectdesc
+  order by vpst.subjectdesc
+
+</query>
+  <query name="findSubjectPSTRegSubjTypewiseWithoutDept">
+        select vpst.subjectid, vpst.subjectcode , vpst.subjectdesc
+        from V_ProgramSubjectTagging vpst
+        where vpst.instituteid =?
+        and vpst.registrationid =?
+        and vpst.subjecttypeid =?
+        group by  vpst.subjectid, vpst.subjectcode , vpst.subjectdesc
+  order by vpst.subjectdesc
+
+</query>
+</hibernate-mapping>

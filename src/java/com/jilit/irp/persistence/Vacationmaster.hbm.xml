@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Jun, 2012 6:27:18 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.VacationMaster" table="VACATIONMASTER">
+    <comment>Visiting Faculty Master</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.VacationMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="vacationid" type="string">
+        <column length="20" name="VACATIONID"/>
+      </key-property>
+    </composite-id>
+
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="vacationcode" type="string">
+      <column length="20" name="VACATIONCODE" not-null="true">
+        <comment>Vacation Code</comment>
+      </column>
+    </property>
+    <property name="vacationdesc" type="string">
+      <column length="60" name="VACATIONDESC" not-null="true">
+        <comment>Vacation Desc</comment>
+      </column>
+    </property>
+    <property name="onevacationdayequealto" type="big_decimal">
+      <column name="ONEVACATIONDAYEQUEALTO" precision="5">
+        <comment>One Vacation Day Equal To</comment>
+      </column>
+    </property>
+    <property name="transfertoleaveid" type="string">
+      <column length="20" name="TRANSFERTOLEAVEID" not-null="false">
+        <comment>Leave Id from Leave Master</comment>
+      </column>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0">
+        <comment>For Sequencing</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+
+    <set inverse="true" lazy="extra" name="vacationdateses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="VACATIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.VacationDates"/>
+    </set>
+    
+  </class>
+</hibernate-mapping>

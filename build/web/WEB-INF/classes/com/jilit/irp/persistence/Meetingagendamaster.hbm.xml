@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 12, 2010 11:07:25 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.MeetingAgendaMaster" table="MEETINGAGENDAMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.MeetingAgendaMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="committeeid" type="string">
+        <column length="20" name="COMMITTEEID"/>
+      </key-property>
+      <key-property name="agendaid" type="string">
+        <column length="20" name="AGENDAID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.CommitteeMaster" fetch="select" insert="false" lazy="false" name="committeemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="COMMITTEEID" not-null="true"/>
+    </many-to-one>
+    <property name="agendadesc" type="string">
+      <column length="1000" name="AGENDADESC" not-null="true"/>
+    </property>
+    <property name="agendadate" type="date">
+      <column length="7" name="AGENDADATE">
+        <comment>Date and Time</comment>
+      </column>
+    </property>
+    <property name="agendastatus" type="string">
+      <column length="1" name="AGENDASTATUS">
+        <comment>[A]pproved, [P]ending,  [C]ancel</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="committeeactiondetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="COMMITTEEID" not-null="true"/>
+        <column length="20" name="AGENDAID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeActionDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="committeemeetingdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="COMMITTEEID" not-null="true"/>
+        <column length="20" name="AGENDAID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeMeetingDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="committeemeetingparticipentses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="COMMITTEEID" not-null="true"/>
+        <column length="20" name="AGENDAID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeMeetingParticipents"/>
+    </set>
+  </class>
+</hibernate-mapping>

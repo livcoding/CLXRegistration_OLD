@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Jun, 2012 6:27:18 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.AttendanceApproved" table="ATTENDANCEAPPROVED">
+    <comment>Attendance Approval Table, After Attendance it will generate Approval ID which will be further updated to Employee Attendance Table</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.AttendanceApprovedId" name="id">
+      <key-property name="companyid" type="string">
+        <column length="20" name="COMPANYID"/>
+      </key-property>
+      <key-property name="yearmonth" type="string">
+        <column length="6" name="YEARMONTH"/>
+      </key-property>
+      <key-property name="approvalid" type="string">
+        <column length="20" name="APPROVALID"/>
+      </key-property>
+    </composite-id>
+    <property name="appovaltype" type="string">
+      <column length="1" name="APPOVALTYPE">
+        <comment>Employee [C]ategory / Employee [T]ype / [D]epartment / [I]ndividual / [A]ll</comment>
+      </column>
+    </property>
+    <property name="appovalcode" type="string">
+      <column length="20" name="APPOVALCODE">
+        <comment>Value as per the criteria defined in ApprovalType</comment>
+      </column>
+    </property>
+    <property name="attendanceapproved" type="string">
+      <column length="1" name="ATTENDANCEAPPROVED">
+        <comment>Yes / No</comment>
+      </column>
+    </property>
+    <property name="username" type="string">
+      <column length="30" name="USERNAME"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+    <set cascade="delete" inverse="true" lazy="extra" name="employeeattendances">
+      <key>
+        <column length="20" name="COMPANYID" not-null="true"/>
+        <column length="6" name="YEARMONTH" not-null="true">
+          <comment>Year Month (Format - YYYYMM)</comment>
+        </column>
+        <column length="20" name="APPROVALID" not-null="true">
+          <comment>Attendance Approval ID, Common ID for all bulk approval</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.EmployeeAttendance"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ProgramScheme" table="PROGRAMSCHEME">
+    <comment>Generalized Program Scheme Table, This table will be populated if ProgramMinMaxLimit-&gt;ProgramScheme = [M]aster</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.ProgramSchemeId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="programschemeid" type="string">
+        <column length="20" name="PROGRAMSCHEMEID"/>
+      </key-property>
+    </composite-id>
+    <!--<many-to-one class="com.jilit.irp.persistence.dto.BasketMaster" fetch="select" insert="false" lazy="false" name="basketmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="BASKETID" not-null="true"/>
+    </many-to-one>-->
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" insert="false" lazy="false" name="programmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SectionMaster" insert="false" lazy="false" name="sectionmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SECTIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" insert="false" lazy="false" name="subjectmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.DepartmentMaster" insert="false" lazy="false" name="departmentmaster" update="false">
+      <column length="20" name="DEPARTMENTID">
+        <comment>Department Belongs to</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.ElectiveMaster" insert="false" lazy="false" name="electivemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="ELECTIVEID"/>
+    </many-to-one>
+    <property name="stynumber" type="byte">
+      <column name="STYNUMBER" not-null="true" precision="2" scale="0"/>
+    </property>
+    <property name="subjectid" type="string">
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </property>
+    <property name="programid" type="string">
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </property>
+    <property name="sectionid" type="string">
+      <column length="20" name="SECTIONID" not-null="true"/>
+    </property>
+    <property name="basketid" type="string">
+      <column length="20" name="BASKETID" not-null="true"/>
+    </property>
+    <property name="departmentid" type="string">
+      <column length="20" name="DEPARTMENTID" not-null="true"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="credits" type="byte">
+      <column name="CREDITS" not-null="true" precision="3" scale="0"/>
+    </property>
+    <property name="electiveid" type="string">
+      <column length="20" name="ELECTIVEID"/>
+    </property>
+    <property name="totalmarks" type="java.lang.Double">
+      <column name="TOTALMARKS" precision="6" scale="2"/> 
+    </property>
+    <property name="passingmarks" type="java.lang.Double">
+      <column name="PASSINGMARKS" precision="6" scale="2"/>
+    </property>
+    <property name="tthide" type="string">
+        <column length="1" name="TTHIDE"/>
+    </property>
+    <set cascade="save-update,delete" inverse="true" lazy="false" name="programschemedetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMSCHEMEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramSchemeDetail"/>
+    </set>
+  </class>
+    <query name="getSelectedProgramScheme">
+
+        select a
+        from ProgramScheme a
+        where a.id.instituteid  = :instituteid
+        and a.programid in (:programid)
+        and a.sectionid in (:sectionid)
+        and a.stynumber in (:stynumber)
+        and coalesce(a.deactive,'N') = 'N'
+        order by a.programid, a.sectionid, a.stynumber
+
+ 
+    </query>
+    <query name="getSelectedProgramSchemeAcadyearWise">
+
+        select a.id.instituteid,a.id.programschemeacadwiseid,a.academicyear,a.stynumber,a.deactive,a.credits,a.totalmarks,a.passingmarks,a.electiveid,
+        a.regfeeamount,pm.programcode,sec.sectioncode,bm.basketcode,sub.subjectcode,dm.department,subty.subjecttype,subty.id.subjecttypeid,subty.subjecttypedesc,a.subjectid,sub.subjectdesc
+        from ProgramSchemeAcadyearWise a,ProgramMaster pm,SectionMaster sec,BasketMaster bm,SubjectMaster sub,DepartmentMaster dm,SubjectTypeMaster subty
+        where  a.id.instituteid=pm.id.instituteid and a.programid=pm.id.programid and a.id.instituteid=sec.id.instituteid and a.sectionid=sec.id.sectionid
+        and a.id.instituteid=bm.id.instituteid and a.basketid=bm.id.basketid and a.id.instituteid=sub.id.instituteid and a.subjectid=sub.id.subjectid
+        and a.departmentid=dm.departmentid and bm.subjecttypeid=subty.id.subjecttypeid
+        and a.id.instituteid  = :instituteid
+        and a.programid in (:programid)
+        and a.academicyear in (:academicyear)
+        and a.sectionid in (:sectionid)
+        and a.stynumber in (:stynumber)
+        <!--and coalesce(a.deactive,'N') = 'N'-->
+        order by a.programid, a.sectionid, a.stynumber
+    </query>
+</hibernate-mapping>

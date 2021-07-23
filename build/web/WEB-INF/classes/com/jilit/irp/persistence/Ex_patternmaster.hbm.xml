@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 27, 2014 1:04:52 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Ex_PatternMaster" table="EX_PATTERNMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.Ex_PatternMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="patternid" type="string">
+        <column length="20" name="PATTERNID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="patterncode" type="string">
+      <column length="20" name="PATTERNCODE" not-null="true"/>
+    </property>
+    <property name="patternname" type="string">
+      <column length="20" name="PATTERNNAME"/>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="minattendance" type="big_decimal">
+      <column name="MINATTENDANCE" precision="6" scale="2"/>
+    </property>
+    <set inverse="true" lazy="extra" name="subjectmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PATTERNID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.SubjectMaster"/>
+    </set>
+   
+  </class>
+</hibernate-mapping>

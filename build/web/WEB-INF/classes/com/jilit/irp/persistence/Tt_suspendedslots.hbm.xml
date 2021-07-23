@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 31, 2014 4:00:35 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.TT_SuspendedSlots" table="TT_SUSPENDEDSLOTS">
+    <comment>Program Section cum Subject Wise Time table</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.TT_SuspendedSlotsId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="tttransid" type="string">
+        <column length="20" name="TTTRANSID"/>
+      </key-property>
+      <key-property name="classdate" type="date">
+        <column length="7" name="CLASSDATE"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.TT_SlotMaster" fetch="select" insert="false" lazy="false" name="tt_slotmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="10" name="CLASSDAY" not-null="true"/>
+      <column length="20" name="SLOTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectComponent" fetch="select" insert="false" lazy="false" name="subjectcomponent" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+        <comment>[O]ver All, [L], [T], [P], [X]</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.TT_TimeTableAllocation" fetch="select" insert="false" lazy="false" name="tt_timetableallocation" update="false">
+      <column length="20" name="TTTRANSID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>   
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.ExamCenterWiseRooms" fetch="select" insert="false" lazy="false" name="examcenterwiserooms" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="20" name="EXAMCENTERID"/>
+      <column length="20" name="ROOMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.DepartmentMaster" fetch="select" insert="false" lazy="false" name="departmentmaster" update="false">
+      <column length="20" name="RUNNINGDEPARTMENTID"/>
+    </many-to-one>
+    <property name="fromsessiontime" type="string">
+      <column length="10" name="FROMSESSIONTIME" not-null="true"/>
+    </property>
+    <property name="tosessiontime" type="string">
+      <column length="10" name="TOSESSIONTIME" not-null="true"/>
+    </property>
+    <property name="stafftype" type="string">
+      <column length="1" name="STAFFTYPE" not-null="true"/>
+    </property>
+    <property name="staffid" type="string">
+      <column length="20" name="STAFFID" not-null="true"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="160" name="REMARKS" not-null="true"/>
+    </property>
+    <property name="status" type="string">
+      <column length="1" name="STATUS" not-null="true">
+        <comment>[D]raft / [F]inal / [A]pproved / [C]ancel</comment>
+      </column>
+    </property>
+    <property name="approvedby" type="string">
+      <column length="20" name="APPROVEDBY"/>
+    </property>
+    <property name="approveddate" type="date">
+      <column length="7" name="APPROVEDDATE"/>
+    </property>
+    <property name="approveremarks" type="string">
+      <column length="160" name="APPROVEREMARKS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="entryby" type="string">
+      <column length="20" name="ENTRYBY"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+    <property name="subjectcomponentid" type="string">
+      <column length="20" name="SUBJECTCOMPONENTID" not-null="true"/>
+    </property>
+    <property name="subjectid" type="string">
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </property>
+    <property name="slotid" type="string">
+      <column length="20" name="SLOTID" not-null="true"/>
+    </property>
+    <property name="roomid" type="string">
+      <column length="20" name="ROOMID" not-null="true"/>
+    </property>
+    <property name="runningdepartmentid" type="string">
+      <column length="20" name="RUNNINGDEPARTMENTID" not-null="true"/>
+    </property>
+    <property name="examcenterid" type="string">
+      <column length="20" name="EXAMCENTERID" not-null="true"/>
+    </property>
+    <property name="classday" type="string">
+      <column length="3" name="CLASSDAY" not-null="true"/>
+    </property>
+    <set cascade="save-update, delete" inverse="true" lazy="extra" name="tt_suspendedslotsdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REGISTRATIONID" not-null="true"/>
+        <column length="20" name="TTTRANSID" not-null="true"/>
+        <column length="20" name="CLASSDATE" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.TT_SuspendedSlotsDetail"/>
+    </set>
+  </class>
+</hibernate-mapping>

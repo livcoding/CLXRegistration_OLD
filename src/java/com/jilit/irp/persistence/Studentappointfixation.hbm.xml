@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Nov, 2013 4:13:30 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentAppointFixation" table="STUDENTAPPOINTFIXATION">
+    <id name="appointmentid" type="string">
+      <column length="20" name="APPOINTMENTID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.CoordinatorType" fetch="select" insert="false" lazy="false" name="coordinatortype" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="COORDINATORTYPEID"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="withwhom" type="string">
+      <column length="1" name="WITHWHOM" not-null="true"/>
+    </property>
+    <property name="stafftype" type="string">
+      <column length="1" name="STAFFTYPE" not-null="true"/>
+    </property>
+    <property name="staffid" type="string">
+      <column length="20" name="STAFFID" not-null="true"/>
+    </property>
+    <property name="requestdate" type="timestamp">
+      <column length="7" name="REQUESTDATE" not-null="true"/>
+    </property>
+    <property name="requestfromdate" type="date">
+      <column length="7" name="REQUESTFROMDATE" not-null="true"/>
+    </property>
+    <property name="requesttodate" type="date">
+      <column length="7" name="REQUESTTODATE" not-null="true"/>
+    </property>
+    <property name="confirmfromdate" type="date">
+      <column length="7" name="CONFIRMFROMDATE"/>
+    </property>
+    <property name="confirmtodate" type="date">
+      <column length="7" name="CONFIRMTODATE"/>
+    </property>
+    <property name="statusflag" type="string">
+      <column length="1" name="STATUSFLAG" not-null="true"/>
+    </property>
+    <property name="requestacdate" type="date">
+      <column length="7" name="REQUESTACDATE"/>
+    </property>
+    <property name="purpose" type="string">
+      <column length="500" name="PURPOSE" not-null="true"/>
+    </property>
+    <property name="requestremarks" type="string">
+      <column length="500" name="REQUESTREMARKS"/>
+    </property>
+    <property name="approveremarks" type="string">
+      <column length="500" name="APPROVEREMARKS"/>
+    </property>
+    <property name="meetingoutput" type="string">
+      <column length="500" name="MEETINGOUTPUT"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="studentid" type="string">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </property>
+    <property name="instituteid" type="string">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </property>
+    <property name="coordinatortypeid" type="string">
+      <column length="20" name="COORDINATORTYPEID"/>
+    </property>
+  </class>
+</hibernate-mapping>

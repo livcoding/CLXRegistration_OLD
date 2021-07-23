@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.SubjectComponent" table="SUBJECTCOMPONENT">
+    <comment>Master Table, needs to be opened only once, If subject has LTP, then 3 rows will be entered into this table</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.SubjectComponentId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="subjectcomponentid" type="string">
+        <column length="20" name="SUBJECTCOMPONENTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="subjectcomponentcode" type="string">
+      <column length="60" name="SUBJECTCOMPONENTCODE" not-null="true">
+        <comment>Like L/T/P etc</comment>
+      </column>
+    </property>
+    <property name="subjectcomponentdesc" type="string">
+      <column length="60" name="SUBJECTCOMPONENTDESC" not-null="true"/>
+    </property>
+    <property name="classperweekformula" type="java.lang.Short">
+      <column name="CLASSPERWEEKFORMULA" precision="3" scale="0">
+        <comment>Like 100%,50% etc; stored as default value</comment>
+      </column>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="8" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="programsubjectdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+          <comment>[O]ver All, [L], [T], [P], [X]</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramSubjectDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programschemeacadyeardetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+          <comment>[O]ver All, [L], [T], [P], [X]</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramSchemeAcadYearDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programschemedetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+          <comment>[O]ver All, [L], [T], [P], [X]</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramSchemeDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="facultysubjecttaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+          <comment>[O]ver All, [L], [T], [P], [X]</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.FacultySubjectTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentsubjectchoicedetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+          <comment>[O]ver All, [L], [T], [P], [X]</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentSubjectChoiceDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prfacultysubjectchoiceses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+          <comment>[O]ver All, [L], [T], [P], [X]</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PRFacultySubjectChoices"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prfacultydaytimepreferences">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+          <comment>[O]ver All, [L], [T], [P], [X]</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PRFacultyDayTimePreference"/>
+    </set>
+    <set inverse="true" lazy="extra" name="offeredodsubjecttaggingdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+          <comment>[O]ver All, [L], [T], [P], [X]</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.OfferedODSubjectTaggingDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prfacultysubjecttimepreferences">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+          <comment>[O]ver All, [L], [T], [P], [X]</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PRFacultySubjectTimePreference"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentpreviousattendences">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTCOMPONENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentPreviousAttendence"/>
+    </set>
+     
+    <set inverse="true" lazy="extra" name="teachingloaddetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTCOMPONENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.TeachingLoadDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="tt_suspendedslotses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTCOMPONENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.TT_SuspendedSlots"/>
+    </set>
+     
+  </class>
+  <query name="findAllSubjectComponentDesc">
+      select sc.subjectcomponentdesc from SubjectComponent sc
+      where sc.id.instituteid=:instituteid
+      and coalesce(sc.deactive,'N')='N'
+   </query>
+</hibernate-mapping>

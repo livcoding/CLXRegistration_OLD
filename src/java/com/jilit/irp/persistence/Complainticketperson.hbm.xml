@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 Jan, 2014 2:25:38 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ComplainTicketPerson" table="COMPLAINTICKETPERSON">
+    <id name="personid" type="string">
+      <column length="20" name="PERSONID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="personname" type="string">
+      <column length="100" name="PERSONNAME" not-null="true"/>
+    </property>
+    <property name="emailid" type="string">
+      <column length="150" name="EMAILID" not-null="true"/>
+    </property>
+    <property name="otherinfo" type="string">
+      <column length="100" name="OTHERINFO"/>
+    </property>
+    <property name="mobileno" type="string">
+      <column length="11" name="MOBILENO"/>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="complainticketmasters">
+      <key>
+        <column length="20" name="TOPERSONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ComplainTicketMaster"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 31, 2014 4:00:35 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentLeaveMaster" table="STUDENTLEAVEMASTER">
+    <comment>Student Leave Master</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.StudentLeaveMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="leaveid" type="string">
+        <column length="20" name="LEAVEID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="leavecode" type="string">
+      <column length="20" name="LEAVECODE" not-null="true">
+        <comment>Leave Code</comment>
+      </column>
+    </property>
+    <property name="leavedescription" type="string">
+      <column length="80" name="LEAVEDESCRIPTION">
+        <comment>Leave Description</comment>
+      </column>
+    </property>
+    <property name="mindays" type="big_decimal">
+      <column name="MINDAYS" precision="4" scale="1">
+        <comment>Min Days</comment>
+      </column>
+    </property>
+    <property name="maxdays" type="big_decimal">
+      <column name="MAXDAYS" precision="4" scale="1">
+        <comment>Max Days</comment>
+      </column>
+    </property>
+    <property name="halfday" type="string">
+      <column length="1" name="HALFDAY">
+        <comment>Half Days</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="studentleavedetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="LEAVEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentLeaveDetail"/>
+    </set>
+  </class>
+</hibernate-mapping>

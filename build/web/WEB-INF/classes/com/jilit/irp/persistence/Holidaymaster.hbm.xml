@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 5, 2012 3:03:22 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.HolidayMaster" table="HOLIDAYMASTER">
+    <id name="holidaydate" type="date">
+      <column length="7" name="HOLIDAYDATE"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="holidaytype" type="string">
+      <column length="2" name="HOLIDAYTYPE" not-null="true">
+        <comment>[G]azetted/ [R]H / [O]thers</comment>
+      </column>
+    </property>
+    <property name="holidaydesc" type="string">
+      <column length="50" name="HOLIDAYDESC"/>
+    </property>
+    <property name="holidayremarks" type="string">
+      <column length="70" name="HOLIDAYREMARKS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

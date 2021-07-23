@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.Sct_ModuleRightsMaster" table="SCT_MODULERIGHTSMASTER">
+        <id name="rightsid" type="string">
+            <column length="20" name="RIGHTSID"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="com.jilit.irp.persistence.dto.Sct_ModuleRightsMaster" fetch="select" insert="false" lazy="false" name="sct_modulerightsmaster" update="false">
+            <column length="20" name="PARENTRIGHTSID"/>
+        </many-to-one>
+        <property name="moduleid" type="string">
+            <column length="100" name="MODULEID" not-null="true"/>
+        </property>
+        <property name="rightsname" type="string">
+            <column length="100" name="RIGHTSNAME" not-null="true"/>
+        </property>
+        <property name="eventbased" type="java.lang.Character">
+            <column length="1" name="EVENTBASED"/>
+        </property>
+        <property name="relatedto" type="string">
+            <column length="10" name="RELATEDTO"/>
+        </property>
+        <property name="locationbased" type="java.lang.Character">
+            <column length="1" name="LOCATIONBASED"/>
+        </property>
+        <property name="securitylevel" type="java.lang.Character">
+            <column length="1" name="SECURITYLEVEL"/>
+        </property>
+        <property name="pageheader" type="string">
+            <column length="250" name="PAGEHEADER"/>
+        </property>
+        <property name="parentsrightsid" type="string">
+            <column length="20" name="PARENTSRIGHTSID"/>
+        </property>
+        <property name="processid" type="string">
+            <column name="PROCESSID" length="20"/>
+        </property>
+        <property name="hotkey" type="string">
+            <column length="30" name="HOTKEY"/>
+        </property>
+        <property name="menulevelname" type="string">
+            <column length="50" name="MENULEVELNAME"/>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="parientsrights" type="string">
+            <column length="1" name="PARIENTSRIGHTS"/>
+        </property>
+        <property name="urlpath" type="string">
+            <column length="250" name="URLPATH"/>
+        </property>
+        <property name="seqid" type="java.lang.Short">
+            <column name="SEQID" precision="4" scale="0"/>
+        </property>
+        <property name="portaldeactive" type="string">
+            <column name="PORTALDEACTIVE" length="1"/>
+        </property>
+        <set inverse="true" lazy="extra" name="sct_rolerightstaggings">
+            <key>
+                <column length="20" name="RIGHTSID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.Sct_RoleRightsTagging"/>
+        </set>
+        <set inverse="true" lazy="extra" name="sct_modulerightsmasters">
+            <key>
+                <column length="20" name="PARENTRIGHTSID"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.Sct_ModuleRightsMaster"/>
+        </set>
+    </class>
+</hibernate-mapping>

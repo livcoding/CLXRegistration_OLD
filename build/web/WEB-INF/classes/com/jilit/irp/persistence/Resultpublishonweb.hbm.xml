@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 Sep, 2011 10:06:46 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ResultPublishOnWeb" table="RESULTPUBLISHONWEB">
+    <composite-id class="com.jilit.irp.persistence.dto.ResultPublishOnWebId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="academicyear" type="string">
+        <column length="8" name="ACADEMICYEAR"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="sectionid" type="string">
+        <column length="20" name="SECTIONID"/>
+      </key-property>
+      <key-property name="stynumber" type="byte">
+        <column name="STYNUMBER" precision="2" scale="0"/>
+      </key-property>
+      <key-property name="stytypeid" type="string">
+        <column length="20" name="STYTYPEID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" lazy="false" name="programmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Academicyear" fetch="select" insert="false" lazy="false" name="academicyear" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SectionMaster" fetch="select" insert="false" lazy="false" name="sectionmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SECTIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StyType" fetch="select" insert="false" lazy="false" name="stytype" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="STYTYPEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <property name="publish" type="string">
+      <column length="1" name="PUBLISH">
+        <comment>[P]ass / [F]ail</comment>
+      </column>
+    </property>
+    <property name="publishdate" type="date">
+      <column length="7" name="PUBLISHDATE"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.OfferedODSubjectTaggingDetail" table="OFFEREDODSUBJECTTAGGINGDETAIL">
+    <comment>Chield table of OfferedODSubjectTagging</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.OfferedODSubjectTaggingDetailId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="offersubjectid" type="string">
+        <column length="20" name="OFFERSUBJECTID"/>
+      </key-property>
+      <key-property name="subjectcomponentid" type="string">
+        <column length="20" name="SUBJECTCOMPONENTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectComponent" fetch="select" insert="false" lazy="false" name="subjectcomponent" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+        <comment>[O]ver All, [L], [T], [P], [X]</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.OfferedODSubjectTagging" fetch="select" insert="false" lazy="false" name="offeredodsubjecttagging" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="20" name="OFFERSUBJECTID" not-null="true"/>
+    </many-to-one>
+    <property name="ltppassingmarks" type="big_decimal">
+      <column name="LTPPASSINGMARKS" not-null="true" precision="6"/>
+    </property>
+    <property name="totalccpmarks" type="big_decimal">
+      <column name="TOTALCCPMARKS" not-null="true" precision="6"/>
+    </property>
+    <property name="noofhours" type="big_decimal">
+      <column name="NOOFHOURS" precision="6">
+        <comment>Default Value for Per Class duration in Hours</comment>
+      </column>
+    </property>
+    <property name="noofclassinaweek" type="big_decimal">
+      <column name="NOOFCLASSINAWEEK" precision="6">
+        <comment>Default Value for No of class in a week</comment>
+      </column>
+    </property>
+    <property name="totalclasses" type="big_decimal">
+      <column name="TOTALCLASSES" precision="4">
+        <comment>TOTALCLASSES = No. of Clasees on which % of attendance will be calculated</comment>
+      </column>
+    </property>
+    <property name="byltp" type="big_decimal">
+      <column name="BYLTP" precision="6">
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="staffid" type="string">
+      <column length="20" name="STAFFID">
+      </column>
+      <!--  Staff ID who will be automatically alloted Summer / Condensed Exam -->
+    </property>
+    <property name="stafftype" type="string">
+      <column length="1" name="STAFFTYPE">
+      </column>
+    </property>
+  </class>
+</hibernate-mapping>

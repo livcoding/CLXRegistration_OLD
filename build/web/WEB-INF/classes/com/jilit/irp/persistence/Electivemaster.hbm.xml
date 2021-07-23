@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 22, 2011 4:37:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ElectiveMaster" table="ELECTIVEMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.ElectiveMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="electiveid" type="string">
+        <column length="20" name="ELECTIVEID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="electivecode" type="string">
+      <column length="20" name="ELECTIVECODE" not-null="true"/>
+    </property>
+    <property name="electivedesc" type="string">
+      <column length="80" name="ELECTIVEDESC" not-null="true"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="credits" type="java.lang.Short">
+      <column name="CREDITS" precision="3" scale="0"/>
+    </property>
+    <set inverse="true" lazy="extra" name="programschemeacacmicyearwises">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+        <column length="20" name="ELECTIVEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramSchemeAcadyearWise"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programschemes">
+      <key>
+        <column length="20" name="INSTITUTEID"/>
+        <column length="20" name="ELECTIVEID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramScheme"/>
+    </set>
+  </class>
+</hibernate-mapping>

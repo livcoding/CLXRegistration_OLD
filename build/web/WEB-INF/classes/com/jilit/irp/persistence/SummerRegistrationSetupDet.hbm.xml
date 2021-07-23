@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.SummerRegistrationSetupDet" table="SUMMERREGISTRATIONSETUPDET">
+        <composite-id class="com.jilit.irp.persistence.dto.SummerRegistrationSetupDetId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="programid" type="string">
+                <column length="20" name="PROGRAMID"/>
+            </key-property>
+            <key-property name="stynumber" type="byte">
+                <column length="4" name="STYNUMBER"/>
+            </key-property>
+            <key-property name="majororminor" type="string">
+                <column length="1" name="MAJORORMINOR"/>
+            </key-property>
+        </composite-id>
+        <property name="lpcriteriatype" type="string">
+            <column length="3" name="LPCRITERIATYPE" />
+        </property>
+        <property name="maxcredit" type="double">
+            <column length="4" name="MAXCREDIT" />
+        </property>
+        <property name="maxlsubjectscredit" type="int">
+            <column length="4" name="MAXLSUBJECTSCREDIT" />
+        </property>
+        <property name="maxpsubjectscredit" type="int">
+            <column length="4" name="MAXPSUBJECTSCREDIT"/>
+        </property>
+        <property name="maxltheorysubjects" type="int">
+            <column length="4" name="MAXLTHEORYSUBJECTS"/>
+        </property>
+        <property name="maxplabsubjects" type="int">
+            <column length="4" name="MAXPLABSUBJECTS"/>
+        </property>
+    </class>
+</hibernate-mapping>

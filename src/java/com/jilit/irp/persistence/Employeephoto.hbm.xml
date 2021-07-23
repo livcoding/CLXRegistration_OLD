@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+ <class lazy="false" mutable="false" name="com.jilit.irp.persistence.dto.EmployeePhoto" optimistic-lock="none" table="EMPLOYEEPHOTO">     
+    <synchronize table="DESIGNATIONMASTER"/>    
+    <composite-id>
+       <key-property column="EMPLOYEEID" name="employeeid"/>
+    </composite-id>  
+     
+    <property name="photo" type="blob">
+      <column name="PHOTO"/>
+    </property>
+    <property name="signature" type="blob">
+      <column name="SIGNATURE"/>
+    </property>
+  </class>
+</hibernate-mapping>

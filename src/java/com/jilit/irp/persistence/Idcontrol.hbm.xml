@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.IdControl" table="IDCONTROL">
+    <composite-id class="com.jilit.irp.persistence.dto.IdControlId" name="id">
+      <key-property name="idcharacter" type="string">
+        <column length="3" name="IDCHARACTER"/>
+      </key-property>
+      <key-property name="idyear" type="string">
+        <column length="2" name="IDYEAR"/>
+      </key-property>
+      <key-property name="idmonth" type="string">
+        <column length="2" name="IDMONTH"/>
+      </key-property>
+      <key-property name="idday" type="string">
+        <column length="2" name="IDDAY"/>
+      </key-property>
+    </composite-id>
+    <property name="lastnumber" type="long">
+      <column name="LASTNUMBER" not-null="true" precision="10" scale="0"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 Oct, 2011 3:51:58 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.UserIntractionDetail" table="USERINTRACTIONDETAIL">
+    <composite-id class="com.jilit.irp.persistence.dto.UserIntractionDetailId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="refno" type="string">
+        <column length="20" name="REFNO"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.Sct_IrpUsers" fetch="select" lazy="false" name="sct_irpusers">
+      <column length="20" name="INTRACTIONBYUSERID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.UserIntractionDetail" fetch="select" insert="false" lazy="false" name="userintractiondetail" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PARENTREFNO">
+        <comment>Ref No In case of this intraction is refered to the earlier intraction</comment>
+      </column>
+    </many-to-one>
+    <property name="intractiondate" type="date">
+      <column length="7" name="INTRACTIONDATE" not-null="true">
+        <comment>Date &amp; Time of intraction</comment>
+      </column>
+    </property>
+    <property name="stafftype" type="string">
+      <column length="20" name="STAFFTYPE" not-null="true">
+        <comment>Student/Employee/ New Faculty/ Guest</comment>
+      </column>
+    </property>
+    <property name="staffid" type="string">
+      <column length="20" name="STAFFID" not-null="true">
+        <comment>No Fk in case of Dummy Faculty EmployeeId Should be filled with 20 times 9</comment>
+      </column>
+    </property>
+    <property name="eosid" type="string">
+      <column length="20" name="EOSID" not-null="true"/>
+    </property>
+    <property name="subjecttype" type="string">
+      <column length="100" name="SUBJECTTYPE" not-null="true"/>
+    </property>
+    <property name="staffcomment" type="string">
+      <column length="1000" name="STAFFCOMMENT"/>
+    </property>
+    <property name="intractioncomment" type="string">
+      <column length="1000" name="INTRACTIONCOMMENT"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="1000" name="REMARKS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="userintractiondetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PARENTREFNO">
+          <comment>Ref No In case of this intraction is refered to the earlier intraction</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.UserIntractionDetail"/>
+    </set>
+  </class>
+</hibernate-mapping>

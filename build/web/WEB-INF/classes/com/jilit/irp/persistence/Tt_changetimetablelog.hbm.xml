@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 11, 2014 5:31:16 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Tt_changetimetablelog" table="TT_CHANGETIMETABLELOG">
+    <comment>Change Time Table Log table</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.Tt_changetimetablelogId" name="id">
+      <key-property name="logtransid" type="string">
+        <column length="20" name="LOGTRANSID"/>
+      </key-property>
+      <key-property name="tttransid" type="string">
+        <column length="20" name="TTTRANSID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.TT_SlotMaster" fetch="select" insert="false" name="tt_slotmasterByR" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="10" name="R#ALLOCATIONDAY" not-null="true"/>
+      <column length="20" name="R#SLOTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.ExamCenterWiseRooms" fetch="select" insert="false" name="examcenterwiseroomsByTtR" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="20" name="R#EXAMCENTERID"/>
+      <column length="20" name="R#ROOMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.TT_SlotMaster" fetch="select" insert="false" name="tt_slotmasterBy" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="10" name="ALLOCATIONDAY" not-null="true"/>
+      <column length="20" name="SLOTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.ExamCenterWiseRooms" fetch="select" insert="false" name="examcenterwiseroomsBy" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="20" name="EXAMCENTERID" not-null="true"/>
+      <column length="20" name="ROOMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.TT_TimeTable" fetch="select" insert="false" name="tt_timetable" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <property name="fromsessiontime" type="string">
+      <column length="10" name="FROMSESSIONTIME" not-null="true"/>
+    </property>
+    <property name="tosessiontime" type="string">
+      <column length="10" name="TOSESSIONTIME" not-null="true"/>
+    </property>
+    <property name="stafftype" type="string">
+      <column length="1" name="STAFFTYPE" not-null="true"/>
+    </property>
+    <property name="staffid" type="string">
+      <column length="20" name="STAFFID" not-null="true"/>
+    </property>
+    <property name="slotid" type="string">
+      <column length="20" name="SLOTID" not-null="true"/>
+    </property>
+    <property name="roomid" type="string">
+      <column length="20" name="ROOMID" not-null="true"/>
+    </property>
+    <property name="examcenterid" type="string">
+      <column length="20" name="EXAMCENTERID" not-null="true"/>
+    </property>
+    <property name="instituteid" type="string">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </property>
+    <property name="allocationday" type="string">
+      <column length="10" name="ALLOCATIONDAY" not-null="true"/>
+    </property>
+    <property name="r_fromsessiontime" type="string">
+      <column length="10" name="R#FROMSESSIONTIME" not-null="true"/>
+    </property>
+    <property name="r_tosessiontime" type="string">
+      <column length="10" name="R#TOSESSIONTIME" not-null="true"/>
+    </property>
+    <property name="r_stafftype" type="string">
+      <column length="1" name="R#STAFFTYPE" not-null="true"/>
+    </property>
+    <property name="r_staffid" type="string">
+      <column length="20" name="R#STAFFID" not-null="true"/>
+    </property>
+    <property name="r_allocationday" type="string">
+      <column length="20" name="R#ALLOCATIONDAY" not-null="true"/>
+    </property>
+    <property name="r_roomid" type="string">
+      <column length="20" name="R#ROOMID" not-null="true"/>
+    </property>
+    <property name="r_slotid" type="string">
+      <column length="20" name="R#SLOTID" not-null="true"/>
+    </property>
+    <property name="r_examcenterid" type="string">
+      <column length="20" name="R#EXAMCENTERID"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="status" type="string">
+      <column length="1" name="STATUS">
+        <comment>[D]raft / [F]inal / [A]pproved / [C]ancel</comment>
+      </column>
+    </property>
+    <property name="rescheduleby" type="string">
+      <column length="30" name="RESCHEDULEBY"/>
+    </property>
+    <property name="rescheduledate" type="date">
+      <column length="7" name="RESCHEDULEDATE"/>
+    </property>
+    <property name="rescheduleremarks" type="string">
+      <column length="175" name="RESCHEDULEREMARKS"/>
+    </property>
+    <property name="rescheduleapprovedby" type="string">
+      <column length="30" name="RESCHEDULEAPPROVEDBY"/>
+    </property>
+    <property name="rescheduleapproveddate" type="date">
+      <column length="7" name="RESCHEDULEAPPROVEDDATE"/>
+    </property>
+    <property name="rescheduleapprovedremarks" type="string">
+      <column length="175" name="RESCHEDULEAPPROVEDREMARKS"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ProgramSubjectTagging" table="PROGRAMSUBJECTTAGGING">
+    <comment>This table will get populated automatically when scheme is getting applied. In case of any change in scheme after modification it should be updated</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.ProgramSubjectTaggingId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="programsubjectid" type="string">
+        <column length="20" name="PROGRAMSUBJECTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <!--  <many-to-one class="com.jilit.irp.persistence.dto.BasketMaster" fetch="select" insert="false" lazy="false" name="basketmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="BASKETID" not-null="true"/>
+    </many-to-one>-->
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </many-to-one>
+    <!-- start*************************** Change by sunny  -->
+    <many-to-one class="com.jilit.irp.persistence.dto.Academicyear" fetch="select" insert="false" lazy="false" name="academicyearmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="ACADEMICYEAR" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" lazy="false" name="programmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SectionMaster" fetch="select" insert="false" lazy="false" name="sectionmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SECTIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.DepartmentMaster" fetch="select" insert="false" lazy="false" name="departmentmaster" update="false">
+      <column length="20" name="DEPARTMENTID" not-null="true"/>
+    </many-to-one>
+    <!-- end -->
+    <property name="academicyear" type="string">
+      <column length="20" name="ACADEMICYEAR" not-null="true"/>
+    </property>
+    <!--
+
+    <property name="registrationid" type="string">
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </property>
+
+  -->
+    <property name="departmentid" type="string">
+      <column length="20" name="DEPARTMENTID" not-null="true"/>
+    </property>
+    <property name="programid" type="string">
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </property>
+    <property name="subjectid" type="string">
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </property>
+    <property name="sectionid" type="string">
+      <column length="20" name="SECTIONID" not-null="true"/>
+    </property>
+    <property name="basketid" type="string">
+      <column length="20" name="BASKETID" not-null="true"/>
+    </property>
+    <property name="stynumber" type="java.lang.Short">
+      <column name="STYNUMBER" not-null="true" precision="2" scale="0"/>
+    </property>
+    <property name="pstpopulated" type="string">
+      <column length="1" name="PSTPOPULATED"/>
+    </property>
+    <property name="subjectrunning" type="string">
+      <column length="1" name="SUBJECTRUNNING"/>
+    </property>
+    <property name="customfinalized" type="string">
+      <column length="1" name="CUSTOMFINALIZED"/>
+    </property>
+    <property name="customauditflag" type="string">
+      <column length="1" name="CUSTOMAUDITFLAG"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="credits" type="java.lang.Double">
+      <column name="CREDITS" not-null="true" precision="5" scale="2"/>
+    </property>
+    <property name="noofstudents" type="integer">
+      <column name="NOOFSTUDENTS" not-null="false" precision="4" scale="0"/>
+    </property>
+    <property name="totalmarks" type="java.lang.Double">
+      <column name="TOTALMARKS" precision="6" scale="2"/>
+    </property>
+    <property name="passingmarks" type="java.lang.Double">
+      <column name="PASSINGMARKS" precision="6" scale="2"/>
+    </property>
+    <property name="attendanceapproved" type="string">
+      <column length="1" name="ATTENDANCEAPPROVED"/>
+    </property>
+    <property name="tthide" type="string">
+      <column length="1" name="TTHIDE"/>
+    </property>
+    <property name="backpapertype" type="string">
+      <column length="1" name="BACKPAPERTYPE"/>
+    </property>
+    <property name="subjecttypeid" type="string">
+      <column length="20" name="SUBJECTTYPEID"/>
+    </property>
+    <property name="subjecttype" type="string">
+      <column length="1" name="SUBJECTTYPE"/>
+    </property>
+    <property name="auditsubject" type="string">
+        <column length="1" name="AUDITSUBJECT"/>
+    </property>
+    <!-- <properties insert="false" name="facultysubjecttaggingunq" update="false">
+      <property length="20" name="instituteid" not-null="true"/>
+      <property length="20" name="registrationid" not-null="true"/>
+      <property length="20" name="academicyear" not-null="true"/>
+      <property length="20" name="programid" not-null="true"/>
+      <property length="20" name="sectionid" not-null="true"/>
+      <property name="stynumber" not-null="true" precision="2" scale="0"/>
+      <property length="20" name="basketid" not-null="true"/>
+      <property length="20" name="subjectid" not-null="true"/>
+    </properties>-->
+    <set cascade="save-update,delete" inverse="true" lazy="extra" name="programsubjectdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REGISTRATIONID" not-null="true"/>
+        <column length="20" name="PROGRAMSUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramSubjectDetail"/>
+    </set>
+    <!--  <set cascade="save-update,delete" inverse="true" lazy="extra" name="facultysubjecttaggings">
+      <key>
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="20" name="ACADEMICYEAR" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+      <column length="20" name="SECTIONID" not-null="true"/>
+      <column name="STYNUMBER" not-null="true" precision="2" scale="0"/>
+      <column length="20" name="BASKETID" not-null="true"/>
+      <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.FacultySubjectTagging"/>
+    </set>-->
+  </class>
+  <query name="getSubjectListPTS">
+           select a.id.subjectid , a.subjectcode , a.subjectdesc
+            from SubjectMaster a
+           where a.id.instituteid = :instituteid
+           and coalesce(a.deactive,'N') = 'N'
+           and a.id.subjectid in(
+                                    select b.subjectid
+                                     from ProgramSubjectTagging b
+                                     where  b.id.instituteid = a.id.instituteid
+                                            and b.id.registrationid = :registrationid
+                                            and coalesce(b.subjectrunning,'N') = 'Y'
+                                   )
+            order by a.subjectcode
+    </query>
+<!--  <query name="getElectiveSubjectsRunning">
+       select pm.programcode, pst.sectionid, pst.academicyear, sm.subjectdesc,
+            pst.subjectrunning, pst.subjectid, secm.sectiondesc, pst.id.programsubjectid,
+            pst.academicyear, pst.programid, pst.basketid, sm.subjectcode, pst.stynumber, psfc.noofstudents
+            from
+            SubjectMaster as sm, ProgramMaster as pm, ProgramSubjectTagging as pst,
+            SectionMaster as secm, PRSubjectFinalizationCriteria as psfc
+            where pst.id.instituteid = sm.id.instituteid
+            and pst.subjectid = sm.id.subjectid
+            and pst.id.instituteid = pm.id.instituteid
+            and pst.programid = pm.id.programid
+            and pst.id.instituteid = secm.id.instituteid
+            and pst.sectionid = secm.id.sectionid
+            and pst.id.instituteid=psfc.id.instituteid
+            and pst.id.registrationid=psfc.id.registrationid
+            and pst.academicyear=psfc.id.academicyear
+            and pst.programid=psfc.id.programid
+            and pst.sectionid=psfc.id.sectionid
+            and pst.stynumber=psfc.id.stynumber
+            and pst.basketid=psfc.id.basketid
+            and pst.subjectid=psfc.id.subjectid
+            and EXISTS
+            (
+                select 1 from StudentSubjectChoiceMaster as sscm
+                where   pst.subjectid = sscm.id.subjectid
+                and     pst.id.instituteid = sscm.id.instituteid
+                and     pst.id.registrationid = sscm.id.registrationid
+                and     pst.basketid = sscm.basketid
+                and     coalesce(sscm.deactive,'N') = 'N'
+            )
+            and EXISTS
+            (
+                select 1 from SubjectTypeMaster as stm
+                where stm.subjecttype != 'C'
+                and stm.id.subjecttypeid = sm.subjecttypemaster.id.subjecttypeid
+                and stm.id.instituteid = :instituteid
+                and coalesce(stm.deactive,'N') = 'N'
+            )
+            and pst.departmentid = :departmentid
+            and pst.id.instituteid = :instituteid
+            and pst.id.registrationid = :registrationid
+            and coalesce(pst.deactive,'N') = 'N'
+  </query>-->
+<!--  <query name="getSubjectsRunning">
+          select
+                 distinct
+                        sm.id.subjectid, sm.subjectcode, sm.subjectdesc
+                    from
+                        ProgramSubjectTagging pst, SubjectMaster sm, BasketMaster bm
+                    where pst.subjectid = sm.id.subjectid
+                    and pst.id.instituteid = bm.id.instituteid
+                    and pst.basketid = bm.id.basketid
+                    and pst.id.instituteid = :instituteid
+                    and pst.id.registrationid = :registrationid
+                    and bm.subjecttypeid = :subjecttypeid
+                    and pst.subjectrunning = 'Y'
+                    and coalesce(pst.deactive,'N') = 'N'
+                    and coalesce(sm.deactive,'N') = 'N'
+                    and EXISTS
+                    (
+                        select 1 from SubjectTypeMaster stm
+                        where stm.subjecttype != 'C'
+                        and stm.id.subjecttypeid =  sm.subjecttypemaster.id.subjecttypeid
+                        and stm.id.instituteid = :instituteid
+                        and coalesce(stm.deactive,'N') = 'N'
+                    )
+  </query>-->
+  <!-- <query name="getProgramsubjectId_BasketDesc">
+
+    select a.id.programsubjectid, b.basketcode, b.basketdesc
+    from ProgramSubjectTagging a, BasketMasterDetail b
+    where a.id.instituteid = b.id.instituteid
+    and a.basketid = b.id.basketid
+    and a.programid = b.id.programid
+    and a.sectionid = b.id.sectionid
+    and a.stynumber = b.id.stynumber
+    and a.academicyear = b.id.academicyear
+    and a.id.instituteid = ?
+    and a.id.registrationid = ?
+    and a.programid = ?
+    and a.stynumber = ?
+    and a.subjectid = ?
+    group by a.id.programsubjectid, b.basketcode, b.basketdesc
+
+  </query>-->
+  <query name="getProgramsubjectId_BasketDesc">
+
+    select a.credits, b.basketcode, b.basketdesc
+    from ProgramSubjectTagging a, BasketMaster b
+    where a.id.instituteid = b.id.instituteid
+    and a.basketid = b.id.basketid
+    and a.programid = b.programid
+    and a.sectionid = b.sectionid
+    and a.stynumber = b.stynumber
+    and a.id.instituteid = ?
+    and a.id.registrationid = ?
+    and a.programid = ?
+    and a.stynumber = ?
+    and a.subjectid = ?
+    and a.academicyear = ?
+    and a.sectionid = ?
+    group by a.credits, b.basketcode, b.basketdesc
+
+  </query>
+  <query name="getAllSubjectFromProgramSubjectTagging">
+
+       select a
+           from SubjectMaster a
+           where a.id.instituteid = ?
+           and coalesce(a.deactive,'N') = 'N'
+           and a.id.subjectid in(
+                                    select b.subjectid
+                                     from ProgramSubjectTagging b
+                                     where  b.id.instituteid = ?
+                                            and b.id.registrationid = ?
+                                            and coalesce(b.subjectrunning,'N') = 'Y'
+                                   )
+            order by a.subjectcode
+
+
+  </query>
+  <query name="getAllRunningSubjectFromProgramSubjectTagging">
+
+        select b
+            from ProgramSubjectTagging b
+                  where  b.id.instituteid = ?
+                         and b.id.registrationid = ?
+                         and b.academicyear =  ?
+                         and b.programid = ?
+                         and b.stynumber = ?
+                         and b.sectionid = ?
+                         and coalesce(b.subjectrunning,'N') = 'Y'
+                         order by b.subjectid
+
+
+  </query>
+  <query name="getAllRunningSubjectFromProgramScheme">
+
+        select b
+            from ProgramScheme b
+                  where  b.id.instituteid = ?
+                         and b.programid = ?
+                         and b.stynumber = ?
+                         and b.sectionid = ?
+                         order by b.electiveid desc
+
+
+  </query>
+</hibernate-mapping>

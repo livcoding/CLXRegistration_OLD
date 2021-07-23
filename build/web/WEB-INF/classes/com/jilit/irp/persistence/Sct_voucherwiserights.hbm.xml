@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 10, 2014 10:15:17 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.SCT_VoucherWiseRights" table="SCT#VOUCHERWISERIGHTS">
+    <composite-id class="com.jilit.irp.persistence.dto.SCT_VoucherWiseRightsId" name="id">
+      <key-property name="companyid" type="string">
+        <column length="20" name="COMPANYID"/>
+      </key-property>
+      <key-property name="memberid" type="string">
+        <column length="20" name="MEMBERID"/>
+      </key-property>
+      <key-property name="setupid" type="string">
+        <column length="20" name="SETUPID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.VoucherCFG" fetch="select" insert="false" lazy="false" name="vouchercfg" update="false">
+      <column length="20" name="COMPANYID" not-null="true"/>
+      <column length="20" name="SETUPID" not-null="true"/>
+    </many-to-one>
+    <property name="fromdate" type="date">
+      <column length="7" name="FROMDATE" not-null="true"/>
+    </property>
+    <property name="todate" type="date">
+      <column length="7" name="TODATE"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="entrybystaffid" type="string">
+      <column length="20" name="ENTRYBYSTAFFID"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+  </class>
+</hibernate-mapping>

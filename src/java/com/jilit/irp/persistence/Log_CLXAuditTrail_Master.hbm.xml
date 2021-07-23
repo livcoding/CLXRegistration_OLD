@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 4, 2012 4:17:58 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.Log_CLXAuditTrail_Master" table="LOG_CLXAUDITTRAIL_MASTER">
+        <composite-id class="com.jilit.irp.persistence.dto.Log_CLXAuditTrail_MasterId" name="id">
+     
+            <key-property name="logentryid" type="string">
+                <column length="20" name="LOGENTRYID"/>
+            </key-property>
+            <key-property name="logid" type="big_decimal">
+                <column precision="15" scale="0" name="LOGID"/>
+            </key-property>
+	  
+	  
+        </composite-id>
+    
+        <property name="pkcolumnname" type="string">
+            <column name="PKCOLUMNNAME" length="500"/>
+        </property>
+	
+        <property name="pkvalues" type="string">
+            <column length="500" name="PKVALUES"/>
+        </property>
+        <property name="activity" type="string">
+            <column length="20" name="ACTIVITY"/>
+        </property>
+        <property name="ontable" type="string">
+            <column length="20" name="ONTABLE"/>
+        </property>
+	
+        <property name="oncolumn" type="string">
+            <column length="2500" name="ONCOLUMN"/>
+        </property>
+        <property name="oldvalue" type="string">
+            <column length="2500" name="OLDVALUE"/>
+        </property>
+        <property name="newvalue" type="string">
+            <column length="4000" name="NEWVALUE"/>
+        </property>
+        <property name="remarks" type="string">
+            <column length="200" name="REMARKS"/>
+        </property>
+        <property name="logdate" type="timestamp">
+            <column length="7" name="LOGDATE"/>
+        </property>
+        <property name="logbymembertype" type="string">
+            <column length="1" name="LOGBYMEMBERTYPE"/>
+        </property>
+	
+        <property name="logbymemberid" type="string">
+            <column length="20" name="LOGBYMEMBERID"/>
+        </property>
+	
+        <property name="logbymembercode" type="string">
+            <column length="20" name="LOGBYMEMBERCODE"/>
+        </property>
+	
+        <property name="logbymembername" type="string">
+            <column length="70" name="LOGBYMEMBERNAME"/>
+        </property>
+        <property name="macaddress" type="string">
+            <column length="30" name="MACADDRESS"/>
+        </property>
+        <property name="ipaddress" type="string">
+            <column length="30" name="IPADDRESS"/>
+        </property>
+	
+         
+        <property name="modulecode" type="string">
+            <column length="30" name="MODULECODE"/>
+        </property>
+           <property name="menuname" type="string">
+            <column name="MENUNAME" length="60"/>
+        </property>
+        <property name="logstatus" type="string">
+            <column length="1" name="LOGSTATUS"/>
+            <!--LogStatus =[S]UCCESS/[U]N SUCCESS TRANSACTION-->
+        </property>
+	
+  
+    </class>
+</hibernate-mapping>

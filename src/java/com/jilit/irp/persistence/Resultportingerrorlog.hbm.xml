@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 05, 2018  by Deepak Kumar Gupta -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.ResultPortingErrorLog" table="RESULTPORTINGERRORLOG">
+        <composite-id class="com.jilit.irp.persistence.dto.ResultPortingErrorLogId" name="id">
+            <key-property name="institutecode" type="string">
+                <column length="20" name="INSTITUTECODE"/>
+            </key-property>
+            <key-property name="logid" type="string">
+                <column length="20" name="LOGID"/>
+            </key-property>
+        </composite-id>
+        <property name="tablename" type="string">
+            <column length="50" name="TABLENAME" not-null="true"/>
+        </property>
+        <property name="errortype" type="string">
+            <column length="4000" name="ERRORTYPE" not-null="false"/>
+        </property>
+        <property name="errormessage" type="string">
+            <column length="500" name="ERRORMESSAGE" not-null="false"/>
+        </property>
+        <property name="datetime" type="date">
+            <column length="20" name="DATETIME" not-null="false"/>
+        </property>
+    </class>
+</hibernate-mapping>

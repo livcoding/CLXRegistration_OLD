@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.Ex_GradingDebarStudentDetail" table="EX_GRADINGDEBARSTUDENTDETAIL">
+        <composite-id class="com.jilit.irp.persistence.dto.Ex_GradingDebarStudentDetailId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+            <key-property name="studentid" type="string">
+                <column length="20" name="STUDENTID"/>
+            </key-property>
+            <key-property name="subjectid" type="string">
+                <column length="20" name="SUBJECTID"/>
+            </key-property>
+        </composite-id>
+        <property name="registeredstatus" type="string">
+            <column length="1" name="REGISTEREDSTATUS" not-null="true"/>
+        </property>
+        <property name="registerationdate" type="date">
+            <column length="7" name="REGISTERATIONDATE"/>
+        </property>
+        <property name="debar" type="string">
+            <column length="1" name="DEBAR"/>
+        </property>
+        <property name="grade" type="string">
+            <column length="5" name="GRADE"/>
+        </property>
+        <property name="ufmmarks" type="string">
+            <column length="1" name="UFMMARKS"/>
+        </property>
+        <property name="eventsubevent" type="string">
+            <column length="21" name="EVENTSUBEVENT"/>
+        </property>
+        <property name="reexamination" type="string">
+            <column length="1" name="REEXAMINATION"/>
+        </property>
+        <property name="assgnedgradeid" type="string">
+            <column length="20" name="ASSGNEDGRADEID"/>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="remarks" type="string">
+            <column length="250" name="REMARKS"/>
+        </property>
+        <property name="entrydate" type="timestamp">
+            <column length="7" name="ENTRYDATE"/>
+        </property>
+        <property name="entryby" type="string">
+            <column length="20" name="ENTRYBY"/>
+        </property>
+        <property name="reasonofhold" type="string">
+            <column length="250" name="REASONOFHOLD"/>
+        </property>
+        <property name="debarreasonid" type="string">
+            <column length="20" name="DEBARREASONID"/>
+        </property>
+    </class>
+</hibernate-mapping>

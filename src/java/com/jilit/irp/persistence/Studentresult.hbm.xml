@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 3, 2010 1:55:37 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentResult" table="STUDENTRESULT">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentResultId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="stynumber" type="byte">
+        <column name="STYNUMBER" precision="2" scale="0"/>
+      </key-property>
+      <key-property name="subjectid" type="string">
+        <column length="20" name="SUBJECTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmasterByStudentresultFk4" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="EQUIVALENTSUBJECTID"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmasterByStudentresultFk3" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.ExamGradeMaster" fetch="select" insert="false" lazy="false" name="examgrademaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="GRADEID" not-null="true"/>
+    </many-to-one>
+    <property name="gradeid" type="string">
+      <column length="20" name="GRADEID" not-null="true"/>
+    </property>
+    <property name="gradepoint" type="big_decimal">
+      <column name="GRADEPOINT" precision="6"/>
+    </property>
+    <property name="coursecreditpoint" type="big_decimal">
+      <column name="COURSECREDITPOINT" precision="6"/>
+    </property>
+    <property name="earnedcredit" type="big_decimal">
+      <column name="EARNEDCREDIT" precision="6"/>
+    </property>
+    <property name="sgpapoints" type="big_decimal">
+      <column name="SGPAPOINTS" precision="6"/>
+    </property>
+    <property name="cgpapoints" type="big_decimal">
+      <column name="CGPAPOINTS" precision="6"/>
+    </property>
+    <property name="fail" type="string">
+      <column length="1" name="FAIL"/>
+    </property>
+    <property name="mergeid" type="string">
+      <column length="11" name="MERGEID"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="equivalentsubjectid" type="string">
+      <column length="20" name="EQUIVALENTSUBJECTID"/>
+    </property>
+  </class>
+<!--  <query name="getBackPaperReportData_BPR">
+        select
+                sm.enrollmentno, sm.name,pm.programcode,bm.branchcode,sr.id.stynumber, sub.subjectcode,sub.subjectdesc
+        from
+                StudentMaster sm,
+                StudentResult sr,
+                ProgramMaster pm,
+                BranchMaster bm,
+                SubjectMaster sub
+        where
+                sr.id.instituteid=sm.instituteid
+                and sr.id.studentid=sm.studentid
+                and pm.id.instituteid=sm.instituteid
+                and pm.id.programid=sm.programid
+                and bm.id.instituteid=sm.instituteid
+                and bm.id.programid=sm.programid
+                and bm.id.branchid=sm.branchid
+                and sub.id.instituteid=sr.id.instituteid
+                and sub.id.subjectid=sr.id.subjectid
+                and coalesce(sm.activestatus,'A')='A'
+                and coalesce(sr.fail,'N')='Y'
+                and sm.programid=decode(':programid','ALL',sm.programid,':programid')
+                and sm.branchid=decode(':branchid','ALL',sm.branchid,':branchid')
+                and sr.id.stynumber=decode(':stynumber','ALL',sr.id.stynumber,':stynumber')
+                and sr.id.subjectid=decode(':subjectid','all',sr.id.subjectid,':subjectid')
+                order by :orderby
+    </query>-->
+</hibernate-mapping>

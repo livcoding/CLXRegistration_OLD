@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Academicyear" table="ACADEMICYEAR">
+    <composite-id class="com.jilit.irp.persistence.dto.AcademicyearId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="academicyear" type="string">
+        <column length="8" name="ACADEMICYEAR"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="yearfrom" type="date">
+      <column length="7" name="YEARFROM" not-null="true"/>
+    </property>
+    <property name="yearto" type="date">
+      <column length="7" name="YEARTO" not-null="true"/>
+    </property>
+    <property name="closed" type="string">
+      <column length="1" name="CLOSED"/>
+    </property>
+    <property name="currentyear" type="string">
+      <column length="1" name="CURRENTYEAR"/>
+    </property>
+    <property name="enrollmentcode" type="string">
+      <column length="6" name="ENROLLMENTCODE"/>
+    </property>
+    <property name="certificatecode" type="string">
+      <column length="6" name="CERTIFICATECODE"/>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0">
+        <comment>Numbering Sequence, Copy AcademicYear Code value to this by default</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="programmaxsties">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramMaxSty"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prerequisitacademicyearwise">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitAcademicYearwise"/>
+    </set>
+    <set inverse="true" lazy="extra" name="rollnumberingsetupdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.RollNumberingSetupDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentMaster"/>
+    </set>
+     <!--Added by Shimona-->
+    <set inverse="true" lazy="extra" name="prsubjecttypewiseapprovals">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PRSubjectTypeWiseApproval"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programwisesubsections">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramWiseSubsection"/>
+    </set>
+    <set inverse="true" lazy="extra" name="basketmasterdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.BasketMasterDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programsubjecttaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramSubjectTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentpreviousattendences">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentPreviousAttendence"/>
+    </set>
+    
+    <set inverse="true" lazy="extra" name="committeeactiondetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeActionDetail"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="programSchemeacadyearwises">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramSchemeAcadyearWise"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentnrsubjectses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentNRSubjects"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="studentcertificatesetupdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentCertificateSetupDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentcertificateslnos">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentCertificateSlno"/>
+    </set>
+
+   <set inverse="true" lazy="extra" name="tt_programwiseslots">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.TT_ProgramWiseSlot"/>
+    </set>
+    <set inverse="true" lazy="extra" name="subjectwiseloads">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.SubjectWiseLoad"/>
+    </set>
+    <set inverse="true" lazy="extra" name="attendancecutoffpercentages">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.AttendanceCutoffPercentage"/>
+    </set>
+  </class>
+  <query name="getAllAcademicYearData">
+
+       select a from Academicyear a
+        where a.id.instituteid = ?
+           and coalesce(a.deactive,'N') = 'N'
+           order by a.id.academicyear desc
+
+
+    </query>
+  <query name="getAllAcademicYearData_StudentRegistration">
+
+      select a from Academicyear a
+           where a.id.instituteid = ?
+                and coalesce(a.deactive,'N') = 'N'
+                and exists
+                          (
+                            select b.academicyear from StudentMaster b , StudentRegistration c
+                                  where b.instituteid = a.id.instituteid
+                                    and b.instituteid = c.id.instituteid
+                                    and b.studentid = c.id.studentid
+                                    and c.id.registrationid = ?
+                          )
+                   order by a.id.academicyear desc
+
+    </query>
+  <query name="getAllAcademicYear_PST">
+
+      select a from Academicyear a
+           where a.id.instituteid = ?
+                and coalesce(a.deactive,'N') = 'N'
+                and exists
+                          (
+                            select b.academicyear from ProgramSubjectTagging b
+                                  where b.id.instituteid = a.id.instituteid
+                                    and b.academicyear = a.id.academicyear
+                                    and b.id.instituteid = ?
+                          )
+                   order by a.id.academicyear desc
+
+    </query>
+  <query name="getAllAcademicYear1">
+
+      select a from Academicyear a
+           where a.id.instituteid = ?
+                and coalesce(a.deactive,'N') = 'N'
+                and exists
+                          (
+                            select b.academicyear from ProgramSchemeAcadyearWise b
+                                  where b.id.instituteid = a.id.instituteid
+                                    and b.academicyear = a.id.academicyear
+                                    and b.id.instituteid = ?
+                          )
+                   order by a.id.academicyear desc
+
+    </query>
+  <query name="getAllAcademicYear_PST_Regid">
+
+      select a from Academicyear a
+           where a.id.instituteid = ?
+                and coalesce(a.deactive,'N') = 'N'
+                and exists
+                          (
+                            select b.academicyear from ProgramSubjectTagging b
+                                  where b.id.instituteid = a.id.instituteid
+                                    and b.academicyear = a.id.academicyear
+                                    and b.id.instituteid = ?
+                                    and b.id.registrationid = ?
+                          )
+                   order by a.id.academicyear desc
+
+    </query>
+  <query name="findAcademicYear_PST">
+
+      select a from Academicyear a
+           where a.id.instituteid = ?
+                and a.id.academicyear = ?
+                and coalesce(a.deactive,'N') = 'N'
+                and exists
+                          (
+                            select b.academicyear from ProgramSubjectTagging b
+                                  where b.id.instituteid = a.id.instituteid
+                                    and b.academicyear = a.id.academicyear
+                                    and b.id.instituteid = ?
+                                    and b.academicyear = ?
+                          )
+
+
+    </query>
+  <query name="findAcademicYear_PSAW">
+
+      select a from Academicyear a
+           where a.id.instituteid = ?
+                and a.id.academicyear = ?
+                and coalesce(a.deactive,'N') = 'N'
+                and exists
+                          (
+                            select b.academicyear from ProgramSchemeAcadyearWise b
+                                  where b.id.instituteid = a.id.instituteid
+                                    and b.academicyear = a.id.academicyear
+                                    and b.id.instituteid = ?
+                                    and b.academicyear = ?
+                          )
+
+
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentLg" table="STUDENTLG">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentLgId" name="id">
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="slno" type="java.lang.Short">
+        <column length="2" name="SLNO"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="lgnname" type="string">
+      <column length="60" name="LGNNAME" not-null="true"/>
+    </property>
+    <property name="lgno" type="string">
+      <column length="30" name="LGNO" not-null="true"/>
+    </property>
+    <property name="guardianemail" type="string">
+      <column length="50" name="GUARDIANEMAIL"/>
+    </property>
+    <property name="guardianoccupation" type="string">
+      <column length="100" name="GUARDIANOCCUPATION"/>
+    </property>
+    <property name="gender" type="string">
+      <column length="1" name="GENDER"/>
+    </property>
+    <property name="relation" type="string">
+      <column length="50" name="RELATION"/>
+    </property>
+    <property name="lgaddress" type="string">
+      <column length="120" name="LGADDRESS"/>
+    </property>
+    <property name="cityname" type="string">
+      <column length="100" name="CITYNAME"/>
+    </property>
+    <property name="district" type="string">
+      <column length="100" name="DISTRICT"/>
+    </property>
+    <property name="statename" type="string">
+      <column length="100" name="STATENAME" not-null="true"/>
+    </property>
+    <property name="pin" type="string">
+      <column length="8" name="PIN"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

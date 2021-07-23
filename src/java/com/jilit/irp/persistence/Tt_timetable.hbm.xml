@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 Feb, 2014 4:28:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.TT_TimeTable" table="TT_TIMETABLE">
+    <comment>Time Table for Particular registration</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.TT_TimeTableId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <property name="startdate" type="date">
+      <column length="7" name="STARTDATE" not-null="true"/>
+    </property>
+    <property name="enddate" type="date">
+      <column length="7" name="ENDDATE" not-null="true"/>
+    </property>
+    <property name="docmode" type="string">
+      <column length="1" name="DOCMODE">
+        <comment>[D]raft/[A]pproved</comment>
+      </column>
+    </property>
+    <property name="locked" type="string">
+      <column length="1" name="LOCKED">
+        <comment>[Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="status" type="string">
+      <column length="1" name="STATUS">
+        <comment>[O]pend/[C]losed</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="7" name="DEACTIVE"/>
+    </property>
+    <property name="approvedby" type="string">
+      <column length="20" name="APPROVEDBY"/>
+    </property>
+    <property name="approveddate" type="date">
+      <column length="7" name="APPROVEDDATE"/>
+    </property>
+    <property name="approvedremarks" type="string">
+      <column length="160" name="APPROVEDREMARKS"/>
+    </property>
+    <property name="entryby" type="string">
+      <column length="20" name="ENTRYBY"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+    <property name="slotdurationinmm" type="string">
+      <column length="5" name="SLOTDURATIONINMM"/>
+    </property>
+    <set inverse="true" lazy="extra" name="tt_timetableallocations">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REGISTRATIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.TT_TimeTableAllocation"/>
+    </set>
+    <set cascade="save-update" inverse="true" lazy="extra" name="tt_applicabledayses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REGISTRATIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.TT_ApplicableDays"/>
+    </set>
+  </class>
+</hibernate-mapping>

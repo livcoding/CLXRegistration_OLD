@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 12, 2010 11:07:25 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.CommitteeMembers" table="COMMITTEEMEMBERS">
+    <composite-id class="com.jilit.irp.persistence.dto.CommitteeMembersId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="committeeid" type="string">
+        <column length="20" name="COMMITTEEID"/>
+      </key-property>
+      <key-property name="formationid" type="string">
+        <column length="20" name="FORMATIONID"/>
+      </key-property>
+      <key-property name="stafftype" type="string">
+        <column length="1" name="STAFFTYPE"/>
+      </key-property>
+      <key-property name="staffid" type="string">
+        <column length="20" name="STAFFID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.CommitteeMaster" fetch="select" insert="false" lazy="false" name="committeemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="COMMITTEEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.DesignationMaster" fetch="select" insert="false" lazy="false" name="designationmaster" update="false">
+      <column length="20" name="DESIGNATIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.CommitteeFormation" fetch="select" insert="false" lazy="false" name="committeeformation" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="COMMITTEEID" not-null="true"/>
+      <column length="20" name="FORMATIONID" not-null="true"/>
+    </many-to-one>
+    <property name="formationdate" type="date">
+      <column length="7" name="FORMATIONDATE" not-null="true">
+        <comment>Yes / No</comment>
+      </column>
+    </property>
+    <property name="activetilldate" type="date">
+      <column length="7" name="ACTIVETILLDATE"/>
+    </property>
+    <property name="designationid" type="string">
+      <column length="20" name="DESIGNATIONID"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="committeemeetingparticipentses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="COMMITTEEID" not-null="true"/>
+        <column length="20" name="FORMATIONID" not-null="true"/>
+        <column length="1" name="STAFFTYPE" not-null="true"/>
+        <column length="20" name="STAFFID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeMeetingParticipents"/>
+    </set>
+  </class>
+</hibernate-mapping>

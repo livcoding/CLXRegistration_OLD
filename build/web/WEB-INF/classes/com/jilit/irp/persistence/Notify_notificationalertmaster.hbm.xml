@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 5, 2014 3:06:56 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Notify_NotificationAlertMaster" table="NOTIFY_NOTIFICATIONALERTMASTER">
+    <id name="notificationid" type="string">
+      <column length="20" name="NOTIFICATIONID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.Notification_SmsSetup" fetch="select" insert="false" lazy="false" name="notification_smssetup" update="false">
+      <column length="20" name="TEMPLATECODE">
+        <comment>From Module Where Notification has been raised</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID">
+        <comment>Notiication From InstituteID</comment>
+      </column>
+    </many-to-one>
+    <property name="notificationvia" type="string">
+      <column length="20" name="NOTIFICATIONVIA" not-null="true">
+        <comment>NOTIFICATIONVIA: [S]MS/[E]Nail/[P]ortal</comment>
+      </column>
+    </property>
+    <property name="notificationdatetime" type="date">
+      <column length="7" name="NOTIFICATIONDATETIME" not-null="true">
+        <comment>When Notification has been given</comment>
+      </column>
+    </property>
+    <property name="notificationsentstatus" type="string">
+      <column length="1" name="NOTIFICATIONSENTSTATUS" not-null="true">
+        <comment>[P]ending or Not Sent/[S]ent</comment>
+      </column>
+    </property>
+    <property name="notificationfor" type="string">
+      <column length="1" name="NOTIFICATIONFOR" not-null="true">
+        <comment>Notification For [A]applicant/[S]tudents/[N]on Students Like Employee or Staff</comment>
+      </column>
+    </property>
+    <property name="notoficationsubject" type="string">
+      <column length="250" name="NOTOFICATIONSUBJECT">
+        <comment>Subject Line (In case of E Mail)</comment>
+      </column>
+    </property>
+    <property name="notoficationpriority" type="string">
+      <column length="1" name="NOTOFICATIONPRIORITY">
+        <comment>[T]op/[M]edium.[L]ow</comment>
+      </column>
+    </property>
+    <property name="notificationtext" type="string">
+      <column length="2000" name="NOTIFICATIONTEXT">
+        <comment>SMS/Email Text</comment>
+      </column>
+    </property>
+    <property name="attachmentrequired" type="string">
+      <column length="1" name="ATTACHMENTREQUIRED">
+        <comment>ttachement Requierd [Y]es/]N]o</comment>
+      </column>
+    </property>
+    <property name="notificationmode" type="string">
+      <column length="1" name="NOTIFICATIONMODE" not-null="true">
+        <comment>Notification to [S]ingle Person/[M]utiple Person</comment>
+      </column>
+    </property>
+    <property name="notificationfrom" type="string">
+      <column length="250" name="NOTIFICATIONFROM">
+        <comment>Notification From ; Email ID or Person Name or From Mobile Number</comment>
+      </column>
+    </property>
+    <property name="notificationipaddress" type="string">
+      <column length="20" name="NOTIFICATIONIPADDRESS">
+        <comment>Notification Raised From IP Arredss</comment>
+      </column>
+    </property>
+    <property name="notificationmacaddress" type="string">
+      <column length="250" name="NOTIFICATIONMACADDRESS">
+        <comment>Notification Raised From MAC Address</comment>
+      </column>
+    </property>
+    <property name="notificationby" type="string">
+      <column length="50" name="NOTIFICATIONBY"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="templatecode" type="string">
+      <column length="20" name="TEMPLATECODE"/>
+    </property>
+    <property name="companyid" type="string">
+      <column length="20" name="COMPANYID"/>
+    </property>
+    <set cascade="save-update" inverse="true" lazy="extra" name="notify_notificationtos">
+      <key>
+        <column length="20" name="NOTIFICATIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Notify_NotificationTo"/>
+    </set>
+  </class>
+</hibernate-mapping>

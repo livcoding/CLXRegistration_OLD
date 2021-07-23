@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Feb, 2012 11:21:01 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.NumberingControlOthers" table="NUMBERINGCONTROLOTHERS">
+    <composite-id class="com.jilit.irp.persistence.dto.NumberingControlOthersId" name="id">
+      <key-property name="groupid" type="string">
+        <column length="50" name="GROUPID"/>
+      </key-property>
+      <key-property name="ymd" type="string">
+        <column length="8" name="YMD"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.NumberingSetupOthers" fetch="select" insert="false" lazy="false" name="numberingsetupothers" update="false">
+      <column length="50" name="GROUPID" not-null="true">
+        <comment>GroupID / Unique Id stored in NumberingSetup Table</comment>
+      </column>
+    </many-to-one>
+    <property name="lastno" type="string">
+      <column length="20" name="LASTNO">
+        <comment>Last Transaction Voucher No will be stored</comment>
+      </column>
+    </property>
+    <property name="lastrunningno" type="big_decimal">
+      <column name="LASTRUNNINGNO" precision="20" scale="0"/>
+    </property>
+    <property name="lastnumberdate" type="date">
+      <column length="7" name="LASTNUMBERDATE"/>
+    </property>
+  </class>
+</hibernate-mapping>

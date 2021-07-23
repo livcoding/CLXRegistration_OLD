@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 5, 2014 3:06:56 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Notify_NotificationTo" table="NOTIFY_NOTIFICATIONTO">
+    <composite-id class="com.jilit.irp.persistence.dto.Notify_NotificationToId" name="id">
+      <key-property name="notificationid" type="string">
+        <column length="20" name="NOTIFICATIONID"/>
+      </key-property>
+      <key-property name="slno" type="int">
+        <column name="SLNO" precision="5" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="TOSTUDENTID">
+        <comment>Notification Send to StudentID</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Notify_NotificationAlertMaster" fetch="select" insert="false" lazy="false" name="notify_notificationalertmaster" update="false">
+      <column length="20" name="NOTIFICATIONID" not-null="true"/>
+    </many-to-one>
+    <property name="tomobilenumber" type="string">
+      <column length="20" name="TOMOBILENUMBER">
+        <comment>Notification Send to Mobile Number</comment>
+      </column>
+    </property>
+    <property name="toemailid" type="string">
+      <column length="20" name="TOEMAILID">
+        <comment>Notification Send to E Mail ID</comment>
+      </column>
+    </property>
+    <property name="tocid" type="string">
+      <column length="20" name="TOCID">
+        <comment>Notification Send tp Counselling ID (For references)</comment>
+      </column>
+    </property>
+    <property name="toapplicant" type="string">
+      <column length="20" name="TOAPPLICANT">
+        <comment>Notification Send to ApplicantID (For references)</comment>
+      </column>
+    </property>
+    <property name="tostudentprid" type="string">
+      <column length="20" name="TOSTUDENTPRID">
+        <comment>Notification Send to StudentPRID(For references in C_StudentMaster)</comment>
+      </column>
+    </property>
+    <property name="tostudentid" type="string">
+      <column length="20" name="TOSTUDENTID">
+      </column>
+    </property>
+    <property name="tostafftype" type="string">
+      <column length="1" name="TOSTAFFTYPE">
+        <comment>Staff Type</comment>
+      </column>
+    </property>
+    <property name="tostaffid" type="string">
+      <column length="20" name="TOSTAFFID">
+        <comment>StaffID</comment>
+      </column>
+    </property>
+    <property name="readipaddress" type="string">
+      <column length="20" name="READIPADDRESS">
+        <comment>Read Message (in case of Email or E Portal Message)</comment>
+      </column>
+    </property>
+    <property name="readmacaddress" type="string">
+      <column length="250" name="READMACADDRESS"/>
+    </property>
+    <property name="msgstatus" type="string">
+      <column length="1" name="MSGSTATUS"/>
+    </property>
+    <property name="deleteflag" type="string">
+      <column length="1" name="DELETEFLAG"/>
+    </property>
+    <property name="readflag" type="string">
+      <column length="1" name="READFLAG"/>
+    </property>
+    <set cascade="save-update" inverse="true" lazy="extra" name="notify_attachmentses">
+      <key>
+        <column length="20" name="NOTIFICATIONID" not-null="true"/>
+        <column name="SLNO" not-null="true" precision="5" scale="0"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Notify_Attachments"/>
+    </set>
+  </class>
+</hibernate-mapping>

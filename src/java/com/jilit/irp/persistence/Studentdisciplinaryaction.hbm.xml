@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentDisciplinaryAction" table="STUDENTDISCIPLINARYACTION">
+    <id name="daid" type="string">
+      <column length="20" name="DAID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.DisciplinaryTypeMaster" fetch="select" insert="false" lazy="false" name="disciplinarytypemaster" update="false">
+      <column length="20" name="DISCIPLINARYTYPEID" not-null="true">
+        <comment>Disciplinary Type ID</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.DisciplinaryOffenceMaster" fetch="select" insert="false" lazy="false" name="disciplinaryoffencemaster" update="false">
+      <column length="20" name="OFFENCEID" not-null="true">
+        <comment>Offence ID</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="EXECUTEDREGISTRATIONID">
+        <comment>Executed Registration ID in case of Stop Promotion</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.HostelMaster" fetch="select" insert="false" lazy="false" name="hostelmaster" update="false">
+      <column length="20" name="HOSTELID">
+        <comment>Hostel (in case of Initiated by is `H`)</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="hostelid" type="string">
+      <column length="20" name="HOSTELID"/>
+    </property>
+    <property name="executedregistrationid" type="string">
+      <column length="20" name="EXECUTEDREGISTRATIONID"/>
+    </property>
+    <property name="disciplinarytypeid" type="string">
+      <column length="20" name="DISCIPLINARYTYPEID"/>
+    </property>
+    <property name="offenceid" type="string">
+      <column length="20" name="OFFENCEID"/>
+    </property>
+    <property name="misconductdate" type="date">
+      <column length="7" name="MISCONDUCTDATE" not-null="true">
+        <comment>Misconduct Date &amp; Time</comment>
+      </column>
+    </property>
+    <property name="studentid" type="string">
+      <column length="20" name="STUDENTID" not-null="true">        
+      </column>
+    </property>
+    <property name="misconduct" type="string">
+      <column length="1000" name="MISCONDUCT" not-null="true"/>
+    </property>
+    <property name="instituteid" type="string">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </property>
+    <property name="actioninitiated" type="string">
+      <column length="1000" name="ACTIONINITIATED">
+        <comment>Action Initiated By User ID</comment>
+      </column>
+    </property>
+    <property name="actioninitiatedby" type="string">
+      <column length="30" name="ACTIONINITIATEDBY">
+        <comment>Action Initiated By User ID</comment>
+      </column>
+    </property>
+    <property name="actioninitiateddate" type="date">
+      <column length="7" name="ACTIONINITIATEDDATE">
+        <comment>Action Initiated By Date</comment>
+      </column>
+    </property>
+    <property name="actiontakenby" type="string">
+      <column length="20" name="ACTIONTAKENBY">
+        <comment>Employee/FacultyAdvisor/HOD</comment>
+      </column>
+    </property>
+    <property name="actiondate" type="date">
+      <column length="7" name="ACTIONDATE"/>
+    </property>
+    <property name="actiontaken" type="string">
+      <column length="1000" name="ACTIONTAKEN"/>
+    </property>
+    <property name="status" type="string">
+      <column length="1" name="STATUS">
+        <comment>[p}ending / [O]ver / [C]ancel</comment>
+      </column>
+    </property>
+    <property name="stoppromotion" type="string">
+      <column length="1" name="STOPPROMOTION">
+        <comment>Stop Promotion - Yes / No</comment>
+      </column>
+    </property>
+    <property name="executeddate" type="date">
+      <column length="7" name="EXECUTEDDATE">
+        <comment>Executed Date in case of Stop Promotion</comment>
+      </column>
+    </property>
+    <property name="remarks" type="string">
+      <column length="1000" name="REMARKS"/>
+    </property>
+  </class>
+</hibernate-mapping>

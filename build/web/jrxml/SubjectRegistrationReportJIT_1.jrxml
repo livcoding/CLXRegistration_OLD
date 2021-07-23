@@ -1,0 +1,1100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Untitled_report_2" pageWidth="878" pageHeight="1437" columnWidth="818" leftMargin="30" rightMargin="30" topMargin="25" bottomMargin="25" uuid="98f89d14-7b62-4b80-b8f9-5651203ac0a3">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="850"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="institutename" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="address1" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="address2" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="address3" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="city" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="state" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="pin" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="name" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="fathername" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="enrollment" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="acadyear" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="phoneno" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="school" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="programdesc" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="subsection" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="progcode" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="subchoicedate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="dob" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="mothername" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="parentoccupation" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="parentannualincome" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="parentqualification" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="parentmobile" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="parentaddress1" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="parentaddress2" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="regcode" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="branchcode" class="java.lang.String" isForPrompting="false"/>
+	<field name="exampassed" class="java.lang.String"/>
+	<field name="yearofpassing" class="java.lang.String"/>
+	<field name="division" class="java.lang.String"/>
+	<field name="maxmarks" class="java.lang.String"/>
+	<field name="marksobtained" class="java.lang.String"/>
+	<field name="percentageofmarks" class="java.lang.String"/>
+	<field name="grade" class="java.lang.String"/>
+	<field name="boardname" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="252" splitType="Stretch">
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="199" y="3" width="400" height="20" isPrintWhenDetailOverflows="true" uuid="9fad76ec-85aa-4ff8-a743-805a696ebd77"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{institutename}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-2" x="199" y="23" width="400" height="14" uuid="5fc48a41-1ba5-4b58-9180-aecc626fe9b3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{address1}+","+$P{address2}+","+$P{address3}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="textField-3" x="200" y="40" width="400" height="14" uuid="f6d8e21b-bd03-487a-b7d6-5f69333ddfbc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{city}+","+$P{state}+"-"+$P{pin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-1" x="238" y="57" width="338" height="19" uuid="d100767f-eb68-4c23-8b85-6d8764bd784e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Student Personal Identification / Registration Details]]></text>
+			</staticText>
+			<line direction="BottomUp">
+				<reportElement key="line-1" x="0" y="89" width="818" height="1" uuid="9a615b29-5738-4719-bbb9-d6face8b242b"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-2" x="1" y="71" width="100" height="19" uuid="d1e82388-c12c-4778-bfca-01209e16291b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Run Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-3" x="254" y="89" width="291" height="19" uuid="51b6d30f-b28a-4bb6-b1e9-710e8506efdf"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Important]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-4" x="12" y="120" width="325" height="19" uuid="fdd6959e-e321-48c7-929a-25e4e9204558"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[1. Retain this form with you till finalisation of results.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-5" x="6" y="142" width="350" height="10" uuid="c40a80df-57c0-47e8-a70d-0245766aa04f"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[2. Changes in part-II, must be resolved before leaving registration hall.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-6" x="2" y="162" width="433" height="19" uuid="730f933b-3d89-449c-9a28-59fe2059fe99"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[3. Changes in part-I, must be sent to registrar by February 15, 2019
+]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-2" x="0" y="191" width="823" height="1" uuid="21d00a39-31f2-4009-a52a-e2ecb10f73cd"/>
+			</line>
+			<line>
+				<reportElement key="line-3" x="818" y="89" width="1" height="154" uuid="daddd755-3cfc-4a45-a456-2ef5326bda36"/>
+			</line>
+			<line>
+				<reportElement key="line-4" x="0" y="91" width="1" height="152" uuid="f4777d8b-82d9-4f3a-b0cd-60e0b7ba7eb1"/>
+			</line>
+			<line>
+				<reportElement key="line-5" x="0" y="205" width="1" height="9" uuid="7f57455a-192a-40c0-90df-0dbdd737fcbe"/>
+			</line>
+			<line>
+				<reportElement key="line-6" x="0" y="215" width="818" height="1" uuid="60698be8-bef3-409b-8fcc-03f6a1f54df9"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-7" x="250" y="194" width="291" height="19" uuid="a059139e-68ef-4563-b671-b378e85b6858"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Part-I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-37" x="399" y="227" width="154" height="19" uuid="88fa5876-fe64-4d26-a4be-ad87e4367a5c"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Registration Code :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" x="172" y="228" width="187" height="20" isPrintWhenDetailOverflows="true" uuid="9e78d196-24c5-49ac-8721-f1f09fb4bae8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{enrollment}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-68" x="5" y="226" width="70" height="19" uuid="490e2725-0743-42d3-a7a1-3391a24299a8"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Enrollment No:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="297" splitType="Stretch">
+			<line>
+				<reportElement key="line-7" x="0" y="118" width="818" height="2" uuid="33a63d5f-85e7-460c-8b40-274d919553be"/>
+			</line>
+			<line>
+				<reportElement key="line-8" x="1" y="225" width="818" height="2" uuid="0c5019e3-0897-448a-919b-436bdeb1bcf9"/>
+			</line>
+			<line>
+				<reportElement key="line-9" x="1" y="280" width="818" height="2" uuid="0d08e86e-60b2-4df9-8b3f-cd8278de4ea9"/>
+			</line>
+			<line>
+				<reportElement key="line-10" x="0" y="-9" width="1" height="152" uuid="bd28993f-2b3e-4d90-9dd4-8c63f13c8558"/>
+			</line>
+			<line>
+				<reportElement key="line-11" x="0" y="129" width="1" height="152" uuid="4fee062f-0ed1-497b-a3df-9e219dc40521"/>
+			</line>
+			<line>
+				<reportElement key="line-12" x="818" y="-10" width="1" height="154" uuid="799d68ed-2e78-4968-bd15-2613a55c9498"/>
+			</line>
+			<line>
+				<reportElement key="line-13" x="818" y="128" width="1" height="154" uuid="73435746-3085-4253-b063-9f4f1fdcd716"/>
+			</line>
+			<line>
+				<reportElement key="line-14" x="398" y="119" width="3" height="162" uuid="a66e5c8a-5cfd-458a-ab4f-4ab026d7a140"/>
+			</line>
+			<line>
+				<reportElement key="line-15" x="395" y="-37" width="3" height="162" uuid="8c1b777c-3912-4e17-9a79-8bacec185ff8"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-9" x="2" y="224" width="145" height="19" uuid="4d273502-bf3d-44ca-8e4f-e88b1aa566ec"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Local Address
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-10" x="402" y="227" width="162" height="19" uuid="09babe1b-c666-45d1-af68-d4266f7e7cd6"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Permanent Address
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-32" x="0" y="14" width="154" height="19" uuid="117a69ae-e189-4395-a88e-4aaaa4129817"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Academic Year:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-33" x="29" y="40" width="128" height="19" uuid="f60403db-1181-4e88-8f10-c70a17d141ff"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Program :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-34" x="35" y="65" width="126" height="19" uuid="5fd235ce-41d6-4568-ac74-0c6079af2662"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Branch :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-35" x="23" y="94" width="139" height="19" uuid="8e21f1d8-ef5b-484a-b457-cfc55af71af3"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Semester :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-36" x="3" y="-8" width="154" height="19" uuid="73ee731f-ac9b-43a4-a10f-b756709069f4"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Student Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-39" x="421" y="28" width="134" height="19" uuid="a047f9d3-2dfe-421b-9517-82ea5a972533"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Date of Birth :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-40" x="430" y="54" width="124" height="19" uuid="f566c596-77c8-4342-ab7f-2f9775db27f4"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Mobile No :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-41" x="429" y="84" width="128" height="19" uuid="6c9d3291-a1f3-4b98-a0c8-71fbd35bfad7"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Email ID :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-42" x="401" y="1" width="154" height="19" uuid="0655cece-c9a2-48d4-9ac1-badc0602006b"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Registration Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-43" x="13" y="124" width="139" height="19" uuid="d2585a9c-4e05-42cd-b8ea-700705ef191f"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Father Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-44" x="13" y="151" width="139" height="19" uuid="d8d08df3-a84a-4f02-ae72-36a227aec9e4"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Mother Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-45" x="3" y="173" width="139" height="19" uuid="b0ee6c52-0423-49fd-92c9-4374a006db35"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Parent Occupation :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-46" x="3" y="200" width="139" height="19" uuid="04bdf048-093b-44cd-a8f5-5a70b683a69a"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Parent Qualification : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-47" x="402" y="124" width="134" height="19" uuid="100f19e5-fe74-4f90-b855-645fa15d7b27"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Parent Annual Income : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-48" x="425" y="156" width="121" height="19" uuid="a4b063ac-49cc-4fc6-8e47-3b904035605a"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Parent Mobile :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-49" x="423" y="188" width="121" height="19" uuid="463836a9-5425-4cff-9499-b645052c1601"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Parent Email ID :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-6" x="172" y="16" width="187" height="20" isPrintWhenDetailOverflows="true" uuid="accb541f-c27d-4e71-8975-5328f0559b51"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{acadyear}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-7" x="172" y="41" width="187" height="20" isPrintWhenDetailOverflows="true" uuid="2ee68e0f-d59a-4323-a281-ba8207dc7263"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{progcode}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="462" splitType="Stretch">
+			<line>
+				<reportElement key="line-16" x="0" y="25" width="818" height="2" uuid="3509bc53-2113-4b2d-997f-ca57a8023bd1"/>
+			</line>
+			<line>
+				<reportElement key="line-17" x="0" y="69" width="818" height="2" uuid="8b3ab476-9bf5-4d23-9431-3a007501ffeb"/>
+			</line>
+			<line>
+				<reportElement key="line-18" x="-1" y="137" width="818" height="2" uuid="52e12eee-20f2-446c-957d-7d5fcd4de3f0"/>
+			</line>
+			<line>
+				<reportElement key="line-19" x="0" y="25" width="1" height="115" uuid="e826523a-4b81-4af8-83b8-1eb83d91523b"/>
+			</line>
+			<line>
+				<reportElement key="line-20" x="818" y="26" width="1" height="115" uuid="00f96aca-e245-4fc7-8660-b872f8b07c34"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-8" x="3" y="3" width="184" height="19" uuid="2bc601ce-c934-4e84-b1b4-16607d6ef425"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Student Qualification Details
+]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-21" x="0" y="189" width="818" height="2" uuid="43b20675-5d06-4794-85f5-81aad1bd0027"/>
+			</line>
+			<line>
+				<reportElement key="line-22" x="1" y="215" width="818" height="2" uuid="f0a2a53c-0a28-465a-925e-226d93e84aaf"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-11" x="303" y="143" width="200" height="19" uuid="4a436c98-5678-49ab-ba8c-d2e941226059"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Subject Registration Details
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-12" x="303" y="163" width="200" height="19" uuid="c037feee-56b7-4935-8792-56ca5968496b"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Part - II
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-13" x="2" y="193" width="108" height="19" uuid="e791f991-8a7e-4897-948a-e6772a6ebbca"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Regular Subject
+
+]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-23" x="2" y="249" width="818" height="2" uuid="f00cf6f3-718d-44b8-b83f-b173b062198a"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-14" x="3" y="224" width="200" height="19" uuid="98a2aa4e-bbe5-499d-bd30-de07768b3437"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Sl No.
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-15" x="205" y="224" width="200" height="19" uuid="0ad602f1-c147-412f-a22c-b291dad4d23c"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Subject Code
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-16" x="410" y="224" width="200" height="19" uuid="1a3b775f-8449-438a-9454-396a0de07eff"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Subject
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-17" x="613" y="224" width="200" height="19" uuid="73e633e4-539b-44f0-a607-0c4a1995b4d2"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Program Credit Point
+
+]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-24" x="0" y="341" width="818" height="2" uuid="38e129a8-0f47-4b88-b2ff-ebbe80c83f2c"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-18" x="465" y="344" width="200" height="19" uuid="65b0e3d0-4f25-4f69-ab93-ece734cc0904"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Total Course Credit Points :
+
+]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-25" x="1" y="368" width="818" height="2" uuid="f4f8bd88-2ba3-4f02-849f-40fe0ceb3883"/>
+			</line>
+			<line>
+				<reportElement key="line-26" x="0" y="395" width="818" height="2" uuid="fd5e6cc0-3ada-49b4-8d8a-e821ff7d242b"/>
+			</line>
+			<line>
+				<reportElement key="line-27" x="1" y="457" width="818" height="2" uuid="f59e34c5-47e0-48c0-af24-7276ef598bd8"/>
+			</line>
+			<line>
+				<reportElement key="line-28" x="0" y="190" width="1" height="115" uuid="5346034b-a904-4626-b18a-d889c8b8097f"/>
+			</line>
+			<line>
+				<reportElement key="line-30" x="818" y="300" width="1" height="44" uuid="f1509bc0-13cd-4d1c-bdf1-db130b625eb8"/>
+			</line>
+			<line>
+				<reportElement key="line-31" x="818" y="190" width="1" height="115" uuid="936e0bf4-9184-47f1-a7be-a09bf0b8abf3"/>
+			</line>
+			<line>
+				<reportElement key="line-32" x="0" y="226" width="1" height="115" uuid="2a708d41-f1d7-483b-a154-d37fb9623503"/>
+			</line>
+			<line>
+				<reportElement key="line-33" x="818" y="367" width="1" height="82" uuid="f8f97553-2da4-463c-8fc2-1cd13f772b41"/>
+			</line>
+			<line>
+				<reportElement key="line-34" x="0" y="366" width="1" height="82" uuid="a07614f7-780a-49a9-936a-4d0b01dfdc8d"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-19" x="2" y="374" width="116" height="19" uuid="524ea4e1-e778-4b75-8c74-4cc57ea6d67c"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Audit Subject :
+
+]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-35" x="0" y="427" width="818" height="2" uuid="0d19b5bc-d32a-4c27-a8ef-67b67c08cece"/>
+			</line>
+			<line>
+				<reportElement key="line-36" x="0" y="376" width="1" height="82" uuid="c0841b48-a7f7-485b-a7e2-949677af9389"/>
+			</line>
+			<line>
+				<reportElement key="line-37" x="818" y="376" width="1" height="82" uuid="fcf55a9d-d912-4146-8e46-2fca97ab867b"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-26" x="2" y="396" width="116" height="19" uuid="346f53fd-9705-4b60-97b2-b98a28a1b74e"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Slno
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-27" x="157" y="396" width="116" height="19" uuid="a0e20429-c89b-4031-a8ce-ed008a806cd8"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Subject Code
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-28" x="347" y="396" width="116" height="19" uuid="fe1d161d-0dd3-4100-813f-88109b8b98cf"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Subject
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-29" x="607" y="397" width="116" height="19" uuid="a4c1f66f-cf5e-4c72-a4dc-da8a032a74c4"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Program Credit Point
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-60" x="3" y="24" width="93" height="19" uuid="91e18c0a-464a-4437-970a-6349ce9061c8"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Name of Board
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-61" x="96" y="24" width="107" height="19" uuid="2d1bab6e-d08a-49fa-8926-76c2f728b7d0"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Exam Passed]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-62" x="203" y="24" width="100" height="19" uuid="fc864062-ab1c-4a44-b0fd-99d61fe6b397"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Year of Passing
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-63" x="306" y="24" width="99" height="19" uuid="61ac071c-69a7-4415-9d67-5748fdf0cb38"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Division
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-64" x="408" y="24" width="90" height="31" uuid="9a95d916-3a14-4226-ab01-629f6bffd6a3"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Max
+Marks
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-65" x="586" y="27" width="113" height="19" uuid="2cb89067-9aee-4f89-9236-b97623729c8b"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Percent of Marks
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-66" x="499" y="24" width="82" height="31" uuid="f4055158-d4e1-4f69-a2b4-fb9dee8e7d0d"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Marks
+Obtained
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-67" x="709" y="27" width="93" height="19" uuid="5194b8a9-4c18-412f-9a05-129b1e891496"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Grade
+]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-8" x="3" y="74" width="72" height="20" isPrintWhenDetailOverflows="true" uuid="9be96e63-15f2-4033-9534-c5e96e1c7ee9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{boardname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-8" x="3" y="74" width="72" height="20" isPrintWhenDetailOverflows="true" uuid="8ea0cf91-e2f0-4775-998f-797e90f28674"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{boardname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-9" x="97" y="74" width="86" height="20" isPrintWhenDetailOverflows="true" uuid="55ff524c-5149-48e6-b74d-f4ee8acf17bd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{exampassed}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-10" x="197" y="74" width="86" height="20" isPrintWhenDetailOverflows="true" uuid="f2a5cc7d-d4a7-4a14-a795-132c7677cd43"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{yearofpassing}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-11" x="307" y="74" width="86" height="20" isPrintWhenDetailOverflows="true" uuid="0aab6c5d-05d0-4c57-8129-365efb2326ab"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{division}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-12" x="407" y="74" width="86" height="20" isPrintWhenDetailOverflows="true" uuid="1a882760-e05e-4fab-8405-8bd9271eb90c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{maxmarks}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-13" x="497" y="74" width="86" height="20" isPrintWhenDetailOverflows="true" uuid="17becc74-da19-4773-a22a-8ae11029d3f4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{marksobtained}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-14" x="597" y="74" width="86" height="20" isPrintWhenDetailOverflows="true" uuid="09275766-2fe1-4245-9a24-5cf42616d67d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{percentageofmarks}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-15" x="717" y="74" width="86" height="20" isPrintWhenDetailOverflows="true" uuid="6e6d9301-78a5-4add-a518-cc4828b8ecaf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grade}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50"/>
+	</detail>
+	<columnFooter>
+		<band height="172" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-20" x="2" y="22" width="318" height="19" uuid="3ebf179f-1abb-4d0b-8e31-a71f709228ab"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Signature of Registration Superintendent :
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-21" x="5" y="53" width="511" height="19" uuid="176e7ed5-9b9f-4133-a4af-307c6629c7e6"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Verification of Core Details by Student ( Write 'YES' or Enter the Correct Details' ):
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-22" x="5" y="75" width="204" height="19" uuid="619a31c8-3319-4075-ae20-28e2ce26dfc3"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[(i) Telephone Number. :
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-23" x="0" y="95" width="154" height="19" uuid="fd670ad4-78f8-485d-90b3-b9d6d22439f0"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[(ii) email id. :
+
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-24" x="38" y="116" width="263" height="19" uuid="add713ba-7722-4c5c-a333-1734245aada7"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[(iii) Correctness of Spelling of Name as per Xth Certificate. :
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-25" x="547" y="146" width="263" height="19" uuid="ca4e896d-135b-49c6-9155-9dfb70491197"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Signature of Student
+
+]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="50" splitType="Stretch"/>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="50" splitType="Stretch"/>
+	</lastPageFooter>
+	<summary>
+		<band height="50" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class lazy="false" mutable="false" name="com.jilit.irp.persistence.dto.DesignationMaster" optimistic-lock="none" table="DESIGNATIONMASTER">     
+    <synchronize table="DESIGNATIONMASTER"/>    
+    <composite-id>
+       <key-property column="DESIGNATIONID" name="designationid"/>
+    </composite-id> 
+    <property name="designationcode" type="string">
+      <column length="20" name="DESIGNATIONCODE" not-null="true" unique="true"/>
+    </property>
+    <property name="grade" type="string">
+      <column length="20" name="GRADEID" not-null="true"/>
+    </property> 
+    <property name="designation" type="string">
+      <column length="75" name="DESIGNATION" not-null="true"/>
+    </property>
+    <property name="designationtype" type="string">
+      <column length="1" name="DESIGNATIONTYPE">
+        <comment>[T]eaching / [N]onTeaching / [A]dministrative</comment>
+      </column>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0">
+        <comment>Designation Sequencing</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property> 
+  </class>
+</hibernate-mapping>

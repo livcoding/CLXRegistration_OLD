@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 21, 2011 3:02:43 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.StudentResultDetail" table="STUDENTRESULTDETAIL">
+        <composite-id class="com.jilit.irp.persistence.dto.StudentResultDetailId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+            <key-property name="studentid" type="string">
+                <column length="20" name="STUDENTID"/>
+            </key-property>
+            <key-property name="studentfstid" type="string">
+                <column length="20" name="STUDENTFSTID"/>
+            </key-property>
+        </composite-id>
+        <property name="gradeid" type="string">
+            <column length="20" name="GRADEID"/>
+        </property>
+        <property name="gradepoint" type="java.math.BigDecimal">
+            <column name="GRADEPOINT" precision="6" scale="2">
+            </column>
+        </property>
+        <property name="coursecreditpoint" type="java.math.BigDecimal">
+            <column name="COURSECREDITPOINT" precision="6" scale="2">
+            </column>
+        </property>
+        <property name="earnedcredit" type="java.math.BigDecimal">
+            <column name="EARNEDCREDIT" precision="6" scale="2">
+            </column>
+        </property>
+        <property name="sgpapoints" type="java.math.BigDecimal">
+            <column name="SGPAPOINTS" precision="6" scale="2">
+            </column>
+        </property>
+        <property name="cgpapoints" type="java.math.BigDecimal">
+            <column name="CGPAPOINTS" precision="6" scale="2">
+            </column>
+        </property>
+        <property name="fail" type="string">
+            <column length="1" name="FAIL"/>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+            <!--D Draft / F Final-->
+        </property>
+        <property name="break_slno" type="string">
+            <column length="60" name="BREAK#SLNO"/>
+        </property>
+        <property name="stynumber" type="int">
+            <column length="4" name="STYNUMBER"/>
+        </property>
+        <property name="resultdate" type="timestamp">
+            <column length="7" name="RESULTDATE"/>
+        </property>
+        <property name="subjectid" type="string">
+            <column length="20" name="SUBJECTID"/>
+        </property>
+        <property name="reregtype" type="string">
+            <column length="20" name="REREGTYPE"/>
+        </property>
+        <property name="deficitcredit" type="java.math.BigDecimal">
+            <column name="DEFICITCREDIT"  precision="8" scale="2">
+            </column>
+        </property>
+        <property name="auditsubject" type="string">
+            <column length="1" name="AUDITSUBJECT"/>
+        </property>
+        <property name="improvement" type="string">
+            <column length="1" name="IMPROVEMENT"/>
+        </property>
+        <property name="fstid" type="string">
+            <column length="20" name="FSTID"/>
+        </property>
+    </class>
+</hibernate-mapping>

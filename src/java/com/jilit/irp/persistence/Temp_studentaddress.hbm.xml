@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping default-cascade="none" default-access="property" default-lazy="true" auto-import="true">
+    <class name="com.jilit.irp.persistence.dto.Temp_StudentAddress" table="TEMP_STUDENTADDRESS" mutable="true" polymorphism="implicit" dynamic-update="false" dynamic-insert="false" select-before-update="false" optimistic-lock="version">
+        <id name="studentid" type="string">
+            <column length="20" name="STUDENTID" /> 
+            <generator class="assigned" /> 
+        </id>
+        <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" name="temp_studentmaster" update="false" unique="false" optimistic-lock="true" not-found="exception" embed-xml="true">
+            <column length="20" name="STUDENTID" not-null="true" unique="true" /> 
+        </many-to-one>
+        <property name="caddress1" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="50" name="CADDRESS1" /> 
+        </property>
+        <property name="caddress2" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="50" name="CADDRESS2" /> 
+        </property>
+        <property name="caddress3" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="50" name="CADDRESS3" /> 
+        </property>
+        <property name="ccityname" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="100" name="CCITYNAME" /> 
+        </property>
+        <property name="cdistrict" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="100" name="CDISTRICT" /> 
+        </property>
+        <property name="cpostoffice" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="50" name="CPOSTOFFICE" /> 
+        </property>
+        <property name="crailstation" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="50" name="CRAILSTATION" /> 
+        </property>
+        <property name="cpolicestation" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="50" name="CPOLICESTATION" /> 
+        </property>
+        <property name="cstatename" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="100" name="CSTATENAME" /> 
+        </property>
+        <property name="cpin" type="java.lang.Integer" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column name="CPIN" precision="6" scale="0" /> 
+        </property>
+        <property name="ccountryname" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="100" name="CCOUNTRYNAME" /> 
+        </property>
+        <property name="paddress1" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="50" name="PADDRESS1" /> 
+        </property>
+        <property name="paddress2" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="50" name="PADDRESS2" /> 
+        </property>
+        <property name="paddress3" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="50" name="PADDRESS3" /> 
+        </property>
+        <property name="pcityname" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="100" name="PCITYNAME" /> 
+        </property>
+        <property name="pdistrict" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="100" name="PDISTRICT" /> 
+        </property>
+        <property name="ppostoffice" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="50" name="PPOSTOFFICE" /> 
+        </property>
+        <property name="prailstation" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="50" name="PRAILSTATION" /> 
+        </property>
+        <property name="ppolicestation" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="50" name="PPOLICESTATION" /> 
+        </property>
+        <property name="pstatename" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="100" name="PSTATENAME" /> 
+        </property>
+        <property name="ppin" type="java.lang.Integer" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column name="PPIN" precision="6" scale="0" /> 
+        </property>
+        <property name="pcountryname" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="100" name="PCOUNTRYNAME" /> 
+        </property>
+    </class>
+</hibernate-mapping>

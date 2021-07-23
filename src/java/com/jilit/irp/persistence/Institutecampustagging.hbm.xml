@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 14, 2010 9:45:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.InstituteCampusTagging" table="INSTITUTECAMPUSTAGGING">
+    <id name="campusid" type="string">
+      <column length="20" name="CAMPUSID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" name="institutemaster">
+      <column length="20" name="INSTITUTEID"/>
+    </many-to-one>
+    <property name="deactive" type="java.lang.Character">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

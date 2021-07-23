@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Nov, 2013 4:13:30 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentOtherAchievementDoc" table="STUDENTOTHERACHIEVEMENTDOC">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentOtherAchievementDocId" name="id">
+      <key-property name="requestid" type="string">
+        <column length="20" name="REQUESTID"/>
+      </key-property>
+      <key-property name="slno" type="string">
+        <column length="20" name="SLNO"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentOtherAchievementReq" fetch="select" insert="false" lazy="false" name="studentotherachievementreq" update="false">
+      <column length="20" name="REQUESTID" not-null="true">
+        <comment>Request ID</comment>
+      </column>
+    </many-to-one>
+    <property name="filename" type="string">
+      <column length="200" name="FILENAME">
+        <comment>File Name - Attachment File Name</comment>
+      </column>
+    </property>
+    <property name="filetype" type="string">
+      <column length="5" name="FILETYPE">
+        <comment>File Type Doc / PDF etc</comment>
+      </column>
+    </property>
+    <property name="commentsrelatedtodocument" type="string">
+      <column length="200" name="COMMENTSRELATEDTODOCUMENT">
+        <comment>Comments Related To Document</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

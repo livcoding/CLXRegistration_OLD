@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 Feb, 2014 4:28:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.TT_ProgramWiseSlot" table="TT_PROGRAMWISESLOT">
+    <composite-id class="com.jilit.irp.persistence.dto.TT_ProgramWiseSlotId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="days" type="string">
+        <column length="10" name="DAYS"/>
+      </key-property>
+      <key-property name="slotid" type="string">
+        <column length="20" name="SLOTID"/>
+      </key-property>
+      <key-property name="academicyear" type="string">
+        <column length="8" name="ACADEMICYEAR"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.Academicyear" fetch="select" insert="false" lazy="false" name="academicyear" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" lazy="false" name="programmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.TT_SlotMaster" fetch="select" insert="false" lazy="false" name="tt_slotmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="10" name="DAYS" not-null="true"/>
+      <column length="20" name="SLOTID" not-null="true"/>
+    </many-to-one>
+    <property name="timetablestartdate" type="date">
+      <column length="7" name="TIMETABLESTARTDATE" not-null="true"/>
+    </property>
+    <property name="timetableenddate" type="date">
+      <column length="7" name="TIMETABLEENDDATE" not-null="true"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="entryby" type="string">
+      <column length="20" name="ENTRYBY"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+  </class>
+</hibernate-mapping>

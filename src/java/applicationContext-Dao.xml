@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="DAOFactory" class="com.jilit.irp.persistence.dao.DAOFactory">
+         
+        <property name="cityMasterDAO">
+            <ref bean="CityMasterDAO"/>
+        </property>
+        <property name="countryMasterDAO">
+            <ref bean="CountryMasterDAO"/>
+        </property>
+        <property name="stateMasterDAO">
+            <ref bean="StateMasterDAO"/>
+        </property>
+        <property name="instituteCampusMasterDAO">
+            <ref bean="InstituteCampusMasterDAO" /> 
+        </property>
+
+        <property name="dbFilterHandlerDAO">
+            <ref bean="DBFilterHandlerDAO"/>
+        </property>
+        <property name="utilDAO">
+            <ref bean="UtilDAO"/>
+        </property>
+        <property name="notify_NotificationToDAO">
+            <ref bean="Notify_NotificationToDAO"/>
+        </property>
+        <property name="notify_NotificationAlertMasterDAO">
+            <ref bean="Notify_NotificationAlertMasterDAO"/>
+        </property>
+        <property name="notify_AttachmentsDAO">
+            <ref bean="Notify_AttachmentsDAO"/>
+        </property>
+        <property name="notification_SmsSetupDAO">
+            <ref bean="Notification_SmsSetupDAO"/>
+        </property>
+       
+        <property name="complainTicketMasterDAO">
+            <ref bean="ComplainTicketMasterDAO"/>
+        </property>
+        <property name="complainTicketPersonDAO">
+            <ref bean="ComplainTicketPersonDAO"/>
+        </property>
+        <property name="complainTicketReplyDAO">
+            <ref bean="ComplainTicketReplyDAO"/>
+        </property>
+        <property name="numberingControlOthersDAO">
+            <ref bean="NumberingControlOthersDAO"/>
+        </property>
+
+        <property name="numberingSetupOthersDAO">
+            <ref bean="NumberingSetupOthersDAO"/>
+        </property>
+        <property name="studentQualificationDAO">
+            <ref bean="StudentQualificationDAO"/>
+        </property>
+
+        <property name="programTypeProgramTaggingDAO">
+            <ref bean="ProgramTypeProgramTaggingDAO"/>
+        </property>
+        <property name="programTypeDAO">
+            <ref bean="ProgramTypeDAO"/>
+        </property>
+        <property name="v_StaffDAO">
+            <ref bean="V_StaffDAO"/>
+        </property>
+        <property name="otherStaffMasterDetailDAO">
+            <ref bean="OtherStaffMasterDetailDAO"/>
+        </property>
+        <property name="studentPhoneDAO">
+            <ref bean="StudentPhoneDAO"/>
+        </property>
+        <property name="studentPhotoDAO">
+            <ref bean="StudentPhotoDAO"/>
+        </property>
+        <property name="employeeAcademicDutyDAO">
+            <ref bean="EmployeeAcademicDutyDAO"/>
+        </property>
+        <property name="departmentMasterDAO">
+            <ref bean="DepartmentMasterDAO"/>
+        </property>
+        <property name="locationMasterDAO">
+            <ref bean="LocationMasterDAO"/>
+        </property>
+        <property name="programMasterDAO">
+            <ref bean="ProgramMasterDAO"/>
+        </property>
+        
+        <property name="sct_IrpModulesDAO">
+            <ref bean="Sct_IrpModulesDAO"/>
+        </property>
+        <property name="sct_ModuleRightsMasterDAO">
+            <ref bean="Sct_ModuleRightsMasterDAO"/>
+        </property>
+        <property name="sct_RoleMasterDAO">
+            <ref bean="Sct_RoleMasterDAO"/>
+        </property>
+        <property name="studentMasterDAO">
+            <ref bean="StudentMasterDAO"/>
+        </property>
+       
+        <property name="otherStaffMasterDAO">
+            <ref bean="OtherStaffMasterDAO"/>
+        </property>
+        <property name="sct_UserHierarchyDAO">
+            <ref bean="Sct_UserHierarchyDAO"/>
+        </property>
+        <property name="sct_KioskMarqueeTextDAO">
+            <ref bean="Sct_KioskMarqueeTextDAO"/>
+        </property>
+        <property name="sct_IrpUsersDAO">
+            <ref bean="Sct_IrpUsersDAO"/>
+        </property>
+        <property name="sct_IrpUserTypeDAO">
+            <ref bean="Sct_IrpUserTypeDAO"/>
+        </property>
+        <property name="sct_IrpMlpDAO">
+            <ref bean="Sct_IrpMlpDAO"/>
+        </property>
+        <property name="instituteMasterDAO">
+            <ref bean="InstituteMasterDAO"/>
+        </property>
+        <property name="idGenerationSetupDAO">
+            <ref bean="IdGenerationSetupDAO"/>
+        </property>
+        <property name="idGenerationControlDAO">
+            <ref bean="IdGenerationControlDAO"/>
+        </property>
+        
+        <property name="branchMasterDAO">
+            <ref bean="BranchMasterDAO"/>
+        </property>
+        <property name="academicYearDAO">
+            <ref bean="AcademicYearDAO"/>
+        </property>
+        <property name="loginLogDAO">
+            <ref bean="Log_LoginLogInfoDAO"/>
+        </property>
+        
+        <property name="employeePhotoDAO">
+            <ref bean="EmployeePhotoDAO"/>
+        </property>
+        
+        <property name="clientMasterDAO">
+            <ref bean="ClientMasterDAO"/>
+        </property>
+        
+        <property name="parameterDAO">
+            <ref bean="CommonParameterDAO"/>
+        </property>  
+        
+        <property name="studentCategoryDAO">
+            <ref bean="StudentCategoryDAO"/>
+        </property>
+        
+        <property name="qualificationMasterDAO">
+            <ref bean="QualificationMasterDAO"/>
+        </property>      
+
+        <property name="studentDocumentMasterDAO">
+            <ref bean="StudentDocumentMasterDAO" /> 
+        </property>
+        <property name="programMaxStyDAO">
+            <ref bean="ProgramMaxStyDAO" /> 
+        </property>
+
+        <property name="studentAdmissionCategoryDAO">
+            <ref bean="StudentAdmissionCategoryDAO"/>
+        </property>
+        
+        <property name="programEligibilityExamsDAO">
+            <ref bean="ProgramEligibilityExamsDAO"/>
+        </property>
+        
+        <property name="eligibilityExamInfoDAO">
+            <ref bean="EligibilityExamInfoDAO"/>
+        </property>
+        
+        <property name="qualificationBoardMasterDAO">
+            <ref bean="QualificationBoardMasterDAO"/>
+        </property>       
+        <property name="disciplinaryTypeMasterDAO">
+            <ref bean="DisciplinaryTypeMasterDAO"/>
+        </property>
+        <property name="disciplinaryOffenceMasterDAO">
+            <ref bean="DisciplinaryOffenceMasterDAO"/>
+        </property>        
+        <property name="subjectMasterDAO">
+            <ref bean="SubjectMasterDAO"/>
+        </property>
+        <property name="ex_PatternMasterDAO">
+            <ref bean="Ex_PatternMasterDAO"/>
+        </property>
+        <property name="studentAdmissionSubCategoryDAO">
+            <ref bean="StudentAdmissionSubCategoryDAO"/>
+        </property>
+        <property name="programMinMaxLimitDAO">
+            <ref bean="ProgramMinMaxLimitDAO"/>
+        </property>
+        
+        <property name="rollNumberingSetupDAO">
+            <ref bean="RollNumberingSetupDAO"/>
+        </property>
+        <property name="studentGroupMasterDAO">
+            <ref bean="StudentGroupMasterDAO"/>
+        </property>
+        <property name="studentGroupCrLimitDAO">
+            <ref bean="StudentGroupCrLimitDAO"/>
+        </property>
+        
+        <property name="studentQuotaDAO">
+            <ref bean="StudentQuotaDAO"/>
+        </property>
+        
+        <property name="rollNumberingSetupDetailDAO">
+            <ref bean="RollNumberingSetupDetailDAO"/>
+        </property>
+        <property name="subjectComponentDAO">
+            <ref bean="SubjectComponentDAO"/>
+        </property>
+        <property name="programWiseSubsectionDAO">
+            <ref bean="ProgramWiseSubsectionDAO"/>
+        </property>
+        <property name="departmentBranchTaggingDAO">
+            <ref bean="DepartmentBranchTaggingDAO"/>
+        </property>
+        <property name="sectionMasterDAO">
+            <ref bean="SectionMasterDAO"/>
+        </property>
+        <property name="electiveMasterDAO">
+            <ref bean="ElectiveMasterDAO"/>
+        </property>
+        <property name="studentLeaveMasterDAO">
+            <ref bean="StudentLeaveMasterDAO"/>
+        </property>
+        <property name="rollNumberingControlDAO">
+            <ref bean="RollNumberingControlDAO"/>
+        </property>
+        <property name="v_ProgrmSecBranchSemDAO">
+            <ref bean="V_ProgrmSecBranchSemDAO"/>
+        </property>
+        <property name="specializationMasterDAO">
+            <ref bean="SpecializationMasterDAO"/>
+        </property>
+        <property name="studentSpecializationMasterDAO">
+            <ref bean="StudentSpecializationMasterDAO"/>
+        </property>
+        <property name="subjectsForBranchChangeDAO">
+            <ref bean="SubjectsForBranchChangeDAO"/>
+        </property>
+        <property name="branchChangeRequestDAO">
+            <ref bean="BranchChangeRequestDAO"/>
+        </property>
+        <property name="studentAddressDAO">
+            <ref bean="StudentAddressDAO"/>
+        </property>
+        <property name="studentDisciplinaryActionDAO">
+            <ref bean="StudentDisciplinaryActionDAO"/>
+        </property>
+        <property name="registrationMasterDAO">
+            <ref bean="RegistrationMasterDAO"/>
+        </property>
+        <property name="departmentSubjectTaggingDAO">
+            <ref bean="DepartmentSubjectTaggingDAO"/>
+        </property>
+        <property name="studentActivityDetailDAO">
+            <ref bean="StudentActivityDetailDAO"/>
+        </property>
+        <property name="subjectTypeMasterDAO">
+            <ref bean="SubjectTypeMasterDAO"/>
+        </property>
+        <property name="styTypeDAO">
+            <ref bean="StyTypeDAO"/>
+        </property>
+        <property name="phdSelfcourseRegistrationDAO">
+            <ref bean="PhdSelfcourseRegistrationDAO"/>
+        </property>
+        <property name="basketMasterDAO">
+            <ref bean="BasketMasterDAO"/>
+        </property>
+        <property name="programSubjectDetailDAO">
+            <ref bean="ProgramSubjectDetailDAO"/>
+        </property>
+        <property name="programSubjectTaggingDAO">
+            <ref bean="ProgramSubjectTaggingDAO"/>
+        </property>
+        <property name="facultySubjectTaggingDAO">
+            <ref bean="FacultySubjectTaggingDAO"/>
+        </property>
+        
+        <property name="offeredODSubjectTaggingDAO">
+            <ref bean="OfferedODSubjectTaggingDAO"/>
+        </property>
+        
+        <property name="offeredODSubjectTaggingDetailDAO">
+            <ref bean="OfferedODSubjectTaggingDetailDAO"/>
+        </property>
+        
+        <property name="programSchemeDAO">
+            <ref bean="ProgramSchemeDAO"/>
+        </property>
+        
+        <property name="studentRegistrationDAO">
+            <ref bean="StudentRegistrationDAO"/>
+        </property>
+        
+        <property name="basketMasterDetailDAO">
+            <ref bean="BasketMasterDetailDAO"/>
+        </property>
+        <property name="studentSubjectChoiceMasterDAO">
+            <ref bean="StudentSubjectChoiceMasterDAO"/>
+        </property>
+        <property name="v_ProgramSubjectTaggingDAO">
+            <ref bean="V_ProgramSubjectTaggingDAO"/>
+        </property>
+        <property name="studentResultDAO">
+            <ref bean="StudentResultDAO"/>
+        </property>
+        <property name="v_StudentComponentDetailDAO">
+            <ref bean="V_StudentComponentDetailDAO"/>
+        </property>
+        <property name="studentAttendanceDAO">
+            <ref bean="StudentAttendanceDAO"/>
+        </property>
+        <property name="instituteRegistrationEventsDAO">
+            <ref bean="InstituteRegistrationEventsDAO"/>
+        </property>
+        <property name="studentSubjectChoiceDetailDAO">
+            <ref bean="StudentSubjectChoiceDetailDAO"/>
+        </property>
+        <property name="dBDependentDAO">
+            <ref bean="DBDependentDAO"/>
+        </property>
+        <property name="studentRegistration_infoDAO">
+            <ref bean="StudentRegistration_infoDAO"/>
+        </property>
+        <property name="styDescDAO">
+            <ref bean="StyDescDAO"/>
+        </property>
+        <property name="storedProcedureDAO">
+            <ref bean="StoredProcedureDAO"/>
+        </property>
+        <property name="facultyStudentTaggingDAO">
+            <ref bean="FacultyStudentTaggingDAO"/>
+        </property>
+        <property name="updateStyNumberDAO">
+            <ref bean="UpdateStyNumberDAO"/>
+        </property>
+        <property name="dropElectiveSubjectDao">
+            <ref bean="DropElectiveSubjectDao"/>
+        </property>
+        <property name="xl_RegSubjectDataDAO">
+            <ref bean="Xl_RegSubjectDataDAO"/>
+        </property>
+        <property name="tt_TimeTableDAO">
+            <ref bean="TT_TimeTableDAO"/>
+        </property>
+        <property name="tt_SlotMasterDAO">
+            <ref bean="TT_SlotMasterDAO"/>
+        </property>
+        <property name="subjectCoordinatorDAO">
+            <ref bean="SubjectCoordinatorDAO"/>
+        </property>
+        <property name="preRequisitForRegistrationDAO">
+            <ref bean="PreRequisitForRegistrationDAO"/>
+        </property>
+        <property name="sis_RegistrationActivityMasterDAO">
+            <ref bean="Sis_RegistrationActivityMasterDAO"/>
+        </property>
+        <property name="sis_RegistrationActivityRightsDAO">
+            <ref bean="Sis_RegistrationActivityRightsDAO"/>
+        </property>
+        <property name="subjectAreaMasterDAO">
+            <ref bean="SubjectAreaMasterDAO"/>
+        </property>
+        <property name="programSchemeAcadyearWiseDAO">
+            <ref bean="ProgramSchemeAcadyearWiseDAO"/>
+        </property>
+        <property name="programSchemeAcadYearDetailDAO">
+            <ref bean="ProgramSchemeAcadYearDetailDAO"/>
+        </property>
+        <property name="oldvsNewSubjectDAO">
+            <ref bean="OldvsNewSubjectDAO"/>
+        </property>
+        <property name="setup_GIPCriteriaDAO">
+            <ref bean="Setup_GIPCriteriaDAO"/>
+        </property>
+        <property name="tempRollNumberSetupDAO">
+            <ref bean="TempRollNumberSetupDAO"/>
+        </property>
+        <property name="tempRollNumberSetupDetailDAO">
+            <ref bean="TempRollNumberSetupDetailDAO"/>
+        </property>
+        <property name="guestStudentMasterDAO">
+            <ref bean="GuestStudentMasterDAO"/>
+        </property>
+        <property name="guestStudentAddressDAO">
+            <ref bean="GuestStudentAddressDAO"/>
+        </property>
+        <property name="prStudentSubjectChoiceCountDAO">
+            <ref bean="PRStudentSubjectChoiceCountDAO"/>
+        </property>
+        <property name="subjectRegistrationCriteriaDAO">
+            <ref bean="SubjectRegistrationCriteriaDAO"/>
+        </property>
+        <property name="subjectWiseBackPaperFeeDAO">
+            <ref bean="SubjectWiseBackPaperFeeDAO"/>
+        </property>
+        <property name="courseCreditWiseFeeDAO">
+            <ref bean="CourseCreditWiseFeeDAO"/>
+        </property>
+        <property name="registrationParametersDAO">
+            <ref bean="RegistrationParametersDAO"/>
+        </property>
+        <property name="registrationSubjectGroupDAO">
+            <ref bean="RegistrationSubjectGroupDAO"/>
+        </property>
+        <property name="fSTwiseCoordinatorDAO">
+            <ref bean="FSTwiseCoordinatorDAO"/>
+        </property>
+        <property name="summerRegistrationSetupDAO">
+            <ref bean="SummerRegistrationSetupDAO"/>
+        </property>
+        <property name="summerRegistrationSetupDetDAO">
+            <ref bean="SummerRegistrationSetupDetDAO"/>
+        </property>
+        <property name="prFacultyStudentTaggingDAO">
+            <ref bean="PRFacultyStudentTaggingDAO"/>
+        </property>
+        <property name="studentNRSubjectsDAO">
+            <ref bean="StudentNRSubjectsDAO"/>
+        </property>
+        <property name="examGradeMasterDAO">
+            <ref bean="ExamGradeMasterDAO"/>
+        </property>
+        <property name="setup_GIPCriteriaDetailDAO">
+            <ref bean="Setup_GIPCriteriaDetailDAO"/>
+        </property>
+        <property name="coordinatorTypeDAO">
+            <ref bean="CoordinatorTypeDAO"/>
+        </property>
+        <property name="tempRollNumberControlDAO">
+            <ref bean="TempRollNumberControlDAO"/>
+        </property>
+        <property name="tt_TimeTableAllocationDetailDAO">
+            <ref bean="TT_TimeTableAllocationDetailDAO"/>
+        </property>
+        <property name="tt_TimeTableAllocationDAO">
+            <ref bean="TT_TimeTableAllocationDAO"/>
+        </property>
+        <property name="tt_MultiFacultyTeachingLoadDAO">
+            <ref bean="TT_MultiFacultyTeachingLoadDAO"/>
+        </property>
+        <property name="examGradeMasterDetailDAO">
+            <ref bean="ExamGradeMasterDetailDAO"/>
+        </property>
+        <property name="loadDistributionGrantDAO">
+            <ref bean="LoadDistributionGrantDAO"/>
+        </property>
+        <property name="registrationInstructionUploadDAO">
+            <ref bean="RegistrationInstructionUploadDAO"/>
+        </property>
+    </bean>
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+    </bean>
+    <bean id="parentDAO" abstract="true">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+         
+    </bean>
+
+        <bean id="RegistrationInstructionUpload" class="com.jilit.irp.bso.sis.RegistrationInstructionUpload"/> 
+    <!--<bean id="BulkSignatureUploadService" class="com.jilit.irp.bso.sis.BulkSignatureUploadService"/>--> 
+
+    <bean id="CityMasterDAO" class="com.jilit.irp.persistence.dao.impl.CityMasterDAO" parent="parentDAO"/>
+    <bean id="CountryMasterDAO" class="com.jilit.irp.persistence.dao.impl.CountryMasterDAO" parent="parentDAO"/>
+    <bean id="StateMasterDAO" class="com.jilit.irp.persistence.dao.impl.StateMasterDAO" parent="parentDAO" />
+    <bean id="StudentMasterDAO" class="com.jilit.irp.persistence.dao.impl.StudentMasterDAO" parent="parentDAO"/>
+    <bean id="Sct_RoleMasterDAO" class="com.jilit.irp.persistence.dao.impl.Sct_RoleMasterDAO" parent="parentDAO"/>
+    <bean id="Sct_ModuleRightsMasterDAO" class="com.jilit.irp.persistence.dao.impl.Sct_ModuleRightsMasterDAO" parent="parentDAO"/>
+    <bean id="Sct_IrpModulesDAO" class="com.jilit.irp.persistence.dao.impl.Sct_IrpModulesDAO" parent="parentDAO"/>
+    <bean id="ProgramMasterDAO" class="com.jilit.irp.persistence.dao.impl.ProgramMasterDAO" parent="parentDAO"/>
+    <bean id="LocationMasterDAO" class="com.jilit.irp.persistence.dao.impl.LocationMasterDAO" parent="parentDAO"/>
+    <bean id="DepartmentMasterDAO" class="com.jilit.irp.persistence.dao.impl.DepartmentMasterDAO" parent="parentDAO"/>
+    <bean id="EmployeeAcademicDutyDAO" class="com.jilit.irp.persistence.dao.impl.EmployeeAcademicDutyDAO" parent="parentDAO"/>
+    <bean id="StudentPhotoDAO" class="com.jilit.irp.persistence.dao.impl.StudentPhotoDAO" parent="parentDAO"/>
+    <bean id="StudentPhoneDAO" class="com.jilit.irp.persistence.dao.impl.StudentPhoneDAO" parent="parentDAO"/>
+    <bean id="OtherStaffMasterDetailDAO" class="com.jilit.irp.persistence.dao.impl.OtherStaffMasterDetailDAO" parent="parentDAO"/>
+    <bean id="V_StaffDAO" class="com.jilit.irp.persistence.dao.impl.V_StaffDAO" parent="parentDAO"/>
+    <bean id="ProgramTypeDAO" class="com.jilit.irp.persistence.dao.impl.ProgramTypeDAO" parent="parentDAO"/>
+    <bean id="AcademicYearDAO" class="com.jilit.irp.persistence.dao.impl.AcademicYearDAO" parent="parentDAO"/>
+    <bean id="BranchMasterDAO" class="com.jilit.irp.persistence.dao.impl.BranchMasterDAO" parent="parentDAO"/>
+    <bean id="IdGenerationControlDAO" class="com.jilit.irp.persistence.dao.impl.IdGenerationControlDAO" parent="parentDAO"/>
+    <bean id="IdGenerationSetupDAO" class="com.jilit.irp.persistence.dao.impl.IdGenerationSetupDAO" parent="parentDAO"/>
+    <bean id="InstituteMasterDAO" class="com.jilit.irp.persistence.dao.impl.InstituteMasterDAO" parent="parentDAO"/>
+    <bean id="OtherStaffMasterDAO" class="com.jilit.irp.persistence.dao.impl.OtherStaffMasterDAO" parent="parentDAO"/>
+    <bean id="Sct_IrpMlpDAO" class="com.jilit.irp.persistence.dao.impl.Sct_IrpMlpDAO" parent="parentDAO"/>
+    <bean id="Sct_IrpUserTypeDAO" class="com.jilit.irp.persistence.dao.impl.Sct_IrpUserTypeDAO" parent="parentDAO"/>
+    <bean id="Sct_IrpUsersDAO" class="com.jilit.irp.persistence.dao.impl.Sct_IrpUsersDAO" parent="parentDAO"/>
+    <bean id="Sct_KioskMarqueeTextDAO" class="com.jilit.irp.persistence.dao.impl.Sct_KioskMarqueeTextDAO" parent="parentDAO"/>
+    <bean id="Sct_UserHierarchyDAO"  class="com.jilit.irp.persistence.dao.impl.Sct_UserHierarchyDAO" parent="parentDAO"/>
+    <bean id="DBFilterHandlerDAO" class="com.jilit.irp.persistence.dao.impl.DBFilterHandlerDAO" parent="parentDAO"/>
+    <bean id="UtilDAO" class="com.jilit.irp.persistence.dao.impl.UtilDAO" factory-method="getInstance" parent="parentDAO"/>
+    <bean id="Notify_NotificationToDAO"  class="com.jilit.irp.persistence.dao.impl.Notify_NotificationToDAO" parent="parentDAO"/>
+    <bean id="Notification_SmsSetupDAO"  class="com.jilit.irp.persistence.dao.impl.Notification_SmsSetupDAO" parent="parentDAO"/>
+    <bean id="Notify_AttachmentsDAO"  class="com.jilit.irp.persistence.dao.impl.Notify_AttachmentsDAO" parent="parentDAO"/>
+    <bean id="Notify_NotificationAlertMasterDAO"  class="com.jilit.irp.persistence.dao.impl.Notify_NotificationAlertMasterDAO" parent="parentDAO"/>
+    <bean id="ComplainTicketMasterDAO"  class="com.jilit.irp.persistence.dao.impl.ComplainTicketMasterDAO" parent="parentDAO"/>
+    <bean id="ComplainTicketPersonDAO"  class="com.jilit.irp.persistence.dao.impl.ComplainTicketPersonDAO" parent="parentDAO"/>
+    <bean id="ComplainTicketReplyDAO"  class="com.jilit.irp.persistence.dao.impl.ComplainTicketReplyDAO" parent="parentDAO"/>
+    <bean id="NumberingControlOthersDAO" class="com.jilit.irp.persistence.dao.impl.NumberingControlOthersDAO" parent="parentDAO"/>
+    <bean id="NumberingSetupOthersDAO" class="com.jilit.irp.persistence.dao.impl.NumberingSetupOthersDAO" parent="parentDAO"/>
+    <bean id="ProgramTypeProgramTaggingDAO" class="com.jilit.irp.persistence.dao.impl.ProgramTypeProgramTaggingDAO" parent="parentDAO"/>
+    <bean id="Log_LoginLogInfoDAO" class="com.jilit.irp.persistence.dao.impl.Log_LoginLogInfoDAO" parent="parentDAO"/>
+    <bean id="EmployeePhotoDAO" class="com.jilit.irp.persistence.dao.impl.EmployeePhotoDAO" parent="parentDAO"/>
+    <bean id="ClientMasterDAO" class="com.jilit.irp.persistence.dao.impl.ClientMasterDAO" parent="parentDAO"/>
+    <bean id="InstituteCampusMasterDAO" class="com.jilit.irp.persistence.dao.impl.InstituteCampusMasterDAO" parent="parentDAO" /> 
+    <bean id="CommonParameterDAO" class="com.jilit.irp.persistence.dao.impl.CommonParameterDAO" parent="parentDAO" /> 
+    <bean id="StudentCategoryDAO" class="com.jilit.irp.persistence.dao.impl.StudentCategoryDAO" parent="parentDAO" /> 
+    <bean id="ProgramEligibilityExamsDAO" class="com.jilit.irp.persistence.dao.impl.ProgramEligibilityExamsDAO" parent="parentDAO" /> 
+    <bean id="EligibilityExamInfoDAO" class="com.jilit.irp.persistence.dao.impl.EligibilityExamInfoDAO" parent="parentDAO" /> 
+    <bean id="StudentEligibilityExamInfoDAO" class="com.jilit.irp.persistence.dao.impl.StudentEligibilityExamInfoDAO" parent="parentDAO" /> 
+    <bean id="QualificationMasterDAO" class="com.jilit.irp.persistence.dao.impl.QualificationMasterDAO" parent="parentDAO" />    
+    <bean id="StudentDocumentMasterDAO" class="com.jilit.irp.persistence.dao.impl.StudentDocumentMasterDAO" parent="parentDAO" /> 
+    <bean id="ProgramMaxStyDAO" class="com.jilit.irp.persistence.dao.impl.ProgramMaxStyDAO" parent="parentDAO" /> 
+    <bean id="StudentAdmissionCategoryDAO" class="com.jilit.irp.persistence.dao.impl.StudentAdmissionCategoryDAO" parent="parentDAO" /> 
+    <bean id="QualificationBoardMasterDAO" class="com.jilit.irp.persistence.dao.impl.QualificationBoardMasterDAO" parent="parentDAO" /> 
+    <bean id="DisciplinaryTypeMasterDAO" class="com.jilit.irp.persistence.dao.impl.DisciplinaryTypeMasterDAO" parent="parentDAO" /> 
+    <bean id="DisciplinaryOffenceMasterDAO" class="com.jilit.irp.persistence.dao.impl.DisciplinaryOffenceMasterDAO" parent="parentDAO" /> 
+    <bean id="ProgramMinMaxLimitDAO" class="com.jilit.irp.persistence.dao.impl.ProgramMinMaxLimitDAO" parent="parentDAO" /> 
+    <bean id="SubjectMasterDAO" class="com.jilit.irp.persistence.dao.impl.SubjectMasterDAO" parent="parentDAO" /> 
+    <bean id="Ex_PatternMasterDAO" class="com.jilit.irp.persistence.dao.impl.Ex_PatternMasterDAO" parent="parentDAO" /> 
+    <bean id="StudentAdmissionSubCategoryDAO" class="com.jilit.irp.persistence.dao.impl.StudentAdmissionSubCategoryDAO" parent="parentDAO" /> 
+    <bean id="RollNumberingSetupDAO" class="com.jilit.irp.persistence.dao.impl.RollNumberingSetupDAO" parent="parentDAO" /> 
+    <bean id="StudentGroupMasterDAO" class="com.jilit.irp.persistence.dao.impl.StudentGroupMasterDAO" parent="parentDAO" /> 
+    <bean id="StudentGroupCrLimitDAO" class="com.jilit.irp.persistence.dao.impl.StudentGroupCrLimitDAO" parent="parentDAO" />     
+    <bean id="StudentQuotaDAO" class="com.jilit.irp.persistence.dao.impl.StudentQuotaDAO" parent="parentDAO" /> 
+    <bean id="RollNumberingSetupDetailDAO" class="com.jilit.irp.persistence.dao.impl.RollNumberingSetupDetailDAO" parent="parentDAO" /> 
+    <bean id="SubjectComponentDAO" class="com.jilit.irp.persistence.dao.impl.SubjectComponentDAO" parent="parentDAO" /> 
+    <bean id="ProgramWiseSubsectionDAO" class="com.jilit.irp.persistence.dao.impl.ProgramWiseSubsectionDAO" parent="parentDAO" /> 
+    <bean id="DepartmentBranchTaggingDAO" class="com.jilit.irp.persistence.dao.impl.DepartmentBranchTaggingDAO" parent="parentDAO" /> 
+    <bean id="SectionMasterDAO" class="com.jilit.irp.persistence.dao.impl.SectionMasterDAO" parent="parentDAO" /> 
+    <bean id="ElectiveMasterDAO" class="com.jilit.irp.persistence.dao.impl.ElectiveMasterDAO" parent="parentDAO" /> 
+    <bean id="StudentLeaveMasterDAO" class="com.jilit.irp.persistence.dao.impl.StudentLeaveMasterDAO" parent="parentDAO" /> 
+    <bean id="RollNumberingControlDAO" class="com.jilit.irp.persistence.dao.impl.RollNumberingControlDAO" parent="parentDAO" /> 
+    <bean id="V_ProgrmSecBranchSemDAO" class="com.jilit.irp.persistence.dao.impl.V_ProgrmSecBranchSemDAO" parent="parentDAO" /> 
+    <bean id="SpecializationMasterDAO" class="com.jilit.irp.persistence.dao.impl.SpecializationMasterDAO" parent="parentDAO" /> 
+    <bean id="StudentSpecializationMasterDAO" class="com.jilit.irp.persistence.dao.impl.StudentSpecializationMasterDAO" parent="parentDAO" />
+    <bean id="SubjectsForBranchChangeDAO" class="com.jilit.irp.persistence.dao.impl.SubjectsForBranchChangeDAO" parent="parentDAO" />
+    <bean id="BranchChangeRequestDAO" class="com.jilit.irp.persistence.dao.impl.BranchChangeRequestDAO" parent="parentDAO" />
+    <bean id="StudentAddressDAO" class="com.jilit.irp.persistence.dao.impl.StudentAddressDAO" parent="parentDAO" />
+    <bean id="StudentDisciplinaryActionDAO" class="com.jilit.irp.persistence.dao.impl.StudentDisciplinaryActionDAO" parent="parentDAO" />
+    <bean id="RegistrationMasterDAO" class="com.jilit.irp.persistence.dao.impl.RegistrationMasterDAO" parent="parentDAO" />
+    <bean id="DepartmentSubjectTaggingDAO" class="com.jilit.irp.persistence.dao.impl.DepartmentSubjectTaggingDAO" parent="parentDAO" />
+    <bean id="StudentActivityDetailDAO" class="com.jilit.irp.persistence.dao.impl.StudentActivityDetailDAO" parent="parentDAO" />
+    <bean id="SubjectTypeMasterDAO" class="com.jilit.irp.persistence.dao.impl.SubjectTypeMasterDAO" parent="parentDAO" />
+    <bean id="StyTypeDAO" class="com.jilit.irp.persistence.dao.impl.StyTypeDAO" parent="parentDAO" />
+    <bean id="PhdSelfcourseRegistrationDAO" class="com.jilit.irp.persistence.dao.impl.PhdSelfcourseRegistrationDAO" parent="parentDAO" />
+    <bean id="BasketMasterDAO" class="com.jilit.irp.persistence.dao.impl.BasketMasterDAO" parent="parentDAO" />
+    <bean id="ProgramSubjectDetailDAO" class="com.jilit.irp.persistence.dao.impl.ProgramSubjectDetailDAO" parent="parentDAO" />
+    <bean id="ProgramSubjectTaggingDAO" class="com.jilit.irp.persistence.dao.impl.ProgramSubjectTaggingDAO" parent="parentDAO" />
+    <bean id="FacultySubjectTaggingDAO" class="com.jilit.irp.persistence.dao.impl.FacultySubjectTaggingDAO" parent="parentDAO" />
+    <bean id="OfferedODSubjectTaggingDAO" class="com.jilit.irp.persistence.dao.impl.OfferedODSubjectTaggingDAO" parent="parentDAO" />
+    <bean id="OfferedODSubjectTaggingDetailDAO" class="com.jilit.irp.persistence.dao.impl.OfferedODSubjectTaggingDetailDAO" parent="parentDAO" />
+    <bean id="ProgramSchemeDAO" class="com.jilit.irp.persistence.dao.impl.ProgramSchemeDAO" parent="parentDAO" />
+    <bean id="StudentRegistrationDAO" class="com.jilit.irp.persistence.dao.impl.StudentRegistrationDAO" parent="parentDAO" />
+    <bean id="BasketMasterDetailDAO" class="com.jilit.irp.persistence.dao.impl.BasketMasterDetailDAO" parent="parentDAO" />
+    <bean id="StudentSubjectChoiceMasterDAO" class="com.jilit.irp.persistence.dao.impl.StudentSubjectChoiceMasterDAO" parent="parentDAO" />
+    <bean id="V_ProgramSubjectTaggingDAO" class="com.jilit.irp.persistence.dao.impl.V_ProgramSubjectTaggingDAO" parent="parentDAO" />
+    <bean id="StudentResultDAO" class="com.jilit.irp.persistence.dao.impl.StudentResultDAO" parent="parentDAO" />
+    <bean id="V_StudentComponentDetailDAO" class="com.jilit.irp.persistence.dao.impl.V_StudentComponentDetailDAO" parent="parentDAO" />
+    <bean id="StudentAttendanceDAO" class="com.jilit.irp.persistence.dao.impl.StudentAttendanceDAO" parent="parentDAO" />
+    <bean id="InstituteRegistrationEventsDAO" class="com.jilit.irp.persistence.dao.impl.InstituteRegistrationEventsDAO" parent="parentDAO" />
+    <bean id="StudentSubjectChoiceDetailDAO" class="com.jilit.irp.persistence.dao.impl.StudentSubjectChoiceDetailDAO" parent="parentDAO" />
+    <bean id="DBDependentDAO" class="com.jilit.irp.persistence.dao.impl.DBDependentDAO" parent="parentDAO" />
+    <bean id="StudentRegistration_infoDAO" class="com.jilit.irp.persistence.dao.impl.StudentRegistration_infoDAO" parent="parentDAO" />
+    <bean id="StyDescDAO" class="com.jilit.irp.persistence.dao.impl.StyDescDAO" parent="parentDAO" />
+    <bean id="StoredProcedureDAO" class="com.jilit.irp.persistence.dao.impl.StoredProcedureDAO" parent="parentDAO" />
+    <bean id="FacultyStudentTaggingDAO" class="com.jilit.irp.persistence.dao.impl.FacultyStudentTaggingDAO" parent="parentDAO" />
+    <bean id="UpdateStyNumberDAO" class="com.jilit.irp.persistence.dao.impl.UpdateStyNumberDAO" parent="parentDAO" />
+    <bean id="DropElectiveSubjectDao" class="com.jilit.irp.persistence.dao.impl.DropElectiveSubjectDao" parent="parentDAO" />
+    <bean id="Xl_RegSubjectDataDAO" class="com.jilit.irp.persistence.dao.impl.Xl_RegSubjectDataDAO" parent="parentDAO" />
+    <bean id="TT_TimeTableDAO" class="com.jilit.irp.persistence.dao.impl.TT_TimeTableDAO" parent="parentDAO" />
+    <bean id="TT_SlotMasterDAO" class="com.jilit.irp.persistence.dao.impl.TT_SlotMasterDAO" parent="parentDAO" />
+    <bean id="SubjectCoordinatorDAO" class="com.jilit.irp.persistence.dao.impl.SubjectCoordinatorDAO" parent="parentDAO" />
+    <bean id="PreRequisitForRegistrationDAO" class="com.jilit.irp.persistence.dao.impl.PreRequisitForRegistrationDAO" parent="parentDAO" />
+    <bean id="Sis_RegistrationActivityMasterDAO" class="com.jilit.irp.persistence.dao.impl.Sis_RegistrationActivityMasterDAO" parent="parentDAO" />
+    <bean id="Sis_RegistrationActivityRightsDAO" class="com.jilit.irp.persistence.dao.impl.Sis_RegistrationActivityRightsDAO" parent="parentDAO" />
+    <bean id="SubjectAreaMasterDAO" class="com.jilit.irp.persistence.dao.impl.SubjectAreaMasterDAO" parent="parentDAO" />
+    <bean id="StudentQualificationDAO" class="com.jilit.irp.persistence.dao.impl.StudentQualificationDAO" parent="parentDAO" />
+    <bean id="ProgramSchemeAcadyearWiseDAO" class="com.jilit.irp.persistence.dao.impl.ProgramSchemeAcadyearWiseDAO" parent="parentDAO" />
+    <bean id="ProgramSchemeAcadYearDetailDAO" class="com.jilit.irp.persistence.dao.impl.ProgramSchemeAcadYearDetailDAO" parent="parentDAO" />
+    <bean id="OldvsNewSubjectDAO" class="com.jilit.irp.persistence.dao.impl.OldvsNewSubjectDAO" parent="parentDAO" />
+    <bean id="Setup_GIPCriteriaDAO" class="com.jilit.irp.persistence.dao.impl.Setup_GIPCriteriaDAO" parent="parentDAO" />
+    <bean id="TempRollNumberSetupDAO" class="com.jilit.irp.persistence.dao.impl.TempRollNumberSetupDAO" parent="parentDAO" />
+    <bean id="TempRollNumberSetupDetailDAO" class="com.jilit.irp.persistence.dao.impl.TempRollNumberSetupDetailDAO" parent="parentDAO" />
+    <bean id="GuestStudentMasterDAO" class="com.jilit.irp.persistence.dao.impl.GuestStudentMasterDAO" parent="parentDAO" />
+    <bean id="GuestStudentAddressDAO" class="com.jilit.irp.persistence.dao.impl.GuestStudentAddressDAO" parent="parentDAO" />
+    <bean id="PRStudentSubjectChoiceCountDAO" class="com.jilit.irp.persistence.dao.impl.PRStudentSubjectChoiceCountDAO" parent="parentDAO" />
+    <bean id="SubjectRegistrationCriteriaDAO" class="com.jilit.irp.persistence.dao.impl.SubjectRegistrationCriteriaDAO" parent="parentDAO" />
+    <bean id="SubjectWiseBackPaperFeeDAO" class="com.jilit.irp.persistence.dao.impl.SubjectWiseBackPaperFeeDAO" parent="parentDAO" />
+    <bean id="CourseCreditWiseFeeDAO" class="com.jilit.irp.persistence.dao.impl.CourseCreditWiseFeeDAO" parent="parentDAO" />
+    <bean id="RegistrationParametersDAO" class="com.jilit.irp.persistence.dao.impl.RegistrationParametersDAO" parent="parentDAO" />
+    <bean id="RegistrationSubjectGroupDAO" class="com.jilit.irp.persistence.dao.impl.RegistrationSubjectGroupDAO" parent="parentDAO" />
+    <bean id="FSTwiseCoordinatorDAO" class="com.jilit.irp.persistence.dao.impl.FSTwiseCoordinatorDAO" parent="parentDAO" />
+    <bean id="SummerRegistrationSetupDAO" class="com.jilit.irp.persistence.dao.impl.SummerRegistrationSetupDAO" parent="parentDAO" />
+    <bean id="SummerRegistrationSetupDetDAO" class="com.jilit.irp.persistence.dao.impl.SummerRegistrationSetupDetDAO" parent="parentDAO" />
+    <bean id="PRFacultyStudentTaggingDAO" class="com.jilit.irp.persistence.dao.impl.PRFacultyStudentTaggingDAO" parent="parentDAO" />
+    <bean id="StudentNRSubjectsDAO" class="com.jilit.irp.persistence.dao.impl.StudentNRSubjectsDAO" parent="parentDAO" />
+    <bean id="Setup_GIPCriteriaDetailDAO" class="com.jilit.irp.persistence.dao.impl.Setup_GIPCriteriaDetailDAO" parent="parentDAO" />
+    <bean id="ExamGradeMasterDAO" class="com.jilit.irp.persistence.dao.impl.ExamGradeMasterDAO" parent="parentDAO" />
+    <bean id="CoordinatorTypeDAO" class="com.jilit.irp.persistence.dao.impl.CoordinatorTypeDAO" parent="parentDAO" />
+    <bean id="TempRollNumberControlDAO" class="com.jilit.irp.persistence.dao.impl.TempRollNumberControlDAO" parent="parentDAO" />
+    <bean id="TT_TimeTableAllocationDetailDAO" class="com.jilit.irp.persistence.dao.impl.TT_TimeTableAllocationDetailDAO" parent="parentDAO" />
+    <bean id="TT_TimeTableAllocationDAO" class="com.jilit.irp.persistence.dao.impl.TT_TimeTableAllocationDAO" parent="parentDAO" />
+    <bean id="TT_MultiFacultyTeachingLoadDAO" class="com.jilit.irp.persistence.dao.impl.TT_MultiFacultyTeachingLoadDAO" parent="parentDAO" />
+    <bean id="ExamGradeMasterDetailDAO" class="com.jilit.irp.persistence.dao.impl.ExamGradeMasterDetailDAO" parent="parentDAO" />
+    <bean id="LoadDistributionGrantDAO" class="com.jilit.irp.persistence.dao.impl.LoadDistributionGrantDAO" parent="parentDAO" />
+    <bean id="RegistrationInstructionUploadDAO" class="com.jilit.irp.persistence.dao.impl.RegistrationInstructionUploadDAO" parent="parentDAO" />
+</beans>   

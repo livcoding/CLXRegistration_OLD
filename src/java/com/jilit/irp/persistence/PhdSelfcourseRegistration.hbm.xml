@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 15, 2011 2:52:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.PhdSelfcourseRegistration" select-before-update="true" table="PHDSELFCOURSEREGISTRATION">
+        <composite-id class="com.jilit.irp.persistence.dto.PhdSelfcourseRegistrationId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+            <key-property name="studentid" type="string">
+                <column length="20" name="STUDENTID"/>
+            </key-property>
+            <key-property name="subjectid" type="string">
+                <column length="20" name="SUBJECTID"/>
+            </key-property>
+        </composite-id>
+        <!--<many-to-one name="studentregistration" class="com.jilit.irp.persistence.dto.StudentRegistration" update="false" lazy="false" insert="false" fetch="select">
+            <column name="INSTITUTEID" length="20" not-null="true" />
+            <column name="REGISTRATIONID" length="20" not-null="true" />
+            <column name="STUDENTID" length="20" not-null="true" />
+        </many-to-one>-->
+        <!--<many-to-one name="subjectmaster" class="com.jilit.irp.persistence.dto.SubjectMaster" update="false" lazy="false" insert="false" fetch="select">
+            <column name="INSTITUTEID" length="20" not-null="true" />
+            <column name="SUBJECTID" length="20" />
+        </many-to-one>-->
+        <property name="selfcourse" type="java.lang.Character">
+            <column length="1" name="SELFCOURSE" not-null="true"/>
+        </property>
+        <property name="subjectcode" type="string">
+            <column length="20" name="SUBJECTCODE" not-null="true"/>
+        </property>
+        <property name="subjectdesc" type="string">
+            <column length="80" name="SUBJECTDESC" not-null="true"/>
+        </property>
+        <property name="credits" type="big_decimal">
+            <column name="CREDITS" not-null="true" precision="5"/>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="status" type="string">
+            <column length="1" name="STATUS"/>
+        </property>
+        <property name="approvalby" type="string">
+            <column length="20" name="APPROVALBY"/>
+        </property>
+        <property name="approvaldate" type="timestamp">
+            <column length="7" name="APPROVALDATE"/>
+        </property>
+    </class>
+    <query name="findSubjectsFromPhdSelfCourseRegistration">
+        
+        select a from PhdSelfcourseRegistration a
+        where a.id.instituteid = ?
+        and a.id.registrationid = ?
+        and a.id.studentid = ?
+        and coalesce(a.deactive,'N') = 'N'
+        order by a.selfcourse, a.subjectcode
+        
+    </query>
+    <query name="findAllRegistrationCode_PhdSelfCourseRegistration">
+     
+        select a
+        from RegistrationMaster a
+        where a.id.instituteid = ?
+        and coalesce(a.deactive,'N')='N'
+        and exists(
+        select b.id.registrationid
+        from PhdSelfcourseRegistration b, InstituteRegistrationEvents c
+        where a.id.instituteid = b.id.instituteid
+        and a.id.registrationid = b.id.registrationid
+        and c.id.instituteid = b.id.instituteid
+        and c.id.registrationid = b.id.registrationid
+        and coalesce(c.preregistrationallowed,'N') = 'Y'
+        and b.id.instituteid = ? )
+     
+    </query>
+    <query name="findRegistrationCode_PhdSelfCourseRegistration">
+     
+        select a
+        from RegistrationMaster a
+        where a.id.instituteid = ?
+        and a.registrationcode = ?
+        and coalesce(a.deactive,'N')='N'
+        and exists(
+        select b.id.registrationid
+        from PhdSelfcourseRegistration b, InstituteRegistrationEvents c
+        where a.id.instituteid = b.id.instituteid
+        and a.id.registrationid = b.id.registrationid
+        and c.id.instituteid = b.id.instituteid
+        and c.id.registrationid = b.id.registrationid
+        and coalesce(c.preregistrationallowed,'N') = 'Y'
+        and b.id.instituteid = ? )
+     
+    </query>
+</hibernate-mapping>

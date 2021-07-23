@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 21, 2011 3:02:43 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.FeeHeads" table="FEEHEADS">
+    <composite-id class="com.jilit.irp.persistence.dto.FeeHeadsId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="feeheadid" type="string">
+        <column length="20" name="FEEHEADID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="companyid" type="string">
+      <column length="20" name="COMPANYID">
+        <comment>"Tag GL Code\GL ID for FAS Linkage Default Value, Can be Null"</comment>
+      </column>
+    </property>
+    <property name="glid" type="string">
+      <column length="20" name="GLID">
+        <comment>"Tag GL Code\GL ID for FAS Linkage Default Value, Can be Null"</comment>
+      </column>
+    </property>
+    <property name="feehead" type="string">
+      <column length="20" name="FEEHEAD" not-null="true"/>
+    </property>
+    <property name="feeheaddesc" type="string">
+      <column length="100" name="FEEHEADDESC" not-null="true"/>
+    </property>
+    <property name="refundable" type="string">
+      <column length="1" name="REFUNDABLE">
+        <comment>"Refundable Fee Is (Y)es / (N)o"</comment>
+      </column>
+    </property>
+    <property name="feetype" type="string">
+      <column length="1" name="FEETYPE">
+        <comment>"FeeType Is [H]ostel Fee / [W]ait Fee /[A]dvance Fee / [F]ine Fee\ [E]xcess fee / [T]ransport / [O]thers"</comment>
+      </column>
+    </property>
+    <property name="repseqid" type="java.lang.Short">
+      <column name="REPSEQID" precision="4" scale="0">
+        <comment>"For Order by in Report "</comment>
+      </column>
+    </property>
+    <property name="collseqid" type="java.lang.Short">
+      <column name="COLLSEQID" precision="4" scale="0">
+        <comment>For Order by in Colletion\Refund in Forms</comment>
+      </column>
+    </property>
+    <property name="fineapplicable" type="string">
+      <column length="1" name="FINEAPPLICABLE"/>
+    </property>
+    <property name="receibleglid" type="string">
+      <column length="20" name="RECEIBLEGLID">
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>   
+    
+  </class>
+</hibernate-mapping>

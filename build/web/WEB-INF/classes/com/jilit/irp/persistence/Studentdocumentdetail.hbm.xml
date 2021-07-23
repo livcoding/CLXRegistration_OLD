@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.StudentDocumentDetail" select-before-update="true" table="STUDENTDOCUMENTDETAIL">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentDocumentDetailId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="categoryid" type="string">
+        <column length="20" name="CATEGORYID"/>
+      </key-property>
+      <key-property name="documentid" type="string">
+        <column length="20" name="DOCUMENTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.CategoryProgramDocumentTagging" fetch="select" insert="false" lazy="false" name="categoryprogramdocumenttagging" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="CATEGORYID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+      <column length="20" name="DOCUMENTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentCategory" fetch="select" insert="false" lazy="false" name="studentcategory" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="CATEGORYID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="documentkept" type="string">
+      <column length="1" name="DOCUMENTKEPT">
+        <comment>[O]riginal / [P]hotocopy</comment>
+      </column>
+    </property>
+    <property name="documentkeptdate" type="date">
+      <column length="7" name="DOCUMENTKEPTDATE"/>
+    </property>
+    <property name="documentkeptremarks" type="string">
+      <column length="175" name="DOCUMENTKEPTREMARKS"/>
+    </property>
+    <property name="filename" type="string">
+      <column length="175" name="FILENAME"/>
+    </property>
+    <property name="filetype" type="string">
+      <column length="5" name="FILETYPE"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="documentreturn" type="string">
+      <column length="1" name="DOCUMENTRETURN">
+        <comment>[Y]es / [N]o</comment>
+      </column>
+    </property>
+    <property name="documentreturndate" type="date">
+      <column length="7" name="DOCUMENTRETURNDATE"/>
+    </property>
+    <property name="documentreturnremarks" type="string">
+      <column length="175" name="DOCUMENTRETURNREMARKS"/>
+    </property>
+     <property name="documentverified" type="string">
+      <column length="1" name="DOCUMENTVERIFIED"/>
+    </property>
+  </class>
+</hibernate-mapping>

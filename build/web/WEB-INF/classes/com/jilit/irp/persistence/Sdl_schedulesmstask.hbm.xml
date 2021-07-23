@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 20, 2016 3:30:44 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.SDL_ScheduleSMSTask" table="SDL_SCHEDULESMSTASK"  >
+        <comment>List of Scheduled Mails to be sent</comment>
+        <composite-id name="id" class="com.jilit.irp.persistence.dto.SDL_ScheduleSMSTaskId">
+            <key-property name="schedularid" type="string">
+                <column name="SCHEDULARID" length="20" />
+            </key-property>
+            <key-property name="taskid" type="string">
+                <column name="TASKID" length="20" />
+            </key-property>
+            <key-property name="tomobileno" type="string">
+                <column name="TOMOBILENO" length="200" />
+            </key-property>
+             <key-property name="enrollmentno" type="string">
+                <column name="ENROLLMENTNO" length="20" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="sdl_scheduletaskmaster" class="com.jilit.irp.persistence.dto.Sdl_ScheduleTaskMaster" lazy="false" update="false" insert="false" fetch="select">
+            <column name="SCHEDULARID" length="20" not-null="true">
+                <comment>SchedularID</comment>
+            </column>
+            <column name="TASKID" length="20" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sdl_schedularmaster" class="com.jilit.irp.persistence.dto.Sdl_SchedularMaster" lazy="false" update="false" insert="false" fetch="select">
+            <column name="SCHEDULARID" length="20" not-null="true">
+                <comment>SchedularID</comment>
+            </column>
+        </many-to-one>
+        <property name="sendername" type="string">
+            <column name="SENDERNAME" length="200" />
+        </property>
+        <property name="senderdesignation" type="string">
+            <column name="SENDERDESIGNATION" length="200" />
+        </property>
+        <property name="smstext" type="string">
+            <column name="SMSTEXT" length="2000" />
+        </property>
+        <property name="tomobilename" type="string">
+            <column name="TOMOBILENAME" length="200" />
+        </property>
+        <property name="scheduleddatetime" type="date">
+            <column name="SCHEDULEDDATETIME" length="7">
+                <comment>Scheduled Date Time</comment>
+            </column>
+        </property>
+        <property name="actualsendingdatetime" type="date">
+            <column name="ACTUALSENDINGDATETIME" length="7">
+                <comment>Actual Sending Date Time</comment>
+            </column>
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="1">
+                <comment>[S]ent/[F]ail</comment>
+            </column>
+        </property>
+        <property name="resenddate1" type="date">
+            <column name="RESENDDATE1" length="7">
+                <comment>Re Send Date 1</comment>
+            </column>
+        </property>
+        <property name="resendstatus" type="string">
+            <column name="RESENDSTATUS" length="1" />
+        </property>
+        <property name="resenddate2" type="date">
+            <column name="RESENDDATE2" length="7">
+                <comment>Re Send Date 2</comment>
+            </column>
+        </property>
+        <property name="deactive" type="string">
+            <column name="DEACTIVE" length="1">
+                <comment>[Y]es/[N]o</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

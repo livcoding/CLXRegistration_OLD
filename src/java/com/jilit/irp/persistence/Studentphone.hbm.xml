@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.StudentPhone" select-before-update="true" table="STUDENTPHONE">
+    <id name="studentid" type="string">
+      <column length="20" name="STUDENTID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="sstdcode" type="string">
+      <column length="10" name="SSTDCODE"/>
+    </property>
+    <property name="stelephoneno" type="string">
+      <column length="30" name="STELEPHONENO"/>
+    </property>
+    <property name="scellno" type="string">
+      <column length="30" name="SCELLNO"/>
+    </property>
+    <property name="semailid" type="string">
+      <column length="60" name="SEMAILID"/>
+    </property>
+    <property name="pstdcode" type="string">
+      <column length="10" name="PSTDCODE"/>
+    </property>
+    <property name="ptelephoneno" type="string">
+      <column length="30" name="PTELEPHONENO"/>
+    </property>
+    <property name="pcellno" type="string">
+      <column length="30" name="PCELLNO"/>
+    </property>
+    <property name="pemailid" type="string">
+      <column length="60" name="PEMAILID"/>
+    </property>
+  </class>
+</hibernate-mapping>

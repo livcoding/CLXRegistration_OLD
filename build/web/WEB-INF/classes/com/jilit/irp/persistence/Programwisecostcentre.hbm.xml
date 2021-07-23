@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 22 Jun, 2017 11:39:43 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.Programwisecostcentre" table="PROGRAMWISECOSTCENTRE">
+        <composite-id name="id" class="com.jilit.irp.persistence.dto.ProgramwisecostcentreId">
+            <key-property name="instituteid" type="string">
+                <column name="INSTITUTEID" length="20" />
+            </key-property>
+            <key-property name="programid" type="string">
+                <column name="PROGRAMID" length="20" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="programmaster" class="com.jilit.irp.persistence.dto.ProgramMaster" update="false" insert="false" fetch="select">
+            <column name="INSTITUTEID" length="20" not-null="true" />
+            <column name="PROGRAMID" length="20" not-null="true" />
+        </many-to-one>
+        <many-to-one name="costcentremaster" class="com.jilit.irp.persistence.dto.CostCentreMaster" update="false" insert="false" fetch="select">
+            <column name="COSTCENTREID" length="20" />
+        </many-to-one>
+        <property name="deactive" type="string">
+            <column name="DEACTIVE" length="1" />
+        </property>
+        <property name="entryby" type="string">
+            <column name="ENTRYBY" length="20" />
+        </property>
+        <property name="costcentreid" type="string">
+            <column name="COSTCENTREID" length="20" />
+        </property>
+        <property name="entrydate" type="date">
+            <column name="ENTRYDATE" length="7" />
+        </property>
+        <property name="updatedby" type="string">
+            <column name="UPDATEDBY" length="20" />
+        </property>
+        <property name="updateddate" type="date">
+            <column name="UPDATEDDATE" length="7" />
+        </property>
+    </class>
+</hibernate-mapping>

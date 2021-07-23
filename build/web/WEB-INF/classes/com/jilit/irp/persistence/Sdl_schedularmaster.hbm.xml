@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17 Sep, 2016 3:23:02 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Sdl_SchedularMaster" table="SDL_SCHEDULARMASTER">
+    <comment>Email and SMS Scheduler</comment>
+    <id name="schedularid" type="string">
+      <column length="20" name="SCHEDULARID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="schedularcode" type="string">
+      <column length="20" name="SCHEDULARCODE"/>
+    </property>
+    <property name="schedulardesc" type="string">
+      <column length="75" name="SCHEDULARDESC">
+        <comment>Purpose of Schedular</comment>
+      </column>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0"/>
+    </property>
+    <property name="lastrundate" type="date">
+      <column length="7" name="LASTRUNDATE">
+        <comment>Last Running Date</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" name="sdl_scheduletaskmasters">
+      <key>
+        <column length="20" name="SCHEDULARID" not-null="true">
+          <comment>SchedularID;</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Sdl_ScheduleTaskMaster"/>
+    </set>
+    <set inverse="true" name="sdl_schedulemailtasks">
+      <key>
+        <column length="20" name="SCHEDULARID" not-null="true">
+          <comment>SchedularID</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Sdl_ScheduleMailTask"/>
+    </set>
+     <set inverse="true" name="sdl_schedulesmstasks">
+      <key>
+        <column length="20" name="SCHEDULARID" not-null="true">
+          <comment>SchedularID</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.SDL_ScheduleSMSTask"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 4, 2012 4:17:58 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Log_LoginLogInfo" table="LOG_LOGINLOGINFO">
+    <composite-id class="com.jilit.irp.persistence.dto.Log_LoginLogInfoId" name="id">
+      <key-property name="userid" type="string">
+        <column length="20" name="USERID"/>
+      </key-property>
+      <key-property name="logindatetime" type="date">
+        <column length="7" name="LOGINDATETIME"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.Sct_IrpUsers" fetch="select" insert="false" name="sct_irpusers" update="false">
+      <column length="20" name="USERID" not-null="true"/>
+    </many-to-one>
+    <property name="slno" type="big_decimal">
+      <column name="SLNO" precision="22" scale="0"/>
+    </property>
+    <property name="logouttime" type="date">
+      <column length="7" name="LOGOUTTIME"/>
+    </property>
+    <property name="macaddress" type="string">
+      <column length="30" name="MACADDRESS"/>
+    </property>
+    <property name="ipaddress" type="string">
+      <column length="30" name="IPADDRESS"/>
+    </property>
+  </class>
+</hibernate-mapping>

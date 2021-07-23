@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentRegistration_info" table="STUDENTREGISTRATION_INFO">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentRegistration_infoId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentRegistration" fetch="select" insert="false" lazy="false" name="studentregistration" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StyType" fetch="select" insert="false" lazy="false" name="stytype" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="STYTYPEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramType" fetch="select" insert="false" lazy="false" name="programtype" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMTYPEID" not-null="true"/>
+    </many-to-one>
+    <property name="programtypeid" type="string">
+      <column length="20" name="PROGRAMTYPEID"/>
+    </property>
+    <property name="stynumber" type="byte">
+      <column name="STYNUMBER" not-null="true" precision="2" scale="0"/>
+    </property>
+    <property name="stytypeid" type="string">
+      <column length="20" name="STYTYPEID" not-null="true"/>
+    </property>
+    <property name="academicyear" type="string">
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </property>
+    <property name="programid" type="string">
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </property>
+    <property name="sectionid" type="string">
+      <column length="20" name="SECTIONID"/>
+    </property>
+    <property name="subsectionid" type="string">
+      <column length="20" name="SUBSECTIONID"/>
+    </property>
+    <property name="branchid" type="string">
+      <column length="20" name="BRANCHID" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

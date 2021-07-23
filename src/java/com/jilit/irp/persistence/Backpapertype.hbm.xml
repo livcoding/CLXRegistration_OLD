@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 29, 2015 12:51:27 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Backpapertype" table="BACKPAPERTYPE">
+    <id name="backpapertypeid" type="string">
+      <column length="20" name="BACKPAPERTYPEID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="backpapertypecode" type="string">
+      <column length="20" name="BACKPAPERTYPECODE" not-null="true" unique="true"/>
+    </property>
+    <property name="backpapertypedesc" type="string">
+      <column length="75" name="BACKPAPERTYPEDESC" not-null="true"/>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.StudentOutDetail" select-before-update="true" table="STUDENTOUTDETAIL">
+    <id name="studentid" type="string">
+      <column length="20" name="STUDENTID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="outflag" type="string">
+      <column length="1" name="OUTFLAG" not-null="true">
+        <comment>[W]rong Entry / [T]ransferred Out / [T]erminated / [D]rop Out / [O]thers</comment>
+      </column>
+    </property>
+    <property name="outdate" type="date">
+      <column length="7" name="OUTDATE" not-null="true"/>
+    </property>
+    <property name="transferto" type="string">
+      <column length="100" name="TRANSFERTO"/>
+    </property>
+    <property name="outsty" type="java.lang.Byte">
+      <column name="OUTSTY" precision="2" scale="0"/>
+    </property>
+    <property name="noduesstatus" type="string">
+      <column length="1" name="NODUESSTATUS"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="250" name="REMARKS"/>
+    </property>
+  </class>
+</hibernate-mapping>

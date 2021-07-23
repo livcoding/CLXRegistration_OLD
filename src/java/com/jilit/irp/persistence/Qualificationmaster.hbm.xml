@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.QualificationMaster" table="QUALIFICATIONMASTER">
+    <id name="qualificationid" type="string">
+      <column length="20" name="QUALIFICATIONID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="qualificationcode" type="string">
+      <column length="20" name="QUALIFICATIONCODE" not-null="true" unique="true"/>
+    </property>
+    <property name="qualification" type="string">
+      <column length="100" name="QUALIFICATION" not-null="true"/>
+    </property>
+    <property name="qualificationlevel" type="java.lang.Short">
+      <column name="QUALIFICATIONLEVEL" precision="4" scale="0"/>
+    </property>
+    <property name="qualificationfor" type="string">
+      <column length="1" name="QUALIFICATIONFOR"/>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="studentqualifications">
+      <key>
+        <column length="20" name="QUALIFICATIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentQualification"/>
+    </set>
+
+    
+    
+  </class>
+</hibernate-mapping>

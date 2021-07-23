@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 12, 2014 10:18:31 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Notify_Parameters" table="NOTIFY_PARAMETERS">
+    <comment>SMS/ E Mail and Portal Message sending feauture 000 = SMS No, Email No and Portal Message No 100 = SMS Yes, Email No and Portal Message No 110 = SMS Yes, Email
+        Yes and Portal Message No 111 = SMS Yes, Email Yes and Portal Message Yes</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.Notify_ParametersId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="parameterid" type="string">
+        <column length="10" name="PARAMETERID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="parameterdesc" type="string">
+      <column length="200" name="PARAMETERDESC"/>
+    </property>
+    <property name="flagforstudents" type="string">
+      <column length="5" name="FLAGFORSTUDENTS"/>
+    </property>
+    <property name="flagforparents" type="string">
+      <column length="5" name="FLAGFORPARENTS"/>
+    </property>
+    <property name="flagforteachers" type="string">
+      <column length="5" name="FLAGFORTEACHERS"/>
+    </property>
+    <property name="flagforadvisors" type="string">
+      <column length="5" name="FLAGFORADVISORS"/>
+    </property>
+    <property name="flagforhod" type="string">
+      <column length="5" name="FLAGFORHOD"/>
+    </property>
+    <property name="flagfordeam" type="string">
+      <column length="5" name="FLAGFORDEAM"/>
+    </property>
+    <property name="flagforregistrar" type="string">
+      <column length="5" name="FLAGFORREGISTRAR"/>
+    </property>
+    <property name="flagforvcChairperson" type="string">
+      <column length="5" name="FLAGFORVC_CHAIRPERSON"/>
+    </property>
+    <property name="flagforirpadmin" type="string">
+      <column length="5" name="FLAGFORIRPADMIN"/>
+    </property>
+    <property name="flagforothers" type="string">
+      <column length="5" name="FLAGFOROTHERS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

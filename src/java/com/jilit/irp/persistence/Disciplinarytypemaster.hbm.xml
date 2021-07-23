@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Nov, 2013 4:13:30 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.DisciplinaryTypeMaster" table="DISCIPLINARYTYPEMASTER">
+    <comment>Disciplinary Type Master</comment>
+    <id name="disciplinarytypeid" type="string">
+      <column length="20" name="DISCIPLINARYTYPEID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="disciplinarycategory" type="string">
+      <column length="1" name="DISCIPLINARYCATEGORY" not-null="true">
+        <comment>[A]cademics / [H]ostel / [E]xam / [L]ibrary / [M]ess / [T]ransport / A[D]min / [O]thers</comment>
+      </column>
+    </property>
+    <property name="disciplinarytypecode" type="string">
+      <column length="20" name="DISCIPLINARYTYPECODE" unique="true">
+        <comment>Disciplinary Type Code</comment>
+      </column>
+    </property>
+    <property name="disciplinarytypedesc" type="string">
+      <column length="75" name="DISCIPLINARYTYPEDESC">
+        <comment>Disciplinary Type Desc</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="studentdisciplinaryactions">
+      <key>
+        <column length="20" name="DISCIPLINARYTYPEID" not-null="true">
+          <comment>Disciplinary Type ID</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentDisciplinaryAction"/>
+    </set>
+  </class>
+</hibernate-mapping>

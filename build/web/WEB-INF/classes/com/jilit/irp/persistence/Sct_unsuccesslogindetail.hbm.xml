@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 May, 2012 10:27:01 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Sct_unsuccesslogindetail" table="SCT#UNSUCCESSLOGINDETAIL">
+    <composite-id class="com.jilit.irp.persistence.dto.Sct_unsuccesslogindetailId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="unqid" type="string">
+        <column length="20" name="UNQID"/>
+      </key-property>
+    </composite-id>
+    <property name="usertype" type="string">
+      <column length="1" name="USERTYPE"/>
+    </property>
+    <property name="loginid" type="string">
+      <column length="60" name="LOGINID"/>
+    </property>
+    <property name="encryptedpwd" type="string">
+      <column length="100" name="ENCRYPTEDPWD"/>
+    </property>
+    <property name="logindatetime" type="timestamp">
+      <column length="7" name="LOGINDATETIME"/>
+    </property>
+    <property name="ipaddress" type="string">
+      <column length="30" name="IPADDRESS"/>
+    </property>
+    <property name="macaddress" type="string">
+      <column length="100" name="MACADDRESS"/>
+    </property>
+  </class>
+</hibernate-mapping>

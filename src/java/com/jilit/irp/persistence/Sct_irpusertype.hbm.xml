@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<!-- Changed By Sunny Singhal Dec 19, 2009 -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Sct_IrpUserType" table="SCT_IRPUSERTYPE">
+    <id name="usertype" type="string">
+      <column length="1" name="USERTYPE"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="userdescription" type="string">
+      <column length="100" name="USERDESCRIPTION" not-null="true"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="referenceinfo" type="string">
+      <column length="100" name="REFERENCEINFO"/>
+    </property>
+    <property name="seqid" type="java.lang.Byte">
+      <column name="SEQID" precision="2" scale="0"/>
+    </property>
+    <property name="loginidinstitutebased" type="string">
+      <column length="1" name="LOGINIDINSTITUTEBASED">
+        <comment>INSTITUTE CHECK REQUIRED?</comment>
+      </column>
+    </property>
+    <property name="sessiontimeout" type="big_decimal">
+      <column name="SESSIONTIMEOUT" not-null="true" precision="22" scale="0">
+        <comment>Session Timeout In MilliSeconds</comment>
+      </column>
+    </property>
+  </class>
+  <query name="findIrpUserType">
+      select a.usertype,a.userdescription from Sct_IrpUserType a
+      where coalesce(a.deactive,'N')='N'
+  </query>
+</hibernate-mapping>
+<!--USERTYPE, USERDESCRIPTION, DEACTIVE, REFERENCEINFO, SEQID, LOGINIDINSTITUTEBASED
+
+
+USERTYPE                1	1	N	VARCHAR2 (1 Byte)		Yes
+USERDESCRIPTION         2		N	VARCHAR2 (100 Byte)		Yes
+DEACTIVE                3		Y	VARCHAR2 (1 Byte)		Yes
+REFERENCEINFO           4		Y	VARCHAR2 (100 Byte)		Yes
+SEQID                   5		Y	NUMBER (2)		Yes
+LOGINIDINSTITUTEBASED	6		Y	VARCHAR2 (1 Byte)	'N'	Yes
+
+
+
+
+-->

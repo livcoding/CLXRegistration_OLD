@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.RegistrationMaster" table="REGISTRATIONMASTER">
+        <composite-id class="com.jilit.irp.persistence.dto.RegistrationMasterId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+        </many-to-one>
+        <property name="registrationcode" type="string">
+            <column length="20" name="REGISTRATIONCODE" not-null="true"/>
+        </property>
+        <property name="registrationdesc" type="string">
+            <column length="100" name="REGISTRATIONDESC" not-null="true"/>
+        </property>
+        <property name="registrationdatefrom" type="date">
+            <column length="7" name="REGISTRATIONDATEFROM" not-null="false"/>
+        </property>
+        <property name="registrationdateto" type="date">
+            <column length="7" name="REGISTRATIONDATETO" not-null="false"/>
+        </property>
+        <property name="registrationcomplete" type="string">
+            <column length="1" name="REGISTRATIONCOMPLETE" not-null="false">
+                <comment>Yes / No</comment>
+            </column>
+        </property>
+        <property name="feecollection" type="string">
+            <column length="1" name="FEECOLLECTION" not-null="false">
+                <comment>Fee Collection is done or not [Y]es / [N]o</comment>
+            </column>
+        </property>
+        <property name="finalized" type="string">
+            <column length="1" name="FINALIZED" not-null="false"/>
+        </property>
+        <property name="finalizedby" type="string">
+            <column length="30" name="FINALIZEDBY" not-null="false"/>
+        </property>
+        <property name="registrationtype" type="string">
+            <column length="1" name="REGISTRATIONTYPE" not-null="false"/>
+        </property>
+        <property name="academicyear" type="string">
+            <column length="20" name="ACADEMICYEAR" not-null="false"/>
+        </property>
+        <property name="gradesheetcaption" type="string">
+            <column length="60" name="GRADESHEETCAPTION" not-null="false"/>
+        </property>
+        <property name="supplregeventfrom" type="date">
+            <column length="7" name="SUPPLREGEVENTFROM"/>
+        </property>
+        <property name="supplregeventupto" type="date">
+            <column length="7" name="SUPPLREGEVENTUPTO"/>
+        </property>
+        <property name="parentregistrationid" type="string">
+            <column length="2000" name="PARENTREGISTRATIONID" not-null="false"/>
+        </property>
+        <property name="finalizeddate" type="date">
+            <column length="7" name="FINALIZEDDATE" not-null="false"/>
+        </property>
+        <property name="placeofregistration" type="string">
+            <column length="50" name="PLACEOFREGISTRATION" not-null="false"/>
+        </property>
+        <property name="registrationcaption" type="string">
+            <column length="50" name="REGISTRATIONCAPTION" not-null="false"/>
+        </property>
+        <property name="lockregistration" type="string">
+            <column length="1" name="LOCKREGISTRATION" not-null="false"/>
+        </property>
+        <property name="excludeinprereg" type="string">
+            <column length="1" name="EXCLUDEINPREREG" not-null="false"/>
+        </property>
+        <property name="excludeinsrs" type="string">
+            <column length="1" name="EXCLUDEINSRS" not-null="false"/>
+        </property>
+        <property name="excludeinattendance" type="string">
+            <column length="1" name="EXCLUDEINATTENDANCE" not-null="false"/>
+        </property>
+        <property name="excludeinclasstimetable" type="string">
+            <column length="1" name="EXCLUDEINCLASSTIMETABLE" not-null="false"/>
+        </property>
+        <property name="excludeindatesheet" type="string">
+            <column length="1" name="EXCLUDEINDATESHEET" not-null="false"/>
+        </property>
+        <property name="excludeininvigdutyseatplan" type="string">
+            <column length="1" name="EXCLUDEININVIGDUTYSEATPLAN" not-null="false"/>
+        </property>
+        <property name="preventcompleted" type="string">
+            <column length="1" name="PREVENTCOMPLETED" not-null="true">
+                <comment>Yes / No</comment>
+            </column>
+        </property>
+        <property name="preventbroadcast" type="string">
+            <column length="1" name="PREVENTBROADCAST" not-null="true">
+                <comment>Yes/No;Broadcast on web page</comment>
+            </column>
+        </property>
+    
+        <property name="preventfromdate" type="date">
+            <column length="7" name="PREVENTFROMDATE" />
+        </property>
+        <property name="preventenddate" type="date">
+            <column length="7" name="PREVENTENDDATE" />
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="examperiodfrom" type="date">
+            <column length="7" name="EXAMPERIODFROM"/>
+        </property>
+        <property name="allowbackpaperreg" type="string">
+            <column length="1" name="ALLOWBACKPAPERREG"/>
+        </property>
+        <!-- amandeep changes start-->
+        <property name="attendancefromdate" type="date">
+            <column length="7" name="ATTENDANCEFROMDATE"/>
+        </property>
+
+        <property name="attendancetodate" type="date">
+            <column length="7" name="ATTENDANCETODATE"/>
+        </property>
+    
+        <property name="hostelallocationfrom" type="date">
+            <column length="7" name="HOSTELALLOCATIONFROM"/>
+        </property>
+        <property name="hostelallocationupto" type="date">
+            <column length="7" name="HOSTELALLOCATIONUPTO"/>
+        </property>
+        <property name="courseregistrationdatefrom" type="date">
+            <column length="7" name="COURSEREGISTRATIONDATEFROM"/>
+        </property>
+
+        <property name="courseregistrationdateto" type="date">
+            <column length="7" name="COURSEREGISTRATIONDATETO"/>
+        </property>
+        <property name="courseregcompleted" type="string">
+            <column length="1" name="COURSEREGCOMPLETED"/>               
+        </property>
+        <property name="courseregbroadcast" type="string">
+            <column length="1" name="COURSEREGBROADCAST"/>                
+        </property>
+        <property name="gipregfrom" type="date">
+            <column length="7" name="GIPREGFROM"/>
+        </property>
+
+        <property name="gipregistrationupto" type="date">
+            <column length="7" name="GIPREGISTRATIONUPTO"/>
+        </property>
+        <property name="gipregbroadcast" type="string">
+            <column length="1" name="GIPREGBROADCAST"/>       
+         </property>
+        <!--amandeep changes ends-->
+        <property name="evenoddflag" type="byte">
+            <column name="EVENODDFLAG" precision="1" scale="0"/>
+        </property>
+        <set inverse="true" lazy="extra" name="loaddistributiongrants">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.LoadDistributionGrant"/>
+        </set>
+        <set inverse="true" lazy="extra" name="prsubjectfinalizationcriterias">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.PRSubjectFinalizationCriteria"/>
+        </set>
+        <set inverse="true" lazy="extra" name="studentregistrations">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.StudentRegistration"/>
+        </set>
+        <set inverse="true" lazy="extra" name="prfacultyevents">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.PRFacultyEvent"/>
+        </set>
+        <set inverse="true" lazy="extra" name="programsubjecttaggings">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.ProgramSubjectTagging"/>
+        </set>
+        <set inverse="true" lazy="extra" name="studentnrsubjectses">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTERID">
+                    <comment>Register ID in which he has registred.</comment>
+                </column>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.StudentNRSubjects"/>
+        </set>
+        <set inverse="true" lazy="extra" name="offeredodsubjecttaggings">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.OfferedODSubjectTagging"/>
+        </set>
+        <set inverse="true" lazy="extra" name="instituteregistrationeventss">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.InstituteRegistrationEvents"/>
+        </set>
+        <set inverse="true" lazy="extra" name="studenthosteldetails">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.StudentHostelDetail"/>
+        </set>
+        <set inverse="true" lazy="extra" name="studentpreviousattendences">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.StudentPreviousAttendence"/>
+        </set>
+        <set inverse="true" lazy="extra" name="defaulterInPreregs">
+            <key>
+                <column length="20" name="STUDENTID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.Temp_DefaulterInPrereg"/>
+        </set>
+    
+        <set inverse="true" lazy="extra" name="studentshortattendances">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.StudentShortAttendance"/>
+        </set>
+
+        <set inverse="true" lazy="extra" name="committeeactiondetails">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.CommitteeActionDetail"/>
+        </set>
+        <set inverse="true" lazy="extra" name="electivesubjectapproval">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="SUBJECTTYPEID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.ElectiveSubjectApproval"/>
+        </set>
+
+
+        <set inverse="true" lazy="extra" name="prsubjecttypewiseapprovals">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.PRSubjectTypeWiseApproval"/>
+        </set>
+        <set inverse="true" lazy="extra" name="registrationfinemasters">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.RegistrationFineMaster"/>
+        </set>
+        <set inverse="true" lazy="extra" name="registrationmasterdetail">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.RegistrationMasterDetail"/>
+        </set>
+        <set inverse="true" lazy="extra" name="studentsubjectfacultychoiceses">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.StudentSubjectFacultyChoices"/>
+        </set>
+
+
+        <set inverse="true" lazy="extra" name="examcenterwiseroomses">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.ExamCenterWiseRooms"/>
+        </set>
+
+
+        <set inverse="true" lazy="extra" name="instituteelectivetempdatas">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.InstituteElectiveTempData"/>
+        </set>
+        <set inverse="true" lazy="extra" name="studentdisciplinaryactions">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="false"/>
+                <column length="20" name="REGISTRATIONID" not-null="false"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.StudentDisciplinaryAction"/>
+        </set>
+        <set inverse="true" lazy="extra" name="tt_timetables">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="false"/>
+                <column length="20" name="REGISTRATIONID" not-null="false"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.TT_TimeTable"/>
+        </set>
+
+        <set inverse="true" lazy="extra" name="tmp_studattendsummaries">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="false"/>
+                <column length="20" name="REGISTRATIONID" not-null="false"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.Tmp_StudAttendSummary"/>
+        </set>
+        <set inverse="true" lazy="extra" name="studentallowforexams">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.StudentAllowForExam"/>
+        </set>
+        <set inverse="true" lazy="extra" name="subjectwiseloads">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.SubjectWiseLoad"/>
+        </set>
+
+        <set inverse="true" lazy="extra" name="attendancecutoffpercentages">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.AttendanceCutoffPercentage"/>
+        </set>
+        <set inverse="true" lazy="extra" name="attendancefollowupmaster">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.Attendancefollowupmaster"/>
+        </set>
+
+        <set inverse="true" lazy="extra" name="studentnotoffersubject">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.StudentNotOfferSubject"/>
+        </set>
+
+    </class>
+
+    <query name="getAllRegistrationCode_PST">
+
+        select a
+        from RegistrationMaster a
+        where a.id.instituteid = ?
+        and exists
+        (select b.id.registrationid
+        from ProgramSubjectTagging b
+        where b.id.instituteid = ?
+        and a.id.instituteid = b.id.instituteid
+        and a.id.registrationid = b.id.registrationid
+        )
+        and coalesce(a.deactive,'N') = 'N'
+        order by a.registrationcode desc
+
+    </query>
+    <query name="findAllRegistrationCode_RegistrationMaster">
+
+        select a
+        from RegistrationMaster a
+        where a.id.instituteid = ?
+        and coalesce(a.excludeinprereg,'N') = 'N'
+        and coalesce(a.deactive,'N') = 'N'
+        order by a.registrationcode desc
+
+    </query>
+    <query name="findAllRegistrationCode_RegistrationMasterCheck">
+
+        select a
+        from RegistrationMaster a
+        where a.registrationcode = ?
+        and coalesce(a.excludeinprereg,'N') = 'N'
+        and coalesce(a.deactive,'N') = 'N'
+        order by a.registrationcode desc
+
+    </query>
+    <query name="getAllRegistrationCode_SSC">
+
+        select r from RegistrationMaster r
+        where r.id.instituteid = ?
+        and r.id.registrationid in
+        (select b.id.registrationid
+        from StudentSubjectChoiceMaster a , InstituteRegistrationEvents b
+        where a.id.instituteid = b.id.instituteid
+        and a.id.registrationid = b.id.registrationid
+        and b.id.instituteid = ?
+        and coalesce(b.preregistrationallowed,'N') = 'Y'
+        and coalesce(a.deactive,'N') = 'N'
+        group by b.id.registrationid
+        )
+        and coalesce(r.deactive,'N') = 'N'
+        order by r.registrationcode
+
+    </query>
+    <query name="getAllRegistrationCode_IRE">
+        select a from RegistrationMaster a
+        where a.id.instituteid = ?
+        and coalesce(a.finalized,'N')='N'
+        and coalesce(a.lockregistration,'N')='N'
+        and coalesce(a.deactive,'N')='N'
+        order by a.registrationcode desc
+    </query>
+    <query name="findAllRegistrationCode_SFM">
+        select a
+        from RegistrationMaster a
+        where a.id.instituteid = ?
+        and coalesce(a.deactive,'N')='N'
+        and coalesce(a.finalized,'N')='N'
+        order by registrationdatefrom desc
+    </query>
+</hibernate-mapping>

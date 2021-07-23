@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 7, 2017 10:18:07 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ProgramEligibilityExams" table="PROGRAMELIGIBILITYEXAMS">
+    <comment>Entrance Eligibility based Program List/master Table ie. B. Tech</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.ProgramEligibilityExamsId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="eeexamid" type="string">
+        <column length="20" name="EEEXAMID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" name="programmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.EligibilityExamInfo" fetch="select" insert="false" name="eligibilityexaminfo" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="EEEXAMID" not-null="true"/>
+    </many-to-one>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0"/>
+    </property>
+    <property name="entryby" type="string">
+      <column length="20" name="ENTRYBY"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.SectionMaster" table="SECTIONMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.SectionMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="sectionid" type="string">
+        <column length="20" name="SECTIONID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="sectioncode" type="string">
+      <column length="20" name="SECTIONCODE" not-null="true"/>
+    </property>
+    <property name="sectiondesc" type="string">
+      <column length="60" name="SECTIONDESC" not-null="true"/>
+    </property>
+    <property name="seqid" type="java.lang.Integer">
+      <column name="SEQID" precision="8" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="programwisesubsections">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SECTIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramWiseSubsection"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prsubjecttypewiseapprovals">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SECTIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PRSubjectTypeWiseApproval"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programschemes">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SECTIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramScheme"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SECTIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentnrsubjectses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SECTIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentNRSubjects"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentpreviousattendences">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SECTIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentPreviousAttendence"/>
+    </set>
+     
+    <set inverse="true" lazy="extra" name="attendancecutoffpercentages">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SECTIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.AttendanceCutoffPercentage"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentnotoffersubject">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SECTIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentNotOfferSubject"/>
+    </set>
+     <set inverse="true" lazy="extra" name="branchchangelog">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SECTIONID" />
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.BranchChangeLog"/>
+    </set>
+  </class>
+  <query name="getAllSection_PST">
+
+        select p from SectionMaster p
+        where p.id.instituteid = ?
+        and p.id.sectionid in(
+             select pst.sectionid
+             from ProgramSubjectTagging pst
+             where p.id.sectionid=pst.sectionid
+             and pst.id.instituteid = ?
+             and pst.academicyear = ?
+             and pst.id.registrationid = ?
+             and pst.programid = ?
+             and coalesce(pst.deactive,'N')='N'
+           )
+           order by p.sectioncode
+
+
+</query>
+  <query name="findSection_PST">
+        select p from SectionMaster p
+        where p.id.instituteid = ?
+        and p.sectioncode = ?
+        and p.id.sectionid in
+           (
+             select pst.sectionid
+             from ProgramSubjectTagging pst
+             where p.id.sectionid=pst.sectionid
+             and pst.id.instituteid = ?
+             and pst.academicyear = ?
+             and pst.id.registrationid = ?
+             and pst.programid = ?
+             and coalesce(pst.deactive,'N')='N'
+           )
+         order by p.sectioncode
+</query>
+  <query name="findSectionCode">
+
+      select a from SectionMaster a
+      where a.id.instituteid = ?
+      and coalesce(a.deactive,'N') = 'N'
+
+
+  </query>
+</hibernate-mapping>

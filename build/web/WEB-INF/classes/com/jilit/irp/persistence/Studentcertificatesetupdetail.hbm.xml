@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 Oct, 2011 11:34:18 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentCertificateSetupDetail" table="STUDENTCERTIFICATESETUPDETAIL">
+    <comment>This table keeps the data of Certificate setup Academic Year,Program Wise, Branch Wise</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.StudentCertificateSetupDetailId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="certificateid" type="string">
+        <column length="20" name="CERTIFICATEID"/>
+      </key-property>
+      <key-property name="academicyear" type="string">
+        <column length="8" name="ACADEMICYEAR"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="branchid" type="string">
+        <column length="20" name="BRANCHID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" lazy="false" name="programmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Academicyear" fetch="select" insert="false" lazy="false" name="academicyear" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentCertificateMaster" fetch="select" insert="false" lazy="false" name="studentcertificatemaster" update="false">
+      <column length="20" name="CERTIFICATEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.BranchMaster" fetch="select" insert="false" lazy="false" name="branchmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+      <column length="20" name="BRANCHID" not-null="true"/>
+    </many-to-one>
+    <property name="deactive" type="string">
+      <column length="20" name="DEACTIVE" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

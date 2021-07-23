@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 10, 2017 2:20:27 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.StudentDataInformation" table="STUDENTDATAINFORMATION">
+        <composite-id class="com.jilit.irp.persistence.dto.StudentDataInformationId" name="id">
+            <key-property name="clientid" type="string">
+                <column length="20" name="CLIENTID"/>
+            </key-property>
+            <key-property name="informationid" type="string">
+                <column length="20" name="INFORMATIONID"/>
+            </key-property>
+        </composite-id>
+        <property name="informationdesc" type="string">
+            <column length="200" name="INFORMATIONDESC" not-null="true"/>
+        </property>
+        <property name="requiredlevel" type="byte">
+            <column name="REQUIREDLEVEL" not-null="true" precision="2" scale="0"/>
+        </property>
+        <property name="informationdetail" type="string">
+            <column length="500" name="INFORMATIONDETAIL"/>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+    </class>
+</hibernate-mapping>

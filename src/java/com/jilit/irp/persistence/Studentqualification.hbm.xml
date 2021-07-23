@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.StudentQualification" select-before-update="true" table="STUDENTQUALIFICATION">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentQualificationId" name="id">
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="qualificationid" type="string">
+        <column length="20" name="QUALIFICATIONID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.QualificationMaster" fetch="select" insert="false" lazy="false" name="qualificationmaster" update="false">
+      <column length="20" name="QUALIFICATIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentQlyBoardMaster" fetch="select" insert="false" lazy="false" name="studentqlyboardmaster" update="false">
+      <column length="20" name="BOARDID" not-null="true"/>
+    </many-to-one>
+    <property name="boardid" type="string">
+      <column length="20" name="BOARDID"/>
+    </property>
+    <property name="exampassed" type="string">
+      <column length="100" name="EXAMPASSED"/>
+    </property>
+    <property name="yearofpassing" type="java.lang.Short">
+      <column name="YEAROFPASSING" precision="4" scale="0"/>
+    </property>
+    <property name="division" type="big_decimal">
+      <column name="DIVISION" precision="3" scale="0"/>
+    </property>
+    <property name="grade" type="string">
+      <column length="20" name="GRADE"/>
+    </property>
+    <property name="maxmarks" type="big_decimal">
+      <column name="MAXMARKS" precision="22" scale="0"/>
+    </property>
+    <property name="marksobtained" type="big_decimal">
+      <column name="MARKSOBTAINED" precision="22" scale="0"/>
+    </property>
+    <property name="percentageofmarks" type="big_decimal">
+      <column name="PERCENTAGEOFMARKS" precision="6"/>
+    </property>
+    <property name="cgpa" type="big_decimal">
+      <column name="CGPA" precision="4" scale="2"/>
+    </property>
+    <property name="statename" type="string">
+      <column length="100" name="STATENAME"/>
+    </property>
+      <property name="schoolname" type="string">
+      <column length="500" name="SCHOOLNAME"/>
+    </property>
+      <property name="schoolcityname" type="string">
+      <column length="100" name="SCHOOLCITYNAME"/>
+    </property>
+      <property name="schoolcountryname" type="string">
+      <column length="100" name="SCHOOLCOUNTRYNAME"/>
+    </property>
+      <property name="pcmpercentile" type="big_decimal">
+      <column length="12" name="PCMPERCENTILE" precision="2" scale="0" />
+    </property>
+      <property name="overallpercentile" type="big_decimal">
+      <column length="12" name="OVERALLPERCENTILE" precision="2" scale="0"/>
+    </property>
+    <property name="seatno" type="string">
+      <column length="20" name="SEATNO"/>
+    </property>
+    <property name="passingmonth" type="string">
+      <column length="20" name="PASSINGMONTH"/>
+    </property>
+    <property name="pincode" type="string">
+      <column length="6" name="PINCODE"/>
+    </property>
+  </class>
+</hibernate-mapping>

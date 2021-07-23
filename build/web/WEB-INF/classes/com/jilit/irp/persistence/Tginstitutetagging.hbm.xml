@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 9, 2013 12:14:38 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.TGInstituteTagging" table="TGINSTITUTETAGGING">
+    <composite-id class="com.jilit.irp.persistence.dto.TGInstituteTaggingId" name="id">
+      <key-property name="tgid" type="string">
+        <column length="20" name="TGID"/>
+      </key-property>
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.TransportForInstitutes" fetch="select" insert="false" lazy="false" name="transportforinstitutes" update="false">
+      <column length="20" name="TGID" not-null="true">
+        <comment>Transport Group ID</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true">
+        <comment>Transport Group ID</comment>
+      </column>
+    </many-to-one>
+    <property name="studentallocation" type="string">
+      <column length="1" name="STUDENTALLOCATION" not-null="true">
+        <comment>Student Allocation - Yes / No</comment>
+      </column>
+    </property>
+    <property name="staffallocation" type="string">
+      <column length="1" name="STAFFALLOCATION" not-null="true">
+        <comment>Staff Allocation - Yes / No</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

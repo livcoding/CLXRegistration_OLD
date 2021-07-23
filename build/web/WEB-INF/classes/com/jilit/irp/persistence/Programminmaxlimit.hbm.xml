@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ProgramMinMaxLimit" table="PROGRAMMINMAXLIMIT">
+    <comment>This table will tell about the following: &gt; Exam Pattern - Grading System or Marks System &gt; Batching will done Branch based or Section based &gt; Program
+        Scheme Detail - Single and common or Academic Year wise &amp; Min Max limits</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.ProgramMinMaxLimitId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="academicyear" type="string">
+        <column length="8" name="ACADEMICYEAR"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="branchid" type="string">
+        <column length="20" name="BRANCHID"/>
+      </key-property>
+      <key-property name="stynumber" type="java.lang.Byte">
+        <column name="STYNUMBER" precision="2" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaxSty" fetch="select" insert="false" lazy="false" name="programmaxsty" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+      <column length="20" name="BRANCHID" not-null="true"/>
+    </many-to-one>
+    <property name="sectiontype" type="string">
+      <column length="1" name="SECTIONTYPE" not-null="true">
+        <comment>[S]ection , [B]ranch</comment>
+      </column>
+    </property>
+    <property name="subsectionrequired" type="string">
+      <column length="1" name="SUBSECTIONREQUIRED" not-null="true">
+        <comment>Yes / No</comment>
+      </column>
+    </property>
+    <property name="minlimit" type="big_decimal">
+      <column name="MINLIMIT" precision="5">
+        <comment>In Terms of Marks or Credit Point</comment>
+      </column>
+    </property>
+    <property name="maxlimit" type="big_decimal">
+      <column name="MAXLIMIT" precision="5">
+        <comment>In Terms of Marks or Credit Point</comment>
+      </column>
+    </property>
+    <property name="passinglimit" type="big_decimal">
+      <column name="PASSINGLIMIT" precision="5">
+        <comment>In Terms of Marks or Credit Point</comment>
+      </column>
+    </property>
+    <property name="programscheme" type="string">
+      <column length="1" name="PROGRAMSCHEME" not-null="true">
+        <comment>[M]aster or [D]etail</comment>
+      </column>
+    </property>
+    <property name="studentsubjectfacultychoice" type="string">
+      <column length="1" name="STUDENTSUBJECTFACULTYCHOICE" not-null="true">
+        <comment>Yes/No ; If Yes then student can select/choose their subject teacher as per their choice into StudentSubjectFacultyChoices</comment>
+      </column>
+    </property>
+    <property name="prerequisiteacademicwise" type="string">
+      <column length="1" name="PREREQUISITEACADEMICWISE">
+        <comment>[Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="sectionmaxstudent" type="big_decimal">
+      <column name="SECTIONMAXSTUDENT" precision="5">
+        <comment>Maximum student in section</comment>
+      </column>
+    </property>
+    <property name="subsectionmaxstudent" type="big_decimal">
+      <column name="SUBSECTIONMAXSTUDENT" precision="5">
+        <comment>Maximum student in subsection</comment>
+      </column>
+    </property>
+    <property name="cumulative" type="string">
+      <column length="1" name="CUMULATIVE">
+        <comment>Yes / No</comment>
+      </column>
+    </property>
+
+      <property name="infoupdateallowformdate" type="date">
+      <column name="INFOUPDATEALLOWFORMDATE" >
+
+      </column>
+    </property>
+
+    <property name="infoupdateallowtodate" type="date">
+      <column name="INFOUPDATEALLOWTODATE" >
+
+      </column>
+    </property>
+  </class>
+  <query name="getDistinctSectionType">
+       
+   select  distinct sectiontype
+  from ProgramMinMaxLimit
+  where id.instituteid = ?
+  and  id.academicyear = ?
+  and  id.programid = ?
+  and  id.stynumber =?
+  and coalesce(deactive,'N')='N'
+   
+  </query>
+</hibernate-mapping>

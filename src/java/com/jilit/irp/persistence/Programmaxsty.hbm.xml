@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ProgramMaxSty" table="PROGRAMMAXSTY">
+    <composite-id class="com.jilit.irp.persistence.dto.ProgramMaxStyId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="academicyear" type="string">
+        <column length="8" name="ACADEMICYEAR"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="branchid" type="string">
+        <column length="20" name="BRANCHID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.BranchMaster" fetch="select" insert="false" lazy="false" name="branchmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+      <column length="20" name="BRANCHID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Academicyear" fetch="select" insert="false" lazy="false" name="academicyear" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </many-to-one>
+    <property name="stypattern" type="string">
+      <column length="1" name="STYPATTERN" not-null="true">
+        <comment>[S]-Semester [T]-Trimester [Y]-Yearly</comment>
+      </column>
+    </property>
+    <property name="startsty" type="byte">
+      <column name="STARTSTY" not-null="true" precision="2" scale="0">
+        <comment>Start STY / [S]-Semester [T]-Trimester [Y]-Yearly</comment>
+      </column>
+    </property>
+    <property name="endsty" type="byte">
+      <column name="ENDSTY" not-null="true" precision="2" scale="0">
+        <comment>End STY / [S]-Semester [T]-Trimester [Y]-Yearly</comment>
+      </column>
+    </property>
+    <property name="startdate" type="date">
+      <column length="7" name="STARTDATE"/>
+    </property>
+    <property name="enddate" type="date">
+      <column length="7" name="ENDDATE"/>
+    </property>
+    <property name="exampattern" type="string">
+      <column length="1" name="EXAMPATTERN"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="programminmaxlimits">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="8" name="ACADEMICYEAR" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+        <column length="20" name="BRANCHID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramMinMaxLimit"/>
+    </set>
+  </class>
+  <query name="getDistinctStyPattern">
+     
+      select  distinct stypattern
+  from ProgramMaxSty
+  where id.instituteid = ?
+  and  id.academicyear = ?
+  and id.programid = ?
+  and coalesce(deactive,'N')='N'
+     
+    </query>
+  <query name="getStyPattern">
+     
+      select  a
+          from ProgramMaxSty a
+              where id.instituteid = ?
+                and id.programid = ?
+                and id.branchid = ?
+                and coalesce(a.deactive,'N')='N'
+     
+    </query>
+  <query name="getStyPattern_All">
+
+      select  a
+          from ProgramMaxSty a
+              where id.instituteid = ?
+                and coalesce(a.deactive,'N')='N'
+
+    </query>
+  <query name="getStyPattern_Brch">
+
+      select  a
+          from ProgramMaxSty a
+              where id.instituteid = ?
+                and id.branchid = ?
+                and coalesce(a.deactive,'N')='N'
+
+    </query>
+  <query name="getStyPattern_Prgm">
+
+      select  a
+          from ProgramMaxSty a
+              where id.instituteid = ?
+                and id.programid = ?
+                and coalesce(a.deactive,'N')='N'
+
+    </query>
+</hibernate-mapping>

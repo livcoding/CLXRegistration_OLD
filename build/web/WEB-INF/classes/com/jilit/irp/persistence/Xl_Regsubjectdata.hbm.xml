@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 Jun, 2016 2:23:32 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Xl_RegSubjectData" table="XL_REGSUBJECTDATA">
+    <composite-id class="com.jilit.irp.persistence.dto.Xl_RegSubjectDataId" name="id">
+      <key-property name="userid" type="string">
+        <column length="20" name="USERID"/>
+      </key-property>
+      <key-property name="xltaskid" type="string">
+        <column length="20" name="XLTASKID"/>
+      </key-property>
+      <key-property name="slno" type="int">
+        <column name="SLNO" precision="8" scale="0"/>
+      </key-property>
+    </composite-id>
+    <property name="registrationcode" type="string">
+      <column length="20" name="REGISTRATIONCODE"/>
+    </property>
+   
+   
+    <property name="subjectcode" type="string">
+      <column length="20" name="SUBJECTCODE">
+      </column>
+    </property>
+    
+    <property name="enrollmentno" type="string">
+      <column length="200" name="ENROLLMENTNO">
+        <comment>Enrollment No</comment>
+      </column>
+    </property>
+	
+	  <property name="stytype" type="string">
+      <column length="10" name="STYTYPE">         
+      </column>
+    </property>
+	  <property name="stytypeid" type="string">
+      <column length="20" name="STYTYPEID">         
+      </column>
+    </property>
+     <property name="stynumber" type="string">
+      <column name="STYNUMBER" precision="2" scale="0">
+        <comment>Student`s Current Semester / Trimester / Yearly</comment>
+      </column>
+    </property>
+    <property name="instituteid" type="string">
+      <column length="20" name="INSTITUTEID"/>
+    </property>
+    <property name="programid" type="string">
+      <column length="20" name="PROGRAMID"/>
+    </property>
+    <property name="subjectid" type="string">
+      <column length="20" name="SUBJECTID"/>
+    </property>
+    <property name="registrationid" type="string">
+      <column length="20" name="REGISTRATIONID"/>
+    </property>
+    <property name="academicyear" type="string">
+      <column length="8" name="ACADEMICYEAR"/>
+    </property>
+    <property name="basketid" type="string">
+      <column length="20" name="BASKETID"/>
+    </property>
+    <property name="studentid" type="string">
+      <column length="20" name="STUDENTID"/>
+    </property>
+    <property name="sectionid" type="string">
+      <column length="20" name="SECTIONID"/>
+    </property>
+    <property name="docmode" type="string">
+      <column length="1" name="DOCMODE"/>
+    </property>
+    <property name="recstatus" type="string">
+      <column length="1" name="RECSTATUS">
+        <comment>[P]ending / [D]one / [E]rror</comment>
+      </column>
+    </property>
+    <property name="recstatusmessage" type="string">
+      <column length="4000" name="RECSTATUSMESSAGE">
+        <comment>Record Status Message - Error Message</comment>
+      </column>
+    </property>
+    <property name="processingdate" type="date">
+      <column length="7" name="PROCESSINGDATE">
+        <comment>Processing Date &amp; Time</comment>
+      </column>
+    </property>
+      <property name="credits" type="java.lang.Byte">
+      <column length="3" name="CREDITS"/>
+    </property>
+    
+     <property name="subjecttypeid" type="string">
+      <column length="20" name="SUBJECTTYPEID"/>
+    </property>
+     <property name="subjecttype" type="string">
+      <column length="1" name="SUBJECTTYPE"/>
+    </property>
+  </class>
+</hibernate-mapping>

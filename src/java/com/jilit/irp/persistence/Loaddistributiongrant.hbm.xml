@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.LoadDistributionGrant" table="LOADDISTRIBUTIONGRANT">
+    <comment>User wise load distribution grants</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.LoadDistributionGrantId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="stafftype" type="string">
+        <column length="20" name="STAFFTYPE"/>
+      </key-property>
+      <key-property name="staffid" type="string">
+        <column length="20" name="STAFFID"/>
+      </key-property>
+      <key-property name="departmentid" type="string">
+        <column length="20" name="DEPARTMENTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.DepartmentMaster" fetch="select" insert="false" lazy="false" name="departmentmaster" update="false">
+      <column length="20" name="DEPARTMENTID" not-null="true">
+        <comment>Department for which the user will do load distribution</comment>
+      </column>
+    </many-to-one>
+    <property name="loaddistributionstatus" type="string">
+      <column length="1" name="LOADDISTRIBUTIONSTATUS">
+        <comment>Draft / Approved / Cancelled</comment>
+      </column>
+    </property>
+    <property name="loaddistapprovedby" type="string">
+      <column length="20" name="LOADDISTAPPROVEDBY"/>
+    </property>
+    <property name="loaddistapprovaldate" type="date">
+      <column length="7" name="LOADDISTAPPROVALDATE"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+  <query name="findLoadDistributionApprovalTypeWise">
+         select a.id.departmentid, a.department, a.departmentcode, b.loaddistributionstatus
+         from DepartmentMaster a, LoadDistributionGrant b
+            where a.id.departmentid = b.id.departmentid
+                 and b.id.registrationid =?
+                 and b.id.instituteid =?
+                 and b.loaddistributionstatus =?
+            group by a.id.departmentid, a.department, a.departmentcode, b.loaddistributionstatus
+            order by a.id.departmentid
+  </query>
+  <query name="findLoadDistributionApprovalTypeWiseForALL">
+         select a.id.departmentid, a.department, a.departmentcode, b.loaddistributionstatus
+         from DepartmentMaster a, LoadDistributionGrant b
+            where a.id.departmentid = b.id.departmentid
+                 and b.id.registrationid =?
+                 and b.id.instituteid =?
+            group by a.id.departmentid, a.department, a.departmentcode, b.loaddistributionstatus
+            order by a.id.departmentid
+  </query>
+</hibernate-mapping>

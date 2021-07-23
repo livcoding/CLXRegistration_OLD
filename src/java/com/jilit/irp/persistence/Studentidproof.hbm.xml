@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.StudentIDProof" select-before-update="true" table="STUDENTIDPROOF">
+        <id name="studentid" type="string">
+            <column length="20" name="STUDENTID"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+            <column length="20" name="STUDENTID" not-null="true"/>
+        </many-to-one>
+        <property name="passportnumber" type="string">
+            <column length="60" name="PASSPORTNUMBER"/>
+        </property>
+        <property name="passportplaceofissue" type="string">
+            <column length="80" name="PASSPORTPLACEOFISSUE" />
+        </property>
+        <property name="adhaarnumber" type="string">
+            <column length="50" name="ADHAARNUMBER"/>
+        </property>
+        <property name="pan" type="string">
+            <column length="50" name="PAN"/>
+        </property>
+        <property name="passportdateofissue" type="date">
+            <column length="7" name="PASSPORTDATEOFISSUE"/>
+        </property>
+        <property name="passportvalidupto" type="date">
+            <column length="7" name="PASSPORTVALIDUPTO"/>
+        </property>
+        <property name="emergencycontactno" type="string">
+            <column length="20" name="EMERGENCYCONTACTNO"/>
+        </property>
+        <property name="emergencycontactpersonname" type="string">
+            <column length="80" name="EMERGENCYCONTACTPERSONNAME"/>
+        </property>
+        <property name="emergencyrelationship" type="string">
+            <column length="50" name="EMERGENCYRELATIONSHIP"/>
+        </property>
+        <property name="medicalhistory" type="string">
+            <column length="1000" name="MEDICALHISTORY"/>
+        </property>
+    </class>
+</hibernate-mapping>

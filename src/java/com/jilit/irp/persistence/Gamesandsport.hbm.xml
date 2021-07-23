@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.GamesAndSport" table="GAMESANDSPORT">
+    <composite-id class="com.jilit.irp.persistence.dto.GamesAndSportId" name="id">
+      <key-property name="clientid" type="string">
+        <column length="20" name="CLIENTID"/>
+      </key-property>
+      <key-property name="gamename" type="string">
+        <column length="60" name="GAMENAME"/>
+      </key-property>
+    </composite-id> 
+    <property name="gamedetail" type="string">
+      <column length="200" name="GAMEDETAIL"/>
+    </property>
+    
+      <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    </class>  
+</hibernate-mapping>

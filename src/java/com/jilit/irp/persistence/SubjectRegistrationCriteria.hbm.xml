@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+<class name="com.jilit.irp.persistence.dto.SubjectRegistrationCriteria" table="SUBJECTREGISTRATIONCRITERIA">
+    <composite-id class="com.jilit.irp.persistence.dto.SubjectRegistrationCriteriaId" name="id">
+      <key-property name="clientid" type="string">
+        <column length="20" name="CLIENTID"/>
+      </key-property>
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+    </composite-id>
+    <property name="subjtypeforcreditsummation_e" type="string">
+      <column length="20" name="SUBJTYPEFORCREDITSUMMATION_E"/>
+    </property>
+    <property name="subjtypeforcreditsummation_c" type="string">
+      <column length="20" name="SUBJTYPEFORCREDITSUMMATION_C"/>
+    </property>
+    <property name="electivetypetobeshown_c" type="string">
+      <column length="20" name="ELECTIVETYPETOBESHOWN_C"/>
+    </property>
+    <property name="electivetypetobeshown_e" type="string">
+      <column length="20" name="ELECTIVETYPETOBESHOWN_E"/>
+    </property>
+    <property name="electivetypetobedisabled_c" type="string">
+      <column length="20" name="ELECTIVETYPETOBEDISABLED_C"/>
+    </property>
+    <property name="electivetypetobedisabled_e" type="string">
+      <column length="20" name="ELECTIVETYPETOBEDISABLED_E"/>
+    </property>
+    <property name="enabletypeincoursereg" type="string">
+      <column length="20" name="ENABLETYPEINCOURSEREG"/>
+    </property>
+    <property name="showbackpaperincoursereg" type="string">
+      <column length="20" name="SHOWBACKPAPERINCOURSEREG"/>
+    </property>
+    <property name="enablebackpaperincoursereg" type="string">
+      <column length="1" name="ENABLEBACKPAPERINCOURSEREG"/>
+    </property>
+    <property name="allownotrunningbackpaper" type="string">
+      <column length="1" name="ALLOWNOTRUNNINGBACKPAPER"/>
+    </property>
+    <property name="backpaperdefaultselected" type="string">
+      <column length="1" name="BACKPAPERDEFAULTSELECTED"/>
+    </property>
+    <property name="backpaperselectionmandaoty" type="string">
+      <column length="1" name="BACKPAPERSELECTIONMANDAOTY"/>
+    </property>
+    <property name="modificationofpereferences" type="string">
+      <column length="1" name="MODIFICATIONOFPEREFERENCES"/>
+    </property>
+    <property name="allowprintingofelectivechoices" type="string">
+      <column length="1" name="ALLOWPRINTINGOFELECTIVECHOICES"/>
+    </property>
+    <property name="printingofcourseregistration" type="string">
+      <column length="1" name="PRINTINGOFCOURSEREGISTRATION"/>
+    </property>
+    <property name="feeduecheckisrequierdfor" type="string">
+      <column length="1" name="FEEDUECHECKISREQUIERDFOR"/>
+    </property>
+    <property name="backpaperfeetobe" type="string">
+      <column length="1" name="BACKPAPERFEETOBE"/>
+    </property>
+   
+  </class>
+
+</hibernate-mapping>

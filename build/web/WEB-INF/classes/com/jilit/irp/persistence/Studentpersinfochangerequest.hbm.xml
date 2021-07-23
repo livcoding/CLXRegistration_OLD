@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 30, 2010 4:42:06 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentPersInfoChangeRequest" table="STUDENTPERSINFOCHANGEREQUEST">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentPersInfoChangeRequestId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="requestid" type="string">
+        <column length="20" name="REQUESTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Sct_IrpUserType" fetch="select" insert="false" lazy="false" name="requestbymembertype" update="false">
+      <column length="1" name="REQUESTBYMEMBERTYPE"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Sct_IrpUserType" fetch="select" insert="false" lazy="false" name="approvalbymembertype" update="false">
+      <column length="1" name="APPROVALBYMEMBERTYPE"/>
+    </many-to-one>
+    <property name="requestdate" type="date">
+      <column length="7" name="REQUESTDATE" not-null="true"/>
+    </property>
+    <property name="requestbymemberid" type="string">
+      <column length="20" name="REQUESTBYMEMBERID"/>
+    </property>
+    <property name="approvalbymembertype1" type="string">
+      <column length="1" name="APPROVALBYMEMBERTYPE"/>
+    </property>
+    <property name="requestbymembertype1" type="string">
+      <column length="1" name="REQUESTBYMEMBERTYPE"/>
+    </property>
+    <property name="approved" type="java.lang.Character">
+      <column length="1" name="APPROVED"/>
+    </property>
+    <property name="approvaldate" type="date">
+      <column length="7" name="APPROVALDATE"/>
+    </property>
+    <property name="approvalbymemberid" type="string">
+      <column length="20" name="APPROVALBYMEMBERID"/>
+    </property>
+  </class>
+</hibernate-mapping>

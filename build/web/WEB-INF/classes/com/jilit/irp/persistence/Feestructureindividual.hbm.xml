@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 21, 2011 3:02:43 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.FeeStructureIndividual" table="FEESTRUCTUREINDIVIDUAL">
+        <composite-id class="com.jilit.irp.persistence.dto.FeeStructureIndividualId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="stynumber" type="byte">
+                <column name="STYNUMBER" precision="2" scale="0"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+            <key-property name="slno" type="int">
+                <column name="SLNO" precision="5" scale="0"/>
+            </key-property>
+            <key-property name="stytypeid" type="string">
+                <column length="20" name="STYTYPEID"/>
+            </key-property>
+            <key-property name="quotaid" type="string">
+                <column length="20" name="QUOTAID"/>
+            </key-property>
+            <key-property name="feeheadid" type="string">
+                <column length="20" name="FEEHEADID"/>
+            </key-property>
+            <key-property name="currencyid" type="string">
+                <column length="20" name="CURRENCYID"/>
+            </key-property>
+            <key-property name="studentid" type="string">
+                <column length="20" name="STUDENTID"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.CurrencyMaster" fetch="select" insert="false" lazy="false" name="currencymaster" update="false">
+            <column length="20" name="CURRENCYID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.FeeHeads" fetch="select" insert="false" lazy="false" name="feeheads" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="FEEHEADID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+            <column length="20" name="STUDENTID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.StyType" fetch="select" insert="false" lazy="false" name="stytype" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="STYTYPEID" not-null="true">
+                <comment>"STY Type"</comment>
+            </column>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.StudentQuota" fetch="select" insert="false" lazy="false" name="studentquota" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="QUOTAID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+            <column length="20" name="INSTITUTEID"/>
+            <column length="20" name="REGISTRATIONID"/>
+        </many-to-one>
+        <property name="feeamount" type="java.math.BigDecimal">
+            <column name="FEEAMOUNT" precision="18" scale="2">
+            </column>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="sourcetransaction" type="string">
+            <column length="60" name="SOURCETRANSACTION"/>
+        </property>
+        <property name="processid" type="string">
+            <column length="20" name="PROCESSID"/>
+        </property>
+        <property name="acceptablecurrency" type="string">
+            <column length="1" name="ACCEPTABLECURRENCY"/>
+        </property>
+        <property name="partiallyacceptable" type="string">
+            <column length="1" name="PARTIALLYACCEPTABLE"/>
+        </property>
+        <property name="criteriabased" type="string">
+            <column length="1" name="CRITERIABASED"/>
+        </property>
+        <property name="feefinalized" type="string">
+            <column length="1" name="FEEFINALIZED"/>
+        </property>
+        <property name="feecollectionfromdate" type="timestamp">
+            <column length="7" name="FEECOLLECTIONFROMDATE"/>
+        </property>
+        <property name="feecollectiontodate" type="timestamp">
+            <column length="7" name="FEECOLLECTIONTODATE"/>
+        </property>
+        <property name="entrydate" type="timestamp">
+            <column length="7" name="ENTRYDATE"/>
+        </property>
+    </class>
+</hibernate-mapping>

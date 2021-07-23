@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Sct_RoleMaster" table="SCT_ROLEMASTER">
+    <id name="roleid" type="string">
+      <column length="20" name="ROLEID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="rolename" type="string">
+      <column length="50" name="ROLENAME" unique="true"/>
+    </property>
+    <property name="roleformembertype" type="string">
+      <column length="10" name="ROLEFORMEMBERTYPE" not-null="true"/>
+    </property>
+    <property name="roledescription" type="string">
+      <column length="100" name="ROLEDESCRIPTION" not-null="true"/>
+    </property>
+    <property name="deactive" type="java.lang.Character">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="defaultrole" type="string">
+      <column length="1" name="DEFAULTROLE"/>
+    </property>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="sct_rolerightstaggings">
+      <key>
+        <column length="20" name="ROLEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Sct_RoleRightsTagging"/>
+    </set>
+  </class>
+  <query name="getAllRoleMasterData">
+       
+       select a.id.roleid,a.rolename from Sct_RoleMaster a
+       where a.roleformembertype like '%S%'
+           or a.roleformembertype like '%P%'
+           and coalesce(a.deactive,'N') = 'N'
+        
+
+  </query>
+  <query name="getAllMemberTypeRoleMasterData">
+       
+       select a.id.roleid,a.rolename,a.defaultrole from Sct_RoleMaster a
+       where a.roleformembertype like ?
+           and coalesce(a.deactive,'N') = 'N'
+        
+
+  </query>
+</hibernate-mapping>

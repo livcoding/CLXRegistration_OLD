@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Sct_KioskMarqueeText" table="SCT_KIOSKMARQUEETEXT">
+    <composite-id class="com.jilit.irp.persistence.dto.Sct_KioskMarqueeTextId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="sno" type="short">
+        <column name="SNO" precision="3" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="displayfrom" type="date">
+      <column length="7" name="DISPLAYFROM"/>
+    </property>
+    <property name="displaytill" type="date">
+      <column length="7" name="DISPLAYTILL"/>
+    </property>
+    <property name="textdata" type="string">
+      <column length="100" name="TEXTDATA"/>
+    </property>
+    <property name="applicablefor" type="string">
+      <column length="5" name="APPLICABLEFOR">
+        <comment>ES means Employee and Student</comment>
+      </column>
+    </property>
+    <property name="withoutlogin" type="string">
+      <column length="1" name="WITHOUTLOGIN">
+        <comment>[Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="msgboxno" type="string">
+      <column length="3" name="MSGBOXNO">
+        <comment>Panle Reference where message will be flashed</comment>
+      </column>
+    </property>
+    <property name="messagepriority" type="big_decimal">
+      <column name="MESSAGEPRIORITY" precision="22" scale="0">
+        <comment>Sequence number or priority of the message</comment>
+      </column>
+    </property>
+    <property name="individulauserid" type="string">
+      <column length="20" name="INDIVIDULAUSERID">
+        <comment>UserID in case message has to deliverd to the individual user</comment>
+      </column>
+    </property>
+    <property name="status" type="string">
+      <column length="1" name="STATUS">
+        <comment>[A]ctive/[D]eactive - Null means Active</comment>
+      </column>
+    </property>
+  </class>
+</hibernate-mapping>

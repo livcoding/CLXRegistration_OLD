@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 20, 2016 3:30:44 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.SDL_SMSMailText" table="SDL_SMSMAILTEXT" >
+         <id name="instituteid" type="string">
+            <column length="20" name="INSTITUTEID"/>
+            <generator class="assigned"/>
+       </id>
+        <property name="srseventtext" type="string">
+            <column name="SRSEVENTTEXT" length="2000" />
+        </property>
+        <property name="srsremindertext" type="string">
+            <column name="SRSREMINDERTEXT" length="2000" />
+        </property>
+        <property name="srseventsmstext" type="string">
+            <column name="SRSEVENTSMSTEXT" length="2000" />
+        </property>
+        <property name="srsremindersmstext" type="string">
+            <column name="SRSREMINDERSMSTEXT" length="2000" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.StudentRegistration" select-before-update="true" table="STUDENTREGISTRATION">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentRegistrationId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.HostelType" fetch="select" insert="false" lazy="false" name="hosteltype" update="false">
+      <column length="20" name="HOSTELTYPEID">
+        <comment>Hostel Type</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StyType" fetch="select" insert="false" lazy="false" name="stytype" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="STYTYPEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentQuota" fetch="select" insert="false" lazy="false" name="studentquota" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="QUOTAID" not-null="true"/>
+    </many-to-one>
+    <property name="stynumber" type="byte">
+      <column name="STYNUMBER" not-null="true" precision="2" scale="0"/>
+    </property>
+    <property name="stytypeid" type="string">
+      <column name="STYTYPEID" not-null="true"/>
+    </property>
+    <property name="quotaid" type="string">
+      <column name="QUOTAID"/>
+    </property>
+    <property name="regallow" type="string">
+      <column length="1" name="REGALLOW">
+        <comment>Allow for Registration [Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="regallowuser" type="string">
+      <column length="30" name="REGALLOWUSER"/>
+    </property>
+    <property name="regallowdate" type="date">
+      <column length="7" name="REGALLOWDATE"/>
+    </property>
+    <property name="hostelallow" type="string">
+      <column length="1" name="HOSTELALLOW">
+        <comment>Allow for Hostel [Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="hostelallowuser" type="string">
+      <column length="30" name="HOSTELALLOWUSER"/>
+    </property>
+    <property name="hostelallowdate" type="date">
+      <column length="7" name="HOSTELALLOWDATE"/>
+    </property>
+    <property name="feespaid" type="string">
+      <column length="1" name="FEESPAID">
+        <comment>Fees Paid [Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="feespaiduser" type="string">
+      <column length="30" name="FEESPAIDUSER"/>
+    </property>
+    <property name="feespaiddate" type="date">
+      <column length="7" name="FEESPAIDDATE"/>
+    </property>
+    <property name="subjecttagged" type="string">
+      <column length="1" name="SUBJECTTAGGED">
+        <comment>All subescts have been taged for this student [Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="regconfirmation" type="string">
+      <column length="1" name="REGCONFIRMATION">
+        <comment>Registration confirmed/completed for this student [Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="regconfirmationuser" type="string">
+      <column length="30" name="REGCONFIRMATIONUSER"/>
+    </property>
+    <property name="regconfirmatiodate" type="timestamp">
+      <column length="7" name="REGCONFIRMATIODATE"/>
+    </property>
+    <property name="hostelconfirmation" type="string">
+      <column length="1" name="HOSTELCONFIRMATION">
+        <comment>Yes / No</comment>
+      </column>
+    </property>
+    <property name="hostelconfirmationuser" type="string">
+      <column length="30" name="HOSTELCONFIRMATIONUSER"/>
+    </property>
+    <property name="hostelconfirmationdate" type="date">
+      <column length="7" name="HOSTELCONFIRMATIONDATE"/>
+    </property>
+    <property name="fullpaid" type="string">
+      <column length="1" name="FULLPAID">
+        <comment>Full Paid [Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="fullpaiduser" type="string">
+      <column length="30" name="FULLPAIDUSER"/>
+    </property>
+    <property name="fullpaiddate" type="date">
+      <column length="7" name="FULLPAIDDATE"/>
+    </property>
+    <property name="fullpaidremarks" type="string">
+      <column length="160" name="FULLPAIDREMARKS"/>
+    </property>
+    <property name="preventfrom" type="date">
+      <column length="7" name="PREVENTFROM">
+        <comment>Pre Reg. Event From Date for this student</comment>
+      </column>
+    </property>
+    <property name="preventto" type="date">
+      <column length="7" name="PREVENTTO">
+        <comment>Pre Reg. Event To Date for this student</comment>
+      </column>
+    </property>
+    <property name="preventfreezed" type="string">
+      <column length="1" name="PREVENTFREEZED"/>
+    </property>
+    <property name="prfreezedby" type="string">
+      <column length="20" name="PRFREEZEDBY"/>
+    </property>
+    <property name="prfreezeddate" type="date">
+      <column length="7" name="PRFREEZEDDATE"/>
+    </property>
+    <property name="sstpopulated" type="string">
+      <column length="1" name="SSTPOPULATED">
+        <comment>Pre Reg.Event Freezed Varchar2(1) "Yes/No ;</comment>
+      </column>
+    </property>
+    <property name="remarks" type="string">
+      <column length="160" name="REMARKS"/>
+    </property>
+    <property name="prsubjstaffpreffreezed" type="string">
+      <column length="1" name="PRSUBJSTAFFPREFFREEZED"/>
+    </property>
+    <property name="prsubjstaffprefby" type="string">
+      <column length="20" name="PRSUBJSTAFFPREFBY"/>
+    </property>
+    <property name="prsubjstaffprefdate" type="date">
+      <column length="160" name="PRSUBJSTAFFPREFDATE"/>
+    </property>
+    <property name="institutecopysubmitted" type="string">
+      <column length="1" name="INSTITUTECOPYSUBMITTED"/>
+    </property>
+    <property name="copysubmitteduser" type="string">
+      <column length="30" name="COPYSUBMITTEDUSER"/>
+    </property>
+    <property name="copysubmitiondate" type="date">
+      <column length="160" name="COPYSUBMITIONDATE"/>
+    </property>
+    <property name="instelectivefreezed" type="string">
+      <column length="1" name="INSTELECTIVEFREEZED"/>
+    </property>
+    <property name="instelectivefreezingdate" type="timestamp">
+      <column length="160" name="INSTELECTIVEFREEZINGDATE"/>
+    </property>
+    <property name="instelectivefreezedby" type="string">
+      <column length="20" name="INSTELECTIVEFREEZEDBY"/>
+    </property>
+    <property name="academicregistrationflag" type="string">
+      <column length="20" name="AcademicRegistrationFlag"/>
+    </property>
+    <property name="academicregistrationdate" type="timestamp">
+      <column length="20" name="AcademicRegistrationDate"/>
+    </property>
+    <property name="academicregistrationby" type="string">
+      <column length="20" name="AcademicRegistrationBy"/>
+    </property>
+    <property name="attendancedone" type="string">
+      <column length="1" name="AttendanceDone"/>
+    </property>
+    <property name="attendancedate" type="timestamp">
+      <column length="20" name="AttendanceDate"/>
+    </property>
+    <property name="attendanceby" type="string">
+      <column length="20" name="AttendanceBy"/>
+    </property>
+    <property name="feepaymentmode" type="string">
+      <column length="1" name="FEEPAYMENTMODE"/>
+    </property>
+    <property name="hosteltypeid" type="string">
+      <column length="6" name="HOSTELTYPEID"/>
+    </property>
+     <property name="elegibilityfeeapplicable" type="string">
+      <column length="1" name="ELEGIBILITYFEEAPPLICABLE"/>
+    </property>
+    <property name="elegibilityfeedate" type="date">
+      <column length="10" name="ELEGIBILITYFEEDATE"/>
+    </property>
+     <property name="allowforfeepay" type="string">
+      <column length="1" name="ALLOWFORFEEPAY">
+        <comment>Allow for AllowForFeepay [Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="docverification" type="string">
+      <column length="1" name="DOCVERIFICATION">
+        <comment>Student Document Verification Flag - > [Y]es/ [N]o</comment>
+      </column>
+    </property>
+    <property name="allowforsubjectchoice" type="string">
+      <column length="1" name="ALLOWFORSUBJECTCHOICE">
+        <comment>Allow For Subject Choice Flag - > [Y]es/ [N]o</comment>
+      </column>
+    </property>
+    <property name="transportallow" type="string">
+      <column length="1" name="TRANSPORTALLOW">
+        <comment>Transport Allow Flag - > [Y]es/ [N]o</comment>
+      </column>
+    </property>
+    <set cascade="save-update,delete" inverse="true" lazy="extra" name="studentregistration_infos">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REGISTRATIONID" not-null="true"/>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentRegistration_info"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prstudentsubjectchoicecounts">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REGISTRATIONID" not-null="true"/>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PRStudentSubjectChoiceCount"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentsubjectchoicemasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REGISTRATIONID" not-null="true"/>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentSubjectChoiceMaster"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="studentcertificateslnos">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REGISTRATIONID" not-null="true"/>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentCertificateSlno"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="noteligibleforregistrations">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REGISTRATIONID" not-null="true"/>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.NotEligibleForRegistration"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentyearbackdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REGISTRATIONID" not-null="true"/>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentYearBackDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="regcoordinatortaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REGISTRATIONID" not-null="true"/>
+        <column length="20" name="STUDENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.RegCoordinatorTagging"/>
+    </set>
+    <property name="supplimentryfeepaid" type="string">
+      <column length="1" name="SUPPLIMENTRYFEEPAID">
+        <comment>Paid Supplimentry Fee[Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="supplimentoryfeepaidby" type="string">
+      <column length="20" name="SUPPLIMENTORYFEEPAIDBY"/>
+    </property>
+    <property name="supplimentoryfeepaiddate" type="date">
+      <column length="7" name="SUPPLIMENTORYFEEPAIDDATE"/>
+    </property>
+  </class>
+  <query name="studentsubjectchoice_report">
+      select reg from StudentRegistration reg
+      where reg.id.instituteid=?
+      and reg.id.studentid=? and reg.regallow='Y' and reg.studentmaster.branchid is not null
+      and reg.studentmaster.programid is not null and reg.studentmaster.sectionid is not null
+  </query>
+  <query name="findAllRegistrationCode_StudentRegistration">
+      select a
+         from RegistrationMaster a
+            where a.id.instituteid = ?
+                  and coalesce(a.deactive,'N')='N'
+                  and exists(
+                              select b.id.registrationid
+                                     from StudentRegistration b
+                                           where a.id.instituteid = b.id.instituteid
+                                             and a.id.registrationid = b.id.registrationid
+                                             and b.id.instituteid = ? )
+                   and exists(
+                               select c.id.registrationid
+                                       from InstituteRegistrationEvents c
+                                            where a.id.instituteid = c.id.instituteid
+                                              and a.id.registrationid = c.id.registrationid
+                                              and c.id.instituteid = ?
+                                              and coalesce(c.preregistrationallowed,'N') = 'Y'
+                             )
+
+  </query>
+  <query name="updateStudentRegistration_InstituteCopySubmission">
+
+          update StudentRegistration a
+                set a.institutecopysubmitted = :institutecopysubmitted, a.copysubmitteduser = :userid, a.copysubmitiondate = sysdate
+                    where a.id.instituteid = :instituteid
+                       and a.id.registrationid = :registrationid
+                       and a.id.studentid = :studentid
+
+  </query>
+  <query name="updateStudentRegistration_FeePaid">
+
+          update StudentRegistration a
+                set a.feespaid = 'Y', a.feespaiduser = :userid, a.feespaiddate = sysdate
+                    where a.id.instituteid = :instituteid
+                       and a.id.registrationid = :registrationid
+                       and a.id.studentid = :studentid
+
+  </query>
+  <query name="updateStudentRegistration_Attendance">
+
+          update StudentRegistration a
+                set a.attendancedone = 'Y', a.attendanceby = :userid, a.attendancedate = sysdate
+                    where a.id.instituteid = :instituteid
+                       and a.id.registrationid = :registrationid
+                       and a.id.studentid = :studentid
+
+  </query>
+  <query name="findAllAcademicRegistrationCompletedStudent">
+
+      select a
+             from StudentMaster a
+             where exists(
+                         select b.id.studentid from StudentRegistration b
+                             where a.instituteid = b.id.instituteid
+                                   and a.id.studentid = b.id.studentid
+                                   and b.id.instituteid = ?
+                                   and b.id.registrationid = ?
+                                   and coalesce(b.institutecopysubmitted,'N') = 'Y'
+                                   and coalesce(b.feespaid,'N') = 'Y'
+
+                         )
+                         and coalesce(a.activestatus,'A') = 'A'
+                         order by a.programid,a.branchid,a.enrollmentno
+      
+  </query>
+  <query name="findAllAcademicRegistrationNotCompletedStudent">
+
+      select a
+             from StudentMaster a
+             where exists(
+                         select b.id.studentid from StudentRegistration b
+                             where a.instituteid = b.id.instituteid
+                                   and a.id.studentid = b.id.studentid
+                                   and b.id.instituteid = ?
+                                   and b.id.registrationid = ?
+                                   and (coalesce(b.institutecopysubmitted,'N') = 'N' or coalesce(b.feespaid,'N') = 'N')
+                          )
+                          and coalesce(a.activestatus,'A') = 'A'
+                          order by a.programid,a.branchid,a.enrollmentno
+
+  </query>
+  <query name="findAllFeesNotPaidStudent">
+
+      select a
+             from StudentMaster a
+             where exists(
+                         select b.id.studentid from StudentRegistration b
+                             where a.instituteid = b.id.instituteid
+                                   and a.id.studentid = b.id.studentid
+                                   and b.id.instituteid = ?
+                                   and b.id.registrationid = ?
+                                   and coalesce(b.feespaid,'N') = 'N'
+                         )
+                         and coalesce(a.activestatus,'A') = 'A'
+                         order by a.programid,a.branchid,a.enrollmentno
+
+  </query>
+  <query name="findAllInstituteCopyNotSubmittedStudent">
+
+      select a
+             from StudentMaster a
+             where exists(
+                         select b.id.studentid from StudentRegistration b
+                             where a.instituteid = b.id.instituteid
+                                   and a.id.studentid = b.id.studentid
+                                   and b.id.instituteid = ?
+                                   and b.id.registrationid = ?
+                                   and coalesce(b.institutecopysubmitted,'N') = 'N'
+                          )
+                          and coalesce(a.activestatus,'A') = 'A'
+                          order by a.programid,a.branchid,a.enrollmentno
+
+
+  </query>
+  <query name="findRegistrationStatus">
+
+      select a from StudentRegistration a
+           where a.id.instituteid = ?
+             and a.id.registrationid = (select b.id.registrationid from InstituteRegistrationEvents b
+                                             where b.id.instituteid = ?
+                                                and coalesce(b.preregistrationallowed,'N') = 'Y'
+                                                and rownum = 1)
+             and a.id.studentid = ?
+             and coalesce(a.institutecopysubmitted,'N') = 'Y'
+             and coalesce(a.feespaid,'N') = 'Y'
+             and sysdate between a.preventfrom and a.preventto + 10
+
+  </query>
+  <query name="findAllRegistrationCode_StudentSubjectChoiceMaster">
+
+      select a
+         from RegistrationMaster a
+            where a.id.instituteid = ?
+                  and coalesce(a.deactive,'N')='N'
+                  and exists(
+                              select b.id.registrationid
+                                     from StudentSubjectChoiceMaster b, InstituteRegistrationEvents c
+                                           where a.id.instituteid = b.id.instituteid
+                                             and a.id.registrationid = b.id.registrationid
+                                             and c.id.instituteid = b.id.instituteid
+                                             and c.id.registrationid = b.id.registrationid
+                                             and coalesce(c.preregistrationallowed,'N') = 'Y'
+                                             and b.id.instituteid = ? )
+
+  </query>
+  <query name="findRegistrationCode_StudentSubjectChoiceMaster">
+
+      select a
+         from RegistrationMaster a
+            where a.id.instituteid = ?
+                  and a.registrationcode = ?
+                  and coalesce(a.deactive,'N')='N'
+                  and exists(
+                              select b.id.registrationid
+                                     from StudentSubjectChoiceMaster b
+                                           where a.id.instituteid = b.id.instituteid
+                                             and a.id.registrationid = b.id.registrationid
+                                             and b.id.instituteid = ? )
+
+  </query>
+  <query name="findAllStyNumber_StudentRegistration">
+
+      select distinct b.stynumber
+                                from StudentMaster a, StudentRegistration b
+                                                  where
+                                                        a.instituteid = b.id.instituteid
+                                                    and a.studentid = b.id.studentid
+                                                    and a.instituteid = ?
+                                                    and a.acadyear = ?
+                                                    and a.programid = ?
+                                                    and a.branchid = ?
+                                                    and b.id.registrationid = ?
+                                                    order by b.stynumber desc
+
+
+  </query>
+  <query name="findStudentFromStudentregistration">
+
+      select a
+          from StudentRegistration a
+              where a.id.instituteid = ?
+                and a.id.registrationid = ?
+                and a.id.studentid = ?
+
+  </query>
+  <query name="updateStudentHostel_Confirmation">
+
+          update StudentRegistration a
+                set a.hostelconfirmation = 'Y', a.hostelconfirmationuser = :userid, a.hostelconfirmationdate = sysdate
+                    where a.id.instituteid = :instituteid
+                       and a.id.registrationid = :registrationid
+                       and a.id.studentid = :studentid
+
+  </query>
+  <query name="updateAcademicregistrationflag">
+
+          update StudentRegistration a
+                set a.academicregistrationflag = 'Y', a.academicregistrationby = :studentid, a.academicregistrationdate = sysdate
+                    where a.id.instituteid = :instituteid
+                       and a.id.registrationid = :registrationid
+                       and a.id.studentid = :studentid
+
+  </query>
+</hibernate-mapping>

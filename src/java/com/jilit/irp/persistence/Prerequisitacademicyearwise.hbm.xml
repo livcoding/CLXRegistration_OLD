@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.PreRequisitAcademicYearwise" table="PREREQUISITACADEMICYEARWISE">
+    <comment>PreRequisit Master Academic year wise</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.PreRequisitAcademicYearwiseId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="subjectsetid" type="string">
+        <column length="20" name="SUBJECTSETID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" lazy="false" name="programmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Academicyear" fetch="select" insert="false" lazy="false" name="academicyear" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SectionMaster" fetch="select" insert="false" lazy="false" name="sectionmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SECTIONID" not-null="true"/>
+    </many-to-one>
+    <property name="programid" type="string">
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </property>
+    <property name="acadyear" type="string">
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </property>
+    <property name="sectionid" type="string">
+      <column length="20" name="SECTIONID" not-null="true"/>
+    </property>
+    <property name="stynumber" type="byte">
+      <column name="STYNUMBER" not-null="true" precision="2" scale="0"/>
+    </property>
+    <property name="stypattern" type="string">
+      <column length="1" name="STYPATTERN"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="prerequisitacadwiserequireds">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTSETID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitAcadWiseRequired"/>
+    </set>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="prerequisitacademicsubjects">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTSETID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitAcademicSubjects"/>
+    </set>
+  </class>
+</hibernate-mapping>

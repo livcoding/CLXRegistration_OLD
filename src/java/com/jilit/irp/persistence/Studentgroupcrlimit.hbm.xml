@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.StudentGroupCrLimit" table="STUDENTGROUPCRLIMIT">
+        <composite-id class="com.jilit.irp.persistence.dto.StudentGroupCrLimitId" name="id">
+            <key-property name="groupid" type="string">
+                <column length="20" name="GROUPID"/>
+            </key-property>
+            <key-property name="clientid" type="string">
+                <column length="20" name="CLIENTID"/>
+            </key-property>
+        </composite-id>
+        <property name="stynumber" type="string">
+            <column length="4" name="STYNUMBER"/>
+        </property>
+        <property name="programid" type="string">
+            <column length="20" name="PROGRAMID"/>
+        </property>
+        <property name="mincredit" type="string">
+            <column length="9" name="MINCREDIT"/>
+        </property>
+        <property name="maxcredit" type="string">
+            <column length="9" name="MAXCREDIT"/>
+        </property>
+        <property name="branchid" type="string">
+            <column length="20" name="BRANCHID"/>
+        </property>
+        <many-to-one class="com.jilit.irp.persistence.dto.StudentGroupMaster" fetch="select" insert="false" lazy="false" name="studentgroupmaster" update="false">
+            <column length="20" name="GROUPID" not-null="true"/>
+            <column length="20" name="CLIENTID" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

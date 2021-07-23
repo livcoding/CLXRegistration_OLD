@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Sct_RoleRightsTagging" table="SCT_ROLERIGHTSTAGGING">
+    <composite-id class="com.jilit.irp.persistence.dto.Sct_RoleRightsTaggingId" name="id">
+      <key-property name="roleid" type="string">
+        <column length="20" name="ROLEID"/>
+      </key-property>
+      <key-property name="rightsid" type="string">
+        <column length="20" name="RIGHTSID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.Sct_ModuleRightsMaster" fetch="select" insert="false" lazy="false" name="sct_modulerightsmaster" update="false">
+      <column length="20" name="RIGHTSID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Sct_RoleMaster" fetch="select" insert="false" lazy="false" name="sct_rolemaster" update="false">
+      <column length="20" name="ROLEID" not-null="true"/>
+    </many-to-one>
+    <property name="menulable" type="string">
+      <column length="50" name="MENULABLE" not-null="true"/>
+    </property>
+    <property name="deactive" type="java.lang.Character">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

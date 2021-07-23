@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 5, 2015 11:58:29 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.NumberingSetUpOthersMaster" table="NUMBERINGSETUPOTHERSMASTER">
+    <id name="prefix" type="string">
+      <column length="4" name="PREFIX"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="numberingname" type="string">
+      <column length="100" name="NUMBERINGNAME" not-null="true" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

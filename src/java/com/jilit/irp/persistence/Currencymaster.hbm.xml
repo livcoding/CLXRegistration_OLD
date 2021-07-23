@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 21, 2011 3:02:43 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.CurrencyMaster" table="CURRENCYMASTER">
+    <id name="currencyid" type="string">
+      <column length="20" name="CURRENCYID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="currencycode" type="string">
+      <column length="20" name="CURRENCYCODE" not-null="true"/>
+    </property>
+    <property name="currencydesc" type="string">
+      <column length="60" name="CURRENCYDESC" not-null="true"/>
+    </property>
+    <property name="currencyimage" type="blob">
+      <column name="CURRENCYIMAGE">
+        <comment>"Currency Image"</comment>
+      </column>
+    </property>
+    <property name="accountingcurrency" type="string">
+      <column length="1" name="ACCOUNTINGCURRENCY">
+        <comment>"Base Accunting Currency Yes / No"</comment>
+      </column>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0">
+        <comment>Sequencing ID</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="feestructureindividuals">
+      <key>
+        <column length="20" name="CURRENCYID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.FeeStructureIndividual"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.SummerRegistrationSetup" table="SUMMERREGISTRATIONSETUP">
+        <composite-id class="com.jilit.irp.persistence.dto.SummerRegistrationSetupId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="programid" type="string">
+                <column length="20" name="PROGRAMID"/>
+            </key-property>
+            <key-property name="stynumber" type="byte">
+                <column length="4" name="STYNUMBER"/>
+            </key-property>
+        </composite-id>
+        <property name="maxcredit" type="double">
+            <column length="4" name="MAXCREDIT" />
+        </property>
+        <property name="maxsubjects" type="int">
+            <column length="4" name="MAXSUBJECTS" />
+        </property>
+        <property name="maxprojectsubjects" type="int">
+            <column length="4" name="MAXPROJECTSUBJECTS" />
+        </property>
+        <property name="induscasemaxsubj" type="int">
+            <column length="4" name="INDUSCASEMAXSUBJ"/>
+        </property>
+    </class>
+</hibernate-mapping>

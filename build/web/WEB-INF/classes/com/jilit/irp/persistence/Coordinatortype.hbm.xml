@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 10, 2011 11:08:29 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.CoordinatorType" table="COORDINATORTYPE">
+    <composite-id class="com.jilit.irp.persistence.dto.CoordinatorTypeId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="coordinatortypeid" type="string">
+        <column length="20" name="COORDINATORTYPEID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true">
+        <comment>For sequencing purpose</comment>
+      </column>
+    </many-to-one>
+    <property name="coordinatortypecode" type="string">
+      <column length="20" name="COORDINATORTYPECODE" not-null="true">
+        <comment>Unique</comment>
+      </column>
+    </property>
+    <property name="coordinatortypedesc" type="string">
+      <column length="60" name="COORDINATORTYPEDESC" not-null="true">
+        <comment>Like Guide, Marks entry coOrdinator</comment>
+      </column>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0"/>
+    </property>
+    <property name="coordinatortype" type="string">
+      <column length="1" name="COORDINATORTYPE">
+        <comment>[G]uide / [C]ourse CoOrdinator / [M]arks CoOrdinator / [G]rade CoOrdinator</comment>
+      </column>
+    </property>
+    <property name="groupflag" type="string">
+      <column length="1" name="GROUPFLAG">
+        <comment>[S]tudent Base / [F]ST Base</comment>
+      </column>
+    </property>
+    <property name="studentlimit" type="java.lang.Integer">
+      <column name="STUDENTLIMIT" precision="2" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="coordinatornamestudentwises">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="COORDINATORTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CoordinatorNameStudentWise"/>
+    </set>
+    <set inverse="true" lazy="extra" name="fstwisecoordinators">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="COORDINATORTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.FSTwiseCoordinator"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentappointfixations">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="COORDINATORTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentAppointFixation"/>
+    </set>
+    <set inverse="true" lazy="extra" name="regcoordinatortaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="COORDINATORTYPEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.RegCoordinatorTagging"/>
+    </set>
+  </class>
+</hibernate-mapping>

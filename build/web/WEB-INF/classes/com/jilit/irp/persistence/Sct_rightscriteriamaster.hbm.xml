@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2017 12:13:11 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Sct_RightsCriteriaMaster" table="SCT#RIGHTSCRITERIAMASTER">
+    <id name="rightsbasedon" type="string">
+      <column length="2" name="RIGHTSBASEDON"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="rightsbasedondesc" type="string">
+      <column length="200" name="RIGHTSBASEDONDESC"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" name="sct_userrolescriterabaseds">
+      <key>
+        <column length="2" name="RIGHTSBASEDON" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Sct_UserRolesCriteraBased"/>
+    </set>
+  </class>
+</hibernate-mapping>

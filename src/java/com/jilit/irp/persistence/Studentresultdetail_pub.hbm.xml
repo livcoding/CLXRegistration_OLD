@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 12, 2011 5:56:33 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentResultDetail_Pub" table="STUDENTRESULTDETAIL#PUB">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentResultDetail_PubId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="studentfstid" type="string">
+        <column length="20" name="STUDENTFSTID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentRegistration" fetch="select" insert="false" lazy="false" name="studentregistration" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.FacultyStudentTagging" fetch="select" insert="false" lazy="false" name="facultystudenttagging" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="STUDENTFSTID" not-null="true"/>
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentResultDetail" fetch="select" insert="false" lazy="false" name="studentresultdetail" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="20" name="STUDENTFSTID" not-null="true"/>
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="gradeid" type="string">
+      <column length="20" name="GRADEID" not-null="true"/>
+    </property>
+    <property name="gradepoint" type="big_decimal">
+      <column name="GRADEPOINT" precision="6"/>
+    </property>
+    <property name="coursecreditpoint" type="big_decimal">
+      <column name="COURSECREDITPOINT" precision="6"/>
+    </property>
+    <property name="earnedcredit" type="big_decimal">
+      <column name="EARNEDCREDIT" precision="6"/>
+    </property>
+    <property name="sgpapoints" type="big_decimal">
+      <column name="SGPAPOINTS" precision="6"/>
+    </property>
+    <property name="cgpapoints" type="big_decimal">
+      <column name="CGPAPOINTS" precision="6"/>
+    </property>
+    <property name="fail" type="string">
+      <column length="1" name="FAIL">
+        <comment>[D]raft / [F]inal</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE">
+        <comment>[D]raft / [F]inal</comment>
+      </column>
+    </property>
+    <property name="break_slno" type="string">
+      <column length="23" name="BREAK#SLNO"/>
+    </property>
+    <property name="resultdate" type="date">
+      <column length="20" name="RESULTDATE"/>
+    </property>
+    <property name="stynumber" type="byte">
+      <column length="1" name="STYNUMBER"/>
+    </property>
+  </class>
+</hibernate-mapping>

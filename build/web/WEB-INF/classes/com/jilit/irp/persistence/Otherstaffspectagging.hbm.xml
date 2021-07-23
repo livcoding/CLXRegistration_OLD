@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 11, 2014 2:04:34 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.OtherStaffSpecTagging" table="OTHERSTAFFSPECTAGGING">
+    <comment>Other Staff Specialization Tagging</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.OtherStaffSpecTaggingId" name="id">
+      <key-property name="osid" type="string">
+        <column length="20" name="OSID"/>
+      </key-property>
+      <key-property name="subjectid" type="string">
+        <column length="20" name="SUBJECTID"/>
+      </key-property>
+      <key-property name="specializationcategoryid" type="string">
+        <column length="20" name="SPECIALIZATIONCATEGORYID"/>
+      </key-property>
+      <key-property name="specializationid" type="string">
+        <column length="20" name="SPECIALIZATIONID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.SpecializationMaster" fetch="select" insert="false" lazy="false" name="specializationmaster" update="false">
+      <column length="20" name="SPECIALIZATIONCATEGORYID" not-null="true"/>
+      <column length="20" name="SPECIALIZATIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </many-to-one>
+    <property name="instituteid" type="string">
+      <column length="20" name="INSTITUTEID"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="entryby" type="string">
+      <column length="20" name="ENTRYBY"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class lazy="false" mutable="false" name="com.jilit.irp.persistence.dto.DepartmentMaster" optimistic-lock="none" table="DEPARTMENTMASTER">     
+    <synchronize table="DEPARTMENTMASTER"/>    
+    <composite-id>
+       <key-property column="DEPARTMENTID" name="departmentid"/>
+    </composite-id>
+ 
+    <property name="departmentcode" type="string">
+      <column length="20" name="DEPARTMENTCODE" not-null="true" unique="true"/>
+    </property>
+    <property name="department" type="string">
+      <column length="75" name="DEPARTMENT" not-null="true"/>
+    </property>
+    <property name="departmenttype" type="string">
+      <column length="1" name="DEPARTMENTTYPE">
+        <comment>Academic / Others</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="seqid" type="string">
+      <column length="1" name="SEQID"/>
+    </property>
+    
+    <property name="shortname" type="string">
+      <column length="20" name="SHORTNAME" not-null="true"/>
+    </property>
+  </class>
+  <query name="findAllDepartmentCode">
+
+      select a.id.departmentid, a.departmentcode, a.department
+        from DepartmentMaster a
+        where coalesce(a.departmenttype,'T') = 'T'
+              and coalesce(a.deactive,'N') = 'N'
+              order by a.departmentcode
+
+  
+</query>
+  <query name="getAllDepartmentMaster">
+
+      select a
+        from DepartmentMaster a
+        where
+               coalesce(a.deactive,'N') = 'N'
+           and exists
+                     (select b.departmentid
+                         from ProgramSubjectTagging b
+                            where  a.id.departmentid = b.departmentid
+                               and b.id.instituteid = ?
+                               and coalesce(b.deactive,'N') = 'N'
+                     )
+               order by a.departmentcode
+
+  </query>
+   
+  <query name="getAllDepartmentMasterRegardingSubject">
+
+      select d
+               from DepartmentMaster d
+               where exists
+                           ( select a.id.departmentid
+                                    from DepartmentSubjectTagging a
+                                    where a.id.departmentid = d.departmentid
+                                          and a.id.instituteid = ?
+                                          and a.id.subjectid = ?
+                            )
+
+                            order by d.departmentcode
+
+  </query>
+  <query name="findDepartmentMasterRegardingSubject">
+
+      select d
+               from DepartmentMaster d
+               where d.departmentcode = ?
+                     and exists
+                           ( select a.id.departmentid
+                                    from DepartmentSubjectTagging a
+                                    where a.id.departmentid = d.departmentid
+                                          and a.id.instituteid = ?
+                                          and a.id.subjectid = ?
+                            )
+
+
+
+  </query>
+</hibernate-mapping>

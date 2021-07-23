@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Jun, 2012 6:27:18 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.VacationDates" table="VACATIONDATES">
+    <comment>Vacation Dates</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.VacationDatesId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="vacationid" type="string">
+        <column length="20" name="VACATIONID"/>
+      </key-property>
+      <key-property name="fromdate" type="date">
+        <column length="7" name="FROMDATE"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.VacationMaster" fetch="select" insert="false" lazy="false" name="vacationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="VACATIONID" not-null="true"/>
+    </many-to-one>
+    <property name="todate" type="date">
+      <column length="7" name="TODATE" not-null="true"/>
+    </property>
+    <property name="vacationdays" type="big_decimal">
+      <column name="VACATIONDAYS" precision="5"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

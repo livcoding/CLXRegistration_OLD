@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Nov, 2013 4:13:30 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ScholarshipPayment" table="SCHOLARSHIPPAYMENT">
+    <comment>Scholarship Payment History</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.ScholarshipPaymentId" name="id">
+      <key-property name="sessionid" type="string">
+        <column length="20" name="SESSIONID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="scholarshiptypeid" type="string">
+        <column length="20" name="SCHOLARSHIPTYPEID"/>
+      </key-property>
+      <key-property name="paymentdate" type="date">
+        <column length="7" name="PAYMENTDATE"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ScholarshipSessionMaster" fetch="select" insert="false" lazy="false" name="scholarshipsessionmaster" update="false">
+      <column length="20" name="SESSIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="paymentcurrencyid" type="string">
+      <column length="20" name="PAYMENTCURRENCYID"/>
+    </property>
+    <property name="paymentamount" type="big_decimal">
+      <column name="PAYMENTAMOUNT" precision="12"/>
+    </property>
+    <property name="modeofpayment" type="string">
+      <column length="1" name="MODEOFPAYMENT">
+        <comment>Mode Of Payment - [C]ash / Che[Q]ue / [D]D / [E]lectronic Transfer / [F]ee Adjustment / [O]thers</comment>
+      </column>
+    </property>
+    <property name="othermode" type="string">
+      <column length="100" name="OTHERMODE"/>
+    </property>
+    <property name="particularsno" type="string">
+      <column length="10" name="PARTICULARSNO"/>
+    </property>
+    <property name="particularsdate" type="date">
+      <column length="7" name="PARTICULARSDATE"/>
+    </property>
+    <property name="particularsdrawnon" type="string">
+      <column length="50" name="PARTICULARSDRAWNON"/>
+    </property>
+    <property name="particularspayableat" type="string">
+      <column length="50" name="PARTICULARSPAYABLEAT"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="275" name="REMARKS"/>
+    </property>
+    <property name="docmode" type="string">
+      <column length="1" name="DOCMODE">
+        <comment>[D]raft / [F]inal / [A]pprove / [C]ancel</comment>
+      </column>
+    </property>
+    <property name="approvedby" type="string">
+      <column length="20" name="APPROVEDBY"/>
+    </property>
+    <property name="approveddate" type="date">
+      <column length="7" name="APPROVEDDATE">
+        <comment>Approved Date &amp; Time</comment>
+      </column>
+    </property>
+    <property name="approvedremarks" type="string">
+      <column length="275" name="APPROVEDREMARKS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

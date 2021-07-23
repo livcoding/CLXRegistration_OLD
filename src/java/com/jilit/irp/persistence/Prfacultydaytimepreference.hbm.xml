@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.PRFacultyDayTimePreference" table="PRFACULTYDAYTIMEPREFERENCE">
+    <comment>If the faculty wants to give only day and time preference this table will be used instead of PRFacultySubjectChoices and PRFacultySubjectTimePreference</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.PRFacultyDayTimePreferenceId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="eventno" type="java.lang.Short">
+        <column name="EVENTNO" precision="4" scale="0"/>
+      </key-property>
+      <key-property name="stafftype" type="string">
+        <column length="1" name="STAFFTYPE"/>
+      </key-property>
+      <key-property name="staffid" type="string">
+        <column length="20" name="STAFFID"/>
+      </key-property>
+      <key-property name="subjectcomponentid" type="string">
+        <column length="20" name="SUBJECTCOMPONENTID"/>
+      </key-property>
+      <key-property name="daypreference" type="string">
+        <column length="3" name="DAYPREFERENCE"/>
+      </key-property>
+      <key-property name="choiceno" type="java.lang.Short">
+        <column name="CHOICENO" precision="3" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectComponent" fetch="select" insert="false" lazy="false" name="subjectcomponent" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+        <comment>[O]ver All, [L], [T], [P], [X]</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.RoomTypeMaster" fetch="select" insert="false" lazy="false" name="roomtypemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REQROOMTYPE">
+        <comment>RoomType</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.PRFacultyEvent" fetch="select" insert="false" lazy="false" name="prfacultyevent" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column name="EVENTNO" not-null="true" precision="4" scale="0"/>
+    </many-to-one>
+    <property name="preffromtime" type="string">
+      <column length="15" name="PREFFROMTIME">
+        <comment>To Store Time Only</comment>
+      </column>
+    </property>
+    <property name="preftotime" type="string">
+      <column length="15" name="PREFTOTIME">
+        <comment>To Store Time Only</comment>
+      </column>
+    </property>
+    <property name="reqroomtype" type="string">
+      <column length="20" name="REQROOMTYPE">
+        <comment>RoomType</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

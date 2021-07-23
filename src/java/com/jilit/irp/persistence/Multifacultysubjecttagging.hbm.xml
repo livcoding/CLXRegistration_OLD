@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.MultiFacultySubjectTagging" table="MULTIFACULTYSUBJECTTAGGING">
+    <composite-id class="com.jilit.irp.persistence.dto.MultiFacultySubjectTaggingId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="fstid" type="string">
+        <column length="20" name="FSTID"/>
+      </key-property>
+      <key-property name="stafftype" type="string">
+        <column length="20" name="STAFFTYPE"/>
+      </key-property>
+      <key-property name="staffid" type="string">
+        <column length="20" name="STAFFID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.FacultySubjectTagging" fetch="select" insert="false" name="facultysubjecttagging" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="FSTID" not-null="true"/>
+    </many-to-one>
+   
+    <property name="noofhours" type="big_decimal">
+      <column name="NOOFHOURS" not-null="true" precision="10"/>
+    </property>
+    <property name="classinaweek" type="big_decimal">
+      <column name="CLASSINAWEEK" not-null="true" precision="10"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

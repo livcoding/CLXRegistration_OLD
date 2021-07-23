@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 21, 2009 11:00:45 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.FacultyStudentTagging" table="FACULTYSTUDENTTAGGING">
+        <comment>This table is equivalent to StudentLTPDetail.</comment>
+        <composite-id class="com.jilit.irp.persistence.dto.FacultyStudentTaggingId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="studentfstid" type="string">
+                <column length="20" name="STUDENTFSTID"/>
+            </key-property>
+            <key-property name="studentid" type="string">
+                <column length="20" name="STUDENTID"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+            <column length="20" name="STUDENTID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.FacultySubjectTagging" fetch="select" insert="false" lazy="false" name="facultysubjecttagging" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="FSTID" not-null="true"/>
+        </many-to-one>
+        <property name="fstid" type="string">
+            <column length="20" name="FSTID"/>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="entryby" type="string">
+            <column length="20" name="ENTRYBY"/>
+        </property>
+        <property name="entrydate" type="timestamp">
+            <column length="7" name="ENTRYDATE"/>
+        </property>
+        <property name="regconfirmationdate" type="timestamp">
+            <column length="7" name="REGCONFIRMATIONDATE"/>
+        </property>
+        <property name="equivalentsubjectid" type="string">
+            <column length="20" name="EQUIVALENTSUBJECTID"/>
+        </property>
+        <property name="subjectid" type="string">
+            <column length="20" name="SUBJECTID"/>
+        </property>
+        <property name="auditsubject" type="string">
+            <column length="1" name="AUDITSUBJECT"/>
+        </property>   
+        <property name="registrationid" type="string">
+            <column length="20" name="REGISTRATIONID"/>
+        </property>
+        <set inverse="true" lazy="extra" name="studentattendances">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="STUDENTFSTID" not-null="true"/>
+                <column length="20" name="STUDENTID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.StudentAttendance"/>
+        </set>
+        <!--    <set inverse="true" lazy="extra" name="studentpreviousattendences">
+          <key>
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="STUDENTFSTID" not-null="true"/>
+            <column length="20" name="STUDENTID" not-null="true"/>
+          </key>
+          <one-to-many class="com.jilit.irp.persistence.dto.StudentPreviousAttendence"/>
+        </set>-->
+        <set inverse="true" lazy="extra" name="studenteventsubjectmarkses">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="STUDENTFSTID" not-null="true"/>
+                <column length="20" name="STUDENTID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.StudentEventSubjectMarks"/>
+        </set>
+    </class>
+    <query name="findStudentSubjectData_AddDrop_BM">
+
+        select distinct a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc,
+        (select distinct pr.id.groupid  from Pr_ElectiveSets pr
+        where pr.id.instituteid = a.id.instituteid and pr.id.subjectid = a.subjectid and pr.id.programid = a.programid         
+        and rownum = 1 and coalesce(pr.deactive,'N')='N'
+        ) as group,a.departmentid,stm.subjecttype,stm.subjecttypedesc,coalesce(a.customauditflag,'N') as auditflag,coalesce(c.subjectflag,'G') as auditsubject
+        from ProgramSubjectTagging a, ProgramSubjectDetail b, SubjectMaster c, BasketMaster d, SubjectComponent e,SubjectTypeMaster stm
+        where a.id.instituteid=b.id.instituteid
+        and a.id.registrationid=b.id.registrationid
+        and a.id.programsubjectid=b.id.programsubjectid
+        and a.id.instituteid=c.id.instituteid
+        and a.subjectid=c.id.subjectid
+        and a.id.instituteid=d.id.instituteid
+        and a.basketid=d.id.basketid
+        and stm.id.instituteid=d.id.instituteid
+        and stm.id.subjecttypeid=d.subjecttypeid
+        and a.id.instituteid=e.id.instituteid
+        and b.id.subjectcomponentid=e.id.subjectcomponentid
+        and a.id.instituteid=:instid
+        and a.id.registrationid=:regid
+        and a.academicyear=:acadyear
+        and a.programid=:prid
+        and a.sectionid=:secid
+        and a.stynumber=:styno
+        and coalesce(a.subjectrunning,'N')='Y' 
+        and a.subjectid not in (select f.id.subjectid from StudentNRSubjects f where f.id.instituteid=:instid and f.id.studentid=:studid and coalesce(f.deactive,'N') = 'N' and f.registerid = :regid)
+        and a.subjectid not in (select f.id.subjectid from StudentResult f where f.id.instituteid=:instid and f.id.studentid=:studid and coalesce(f.fail,'N') = 'Y' and coalesce(f.deactive,'N') = 'N')
+        <!--  group by a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc,a.id.instituteid, a.id.registrationid,a.programid,a.departmentid,stm.subjecttype,stm.subjecttypedesc,a.customauditflag,c.subjectflag-->
+        order by c.subjectdesc
+
+    </query>
+    <query name="findStudentSubjectData_AddDrop_BM_HavingChoice">
+        select distinct a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc,
+        (select distinct pr.id.groupid  from Pr_ElectiveSets pr
+        where pr.id.instituteid = a.id.instituteid and pr.id.subjectid = a.subjectid and pr.id.programid = a.programid         
+        and rownum = 1 and coalesce(pr.deactive,'N')='N'
+        ) as group,a.departmentid,stm.subjecttype,stm.subjecttypedesc,coalesce(a.customauditflag,'N') as auditflag,coalesce(c.subjectflag,'G') as auditsubject
+        from ProgramSubjectTagging a, ProgramSubjectDetail b, SubjectMaster c, BasketMaster d, SubjectComponent e,SubjectTypeMaster stm
+        where a.id.instituteid=b.id.instituteid
+        and a.id.registrationid=b.id.registrationid
+        and a.id.programsubjectid=b.id.programsubjectid
+        and a.id.instituteid=c.id.instituteid
+        and a.subjectid=c.id.subjectid
+        and a.id.instituteid=d.id.instituteid
+        and a.basketid=d.id.basketid
+        and stm.id.instituteid=d.id.instituteid
+        and stm.id.subjecttypeid=d.subjecttypeid
+        and a.id.instituteid=e.id.instituteid
+        and b.id.subjectcomponentid=e.id.subjectcomponentid
+        and a.id.instituteid=:instid
+        and a.id.registrationid=:regid
+        and a.academicyear=:acadyear
+        and a.programid=:prid
+        and a.sectionid=:secid
+        and a.stynumber=:styno
+        and coalesce(a.subjectrunning,'N')='Y' 
+        and a.subjectid not in (select f.id.subjectid from StudentNRSubjects f where f.id.instituteid=:instid and f.id.studentid=:studid and coalesce(f.deactive,'N') = 'N' and f.registerid = :regid)
+        and a.subjectid not in (select f.id.subjectid from StudentResult f where f.id.instituteid=:instid and f.id.studentid=:studid and coalesce(f.fail,'N') = 'Y' and coalesce(f.deactive,'N') = 'N')
+        and exists(select sscm.id.studentid from StudentSubjectChoiceMaster sscm where sscm.id.instituteid=a.id.instituteid and sscm.id.studentid=:studid and sscm.id.registrationid=a.id.registrationid and sscm.id.subjectid=a.subjectid and coalesce(sscm.subjectrunning,'N')='Y')
+        order by c.subjectdesc
+    </query>
+    <query name="findSubjectWiseStudentSubjectComponentValue_AddDrop_BM">
+
+        select b.id.subjectcomponentid, e.subjectcomponentcode, b.ltppassingmarks
+        from ProgramSubjectTagging a, ProgramSubjectDetail b, SubjectMaster c, BasketMaster d, SubjectComponent e
+        where a.id.instituteid=b.id.instituteid
+        and a.id.registrationid=b.id.registrationid
+        and a.id.programsubjectid=b.id.programsubjectid
+        and a.id.instituteid=c.id.instituteid
+        and a.subjectid=c.id.subjectid
+        and a.id.instituteid=d.id.instituteid
+        and a.basketid=d.id.basketid
+        and a.id.instituteid=e.id.instituteid
+        and b.id.subjectcomponentid=e.id.subjectcomponentid
+        and a.id.instituteid=:instid
+        and a.id.registrationid=:regid
+        and a.academicyear=:acadyear
+        and a.programid=:prid
+        and a.sectionid=:secid
+        and a.stynumber=:styno
+        and c.id.subjectid=:subjectid
+        and d.id.basketid=:basketid
+        and b.id.subjectcomponentid=:subjcompid
+        group by b.id.subjectcomponentid, e.subjectcomponentcode, b.ltppassingmarks
+        order by e.subjectcomponentcode
+
+    </query>
+    <query name="findNRSubject_AddDrop_BM">
+        select a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc
+        from ProgramSubjectTagging a, ProgramSubjectDetail b, SubjectMaster c, BasketMaster d, SubjectComponent e
+        where a.id.instituteid=b.id.instituteid
+        and a.id.registrationid=b.id.registrationid
+        and a.id.programsubjectid=b.id.programsubjectid
+        and a.id.instituteid=c.id.instituteid
+        and a.subjectid=c.id.subjectid
+        and a.id.instituteid=d.id.instituteid
+        and a.basketid=d.id.basketid
+        and a.id.instituteid=e.id.instituteid
+        and b.id.subjectcomponentid=e.id.subjectcomponentid
+        and a.id.instituteid=:instid
+        and a.id.registrationid=:regid
+        and a.academicyear=:acadyear
+        and a.programid=:prid
+        and a.sectionid=:secid
+        and a.stynumber=:styno
+        and a.subjectid in (select f.id.subjectid from StudentNRSubjects f where f.id.instituteid=:instid and  f.registerid =:regid and f.id.studentid=:studid and coalesce(f.deactive,'N') = 'N')
+        and a.subjectid in (select ost.odsubjectid from OfferedODSubjectTagging ost where ost.id.instituteid=:instid and ost.id.registrationid=:regid and coalesce(ost.deactive,'N') = 'N')
+        and coalesce(a.deactive,'N') = 'N'
+        group by a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc
+        order by c.subjectdesc
+
+    </query>
+    <query name="findFailSubject_AddDrop_BM">
+
+        select a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc,
+        (select distinct pr.id.groupid  from Pr_ElectiveSets pr
+        where pr.id.instituteid = a.id.instituteid and pr.id.subjectid = a.subjectid and pr.id.programid = a.programid         
+        and rownum = 1 and coalesce(pr.deactive,'N')='N'
+        ) as group,stm.subjecttype,stm.id.subjecttypeid,a.departmentid,stm.subjecttypedesc
+        from ProgramSubjectTagging a, ProgramSubjectDetail b, SubjectMaster c, BasketMaster d, SubjectComponent e, SubjectTypeMaster stm
+        where a.id.instituteid=b.id.instituteid
+        and a.id.registrationid=b.id.registrationid
+        and a.id.programsubjectid=b.id.programsubjectid
+        and a.id.instituteid=c.id.instituteid
+        and a.subjectid=c.id.subjectid
+        and a.id.instituteid=d.id.instituteid
+        and a.basketid=d.id.basketid
+        and stm.id.instituteid=d.id.instituteid
+        and stm.id.subjecttypeid=d.subjecttypeid
+        and a.id.instituteid=e.id.instituteid
+        and b.id.subjectcomponentid=e.id.subjectcomponentid
+        and a.programid=d.programid and a.sectionid=d.sectionid
+        and a.id.instituteid=:instid
+        and a.id.registrationid=:regid
+        and a.academicyear=:acadyear
+        and a.programid=:prid
+        and a.sectionid=:secid
+        and coalesce(a.subjectrunning,'N')='Y'
+        and ( a.subjectid in (select f.id.subjectid from StudentResult f, StudentMaster sm where f.id.instituteid = sm.instituteid and f.id.studentid=sm.id.studentid and a.programid = sm.programid and  f.fail = 'Y' and f.id.instituteid=:instid and f.id.studentid=:studid  and f.id.stynumber = a.stynumber 
+        and not exists(select 1 from  StudentSubjectChoiceMaster sc where sc.id.instituteid=a.id.instituteid and a.id.registrationid=sc.id.registrationid and sc.id.studentid=sm.id.studentid and sc.equivalentsubjectid=f.id.subjectid)
+        )
+        or  a.subjectid in (select  sc.id.subjectid  from  StudentSubjectChoiceMaster sc where sc.id.instituteid=a.id.instituteid and a.id.registrationid=sc.id.registrationid and sc.id.studentid= :studid and sc.id.subjectid=a.subjectid and sc.equivalentsubjectid is not null)
+        )
+        and coalesce(a.deactive,'N') = 'N'
+        group by a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc, a.id.instituteid, a.id.registrationid,a.programid,stm.subjecttype,stm.id.subjecttypeid,a.departmentid,stm.subjecttypedesc
+        order by c.subjectdesc
+    </query>
+    <query name="findFailSubject_AddDrop_BM_HavingChoice">
+
+        select a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc,
+        (select distinct pr.id.groupid  from Pr_ElectiveSets pr
+        where pr.id.instituteid = a.id.instituteid and pr.id.subjectid = a.subjectid and pr.id.programid = a.programid         
+        and rownum = 1 and coalesce(pr.deactive,'N')='N'
+        ) as group,stm.subjecttype,stm.id.subjecttypeid,a.departmentid,stm.subjecttypedesc
+        from ProgramSubjectTagging a, ProgramSubjectDetail b, SubjectMaster c, BasketMaster d, SubjectComponent e, SubjectTypeMaster stm
+        where a.id.instituteid=b.id.instituteid
+        and a.id.registrationid=b.id.registrationid
+        and a.id.programsubjectid=b.id.programsubjectid
+        and a.id.instituteid=c.id.instituteid
+        and a.subjectid=c.id.subjectid
+        and a.id.instituteid=d.id.instituteid
+        and a.basketid=d.id.basketid
+        and stm.id.instituteid=d.id.instituteid
+        and stm.id.subjecttypeid=d.subjecttypeid
+        and a.id.instituteid=e.id.instituteid
+        and b.id.subjectcomponentid=e.id.subjectcomponentid
+        and a.programid=d.programid and a.sectionid=d.sectionid
+        and a.id.instituteid=:instid
+        and a.id.registrationid=:regid
+        and a.academicyear=:acadyear
+        and a.programid=:prid
+        and a.sectionid=:secid
+        and coalesce(a.subjectrunning,'N')='Y'
+        and ( a.subjectid in (select f.id.subjectid from StudentResult f, StudentMaster sm where f.id.instituteid = sm.instituteid and f.id.studentid=sm.id.studentid and a.programid = sm.programid and  f.fail = 'Y' and f.id.instituteid=:instid and f.id.studentid=:studid  and f.id.stynumber = a.stynumber 
+        and  exists(select 1 from  StudentSubjectChoiceMaster sc where sc.id.instituteid=a.id.instituteid and a.id.registrationid=sc.id.registrationid and sc.id.studentid=sm.id.studentid and sc.equivalentsubjectid=f.id.subjectid))
+        )
+        and coalesce(a.deactive,'N') = 'N'
+        group by a.subjectid, c.subjectcode, c.subjectdesc, a.credits, a.basketid, d.basketcode, a.stynumber, d.basketdesc, a.id.instituteid, a.id.registrationid,a.programid,stm.subjecttype,stm.id.subjecttypeid,a.departmentid,stm.subjecttypedesc
+        order by c.subjectdesc
+    </query>
+</hibernate-mapping>

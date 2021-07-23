@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 2, 2010 10:47:13 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.PreRequisitForRegistration" table="PREREQUISITFORREGISTRATION">
+    <composite-id class="com.jilit.irp.persistence.dto.PreRequisitForRegistrationId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="academicyear" type="string">
+        <column length="20" name="ACADEMICYEAR"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="branchid" type="string">
+        <column length="20" name="BRANCHID"/>
+      </key-property>
+      <key-property name="stynumber" type="byte">
+        <column name="STYNUMBER" precision="2" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" lazy="false" name="programmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.BranchMaster" fetch="select" insert="false" lazy="false" name="branchmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+      <column length="20" name="BRANCHID" not-null="true"/>
+    </many-to-one>
+    <property name="maxfailsubject" type="java.lang.Long">
+      <column name="MAXFAILSUBJECT" precision="10" scale="0"/>
+    </property>
+    <property name="minsgpa" type="big_decimal">
+      <column name="MINSGPA" precision="9"/>
+    </property>
+    <property name="mincgpa" type="big_decimal">
+      <column name="MINCGPA" precision="9"/>
+    </property>
+    <property name="mincredits" type="big_decimal">
+      <column name="MINCREDITS" precision="12"/>
+    </property>
+    <property name="lateralentrymincredit" type="big_decimal">
+      <column name="LATERALENTRYMINCREDIT" precision="12"/>
+    </property>
+    <property name="minattendancepercent" type="big_decimal">
+      <column name="MINATTENDANCEPERCENT" precision="6"/>
+    </property>
+    <property name="maxdeciplinary" type="big_decimal">
+      <column name="MAXDECIPLINARY" precision="22" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="minearnedpoints" type="big_decimal">
+      <column name="MINEARNEDPOINTS" precision="9"/>
+    </property>
+    <property name="maxnoattempts" type="java.lang.Long">
+      <column name="MAXNOATTAMPTS" precision="10" scale="0"/>
+    </property>
+    <set inverse="true" lazy="extra" name="prerequisitforregsubjdetail">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="ACADEMICYEAR" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+        <column length="20" name="BRANCHID" not-null="true"/>
+        <column length="20" name="STYNUMBER" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitForRegSubjDetail"/>
+    </set>
+  </class>
+</hibernate-mapping>

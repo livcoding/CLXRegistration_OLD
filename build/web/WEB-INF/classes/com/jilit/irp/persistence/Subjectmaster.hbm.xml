@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.SubjectMaster" table="SUBJECTMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.SubjectMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="subjectid" type="string">
+        <column length="20" name="SUBJECTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+<!--    <many-to-one class="com.jilit.irp.persistence.dto.SubjectTypeMaster" fetch="select" insert="false" lazy="false" name="subjecttypemaster" update="false">
+      <column length="20" name="INSTITUTEID"/>
+      <column length="20" name="SUBJECTTYPEID"/>
+    </many-to-one>-->
+    <many-to-one class="com.jilit.irp.persistence.dto.Ex_PatternMaster" fetch="select" insert="false" lazy="false" name="ex_patternmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PATTERNID" not-null="true"/>
+    </many-to-one>
+    <property name="subjectcode" type="string">
+      <column length="20" name="SUBJECTCODE" not-null="true"/>
+    </property>
+    <property name="subjectdesc" type="string">
+      <column length="160" name="SUBJECTDESC" not-null="true"/>
+    </property>
+<!--    <property name="subjecttypeid" type="string">
+      <column length="20" name="SUBJECTTYPEID"/>
+    </property>-->
+    <property name="totalmarks" type="java.lang.Double">
+      <column name="TOTALMARKS" precision="6" scale="2"/>
+    </property>
+    <property name="passingmarks" type="java.lang.Double">
+      <column name="PASSINGMARKS" precision="6" scale="2"/>
+    </property>
+    <property name="credits" type="java.lang.Double">
+      <column length="3" name="CREDITS"/>
+    </property>
+    <!--
+    <property name="subjecttype" type="string">
+      <column length="1" name="SUBJECTTYPE">
+        <comment>[G]eneral Subject / [P]roject Subject / [S]eminar</comment>
+      </column>
+    </property>
+
+    -->
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="subjectflag" type="string">
+      <column length="1" name="SUBJECTFLAG" />
+    </property>
+    <property name="shortname" type="string">
+      <column length="20" name="SHORTNAME" />
+    </property>
+    <property name="entrydatetime" type="timestamp">
+      <column  name="ENTRYDATETIME"/>
+    </property>
+    <property column="PATTERNID" length="20" name="patternid" not-null="true" type="string"/>
+    <set inverse="true" lazy="extra" name="prerequisitacadwiserequireds">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PREREQSUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitAcadWiseRequired"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prfacultysubjectchoiceses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PRFacultySubjectChoices"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prerequisitmastersubjectses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitMasterSubjects"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prerequisitmasterrequireds">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PREREQSUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitMasterRequired"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programschemeacadyearwises">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramSchemeAcadyearWise"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prerequisitacademicsubjectses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitAcademicSubjects"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programsubjecttaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramSubjectTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="offeredodsubjecttaggingsForOfferedodsubjecttaggingFk4">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="CURRENTSUBJECTID">
+          <comment>Enter Subject ID to merge with (if any)</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.OfferedODSubjectTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentnrsubjectses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentNRSubjects"/>
+    </set>
+    <set inverse="true" lazy="extra" name="programschemes">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramScheme"/>
+    </set>
+    <set inverse="true" lazy="extra" name="offeredodsubjecttaggingsForOfferedodsubjecttaggingFk3">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="ODSUBJECTID" not-null="true">
+          <comment>Computer Generated ID</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.OfferedODSubjectTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="departmentsubjecttaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true">
+                </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.DepartmentSubjectTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentsubjectchoicemastersForStudentsubjectchoicemasterFk3">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentSubjectChoiceMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentsubjectchoicemastersForStudentsubjectmasterFk4">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="EQUIVALENTSUBJECTID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentSubjectChoiceMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentshortattendances">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentShortAttendance"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="studentsubjectfacultychoiceses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentSubjectFacultyChoices"/>
+    </set>
+    <set inverse="true" lazy="extra" name="instituteelectivetempdatas">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.InstituteElectiveTempData"/>
+    </set>
+    <set inverse="true" lazy="extra" name="tt_timetableallocations">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.TT_TimeTableAllocation"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="otherstaffspectaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.OtherStaffSpecTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="teachingloaddistributions">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true">
+          <comment>RoomType</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.TeachingLoadDistribution"/>
+    </set>
+    <set inverse="true" lazy="extra" name="tt_suspendedslotses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true">
+          <comment>RoomType</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.TT_SuspendedSlots"/>
+    </set>
+
+
+    <set inverse="true" lazy="extra" name="tmp_studattendsummaries">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Tmp_StudAttendSummary"/>
+    </set>
+   
+    <set cascade="save-update, delete" inverse="true" lazy="extra" name="subjectcomponentdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.SubjectComponentDetail"/>
+    </set>
+    <set cascade="save-update" inverse="true" lazy="extra" name="subjectwiseloads">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.SubjectWiseLoad"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="attendancecutoffpercentages">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.AttendanceCutoffPercentage"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentattendancesummary">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Studentattendancesummary"/>
+    </set>
+    
+    <set inverse="true" lazy="extra" name="studentnotoffersubject">
+      <key>
+       <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentNotOfferSubject"/>
+    </set>
+    <set inverse="true" lazy="extra" name="subjectCoordinator">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="SUBJECTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.SubjectCoordinator"/>
+    </set>
+  </class>
+  <query name="findSubjectMasterData_FacultySubjectTagging">
+           select a
+         from SubjectMaster a
+            where coalesce(a.deactive,'N') = 'N'
+                  and a.id.subjectid in (
+                                      select b.subjectid
+                                         from FacultySubjectTagging b
+                                             where  b.id.instituteid = ?
+                                                and b.registrationid = ?
+                                                and coalesce(b.deactive,'N') = 'N'
+                                                group by b.subjectid
+                                         )
+                  order by a.subjectcode
+
+    </query>
+  <query name="findSubjectMasterData_FacultySubjectTaggingbysubjectid">
+         select a
+         from SubjectMaster a
+            where coalesce(a.deactive,'N') = 'N'
+                  and a.id.subjectid in (
+                                      select b.subjectid
+                                         from FacultySubjectTagging b
+                                             where  b.id.instituteid = ?
+                                                and b.subjectid = ?
+                                                and coalesce(b.deactive,'N') = 'N'
+                                                group by b.subjectid
+                                         )
+                  order by a.subjectdesc
+
+    </query>
+  <query name="findSubjectCodeProgramWise">
+    select s.subjectcode,s.subjectdesc from SubjectMaster s
+    where s.id.instituteid=:instituteid
+    and coalesce(s.deactive,'N')='N'
+    and s.id.subjectid in (select pst.subjectid from ProgramSubjectTagging pst where pst.id.instituteid=:instituteid  and pst.programid=:programid and pst.id.registrationid=:registrationid and coalesce(pst.deactive,'N')='N')
+    </query>
+  <query name="findSubjectCodeProgramWise_backlog">
+    select s.subjectcode,s.subjectdesc,s.id.subjectid from SubjectMaster s
+    where s.id.instituteid=:instituteid
+    and coalesce(s.deactive,'N')='N'
+    and s.id.subjectid in (select pst.subjectid from ProgramSubjectTagging pst where pst.id.instituteid=:instituteid  and pst.programid=:programid and pst.id.registrationid=:registrationid and coalesce(pst.deactive,'N')='N')
+    </query>
+  <query name="findSubjectMasterData_ProgramSubjectTagging">
+
+         select a
+         from SubjectMaster a
+            where coalesce(a.deactive,'N') = 'N'
+                  and a.id.subjectid in (
+                                      select b.subjectid
+                                         from ProgramSubjectTagging b
+                                             where  b.id.instituteid = ?
+                                                and b.id.registrationid = ?
+                                                and b.programid = ?
+                                                and b.stynumber = ?
+                                                and coalesce(b.deactive,'N') = 'N'
+                                                group by b.subjectid
+                                         )
+                  order by a.subjectdesc
+
+    </query>
+  <query name="findSubjectProgramSubjectTaggingSAE">
+
+         select a
+         from SubjectMaster a
+            where coalesce(a.deactive,'N') = 'N'
+                  and a.id.subjectid in (
+                                      select b.subjectid
+                                         from ProgramSubjectTagging b
+                                             where  b.id.instituteid = ?
+                                                and b.id.registrationid = ?
+                                                and coalesce(b.deactive,'N') = 'N'
+                                                group by b.subjectid
+                                         )
+                  order by a.subjectdesc
+
+    </query>
+  <query name="findSubjectMasterData_PST">
+
+         select a
+         from SubjectMaster a
+            where coalesce(a.deactive,'N') = 'N'
+                  and a.id.subjectid in (
+                                      select b.subjectid
+                                         from ProgramSubjectTagging b
+                                             where  b.id.instituteid = ?
+                                                and coalesce(b.deactive,'N') = 'N'
+                                                group by b.subjectid
+                                         )
+                  order by a.subjectdesc
+
+    </query>
+  <query name="checkIfSubjectCode_PSTExist">
+
+         select a
+         from SubjectMaster a
+            where coalesce(a.deactive,'N') = 'N'
+                  and a.id.subjectid in (
+                                      select b.subjectid
+                                         from ProgramSubjectTagging b
+                                             where  b.id.instituteid = ?
+                                                and coalesce(b.deactive,'N') = 'N'
+                                                group by b.subjectid
+                                         )
+                     and a.subjectcode=?
+                  order by a.subjectdesc
+
+    </query>
+</hibernate-mapping>

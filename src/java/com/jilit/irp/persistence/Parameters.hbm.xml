@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Parameters" table="PARAMETERS">
+    <composite-id class="com.jilit.irp.persistence.dto.ParametersId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="moduleid" type="string">
+        <column length="20" name="MODULEID"/>
+      </key-property>
+      <key-property name="parameterid" type="string">
+        <column length="20" name="PARAMETERID"/>
+      </key-property>
+    </composite-id>
+    
+    <many-to-one class="com.jilit.irp.persistence.dto.Sct_IrpModules" fetch="select" insert="false" name="sct_irpmodules" update="false">
+      <column length="20" name="MODULEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="parameter" type="string">
+      <column length="75" name="PARAMETER" not-null="true"/>
+    </property>
+    <property name="parametervalue" type="string">
+      <column length="50" name="PARAMETERVALUE"/>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0"/>
+    </property>
+    <property name="datatype" type="string">
+      <column length="1" name="DATATYPE"/>
+    </property>
+    <property name="entryfield" type="string">
+      <column length="1" name="ENTRYFIELD"/>
+    </property>
+    <property name="width" type="string">
+      <column length="5" name="WIDTH"/>
+    </property>
+    <property name="minrange" type="string">
+      <column length="5" name="MINRANGE"/>
+    </property>
+    <property name="maxrange" type="string">
+      <column length="10" name="MAXRANGE"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+     
+  </class>
+  <query name="getParameterValue_Student">
+           select a.parameter,a.parametervalue from Parameters a
+                  where a.id.instituteid = ?
+                       and  a.id.moduleid= 'MOD08000008'
+                       and  a.id.parameterid= 'A1.1'
+                       and coalesce(a.deactive,'N') = 'N'
+
+  </query>
+  <query name="getParameterValue">
+            select a.parameter,a.parametervalue from Parameters a
+            where a.id.instituteid = ?
+            and  a.id.moduleid= 'MOD08000008'
+            and  a.id.parameterid= ?
+            and coalesce(a.deactive,'N') = 'N'
+  </query>
+ </hibernate-mapping>

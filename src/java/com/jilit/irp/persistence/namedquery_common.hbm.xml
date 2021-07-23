@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <!--<query name="specializationcategoryLOV_employeedetail">
+         select m from SpecializationCategory m where size(m.specializationmasters) &gt; 0
+    </query>-->
+    <query name="validateStateName">
+        select item from StateMaster item where item.id.countryid = ? and item.statename = ?
+    </query>
+    <query name="validateCityName">
+        select item from CityMaster item where item.id.countryid = ? and item.id.stateid = ? and item.cityname = ?
+    </query>
+    <query name="findEmployeecodeAndEmployeename">
+        select distinct master.employeecode,master.employeename,master.designation from  V_Staff master
+        where  master.employeeid=?
+        and coalesce(master.deactive,'N')='N'
+    </query>
+    <query name="getUsersRightsMaster">
+        select
+        distinct master
+        from Sct_ModuleRightsMaster master
+        where
+        master.rightsid in (:rightsid)
+        and coalesce(master.deactive,'N')='N'
+        order by master.seqid
+    </query>
+    <query name="getRightsIdsFormSct_UserRolesTr">
+        select  distinct
+        tagging.id.rightsid,
+        rm.rightsname,rm.urlpath,
+        rm.seqid,
+        (select pr.rightsname from Sct_ModuleRightsMaster pr where pr.rightsid=rm.parentsrightsid) as parentrights,rm.menulevelname,
+        (select seqid from Sct_ModuleRightsMaster pr where pr.rightsid=rm.parentsrightsid) as parentrightseqid
+        from 
+        Sct_UserRolesCriteraBased uroles,
+        Sct_RoleRightsTagging tagging,
+        Sct_ModuleRightsMaster rm
+        where
+        uroles.id.userid = ?
+        and uroles.id.rightsbasedid = ?
+        and rm.rightsid=tagging.id.rightsid
+        and tagging.id.roleid = uroles.id.roleid
+        and coalesce(uroles.deactive,'N')='N'
+        and coalesce(tagging.deactive,'N')='N'
+        and coalesce(rm.deactive,'N')='N'
+        and (coalesce(uroles.alwaysvalid, 'Y') = 'Y' or trunc(sysdate) between uroles.validfrom and uroles.validupto)
+        and rm.processid in ('MOD08000018')                               
+        order by rm.seqid 
+    </query>
+    <query name="getRightsIdsFormSct_Urts">
+        select
+        distinct
+        tagging.id.rightsid,
+        rm.rightsname,rm.urlpath, 
+        rm.seqid,
+        (select pr.rightsname from Sct_ModuleRightsMaster pr where pr.rightsid=rm.parentsrightsid) as parentrights,rm.menulevelname,
+        (select seqid from Sct_ModuleRightsMaster pr where pr.rightsid=rm.parentsrightsid) as parentrightseqid
+        from
+        Sct_UserRightsCriteraBased tagging,
+        Sct_ModuleRightsMaster rm
+        where
+        tagging.id.userid = ?
+        and tagging.id.rightsbasedid= ?
+        and rm.rightsid=tagging.id.rightsid            
+        and coalesce(rm.deactive,'N')='N'
+        and coalesce(tagging.deactive,'N')='N'
+        and (coalesce(tagging.alwaysvalid, 'Y') = 'Y' or trunc(sysdate) between tagging.validfrom and tagging.validupto)
+        and rm.processid in ('MOD08000018')      
+        order by rm.seqid
+    </query>
+</hibernate-mapping>

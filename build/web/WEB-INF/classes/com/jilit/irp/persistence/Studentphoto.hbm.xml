@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <!--<class name="com.jilit.irp.persistence.dto.StudentPhoto" schema="JCAMPUSFINALPHOTO" table="STUDENTPHOTO">-->
+  <class name="com.jilit.irp.persistence.dto.StudentPhoto" table="STUDENTPHOTO">
+    <id name="studentid" type="string">
+      <column length="20" name="STUDENTID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="photo" type="blob">
+      <column name="PHOTO"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="signature" type="blob">
+      <column name="SIGNATURE"/>
+    </property>
+  </class>
+</hibernate-mapping>

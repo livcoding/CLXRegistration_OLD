@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 5, 2014 3:06:56 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Notify_Attachments" table="NOTIFY_ATTACHMENTS">
+    <composite-id class="com.jilit.irp.persistence.dto.Notify_AttachmentsId" name="id">
+      <key-property name="notificationid" type="string">
+        <column length="20" name="NOTIFICATIONID"/>
+      </key-property>
+      <key-property name="slno" type="int">
+        <column name="SLNO" precision="5" scale="0"/>
+      </key-property>
+      <key-property name="attachmentslno" type="int">
+        <column name="ATTACHMENTSLNO" precision="5" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.Notify_NotificationTo" fetch="select" insert="false" lazy="false" name="notify_notificationto" update="false">
+      <column length="20" name="NOTIFICATIONID" not-null="true"/>
+      <column name="SLNO" not-null="true" precision="5" scale="0"/>
+    </many-to-one>
+    <property name="attachmentfilename" type="string">
+      <column length="250" name="ATTACHMENTFILENAME">
+        <comment>Attachement File Name</comment>
+      </column>
+    </property>
+    <property name="attachmentfiletype" type="string">
+      <column length="10" name="ATTACHMENTFILETYPE">
+        <comment>Attachments</comment>
+      </column>
+    </property>
+    <property name="msgstatus" type="string">
+      <column length="1" name="MSGSTATUS"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 Sep, 2011 2:18:26 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ExamCenterMaster" table="EXAMCENTERMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.ExamCenterMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="examcenterid" type="string">
+        <column length="20" name="EXAMCENTERID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="examcentercode" type="string">
+      <column length="20" name="EXAMCENTERCODE" not-null="true" unique="true"/>
+    </property>
+    <property name="examcentername" type="string">
+      <column length="80" name="EXAMCENTERNAME"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="examcenterwiseroomses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="EXAMCENTERID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ExamCenterWiseRooms"/>
+    </set>
+   
+  </class>
+  <query name="findAllExamCenterCode">
+      select a
+         from ExamCenterMaster a
+            where a.id.instituteid = ?
+                  and coalesce(a.deactive,'N')='N'
+                  order by examcentercode 
+  </query>
+  <query name="checkIfExamCenterCodeExist">
+      select a
+         from ExamCenterMaster a
+            where a.id.instituteid = ?
+                  and examcentercode=?
+                  and coalesce(a.deactive,'N')='N'
+  </query>
+</hibernate-mapping>

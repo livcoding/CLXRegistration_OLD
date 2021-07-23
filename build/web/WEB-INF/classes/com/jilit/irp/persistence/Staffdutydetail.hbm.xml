@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 21, 2009 11:00:45 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StaffDutyDetail" table="STAFFDUTYDETAIL">
+    <comment>Other Staff duties in Institutes Date wise multi record</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.StaffDutyDetailId" name="id">
+      <key-property name="stafftype" type="string">
+        <column length="1" name="STAFFTYPE"/>
+      </key-property>
+      <key-property name="staffid" type="string">
+        <column length="20" name="STAFFID"/>
+      </key-property>
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="dutydatefrom" type="date">
+        <column length="7" name="DUTYDATEFROM"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="dutydatetill" type="date">
+      <column length="7" name="DUTYDATETILL"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="250" name="REMARKS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="deactivedate" type="date">
+      <column length="7" name="DEACTIVEDATE">
+        <comment>In case of deactive</comment>
+      </column>
+    </property>
+  </class>
+</hibernate-mapping>

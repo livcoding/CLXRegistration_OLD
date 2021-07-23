@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 12 Jan, 2019 1:03:16 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.Setup_GIPCriteria"  table="SETUP_GIPCRITERIA">
+        <composite-id class="com.jilit.irp.persistence.dto.Setup_GIPCriteriaId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="programid" type="string">
+                <column length="20" name="PROGRAMID"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" name="programmaster" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="PROGRAMID" not-null="true"/>
+        </many-to-one>
+        <property name="cgparangefrom" type="big_decimal">
+            <column name="CGPARANGEFROM" precision="8" scale="3"/>
+        </property>
+        <property name="cgparangeupto" type="big_decimal">
+            <column name="CGPARANGEUPTO" precision="8" scale="3"/>
+        </property>
+        <property name="appicablegrades" type="string">
+            <column length="30" name="APPICABLEGRADES">
+                <comment>ie. A, A+ etc</comment>
+            </column>
+        </property>
+        <property name="entrydatetime" type="timestamp">
+            <column name="ENTRYDATETIME">
+            </column>
+        </property>
+        <property name="failgradeflag" type="string">
+            <column length="1" name="FAILGRADEFLAG">
+                <comment>ie.C for current L for Last/previous grade</comment>
+            </column>
+        </property>
+        <set inverse="true" lazy="extra" name="setup_GIPCriteriaDetail">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="PROGRAMID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.Setup_GIPCriteriaDetail"/>
+        </set>
+    </class>
+</hibernate-mapping>

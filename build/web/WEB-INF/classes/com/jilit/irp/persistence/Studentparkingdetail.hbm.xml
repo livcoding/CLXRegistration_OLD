@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentParkingDetail" table="STUDENTPARKINGDETAIL">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentParkingDetailId" name="id">
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="parkingspotid" type="string">
+        <column length="20" name="PARKINGSPOTID"/>
+      </key-property>
+      <key-property name="dateofallotement" type="date">
+        <column length="7" name="DATEOFALLOTEMENT"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ParkingSpotMaster" fetch="select" insert="false" lazy="false" name="parkingspotmaster" update="false">
+      <column length="20" name="PARKINGSPOTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="allotedfromdate" type="date">
+      <column length="7" name="ALLOTEDFROMDATE"/>
+    </property>
+    <property name="allotedtilldate" type="date">
+      <column length="7" name="ALLOTEDTILLDATE"/>
+    </property>
+    <property name="parkingslotno" type="string">
+      <column length="11" name="PARKINGSLOTNO"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="250" name="REMARKS"/>
+    </property>
+  </class>
+</hibernate-mapping>

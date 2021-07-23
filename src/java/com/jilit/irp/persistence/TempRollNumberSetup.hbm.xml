@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.TempRollNumberSetup" select-before-update="true" table="TEMPROLLNUMBERSETUP">
+        <composite-id class="com.jilit.irp.persistence.dto.TempRollNumberSetupId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="groupid" type="string">
+                <column length="20" name="GROUPID"/>
+            </key-property>
+        </composite-id>
+        <property name="codelength" type="java.lang.Short">
+            <column name="CODELENGTH" not-null="true" precision="3" scale="0">
+                <comment>Code length like 10, 15, 20</comment>
+            </column>
+        </property>
+        <property name="prefix" type="string">
+            <column length="4" name="PREFIX"/>
+        </property>
+        <property name="suffix" type="string">
+            <column length="4" name="SUFFIX"/>
+        </property>
+        <property name="institutecode" type="string">
+            <column length="1" name="INSTITUTECODE">
+                <comment>Yes / No if yes, pick enrollment code from Institute Master</comment>
+            </column>
+        </property>
+        <property name="academicyear" type="string">
+            <column length="1" name="ACADEMICYEAR">
+                <comment>Yes / No if yes, pick enrol.code from academic year</comment>
+            </column>
+        </property>
+        <property name="programtype" type="string">
+            <column length="1" name="PROGRAMTYPE">
+                <comment>Yes / No if yes, pick enrol.code from prog.type</comment>
+            </column>
+        </property>
+        <property name="programcode" type="string">
+            <column length="1" name="PROGRAMCODE">
+                <comment>Yes / No if yes, pick enrol code from prog.master</comment>
+            </column>
+        </property>
+        <property name="branchcode" type="string">
+            <column length="1" name="BRANCHCODE">
+                <comment>Yes / No if yes, pick enrol.code from branch master</comment>
+            </column>
+        </property>
+        <property name="mm" type="string">
+            <column length="1" name="MM">
+                <comment>Yes / No</comment>
+            </column>
+        </property>
+        <property name="yy" type="string">
+            <column length="4" name="YY">
+                <comment>Yes / No</comment>
+            </column>
+        </property>
+        <property name="runningno" type="java.lang.Byte">
+            <column name="RUNNINGNO" precision="2" scale="0">
+                <comment>Running No width</comment>
+            </column>
+        </property>
+        <property name="seqid" type="string">
+            <column length="10" name="SEQID">
+                <comment>Seq Id Prefi[X] / [S]uffix / [A]acdYear / [I]nstitute Code Prog.[T]ype / [P]rog.Code / [B]ranch Code / [M]m / [Y]y / [N]nnnn seq. will be done on the
+                    basis of appearance of chars [XSAITPBMYN]</comment>
+            </column>
+        </property>
+        <set inverse="true" lazy="extra" name="temprollnumbercontrol">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="GROUPID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.TempRollNumberControl"/>
+        </set>
+        <set cascade="save-update,delete" inverse="true" lazy="extra" name="temprollnumbersetupdetail">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="GROUPID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.TempRollNumberSetupDetail"/>
+        </set>
+    </class>
+</hibernate-mapping>

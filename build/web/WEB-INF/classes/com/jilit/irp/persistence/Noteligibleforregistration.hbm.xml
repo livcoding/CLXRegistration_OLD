@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Nov, 2013 4:13:30 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.NotEligibleForRegistration" table="NOTELIGIBLEFORREGISTRATION">
+    <comment>No Eligible For Registration in a Particluar Semester/registration</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.NotEligibleForRegistrationId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="typeofreason" type="string">
+        <column length="1" name="TYPEOFREASON"/>
+      </key-property>
+      <key-property name="fromstynumber" type="byte">
+        <column name="FROMSTYNUMBER" precision="2" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentRegistration" fetch="select" insert="false" lazy="false" name="studentregistration" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="tostynumber" type="byte">
+      <column name="TOSTYNUMBER" not-null="true" precision="2" scale="0"/>
+    </property>
+    <property name="reason" type="string">
+      <column length="250" name="REASON"/>
+    </property>
+    <property name="eligiblitystatus" type="string">
+      <column length="1" name="ELIGIBLITYSTATUS">
+        <comment>[Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE">
+        <comment>[Y]es/[N]o</comment>
+      </column>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ProgramSchemeAcadyearWise" table="PROGRAMSCHEMEACADYEARWISE">
+    <comment>This table is populated in case of Program Scheme Academic Year wise, This table will be populated if ProgramMinMaxLimit-&gt;ProgramScheme = [D]etailed</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.ProgramSchemeAcadyearWiseId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="programschemeacadwiseid" type="string">
+        <column length="20" name="PROGRAMSCHEMEACADWISEID"/>
+      </key-property>
+    </composite-id>
+    <!--  <many-to-one class="com.jilit.irp.persistence.dto.BasketMaster" fetch="select" insert="false" lazy="false" name="basketmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="BASKETID" not-null="true"/>
+    </many-to-one>-->
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.DepartmentMaster" fetch="select" insert="false" lazy="false" name="departmentmaster" update="false">
+      <column length="20" name="DEPARTMENTID">
+        <comment>Department Belongs to</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.ElectiveMaster" insert="false" lazy="false" name="electivemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="ELECTIVEID"/>
+    </many-to-one>
+    <property name="academicyear" type="string">
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </property>
+    <property name="programid" type="string">
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </property>
+    <property name="sectionid" type="string">
+      <column length="20" name="SECTIONID" not-null="true"/>
+    </property>
+    <property name="subjectid" type="string">
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </property>
+    <property name="stynumber" type="byte">
+      <column name="STYNUMBER" not-null="true" precision="2" scale="0"/>
+    </property>
+    <property name="basketid" type="string">
+      <column length="20" name="BASKETID" not-null="true"/>
+    </property>
+    <property name="departmentid" type="string">
+      <column length="20" name="DEPARTMENTID"/>
+    </property>
+    <property name="subjecttypeid" type="string">
+      <column length="20" name="SUBJECTTYPEID"/>
+    </property>
+    <property name="subjecttype" type="string">
+      <column length="1" name="SUBJECTTYPE"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="credits" type="double">
+      <column name="CREDITS" not-null="true" precision="3" scale="2"/>
+    </property>
+    <property name="totalmarks" type="double">
+      <column length="20" name="TOTALMARKS" precision="6" scale="2"/>
+    </property>
+    <property name="passingmarks" type="double">
+      <column length="20" name="PASSINGMARKS" precision="6" scale="2"/>
+    </property>
+    <property name="electiveid" type="string">
+      <column length="20" name="ELECTIVEID"/>
+    </property>
+    <property name="regfeeamount" type="big_decimal">
+      <column length="18" name="REGFEEAMOUNT"/>
+    </property>
+    <property name="auditsubject" type="string">
+      <column length="1" name="AUDITSUBJECT"/>
+    </property>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="programschemeacadyeardetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMSCHEMEACADWISEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramSchemeAcadYearDetail"/>
+    </set>
+  <query name="findRelativeProgramSchemeDetailData">
+
+      select a
+        from ProgramSchemeAcadYearDetail a
+          where a.id.instituteid = ?
+          and a.id.programschemeacadwiseid = ?
+          and coalesce(a.deactive,'N') = 'N'
+          order by a.id.subjectcomponentid
+
+
+
+</query>  
+  </class>
+</hibernate-mapping>

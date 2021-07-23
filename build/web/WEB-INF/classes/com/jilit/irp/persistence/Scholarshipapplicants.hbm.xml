@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 6, 2011 11:20:11 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ScholarshipApplicants" table="SCHOLARSHIPAPPLICANTS">
+    <composite-id class="com.jilit.irp.persistence.dto.ScholarshipApplicantsId" name="id">
+      <key-property name="sessionid" type="string">
+        <column length="20" name="SESSIONID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="scholarshiptypeid" type="string">
+        <column length="20" name="SCHOLARSHIPTYPEID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ScholarshipType" fetch="select" insert="false" lazy="false" name="scholarshiptype" update="false">
+      <column length="20" name="SCHOLARSHIPTYPEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <property name="scholarshipapplied" type="string">
+      <column length="1" name="SCHOLARSHIPAPPLIED">
+        <comment>"[Y]es, [N]o"</comment>
+      </column>
+    </property>
+    <property name="applieddate" type="date">
+      <column length="7" name="APPLIEDDATE"/>
+    </property>
+    <property name="approvedscholarship" type="string">
+      <column length="1" name="APPROVEDSCHOLARSHIP">
+        <comment>"[Y]es, [N]o"</comment>
+      </column>
+    </property>
+    <property name="approvedby" type="string">
+      <column length="80" name="APPROVEDBY"/>
+    </property>
+    <property name="approveddate" type="date">
+      <column length="7" name="APPROVEDDATE"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="150" name="REMARKS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

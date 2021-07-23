@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 24, 2014 5:24:41 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.TeachingLoadDistribution" table="TEACHINGLOADDISTRIBUTION">
+    <comment>Teaching load distribution is getting done here and once it is approved it will be Show to Time Table Tagging.</comment>
+    <id name="tlid" type="string">
+      <column length="20" name="TLID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.RoomTypeMaster" fetch="select" insert="false" lazy="false" name="roomtypemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REQROOMTYPE" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.DepartmentMaster" fetch="select" insert="false" lazy="false" name="departmentmaster" update="false">
+      <column length="20" name="RUNNINGDEPARTMENTID" not-null="true"/>
+    </many-to-one>
+    <property name="registrationid" type="string">
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </property>
+    <property name="status" type="string">
+      <column length="1" name="STATUS">
+        <comment>[D]raft / [F]inal / [A]pproved / [C]ancel</comment>
+      </column>
+    </property>
+    <property name="entryby" type="string">
+      <column length="20" name="ENTRYBY"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+    <property name="approvedby" type="string">
+      <column length="20" name="APPROVEDBY"/>
+    </property>
+    <property name="approveddate" type="date">
+      <column length="7" name="APPROVEDDATE"/>
+    </property>
+    <property name="approveremarks" type="string">
+      <column length="160" name="APPROVEREMARKS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="instituteid" type="string">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </property>
+    <property name="subjectid" type="string">
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </property>
+    <property name="runningdepartmentid" type="string">
+      <column length="20" name="RUNNINGDEPARTMENTID" not-null="true"/>
+    </property>
+    <property name="reqroomtype" type="string">
+      <column length="20" name="REQROOMTYPE"/>
+    </property>
+    <property name="nooftutclass" type="big_decimal">
+      <column name="NOOFTUTCLASS" precision="5" scale="2"/>
+    </property>
+    <property name="electivesubectionalloted" type="string">
+      <column length="1" name="ELECTIVESUBECTIONALLOTED"/>
+    </property>
+    <property name="noofelectiveclass" type="big_decimal">
+      <column name="NOOFELECTIVECLASS" precision="3" scale="2"/>
+    </property>
+    <set cascade="all" inverse="true" lazy="extra" name="teachingloaddetails">
+      <key>
+        <column length="20" name="TLID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.TeachingLoadDetail"/>
+    </set>
+  </class>
+</hibernate-mapping>

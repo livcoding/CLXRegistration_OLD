@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 4, 2010 3:38:30 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.StudentFeePaySPCLApproval" table="STUDENTFEEPAYSPCLAPPROVAL">
+        <comment>List of Students have given special approval in a particular Registration</comment>
+        <composite-id class="com.jilit.irp.persistence.dto.StudentFeePaySPCLApprovalId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+            <key-property name="eventid" type="string">
+                <column length="20" name="EVENTID"/>
+            </key-property>
+            <key-property name="studentid" type="string">
+                <column length="20" name="STUDENTID"/>
+            </key-property>
+            <key-property name="stytypeid" type="string">
+                <column length="20" name="STYTYPEID"/>
+            </key-property>
+            <key-property name="quotaid" type="string">
+                <column length="20" name="QUOTAID"/>
+            </key-property>
+            <key-property name="feeheadid" type="string">
+                <column length="20" name="FEEHEADID"/>
+            </key-property>
+            <key-property name="stynumber" type="byte">
+                <column length="2" name="STYNUMBER"/>
+            </key-property>
+        </composite-id>
+        <property name="currencyid" type="string">
+            <column length="20" name="CURRENCYID" not-null="true"/>
+        </property>
+        <property name="dateofapproval" type="timestamp">
+            <column length="7" name="DATEOFAPPROVAL" not-null="true"/>
+        </property>
+        <property name="approvalupto" type="date">
+            <column length="7" name="APPROVALUPTO" not-null="true"/>
+        </property>
+        <property name="approvalammount" type="big_decimal">
+            <column length="12" name="APPROVALAMOUNT" not-null="true"/>
+        </property>
+        <property name="approvalremarks" type="string">
+            <column length="160" name="APPROVALREMARKS"/>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping default-cascade="none" default-access="property" default-lazy="true" auto-import="true">
+    <class name="com.jilit.irp.persistence.dto.SubjectsForBranchChange" table="SUBJECTSFORBRANCHCHANGE" mutable="true" polymorphism="implicit" dynamic-update="false" dynamic-insert="false" select-before-update="false" optimistic-lock="version">
+        <composite-id class="com.jilit.irp.persistence.dto.SubjectsForBranchChangeId" name="id" mapped="false" unsaved-value="undefined">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID" /> 
+            </key-property>
+            <key-property name="programid" type="string">
+                <column length="20" name="PROGRAMID" /> 
+            </key-property>
+            <key-property name="frombranchid" type="string">
+                <column length="20" name="FROMBRANCHID" /> 
+            </key-property>
+            <key-property name="tobranchid" type="string">
+                <column length="20" name="TOBRANCHID" /> 
+            </key-property>
+            <key-property name="subjectid" type="string">
+                <column length="20" name="SUBJECTID" /> 
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmaster" update="false" unique="false" optimistic-lock="true" not-found="exception" embed-xml="true">
+            <column length="20" name="INSTITUTEID" not-null="true" /> 
+            <column length="20" name="SUBJECTID" not-null="true" /> 
+        </many-to-one>
+        <!--  <many-to-one class="com.jilit.irp.persistence.dto.BranchMaster" fetch="select" insert="false" lazy="false" name="branchmaster" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="PROGRAMID" not-null="true"/>
+            <column length="20" name="BRANCHID" not-null="true"/>
+          </many-to-one>
+        --> 
+        <property name="credit" type="big_decimal" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column name="CREDIT" not-null="true" precision="5" /> 
+        </property>
+        <property name="departmentid" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="20" name="DEPARTMENTID" not-null="true" /> 
+        </property>
+        <property name="deactive" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="20" name="DEACTIVE" /> 
+        </property>
+        <property name="entryby" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="20" name="ENTRYBY" /> 
+        </property>
+        <property name="endtrydate" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+            <column length="20" name="ENDTRYDATE" /> 
+        </property>
+    </class>
+</hibernate-mapping>

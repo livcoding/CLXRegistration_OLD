@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 6, 2011 11:20:11 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ScholarshipSessionMaster" table="SCHOLARSHIPSESSIONMASTER">
+    <id name="sessionid" type="string">
+      <column length="20" name="SESSIONID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="sessioncode" type="string">
+      <column length="20" name="SESSIONCODE" not-null="true" unique="true">
+        <comment>"2010-2011"</comment>
+      </column>
+    </property>
+    <property name="sessiondesc" type="string">
+      <column length="20" name="SESSIONDESC" not-null="true">
+            </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="scholarshipcriterias">
+      <key>
+        <column length="20" name="SESSIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ScholarshipCriteria"/>
+    </set>
+    <set inverse="true" lazy="extra" name="scholarshippayments">
+      <key>
+        <column length="20" name="SESSIONID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ScholarshipPayment"/>
+    </set>
+  </class>
+</hibernate-mapping>

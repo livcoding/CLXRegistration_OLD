@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2015 2:30:09 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Studentattendancefollowup" table="STUDENTATTENDANCEFOLLOWUP">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentattendancefollowupId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="academicyear" type="string">
+        <column length="8" name="ACADEMICYEAR"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="branchid" type="string">
+        <column length="20" name="BRANCHID"/>
+      </key-property>
+      <key-property name="sectionid" type="string">
+        <column length="20" name="SECTIONID"/>
+      </key-property>
+      <key-property name="stynumber" type="byte">
+        <column name="STYNUMBER" precision="2" scale="0"/>
+      </key-property>
+      <key-property name="followupno" type="byte">
+        <column length="2" name="FOLLOWUPNO"/>
+      </key-property>
+      <key-property name="staffslno" type="integer">
+        <column length="2" name="STAFFSLNO"/>
+      </key-property>
+      <key-property name="attfromrange" type="big_decimal">
+        <column name="ATTFROMRANGE" precision="7" scale="2"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.Academicyear" fetch="select" insert="false" lazy="false" name="academicyear" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SectionMaster" fetch="select" insert="false" lazy="false" name="sectionmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SECTIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.BranchMaster" fetch="select" insert="false" lazy="false" name="branchmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+      <column length="20" name="BRANCHID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Attendancefollowupmaster" fetch="select" insert="false" lazy="false" name="attendancefollowupmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column length="2" name="FOLLOWUPNO" not-null="true"/>
+    </many-to-one>
+    <property name="fromdate" type="timestamp">
+      <column length="7" name="FROMDATE"/>
+    </property>
+    <property name="todate" type="date">
+      <column length="7" name="TODATE"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="160" name="REMARKS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="entryby" type="string">
+      <column length="20" name="ENTRYBY"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+    <property name="stafftype" type="string">
+      <column length="1" name="STAFFTYPE"/>
+    </property>
+    <property name="staffid" type="string">
+      <column length="20" name="STAFFID"/>
+    </property>
+    <property name="atttorange" type="big_decimal">
+      <column name="ATTTORANGE" precision="7" scale="2"/>
+    </property>
+    <property name="roomblock" type="string">
+      <column length="100" name="ROOMBLOCK"/>
+    </property>
+  </class>
+</hibernate-mapping>

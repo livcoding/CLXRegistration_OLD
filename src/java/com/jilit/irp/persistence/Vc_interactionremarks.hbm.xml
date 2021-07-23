@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 10, 2015 2:19:10 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Vc_InteractionRemarks" table="VC#INTERACTIONREMARKS">
+    <composite-id class="com.jilit.irp.persistence.dto.Vc_InteractionRemarksId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="userid" type="string">
+        <column length="20" name="USERID"/>
+      </key-property>
+      <key-property name="interactiontypeid" type="string">
+        <column length="20" name="INTERACTIONTYPEID"/>
+      </key-property>
+      <key-property name="memberid" type="string">
+        <column length="20" name="MEMBERID"/>
+      </key-property>
+      <key-property name="membertype" type="string">
+        <column length="1" name="MEMBERTYPE"/>
+      </key-property>
+      <key-property name="interactiondate" type="timestamp">
+        <column length="7" name="INTERACTIONDATE"/>
+      </key-property>
+      <key-property name="interactionslno" type="byte">
+        <column name="INTERACTIONSLNO" precision="2" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.Sct_IrpUsers" fetch="select" insert="false" name="sct_irpusers" update="false">
+      <column length="20" name="USERID" not-null="true"/>
+    </many-to-one>
+    <property name="remarks" type="string">
+      <column length="2000" name="REMARKS"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+    <property name="entryby" type="string">
+      <column length="20" name="ENTRYBY"/>
+    </property>
+  </class>
+</hibernate-mapping>

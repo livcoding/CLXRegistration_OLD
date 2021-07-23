@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 Feb, 2014 4:28:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.TT_TimeTableAllocationDetail" table="TT_TIMETABLEALLOCATIONDETAIL">
+        <composite-id class="com.jilit.irp.persistence.dto.TT_TimeTableAllocationDetailId" name="id">
+            <key-property name="tttransid" type="string">
+                <column length="20" name="TTTRANSID"/>
+            </key-property>
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+            <key-property name="academicyear" type="string">
+                <column length="8" name="ACADEMICYEAR"/>
+            </key-property>
+            <key-property name="programid" type="string">
+                <column length="20" name="PROGRAMID"/>
+            </key-property>
+            <key-property name="sectionid" type="string">
+                <column length="20" name="SECTIONID"/>
+            </key-property>
+            <key-property name="subsectionid" type="string">
+                <column length="20" name="SUBSECTIONID"/>
+            </key-property>
+            <key-property name="stynumber" type="integer">
+                <column length="2" name="STYNUMBER"/>
+            </key-property>
+            <key-property name="stytypeid" type="string">
+                <column length="20" name="STYTYPEID"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.TT_TimeTableAllocation" fetch="select" insert="false" lazy="false" name="tt_timetableallocation" update="false">
+            <column length="20" name="TTTRANSID" not-null="true"/>
+            <column length="20" name="REGISTRATIONID" not-null="true"/>   
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.StyType" fetch="select" insert="false" lazy="false" name="stytype" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="STYTYPEID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.ProgramWiseSubsection" fetch="select" insert="false" lazy="false" name="programwisesubsection" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="8" name="ACADEMICYEAR" not-null="true"/>
+            <column length="20" name="PROGRAMID" not-null="true"/>
+            <column name="STYNUMBER" not-null="true" precision="2" scale="0"/>
+            <column length="20" name="SECTIONID" not-null="true"/>
+            <column length="20" name="SUBSECTIONID" not-null="true"/>
+        </many-to-one>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="entryby" type="string">
+            <column length="20" name="ENTRYBY"/>
+        </property>
+        <property name="entrydate" type="timestamp">
+            <column length="7" name="ENTRYDATE"/>
+        </property>
+        <property name="basketid" type="string">
+            <column length="20" name="BASKETID" not-null="true"/>
+        </property>
+        <property name="mergewithsubsectioncode" type="string">
+            <column length="100" name="MERGEWITHSUBSECTIONCODE"/>
+        </property>
+    </class>
+</hibernate-mapping>

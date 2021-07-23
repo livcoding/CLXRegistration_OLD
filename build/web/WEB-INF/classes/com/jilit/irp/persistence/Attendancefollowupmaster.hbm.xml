@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 23, 2015 3:19:39 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Attendancefollowupmaster" table="ATTENDANCEFOLLOWUPMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.AttendancefollowupmasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="followupno" type="byte">
+        <column name="FOLLOWUPNO" precision="2" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <property name="criteriatype" type="string">
+      <column length="1" name="CRITERIATYPE">
+        <comment>In case of CriteriaType "C" check Student Attendance Category Table; In case of CriteriaType "M" check Student Attendance Follow UP Table</comment>
+      </column>
+    </property>
+    <property name="reportingdate" type="date">
+      <column length="7" name="REPORTINGDATE"/>
+    </property>
+    <property name="followupfromdate" type="date">
+      <column length="7" name="FOLLOWUPFROMDATE"/>
+    </property>
+    <property name="followuptodate" type="date">
+      <column length="7" name="FOLLOWUPTODATE"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="160" name="REMARKS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="entryby" type="string">
+      <column length="20" name="ENTRYBY"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="studentattendancefollowup">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="REGISTRATIONID" not-null="true"/>
+        <column length="2" name="FOLLOWUPNO" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Studentattendancefollowup"/>
+    </set>
+  </class>
+</hibernate-mapping>

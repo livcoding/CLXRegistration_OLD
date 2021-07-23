@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.Sct_IrpMlp" select-before-update="true" table="SCT_IRPMLP">
+    <id name="data2" type="string">
+      <column length="100" name="DATA2"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="data1" type="string">
+      <column length="100" name="DATA1">
+        <comment>Institute ID Foreign key of InstituteMaster</comment>
+      </column>
+    </property>
+    <property name="data3" type="string">
+      <column length="100" name="DATA3">
+        <comment>User Type foreign key from SCT_IRPUSERTYPE</comment>
+      </column>
+    </property>
+    <property name="data4" type="string">
+      <column length="100" name="DATA4">
+        <comment>LOGINID (Unique)</comment>
+      </column>
+    </property>
+    <property name="data5" type="string">
+      <column length="100" name="DATA5">
+        <comment>MEMBERID(EmployeeID, GuestID,StudentID)</comment>
+      </column>
+    </property>
+    <property name="data6" type="string">
+      <column length="100" name="DATA6">
+        <comment>Self Password</comment>
+      </column>
+    </property>
+    <property name="data7" type="string">
+      <column length="100" name="DATA7">
+        <comment>Parents Password</comment>
+      </column>
+    </property>
+    <property name="data8" type="string">
+      <column length="100" name="DATA8">
+        <comment>VALIDALWAYS [Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="data9" type="string">
+      <column length="100" name="DATA9">
+        <comment>VALIDFROM (DATE) Format:YYYYMMDD</comment>
+      </column>
+    </property>
+    <property name="data10" type="string">
+      <column length="100" name="DATA10">
+        <comment>VALID UpTo (DATE) Format:YYYYMMDD</comment>
+      </column>
+    </property>
+    <property name="data11" type="string">
+      <column length="100" name="DATA11">
+        <comment>LOCKedACCOUNT [Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="data12" type="string">
+      <column length="100" name="DATA12">
+        <comment>Date of LOCKing</comment>
+      </column>
+    </property>
+    <property name="data13" type="string">
+      <column length="100" name="DATA13">
+        <comment>DEACTIVE</comment>
+      </column>
+    </property>
+    <property name="data14" type="string">
+      <column length="100" name="DATA14">
+        <comment>SuperAdmin</comment>
+      </column>
+    </property>
+    <property name="data15" type="string">
+      <column length="100" name="DATA15">
+        <comment>PASSWORD EXPIRED [Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="data16" type="string">
+      <column length="100" name="DATA16">
+        <comment>EXPIRED LOGIN/USER [Y]es/[N]o</comment>
+      </column>
+    </property>
+    <property name="data17" type="string">
+      <column length="100" name="DATA17">
+        <comment>Reason of Locking of Account</comment>
+      </column>
+    </property>
+    <property name="data18" type="string">
+      <column length="100" name="DATA18">
+        <comment>Number of Fail Login Attempts</comment>
+      </column>
+    </property>
+    <property name="data19" type="string">
+      <column length="100" name="DATA19">
+        <comment>Date When last Fail Login Attempt</comment>
+      </column>
+    </property>
+    <property name="data20" type="string">
+      <column length="100" name="DATA20">
+        <comment>Parent Account Locked? [Y]es or [N]o</comment>
+      </column>
+    </property>
+    <property name="data21" type="string">
+      <column length="100" name="DATA21">
+        <comment>Reason of Locking of Parent Account</comment>
+      </column>
+    </property>
+    <property name="data22" type="string">
+      <column length="100" name="DATA22">
+        <comment>Number of Fail Login Attempts by the Parent</comment>
+      </column>
+    </property>
+    <property name="data23" type="string">
+      <column length="100" name="DATA23">
+        <comment>Date When last Fail Login Attempt by the Parent</comment>
+      </column>
+    </property>
+    <property name="adloginid" type="string">
+      <column length="100" name="ADLOGINID">
+        <comment>Date When last Fail Login Attempt by the Parent</comment>
+      </column>
+    </property>
+     <property name="clientId" type="string">
+      <column length="20" name="CLIENTID">
+        <comment>ClientID belongs to</comment>
+      </column>
+    </property>
+    <property name="firsttimepassreset" type="string">
+      <column length="1" name="FIRSTTIMEPASSRESET">
+        <comment>This flag will be reset on FirstTimePassReset</comment>
+      </column>
+    </property>
+  </class>
+  <query name="getAllSct_IrpMlpData">
+
+    select a.data4,a.data5
+     from Sct_IrpMlp a
+        where a.data1 = :instituteid
+            and a.data3 = :usertype
+            order by a.data4
+
+    </query>
+  <query name="getAllOldSct_IrpMlpData">
+
+    select a.data5
+     from Sct_IrpMlp a
+        where a.data1 = :instituteid
+            and a.data3 = :usertype
+            order by a.data4
+
+    </query>
+  <query name="getSct_IrpMlpData_id_type">
+
+    select a.data5 
+     from Sct_IrpMlp a
+        where a.data1 = :instituteid
+            and a.data3 = :usertype
+            and a.data5 = :userid
+
+    </query>
+  <query name="getLoginIdCreatedDataFromSct_IrpMlp">
+
+    select a.data5
+     from Sct_IrpMlp a
+        where a.data5 = ?
+
+
+    </query>
+  <query name="getemployeeID">
+
+    select a.data5
+     from Sct_IrpMlp a
+        where  a.data3 = ?
+        And    coalesce(a.data11,?) = ?
+
+
+    </query>
+  <query name="getlockedemployeeID">
+
+    select a.data5
+     from Sct_IrpMlp a
+        where  a.data3 = ?
+        And    a.data11 = ?
+
+
+    </query>
+  <query name="getAllSct_IrpMlpDataUserTypeWise">
+
+    select a
+     from Sct_IrpMlp a
+        where a.data1 = ?
+            and a.data3 = ?
+    </query>
+  <query name="getAllSct_IrpMlpDataLogindidWise">
+
+    select a
+     from Sct_IrpMlp a
+        where a.data1 = ?
+            and a.data4 = ?
+    </query>
+  <query name="getAllSct_IrpMlpDataForgotPassword">
+
+    select a
+     from Sct_IrpMlp a
+        where a.data4 = ?
+    </query>
+  <query name="updateUserPassword">
+
+    update Sct_IrpMlp a
+        set a.data6 = :newpassword
+            where a.data2 = :userid
+
+    </query>
+  <query name="getEmployeeDetail">
+
+   Select a.employeeid,a.employeecode,a.employeename
+     from V_Staff a
+        where a.employeeid = ?
+
+    </query>
+  <query name="getStudentDetail">
+
+   Select a.studentid,a.enrollmentno,a.name
+     from StudentMaster a
+        where a.studentid = ?
+
+    </query>
+  <query name="findMemberFromSct_IrpmlpForUnlock">
+   
+   select a
+     from Sct_IrpMlp a
+        where a.data3 = ?
+        and a.data4 = ?
+     
+    </query>
+  <query name="findMember_Sct_Irpmlp">
+   
+    select a.data2
+     from Sct_IrpMlp a
+        where a.data1 = ?
+            and a.data5 = ?
+            
+    </query>
+  <query name="findSct_IrpMlpDataByMemberid">
+
+    select a.data2
+     from Sct_IrpMlp a
+        where a.data1 = ?
+            and a.data5 = ?
+
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 Feb, 2014 4:28:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.TT_TimeTableAllocation" table="TT_TIMETABLEALLOCATION">
+        <comment>Program Section cum Subject Wise Time table</comment>
+        <composite-id class="com.jilit.irp.persistence.dto.TT_TimeTableAllocationId" name="id">
+            <key-property name="tttransid" type="string">
+                <column length="20" name="TTTRANSID"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.TT_SlotMaster" fetch="select" insert="false" lazy="false" name="tt_slotmaster" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="REGISTRATIONID" not-null="true"/>
+            <column length="10" name="ALLOCATIONDAY" not-null="true"/>
+            <column length="20" name="SLOTID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmaster" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="SUBJECTID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.SubjectComponent" fetch="select" insert="false" lazy="false" name="subjectcomponent" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+                <comment>[O]ver All, [L], [T], [P], [X]</comment>
+            </column>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.ExamCenterWiseRooms" fetch="select" insert="false" lazy="false" name="examcenterwiserooms" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="REGISTRATIONID" not-null="true"/>
+            <column length="20" name="EXAMCENTERID"/>
+            <column length="20" name="ROOMID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.TT_TimeTable" fetch="select" insert="false" name="tt_timetable" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="REGISTRATIONID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.DepartmentMaster" fetch="select" insert="false" lazy="false" name="departmentmaster" update="false">
+            <column length="20" name="RUNNINGDEPARTMENTID"/>
+        </many-to-one>
+        <property name="fromsessiontime" type="string">
+            <column length="10" name="FROMSESSIONTIME"/>
+        </property>
+        <property name="tosessiontime" type="string">
+            <column length="10" name="TOSESSIONTIME"/>
+        </property>
+        <property name="stafftype" type="string">
+            <column length="1" name="STAFFTYPE" not-null="true"/>
+        </property>
+        <property name="staffid" type="string">
+            <column length="20" name="STAFFID" not-null="true"/>
+        </property>
+        <property name="multifaculty" type="string">
+            <column length="1" name="MULTIFACULTY">
+                <comment>Yes/No; If yes then details of each faculty should go to MultiFacultyTeachingLoad</comment>
+            </column>
+        </property>
+        <property name="status" type="string">
+            <column length="1" name="STATUS">
+                <comment>[D]raft / [F]inal / [A]pproved / [C]ancel</comment>
+            </column>
+        </property>
+        <property name="approvedby" type="string">
+            <column length="20" name="APPROVEDBY"/>
+        </property>
+        <property name="approveddate" type="date">
+            <column length="7" name="APPROVEDDATE"/>
+        </property>
+        <property name="approveremarks" type="string">
+            <column length="160" name="APPROVEREMARKS"/>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE" not-null="true"/>
+        </property>
+        <property name="entryby" type="string">
+            <column length="20" name="ENTRYBY"/>
+        </property>
+        <property name="entrydate" type="timestamp">
+            <column length="7" name="ENTRYDATE"/>
+        </property>
+        <property name="subjectid" type="string">
+            <column length="20" name="SUBJECTID"/>
+        </property>
+        <property name="slotid" type="string">
+            <column length="20" name="SLOTID"/>
+        </property>
+        <property name="roomid" type="string">
+            <column length="20" name="ROOMID"/>
+        </property>
+        <property name="subjectcomponentid" type="string">
+            <column length="20" name="SUBJECTCOMPONENTID"/>
+        </property>
+        <property name="allocationday" type="string">
+            <column length="10" name="ALLOCATIONDAY"/>
+        </property>
+        <property name="examcenterid" type="string">
+            <column length="20" name="EXAMCENTERID"/>
+        </property>
+        <property name="runningdepartmentid" type="string">
+            <column length="20" name="RUNNINGDEPARTMENTID"/>
+        </property>
+        <property name="ttreferenceid" type="string">
+            <column length="20" name="TTREFERENCEID"/>
+        </property>
+        <set cascade="save-update,delete" inverse="true" lazy="extra" name="tt_timetableallocationdetails">
+            <key>
+                <column length="20" name="TTTRANSID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>   
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.TT_TimeTableAllocationDetail"/>
+        </set>
+        <set inverse="true" lazy="extra" name="tt_multifacultyteachingloads">
+            <key>
+                <column length="20" name="TTTRANSID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>   
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.TT_MultiFacultyTeachingLoad"/>
+        </set>
+        <set inverse="true" lazy="extra" name="tt_suspendedslotses">
+            <key>
+                <column length="20" name="TTTRANSID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>      
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.TT_SuspendedSlots"/>
+        </set>
+    </class>
+    <query name="findStaffType">
+        select  distinct a.staffid, b.stafftype
+        from TT_TimeTableAllocation a, V_Staff b
+        where a.staffid = b.employeeid
+    </query>
+    <query name="getAllSubjectType">
+        select distinct b.subjectid, b.subjectcomponentid, c.id.subsectionid, b.staffid, b.id.instituteid
+        from DepartmentMaster a, TT_TimeTableAllocation b, TT_TimeTableAllocationDetail c
+        where a.departmentid = b.runningdepartmentid
+        and b.id.registrationid = c.id.registrationid
+        and b.id.tttransid = c.id.tttransid
+        and a.departmentid = ?
+        and c.id.instituteid= ?
+    </query>
+</hibernate-mapping>

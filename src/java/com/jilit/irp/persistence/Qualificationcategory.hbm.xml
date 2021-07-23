@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.QualificationCategory" table="QUALIFICATIONCATEGORY">
+    <comment>Like Diploma/Degree holder, PHd. etc.</comment>
+    <id name="qualificationcategoryid" type="string">
+      <column length="20" name="QUALIFICATIONCATEGORYID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="qualificationcategorycode" type="string">
+      <column length="20" name="QUALIFICATIONCATEGORYCODE" not-null="true" unique="true"/>
+    </property>
+    <property name="qualificationcategory" type="string">
+      <column length="75" name="QUALIFICATIONCATEGORY" not-null="true"/>
+    </property>
+    <property name="qualificationfor" type="string">
+      <column length="1" name="QUALIFICATIONFOR"/>
+    </property>
+    <property name="qualificationlevel" type="java.lang.Short">
+      <column name="QUALIFICATIONLEVEL" precision="8"/>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 12, 2009 10:48:05 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentForInstitute" table="STUDENTFORINSTITUTE">
+    <comment>This table will keep data for all the institute aginst which the students are being admitted</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.StudentForInstituteId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="forinstituteid" type="string">
+        <column length="20" name="FORINSTITUTEID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="forinstitutecode" type="string">
+      <column length="20" name="FORINSTITUTECODE" not-null="true">
+        <comment>For Institute Belongs to</comment>
+      </column>
+    </property>
+    <property name="shortname" type="string">
+      <column length="20" name="SHORTNAME" not-null="true"/>
+    </property>
+    <property name="forinstitutedesc" type="string">
+      <column length="50" name="FORINSTITUTEDESC" not-null="true">
+        <comment>For Institute Belongs to Description</comment>
+      </column>
+    </property>
+    <property name="maininstitute" type="string">
+      <column length="1" name="MAININSTITUTE" not-null="true">
+        <comment>Yes / No</comment>
+      </column>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0">
+        <comment>For Institute Sequencing</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" name="studentmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="FORINSTITUTE">
+          <comment>Institutes Belongs to</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentMaster"/>
+    </set>
+    
+  </class>
+</hibernate-mapping>

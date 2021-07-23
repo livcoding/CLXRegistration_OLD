@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.OfferedODSubjectTagging" table="OFFEREDODSUBJECTTAGGING">
+        <comment>Subject which needs to be offered other than the scheme (specially in case of old or discontinued subjects)</comment>
+        <composite-id class="com.jilit.irp.persistence.dto.OfferedODSubjectTaggingId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+            <key-property name="offersubjectid" type="string">
+                <column length="20" name="OFFERSUBJECTID"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmasterByOfferedodsubjecttaggingFk3" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="ODSUBJECTID" not-null="true">
+                <comment>Computer Generated ID</comment>
+            </column>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="REGISTRATIONID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmasterByOfferedodsubjecttaggingFk4" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="CURRENTSUBJECTID">
+                <comment>Enter Subject ID to merge with (if any)</comment>
+            </column>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.SubjectTypeMaster" fetch="select" lazy="false" insert="false" name="subjecttypemaster" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="SUBJECTTYPEID" not-null="true">
+            </column>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.DepartmentMaster" fetch="select" insert="false" lazy="false" name="departmentmaster" update="false">
+            <column length="20" name="DEPARTMENTID"/>
+        </many-to-one>
+        <property name="odsubjectid" type="string">
+            <column length="20" name="ODSUBJECTID" not-null="true">
+                <comment>Old or Discontinued subject ID</comment>
+            </column>
+        </property>
+        <property name="currentsubjectid" type="string">
+            <column length="20" name="CURRENTSUBJECTID">
+            </column>
+        </property>
+        <!-- <property name="basketid" type="string">
+          <column length="20" name="BASKETID" not-null="true">
+          </column>
+        </property>-->
+        <property name="subjecttypeid" type="string">
+            <column length="20" name="SUBJECTTYPEID" not-null="true">
+            </column>
+        </property>
+        <property name="departmentid" type="string">
+            <column length="20" name="DEPARTMENTID" not-null="true">
+            </column>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="auditsubject" type="string">
+            <column length="1" name="AUDITSUBJECT"/>
+        </property>
+        <property name="credits" type="byte">
+            <column name="CREDITS" not-null="true" precision="3" scale="0"/>
+        </property>
+        <set cascade="save-update,delete" inverse="true" lazy="extra" name="offeredodsubjecttaggingdetails">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+                <column length="20" name="OFFERSUBJECTID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.OfferedODSubjectTaggingDetail"/>
+        </set>
+    </class>
+</hibernate-mapping>

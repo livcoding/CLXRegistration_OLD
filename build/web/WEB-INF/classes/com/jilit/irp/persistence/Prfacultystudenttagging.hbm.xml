@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.PRFacultyStudentTagging" table="PRFACULTYSTUDENTTAGGING">
+    <comment>This table will hold the entire students subject tagging with faculty. At the time of approval it moves to StudentLTPDetail.</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.PRFacultyStudentTaggingId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="fstid" type="string">
+        <column length="20" name="FSTID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.FacultySubjectTagging" fetch="select" insert="false" name="facultysubjecttagging" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="FSTID" not-null="true"/>
+    </many-to-one>
+    <property name="sstpopulated" type="string">
+      <column length="1" name="SSTPOPULATED">
+        <comment>Yes / No; populated to Faculty Student Tagging or not</comment>
+      </column>
+    </property>
+    <property name="populatedbyuser" type="string">
+      <column length="20" name="POPULATEDBYUSER"/>
+    </property>
+    <property name="populationdate" type="timestamp">
+      <column length="7" name="POPULATIONDATE"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="equivalentsubjectid" type="string">
+      <column length="20" name="EQUIVALENTSUBJECTID"/>
+    </property>
+    <property name="registrationid" type="string">
+      <column length="20" name="REGISTRATIONID"/>
+    </property>
+    <property name="auditsubject" type="string">
+      <column length="1" name="AUDITSUBJECT"/>
+    </property>
+  </class>
+</hibernate-mapping>

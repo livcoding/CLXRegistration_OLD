@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.PRFacultyEventTagging" table="PRFACULTYEVENTTAGGING">
+    <composite-id class="com.jilit.irp.persistence.dto.PRFacultyEventTaggingId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="eventno" type="java.lang.Short">
+        <column name="EVENTNO" precision="4" scale="0"/>
+      </key-property>
+      <key-property name="stafftype" type="string">
+        <column length="1" name="STAFFTYPE"/>
+      </key-property>
+      <key-property name="staffid" type="string">
+        <column length="20" name="STAFFID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.PRFacultyEvent" fetch="select" insert="false" lazy="false" name="prfacultyevent" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+      <column name="EVENTNO" not-null="true" precision="4" scale="0"/>
+    </many-to-one>
+    <property name="eventfrom" type="date">
+      <column length="7" name="EVENTFROM" not-null="true"/>
+    </property>
+    <property name="eventto" type="date">
+      <column length="7" name="EVENTTO" not-null="true"/>
+    </property>
+    <property name="sendtohod" type="string">
+      <column length="1" name="SENDTOHOD">
+        <comment>Yes / No</comment>
+      </column>
+    </property>
+    <property name="sentby" type="string">
+      <column length="20" name="SENTBY"/>
+    </property>
+    <property name="sentdate" type="date">
+      <column length="7" name="SENTDATE"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

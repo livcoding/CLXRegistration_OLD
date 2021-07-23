@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Feb, 2012 11:21:01 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.NumberingSetupOthers" table="NUMBERINGSETUPOTHERS">
+    <id name="groupid" type="string">
+      <column length="50" name="GROUPID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="companyinstid" type="string">
+      <column length="20" name="COMPANYINSTID" not-null="true"/>
+    </property>
+    <property name="companyinstitute" type="string">
+      <column length="1" name="COMPANYINSTITUTE" not-null="true">
+        <comment>I-Institute/C-CompanyID</comment>
+      </column>
+    </property>
+    <property name="prefix" type="string">
+      <column length="4" name="PREFIX"/>
+    </property>
+    <property name="ymd" type="string">
+      <column length="8" name="YMD" not-null="true">
+        <comment>In case of Year YYYY In case of Month YYYYMM In case of Day YYYYMMDD</comment>
+      </column>
+    </property>
+    <property name="totalwidth" type="int">
+      <column name="TOTALWIDTH" precision="2" scale="0"/>
+    </property>
+    <set inverse="true" lazy="extra" name="numberingcontrolotherses">
+      <key>
+        <column length="50" name="GROUPID" not-null="true">
+          <comment>GroupID / Unique Id stored in NumberingSetup Table</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.NumberingControlOthers"/>
+    </set>
+  </class>
+</hibernate-mapping>

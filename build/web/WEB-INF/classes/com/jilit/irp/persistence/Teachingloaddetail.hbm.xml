@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 24, 2014 5:24:41 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.TeachingLoadDetail" table="TEACHINGLOADDETAIL">
+    <comment>Teaching load distribution Detail Faculty Wise</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.TeachingLoadDetailId" name="id">
+      <key-property name="tlid" type="string">
+        <column length="20" name="TLID"/>
+      </key-property>
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="stafftype" type="string">
+        <column length="1" name="STAFFTYPE"/>
+      </key-property>
+      <key-property name="staffid" type="string">
+        <column length="20" name="STAFFID"/>
+      </key-property>
+      <key-property name="subjectcomponentid" type="string">
+        <column length="20" name="SUBJECTCOMPONENTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectComponent" fetch="select" insert="false" lazy="false" name="subjectcomponent" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTCOMPONENTID" not-null="true">
+        <comment>[O]ver All, [L], [T], [P], [X]</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.TeachingLoadDistribution" fetch="select" insert="false" lazy="false" name="teachingloaddistribution" update="false">
+      <column length="20" name="TLID" not-null="true"/>
+    </many-to-one>
+    <property name="noofhours" type="big_decimal">
+      <column name="NOOFHOURS" not-null="true" precision="6" scale="2">
+        <comment>No of Hours Teaching Load</comment>
+      </column>
+    </property>
+    <property name="durationofclass" type="big_decimal">
+      <column name="DURATIONOFCLASS" precision="5" scale="2"/>
+    </property>
+    <property name="noofclassinaweek" type="big_decimal">
+      <column name="NOOFCLASSINAWEEK" precision="5" scale="2"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

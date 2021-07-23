@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 21, 2011 3:02:43 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.RegistrationFineMaster" table="REGISTRATIONFINEMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.RegistrationFineMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="academicyear" type="string">
+        <column length="8" name="ACADEMICYEAR"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="branchid" type="string">
+        <column length="20" name="BRANCHID"/>
+      </key-property>
+      <key-property name="fineslno" type="short">
+        <column name="FINESLNO" precision="3" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.BranchMaster" fetch="select" insert="false" lazy="false" name="branchmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+      <column length="20" name="BRANCHID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Academicyear" fetch="select" insert="false" lazy="false" name="academicyear" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </many-to-one>
+    <property name="finestartdate" type="date">
+      <column length="7" name="FINESTARTDATE">
+        <comment>Fine Start Date; Can be Null</comment>
+      </column>
+    </property>
+    <property name="finetilldate" type="date">
+      <column length="7" name="FINETILLDATE">
+        <comment>Fine Till Date; Can be Null</comment>
+      </column>
+    </property>
+    <property name="calculationtype" type="string">
+      <column length="1" name="CALCULATIONTYPE" not-null="true">
+        <comment>[P]er Day / [C]umlative</comment>
+      </column>
+    </property>
+    <property name="finetype" type="string">
+      <column length="1" name="FINETYPE">
+        <comment>[P]ercentage / [V]alue</comment>
+      </column>
+    </property>
+    <property name="finevalue" type="big_decimal">
+      <column name="FINEVALUE" precision="15">
+        <comment>Fine Value</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

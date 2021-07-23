@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentDocumentMaster" table="STUDENTDOCUMENTMASTER">
+    <comment>Student Documents which is either Retained or Checked</comment>
+    <id name="documentid" type="string">
+      <column length="20" name="DOCUMENTID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="documentcode" type="string">
+      <column length="20" name="DOCUMENTCODE" not-null="true" unique="true"/>
+    </property>
+    <property name="documentdesc" type="string">
+      <column length="100" name="DOCUMENTDESC" not-null="true"/>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" name="categoryprogramdocumenttaggings">
+      <key>
+        <column length="20" name="DOCUMENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CategoryProgramDocumentTagging"/>
+    </set>
+  </class>
+  <!--<query name="getAllStudentDocumentMasterData_ABC">
+      <![CDATA[
+       SELECT a.documentid AS sc,a.documentdesc AS sd,b.documentkept AS df
+            FROM StudentDocumentMaster AS a LEFT JOIN StudentDocumentDetail AS b
+      ]]>
+  </query>-->
+</hibernate-mapping>

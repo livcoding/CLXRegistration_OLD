@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 21, 2011 3:02:43 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.DebarreasonMaster" table="DEBARREASONMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.DebarreasonMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="debarreasonid" type="string">
+        <column length="20" name="DEBARREASONID"/>
+      </key-property>
+    </composite-id>
+    <property name="gradeid" type="string">
+      <column length="20" name="GRADEID" />
+    </property>
+    <property name="reasoncode" type="string">
+      <column length="200" name="REASONCODE" />
+    </property>
+    <property name="reasondesc" type="string">
+      <column length="300" name="REASONDESC">
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>  
+    <property name="remarks" type="string">
+      <column length="300" name="REMARKS"/>
+    </property>
+    <property name="reasontype" type="string">
+      <column length="2" name="REASONTYPE"/>
+    </property>
+    <property name="summerregfeerequierd" type="string">
+      <column length="1" name="SUMMERREGFEEREQUIERD"/>
+    </property> 
+    <property name="supplimentoryregfeerequired" type="string">
+      <column length="1" name="SUPPLIMENTORYREGFEEREQUIRED"/>
+    </property> 
+    <property name="debarinsupplimentoryreg" type="string">
+      <column length="1" name="DEBARINSUPPLIMENTORYREG"/>
+    </property> 
+    <property name="entrydate" type="timestamp">
+      <column length="7" name="ENTRYDATE"/>
+    </property> 
+    
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17 Sep, 2016 3:23:02 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Sdl_ScheduleMailAttachement" table="SDL_SCHEDULEMAILATTACHEMENT">
+    <comment>List of E-Mails Attachements to be sent</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.Sdl_ScheduleMailAttachementId" name="id">
+      <key-property name="schedularid" type="string">
+        <column length="20" name="SCHEDULARID"/>
+      </key-property>
+      <key-property name="taskid" type="string">
+        <column length="20" name="TASKID"/>
+      </key-property>
+      <key-property name="senderemailid" type="string">
+        <column length="200" name="SENDEREMAILID"/>
+      </key-property>
+      <key-property name="attachementslno" type="short">
+        <column name="ATTACHEMENTSLNO" precision="3" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.Sdl_ScheduleTaskMaster" fetch="select" insert="false" name="sdl_scheduletaskmaster" update="false">
+      <column length="20" name="SCHEDULARID" not-null="true">
+        <comment>SchedularID</comment>
+      </column>
+      <column length="20" name="TASKID" not-null="true"/>
+    </many-to-one>
+    <property name="attachementfilepath" type="string">
+      <column length="200" name="ATTACHEMENTFILEPATH"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE">
+        <comment>[Y]es/[N]o</comment>
+      </column>
+    </property>
+  </class>
+</hibernate-mapping>

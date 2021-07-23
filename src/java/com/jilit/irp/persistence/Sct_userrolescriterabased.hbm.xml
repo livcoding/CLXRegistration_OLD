@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2017 12:13:11 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Sct_UserRolesCriteraBased" table="SCT_USERROLESCRITERABASED">
+    <composite-id class="com.jilit.irp.persistence.dto.Sct_UserRolesCriteraBasedId" name="id">
+      <key-property name="userid" type="string">
+        <column length="20" name="USERID"/>
+      </key-property>
+      <key-property name="roleid" type="string">
+        <column length="20" name="ROLEID"/>
+      </key-property>
+      <key-property name="rightsbasedon" type="string">
+        <column length="2" name="RIGHTSBASEDON"/>
+      </key-property>
+      <key-property name="rightsbasedid" type="string">
+        <column length="20" name="RIGHTSBASEDID"/>
+      </key-property>
+    </composite-id>
+    <property name="alwaysvalid" type="java.lang.Character">
+      <column length="1" name="ALWAYSVALID"/>
+    </property>
+    <property name="validfrom" type="date">
+      <column length="7" name="VALIDFROM"/>
+    </property>
+    <property name="validupto" type="date">
+      <column length="7" name="VALIDUPTO"/>
+    </property>
+    <property name="deactive" type="java.lang.Character">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Sct_IrpUsers" table="SCT_IRPUSERS">
+    <id name="userid" type="string">
+      <column length="20" name="USERID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="lastvisiteddate" type="timestamp">
+      <column length="7" name="LASTVISITEDDATE"/>
+    </property>
+    <property name="data1" type="string">
+      <column length="200" name="DATA1">
+        <comment>Title / Heading after login</comment>
+      </column>
+    </property>
+    <property name="data2" type="string">
+      <column length="200" name="DATA2">
+        <comment>Self Secret Questions</comment>
+      </column>
+    </property>
+    <property name="data3" type="string">
+      <column length="200" name="DATA3">
+        <comment>Answer of the self secret Question</comment>
+      </column>
+    </property>
+    <property name="data4" type="string">
+      <column length="200" name="DATA4">
+        <comment>Parents Secret Questions</comment>
+      </column>
+    </property>
+    <property name="data5" type="string">
+      <column length="200" name="DATA5">
+        <comment>Answer of the Parents secret Question</comment>
+      </column>
+    </property>
+    <property name="lastvisiteddateparent" type="date">
+      <column length="7" name="LASTVISITEDDATEPARENT"/>
+    </property>
+    <property name="appliactionaccess" type="string">
+      <column length="1" name="APPLIACTIONACCESS" not-null="true">
+        <comment>[W]EBKIOSK, [M]ODULE WISE APPLICATION, [B]OTH</comment>
+      </column>
+    </property>
+    <property name="loginstatus" type="string">
+      <column length="1" name="LOGINSTATUS">
+        <comment>I=user is Logged IN/ NULL or O means user has Log Out</comment>
+      </column>
+    </property>
+    <set inverse="true" lazy="extra" name="log_loginloginfos">
+      <key>
+        <column length="20" name="USERID" not-null="true" unique="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Log_LoginLogInfo"/>
+    </set>
+   </class>
+  <query name="getSct_IrpUsersType">
+       
+    select a
+     from Sct_IrpUserType a
+        where a.id.usertype not in ('A')
+            and coalesce(a.deactive,'N')= 'N'
+            
+    </query>
+</hibernate-mapping>

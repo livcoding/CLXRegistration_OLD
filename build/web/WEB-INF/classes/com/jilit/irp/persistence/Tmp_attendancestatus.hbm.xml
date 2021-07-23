@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 5, 2014 2:16:28 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.TMP_AttendanceStatus" table="TMP_ATTENDANCESTATUS">
+    <composite-id class="com.jilit.irp.persistence.dto.TMP_AttendanceStatusId" name="id">
+      <key-property name="lognsessionid" type="string">
+        <column length="20" name="LOGNSESSIONID"/>
+      </key-property>
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="employeeid" type="string">
+        <column length="20" name="EMPLOYEEID"/>
+      </key-property>
+      <key-property name="subjectid" type="string">
+        <column length="20" name="SUBJECTID"/>
+      </key-property>
+      <key-property name="attendancedate" type="date">
+        <column length="7" name="ATTENDANCEDATE"/>
+      </key-property>
+      <key-property name="slotid" type="string">
+        <column length="20" name="SLOTID"/>
+      </key-property>
+      <key-property name="subjectcomponentid" type="string">
+        <column length="20" name="SUBJECTCOMPONENTID"/>
+      </key-property>
+    </composite-id>
+    <property name="employeename" type="string">
+      <column length="200" name="EMPLOYEENAME"/>
+    </property>
+    <property name="sbjectcode" type="string">
+      <column length="20" name="SBJECTCODE"/>
+    </property>
+    <property name="subjectname" type="string">
+      <column length="200" name="SUBJECTNAME"/>
+    </property>
+    <property name="subjectcomponentdesc" type="string">
+      <column length="20" name="SUBJECTCOMPONENTDESC"/>
+    </property>
+    <property name="allocationday" type="string">
+      <column length="20" name="ALLOCATIONDAY"/>
+    </property>
+    <property name="fromtime" type="string">
+      <column length="20" name="FROMTIME"/>
+    </property>
+    <property name="totime" type="string">
+      <column length="20" name="TOTIME"/>
+    </property>
+    <property name="status" type="string">
+      <column length="60" name="STATUS"/>
+    </property>
+  </class>
+</hibernate-mapping>

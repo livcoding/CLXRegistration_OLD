@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 20, 2017 11:03:11 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.Tt_schattendancelogmaster" table="TT_SCHATTENDANCELOGMASTER" >
+        <id name="attlogid" type="string">
+            <column name="ATTLOGID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="instituteid" type="string">
+            <column name="INSTITUTEID" length="20" />
+        </property>
+        <property name="registrationid" type="string">
+            <column name="REGISTRATIONID" length="20" />
+        </property>
+        <property name="logaction" type="string">
+            <column name="LOGACTION" length="1" />
+        </property>
+        <property name="logstafftype" type="string">
+            <column name="LOGSTAFFTYPE" length="1" />
+        </property>
+        <property name="logstaffid" type="string">
+            <column name="LOGSTAFFID" length="20" />
+        </property>
+        <property name="logremarks" type="string">
+            <column name="LOGREMARKS" length="200" />
+        </property>
+        <property name="logdate" type="date">
+      <column length="15" name="LOGDATE"/>
+        </property>
+        <set name="tt_schattendancelogdetails" inverse="true">
+            <key>
+                <column name="ATTLOGID" length="20" not-null="true" />
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.Tt_schattendancelogdetail" />
+        </set>
+    </class>
+</hibernate-mapping>

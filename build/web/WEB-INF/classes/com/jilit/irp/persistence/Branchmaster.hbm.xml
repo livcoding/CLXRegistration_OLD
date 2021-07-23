@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.BranchMaster" table="BRANCHMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.BranchMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="branchid" type="string">
+        <column length="20" name="BRANCHID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" lazy="false" name="programmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </many-to-one>
+    <property name="branchcode" type="string">
+      <column length="20" name="BRANCHCODE" not-null="true"/>
+    </property>
+    <property name="branchdesc" type="string">
+      <column length="100" name="BRANCHDESC" not-null="true"/>
+    </property>
+    <property name="enrollmentcode" type="string">
+      <column length="6" name="ENROLLMENTCODE"/>
+    </property>
+    <property name="registrationcardlabel" type="string">
+      <column length="100" name="REGISTRATIONCARDLABEL"/>
+    </property>
+    <property name="seqid" type="java.lang.Short">
+      <column name="SEQID" precision="4" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="certificatecode" type="string">
+      <column length="6" name="CERTIFICATECODE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="programmaxsties">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+        <column length="20" name="BRANCHID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramMaxSty"/>
+    </set>
+    <set inverse="true" lazy="extra" name="rollnumberingsetupdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+        <column length="20" name="BRANCHID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.RollNumberingSetupDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentmasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID"/>
+        <column length="20" name="BRANCHID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentMaster"/>
+    </set>
+    <set inverse="true" lazy="extra" name="departmentbranchtaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+        <column length="20" name="BRANCHID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.DepartmentBranchTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="prerequisitforregistrations">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+        <column length="20" name="BRANCHID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.PreRequisitForRegistration"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="mentorMasters">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+        <column length="20" name="BRANCHID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.MentorMaster"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="programwisesubsections">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+        <column length="20" name="BRANCHID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ProgramWiseSubsection"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="studentcertificatesetupdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+        <column length="20" name="BRANCHID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentCertificateSetupDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentcertificateslnos">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+        <column length="20" name="BRANCHID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentCertificateSlno"/>
+    </set>
+
+    <set inverse="true" lazy="extra" name="subjectwiseloads">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID"/>
+        <column length="20" name="BRANCHID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.SubjectWiseLoad"/>
+    </set>
+    <set inverse="true" lazy="extra" name="branchchangelog">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="PROGRAMID"/>
+        <column length="20" name="BRANCHID"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.BranchChangeLog"/>
+    </set>
+  </class>
+  <query name="findAllBranchMasterData_StudentRegistration">
+
+         select a
+             from BranchMaster a
+                       where a.id.instituteid = ?
+                            and a.id.programid = ?
+                            and coalesce(a.deactive,'N') = 'N'
+                            and exists(
+                                      select b.studentid
+                                             from StudentMaster b, StudentRegistration c
+                                                  where b.instituteid = a.id.instituteid
+                                                    and b.programid = a.id.programid
+                                                    and b.instituteid = c.id.instituteid
+                                                    and b.studentid = c.id.studentid
+                                                    and b.acadyear = ?
+                                                    and c.id.registrationid = ?
+                                       )
+                              order by a.branchcode desc
+
+</query>
+</hibernate-mapping>

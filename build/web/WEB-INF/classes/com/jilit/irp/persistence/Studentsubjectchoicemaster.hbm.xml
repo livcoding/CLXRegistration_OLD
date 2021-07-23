@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.StudentSubjectChoiceMaster" table="STUDENTSUBJECTCHOICEMASTER">
+        <composite-id class="com.jilit.irp.persistence.dto.StudentSubjectChoiceMasterId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+            <key-property name="stynumber" type="byte">
+                <column name="STYNUMBER" precision="2" scale="0"/>
+            </key-property>
+            <key-property name="studentid" type="string">
+                <column length="20" name="STUDENTID"/>
+            </key-property>
+            <key-property name="subjectid" type="string">
+                <column length="20" name="SUBJECTID"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.StudentRegistration" fetch="select" insert="false" lazy="false" name="studentregistration" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="REGISTRATIONID" not-null="true"/>
+            <column length="20" name="STUDENTID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.StyType" fetch="select" insert="false" lazy="false" name="stytype" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="STYTYPEID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmasterByStudentsubjectmasterFk4" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="EQUIVALENTSUBJECTID"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmasterByStudentsubjectchoicemasterFk3" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="SUBJECTID" not-null="true"/>
+        </many-to-one>
+        <property name="choice" type="java.lang.Byte">
+            <column name="CHOICE" precision="2" scale="0"/>
+        </property>
+        <property name="equivalentsubjectid" type="string">
+            <column length="20" name="EQUIVALENTSUBJECTID"/>
+        </property>
+        <!--<property name="subsectionid" type="string">
+          <column length="20" name="SUBSECTIONID"/>
+        </property>-->
+        <property name="stytypeid" type="string">
+            <column length="20" name="STYTYPEID"/>
+        </property>
+        <property name="basketid" type="string">
+            <column length="20" name="BASKETID"/>
+        </property>
+        <property name="subjectrunning" type="string">
+            <column length="1" name="SUBJECTRUNNING"/>
+        </property>
+        <property name="customfinalized" type="string">
+            <column length="1" name="CUSTOMFINALIZED"/>
+        </property>
+        <property name="part" type="string">
+            <column length="10" name="PART"/>
+        </property>
+        <property name="gradeid" type="string">
+            <column length="20" name="gradeid"/>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="openelective" type="string">
+            <column length="1" name="OPENELECTIVE"/>
+        </property>
+        <property name="reregtype" type="string">
+            <column length="20" name="REREGTYPE"/>
+        </property>
+        <property name="regfeeamount" type="big_decimal">
+            <column length="18" name="REGFEEAMOUNT"/>
+        </property>
+        <property name="auditsubject" type="string">
+            <column length="1" name="AUDITSUBJECT"/>
+        </property>	
+        <property name="subjecttypeid" type="string">
+            <column length="20" name="SUBJECTTYPEID"/>
+        </property>
+        <property name="subjecttype" type="string">
+            <column length="1" name="SUBJECTTYPE"/>
+        </property>
+        <set cascade="save-update,delete" inverse="true" lazy="extra" name="studentsubjectchoicedetails">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="REGISTRATIONID" not-null="true"/>
+                <column name="STYNUMBER" not-null="true" precision="2" scale="0"/>
+                <column length="20" name="STUDENTID" not-null="true"/>
+                <column length="20" name="SUBJECTID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.StudentSubjectChoiceDetail"/>
+        </set>
+        <property name="supplimentryregistered" type="string">
+            <column length="1" name="SUPPLIMENTRYREGISTERED">
+                <comment>Supplimentry Registered null Or D[raft], A[pprove],C[ancle]</comment>
+            </column>
+        </property>
+        <property name="supplimentryregisteredby" type="string">
+            <column length="20" name="SUPPLIMENTRYREGISTEREDBY"/>
+        </property>
+        <property name="supplimentryregistereddate" type="timestamp">
+            <column length="7" name="SUPPLIMENTRYREGISTEREDDATE"/>
+        </property>
+    </class>
+    <query name="findSemesterFromStudentSubjectChoiceMaster">
+
+        select b.id.stynumber from StudentSubjectChoiceMaster b
+        where b.id.instituteid = ?
+        and b.id.registrationid = ?
+        and b.id.studentid = ?
+        and coalesce(b.subjectrunning,'N')='Y'
+        and coalesce(b.deactive,'N')='N'
+        group by b.id.stynumber
+
+    </query>
+    <query name="findSubjectsFromPhdSelfCourseRegistration123">
+
+        select a from StudentSubjectChoiceMaster a
+        where a.id.instituteid = ?
+        and a.id.registrationid = ?
+        and a.id.studentid = ?
+        and a.openelective='Y'
+        and coalesce(a.deactive,'N') = 'N'
+
+    </query>
+</hibernate-mapping>

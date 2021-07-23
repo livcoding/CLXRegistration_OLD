@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 12 Jan, 2019 1:03:16 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.Setup_GIPCriteriaDetail"  table="SETUP_GIPCRITERIADETAIL">
+        <composite-id class="com.jilit.irp.persistence.dto.Setup_GIPCriteriaDetailId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="programid" type="string">
+                <column length="20" name="PROGRAMID"/>
+            </key-property>
+            <key-property name="applicablegradeid" type="string">
+                <column length="20" name="APPLICABLEGRADEID"/>
+            </key-property>
+        </composite-id>
+        <property name="entrydatetime" type="timestamp">
+            <column length="7" name="ENTRYDATETIME">
+            </column>
+        </property>
+        <many-to-one class="com.jilit.irp.persistence.dto.Setup_GIPCriteria" fetch="select" insert="false" name="setup_gipCriteria" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="PROGRAMID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.ExamGradeMaster" fetch="select" insert="false" name="examGradeMaster" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="GRADEID" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

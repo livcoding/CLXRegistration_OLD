@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 Jan, 2014 2:25:38 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ComplainTicketReply" table="COMPLAINTICKETREPLY">
+    <composite-id class="com.jilit.irp.persistence.dto.ComplainTicketReplyId" name="id">
+      <key-property name="ctreplyid" type="string">
+        <column length="20" name="CTREPLYID"/>
+      </key-property>
+      <key-property name="ctid" type="string">
+        <column length="20" name="CTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ComplainTicketMaster" fetch="select" insert="false" lazy="false" name="complainticketmaster" update="false">
+      <column length="20" name="CTID" not-null="true"/>
+    </many-to-one>
+    <property name="replyno" type="string">
+      <column length="20" name="REPLYNO" not-null="true"/>
+    </property>
+    <property name="modeofreply" type="string">
+      <column length="1" name="MODEOFREPLY" not-null="true"/>
+    </property>
+    <property name="replybypersonid" type="string">
+      <column length="20" name="REPLYBYPERSONID" not-null="true"/>
+    </property>
+    <property name="tomailid" type="string">
+      <column length="150" name="TOMAILID"/>
+    </property>
+    <property name="replydesc" type="string">
+      <column length="500" name="REPLYDESC" not-null="true"/>
+    </property>
+    <property name="replyattachementfile" type="string">
+      <column length="250" name="REPLYATTACHEMENTFILE"/>
+    </property>
+    <property name="replydatetime" type="date">
+      <column length="7" name="REPLYDATETIME" not-null="true"/>
+    </property>
+    <property name="ipaddress" type="string">
+      <column length="20" name="IPADDRESS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 12, 2010 11:07:25 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.CommitteeMeetingParticipents" table="COMMITTEEMEETINGPARTICIPENTS">
+    <composite-id class="com.jilit.irp.persistence.dto.CommitteeMeetingParticipentsId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="committeeid" type="string">
+        <column length="20" name="COMMITTEEID"/>
+      </key-property>
+      <key-property name="agendaid" type="string">
+        <column length="20" name="AGENDAID"/>
+      </key-property>
+      <key-property name="meetingid" type="string">
+        <column length="20" name="MEETINGID"/>
+      </key-property>
+      <key-property name="formationid" type="string">
+        <column length="20" name="FORMATIONID"/>
+      </key-property>
+      <key-property name="stafftype" type="string">
+        <column length="1" name="STAFFTYPE"/>
+      </key-property>
+      <key-property name="staffid" type="string">
+        <column length="20" name="STAFFID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.CommitteeMaster" fetch="select" insert="false" lazy="false" name="committeemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="COMMITTEEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.MeetingAgendaMaster" fetch="select" insert="false" lazy="false" name="meetingagendamaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="COMMITTEEID" not-null="true"/>
+      <column length="20" name="AGENDAID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.CommitteeMembers" fetch="select" insert="false" lazy="false" name="committeemembers" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="COMMITTEEID" not-null="true"/>
+      <column length="20" name="FORMATIONID" not-null="true"/>
+      <column length="1" name="STAFFTYPE" not-null="true"/>
+      <column length="20" name="STAFFID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.CommitteeMeetingDetail" fetch="select" insert="false" lazy="false" name="committeemeetingdetail" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="MEETINGID" not-null="true">
+        <comment>System Generated ID</comment>
+      </column>
+    </many-to-one>
+    <property name="remarks" type="string">
+      <column length="500" name="REMARKS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

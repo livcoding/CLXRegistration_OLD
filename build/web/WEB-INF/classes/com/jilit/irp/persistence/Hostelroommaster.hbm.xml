@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 26, 2014 10:38:19 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.HostelRoomMaster" table="HOSTELROOMMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.HostelRoomMasterId" name="id">
+      <key-property name="hostelid" type="string">
+        <column length="20" name="HOSTELID"/>
+      </key-property>
+      <key-property name="roomid" type="string">
+        <column length="20" name="ROOMID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.HostelMaster" fetch="select" insert="false" lazy="false" name="hostelmaster" update="false">
+      <column length="20" name="HOSTELID" not-null="true"/>
+    </many-to-one>
+    <property name="roomcode" type="string">
+      <column length="20" name="ROOMCODE" not-null="true"/>
+    </property>
+    <property name="roomdesc" type="string">
+      <column length="75" name="ROOMDESC" not-null="true"/>
+    </property>
+    <property name="noofbeds" type="java.lang.Short">
+      <column name="NOOFBEDS" precision="4" scale="0"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="250" name="REMARKS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="entryby" type="string">
+      <column length="20" name="ENTRYBY"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="hostelroombedmasters">
+      <key>
+        <column length="20" name="HOSTELID" not-null="true"/>
+        <column length="20" name="ROOMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.HostelRoomBedMaster"/>
+    </set>
+  </class>
+</hibernate-mapping>

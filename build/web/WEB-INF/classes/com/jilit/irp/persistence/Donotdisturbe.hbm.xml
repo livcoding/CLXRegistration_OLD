@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 3, 2017 3:22:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.DoNotDisturbe" table="DONOTDISTURBE">
+    <composite-id class="com.jilit.irp.persistence.dto.DoNotDisturbeId" name="id">
+      <key-property name="moduleid" type="string">
+        <column length="20" name="MODULEID"/>
+      </key-property>
+      <key-property name="memberid" type="string">
+        <column length="20" name="MEMBERID"/>
+      </key-property>
+      <key-property name="membertype" type="string">
+        <column length="1" name="MEMBERTYPE"/>
+      </key-property>
+      <key-property name="emailormibileno" type="string">
+        <column length="100" name="EMAILORMIBILENO"/>
+      </key-property>
+    </composite-id>
+    <property name="emailormibile" type="string">
+      <column length="1" name="EMAILORMIBILE" not-null="true"/>
+    </property>
+    <property name="dndfromdate" type="date">
+      <column length="7" name="DNDFROMDATE" not-null="true"/>
+    </property>
+    <property name="dndtilldate" type="date">
+      <column length="7" name="DNDTILLDATE"/>
+    </property>
+    <property name="entryby" type="string">
+      <column length="20" name="ENTRYBY"/>
+    </property>
+    <property name="entrydate" type="date">
+      <column length="7" name="ENTRYDATE"/>
+    </property>
+    <property name="remarks" type="string">
+      <column length="200" name="REMARKS"/>
+    </property>
+  </class>
+</hibernate-mapping>

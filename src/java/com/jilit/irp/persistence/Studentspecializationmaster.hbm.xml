@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+<hibernate-mapping default-cascade="none" default-access="property" default-lazy="true" auto-import="true">
+<class name="com.jilit.irp.persistence.dto.StudentSpecializationMaster" table="STUDENTSPECIALIZATIONMASTER" mutable="true" polymorphism="implicit" dynamic-update="false" dynamic-insert="false" select-before-update="false" optimistic-lock="version">
+<composite-id class="com.jilit.irp.persistence.dto.StudentSpecializationMasterId" name="id" mapped="false" unsaved-value="undefined">
+ <key-property name="instituteid" type="string">
+  <column length="20" name="INSTITUTEID" /> 
+  </key-property>
+ <key-property name="programid" type="string">
+  <column length="20" name="PROGRAMID" /> 
+  </key-property>
+ <key-property name="specid" type="string">
+  <column length="20" name="SPECID" /> 
+  </key-property>
+  </composite-id>
+ <property name="speccode" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+  <column length="20" name="SPECCODE" /> 
+  </property>
+ <property name="specdesc" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+  <column length="200" name="SPECDESC" /> 
+  </property>
+ <property name="enrollmentcode" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+  <column length="6" name="ENROLLMENTCODE" /> 
+  </property>
+ <property name="seqid" type="java.lang.Short" unique="false" optimistic-lock="true" lazy="false" generated="never">
+  <column name="SEQID" precision="4" scale="0" /> 
+  </property>
+ <property name="deactive" type="string" unique="false" optimistic-lock="true" lazy="false" generated="never">
+  <column length="1" name="DEACTIVE" /> 
+  </property>
+ <set inverse="true" lazy="extra" name="studentmasters" sort="unsorted" mutable="true" optimistic-lock="true" embed-xml="true">
+ <key on-delete="noaction">
+  <column length="20" name="INSTITUTEID" not-null="true" /> 
+  <column length="20" name="PROGRAMID" /> 
+  <column length="20" name="SPECID" /> 
+  </key>
+  <one-to-many class="com.jilit.irp.persistence.dto.StudentMaster" not-found="exception" embed-xml="true" /> 
+  </set>
+  </class>
+  </hibernate-mapping>

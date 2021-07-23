@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Jun, 2012 6:27:18 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.EmployeeAcademicDuty" table="EMPLOYEEACADEMICDUTY">
+    <comment>Employee can be assigned a duty of another institute too by this table</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.EmployeeAcademicDutyId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="employeeid" type="string">
+        <column length="20" name="EMPLOYEEID"/>
+      </key-property>
+      <key-property name="startdate" type="date">
+        <column length="7" name="STARTDATE"/>
+      </key-property>
+    </composite-id>
+    
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="enddate" type="date">
+      <column length="7" name="ENDDATE">
+        <comment>End Date</comment>
+      </column>
+    </property>
+    <property name="maininstitute" type="string">
+      <column length="1" name="MAININSTITUTE">
+        <comment>Main Institute - Yes / No</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="deactivedate" type="date">
+      <column length="7" name="DEACTIVEDATE"/>
+    </property>
+  </class>
+</hibernate-mapping>

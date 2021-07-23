@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 23, 2010 3:52:25 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.CommitteeMaster" table="COMMITTEEMASTER">
+    <comment>Committee Master</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.CommitteeMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="committeeid" type="string">
+        <column length="20" name="COMMITTEEID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="committeecode" type="string">
+      <column length="20" name="COMMITTEECODE" not-null="true">
+        <comment>Unique</comment>
+      </column>
+    </property>
+    <property name="committeedesc" type="string">
+      <column length="75" name="COMMITTEEDESC" not-null="true"/>
+    </property>
+    <property name="committeedetaileddesc" type="string">
+      <column length="500" name="COMMITTEEDETAILEDDESC">
+        <comment>If any</comment>
+      </column>
+    </property>
+    <property name="linkwithexam" type="string">
+      <column length="1" name="LINKWITHEXAM">
+        <comment>[Y]es / [N]o</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE">
+        <comment>[Y]es / [N]o</comment>
+      </column>
+    </property>
+    <set inverse="true" lazy="extra" name="committeeformations">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="COMMITTEEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeFormation"/>
+    </set>
+    <set inverse="true" lazy="extra" name="committeemembers">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="COMMITTEEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeMembers"/>
+    </set>
+    <set inverse="true" lazy="extra" name="committeemeetingdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="COMMITTEEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeMeetingDetail"/>
+    </set>
+    <set inverse="true" lazy="extra" name="committeemeetingparticipentses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="COMMITTEEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.CommitteeMeetingParticipents"/>
+    </set>
+    <set inverse="true" lazy="extra" name="meetingagendamaster">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="COMMITTEEID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.MeetingAgendaMaster"/>
+    </set>
+  </class>
+</hibernate-mapping>

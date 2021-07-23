@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 20, 2017 11:03:11 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.Tt_schattendancelogdetail" table="TT_SCHATTENDANCELOGDETAIL" >
+        <composite-id name="id" class="com.jilit.irp.persistence.dto.Tt_schattendancelogdetailId">
+            <key-property name="attlogid" type="string">
+                <column name="ATTLOGID" length="20" />
+            </key-property>
+            <key-property name="slno" type="int">
+                <column name="SLNO" precision="8" scale="0" />
+            </key-property>
+            <key-property name="tttransid" type="string">
+                <column name="TTTRANSID" length="20" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="tt_schattendancelogmaster" class="com.jilit.irp.persistence.dto.Tt_schattendancelogmaster" update="false" insert="false" fetch="select">
+            <column name="ATTLOGID" length="20" not-null="true" />
+        </many-to-one>
+        <property name="stafftype" type="string">
+            <column name="STAFFTYPE" length="1" />
+        </property>
+        <property name="staffid" type="string">
+            <column name="STAFFID" length="20" />
+        </property>
+        <property name="staffname" type="string">
+            <column name="STAFFNAME" length="200" />
+        </property>
+        <property name="subjectid" type="string">
+            <column name="SUBJECTID" length="20" />
+        </property>
+        <property name="subjectcode" type="string">
+            <column name="SUBJECTCODE" length="20" />
+        </property>
+        <property name="subjectname" type="string">
+            <column name="SUBJECTNAME" length="200" />
+        </property>
+        <property name="subjectcomponentid" type="string">
+            <column name="SUBJECTCOMPONENTID" length="20" />
+        </property>
+        <property name="subjectcomponentdesc" type="string">
+            <column name="SUBJECTCOMPONENTDESC" length="20" />
+        </property>
+        <property name="attendancedate" type="date">
+            <column name="ATTENDANCEDATE" length="7" />
+        </property>
+        <property name="allocationday" type="string">
+            <column name="ALLOCATIONDAY" length="20" />
+        </property>
+        <property name="slotid" type="string">
+            <column name="SLOTID" length="20" />
+        </property>
+        <property name="fromtime" type="string">
+            <column name="FROMTIME" length="20" />
+        </property>
+        <property name="totime" type="string">
+            <column name="TOTIME" length="20" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="1">
+                <comment>Attendance [N]ot Done,Attendance [D]one,[H]oliday,Class [S]uspended</comment>
+            </column>
+        </property>
+        <property name="newstafftype" type="string">
+            <column name="NEWSTAFFTYPE" length="1" />
+        </property>
+        <property name="newstaffid" type="string">
+            <column name="NEWSTAFFID" length="20" />
+        </property>
+        <property name="newstaffname" type="string">
+            <column name="NEWSTAFFNAME" length="200" />
+        </property>
+        <property name="newsubjectid" type="string">
+            <column name="NEWSUBJECTID" length="20" />
+        </property>
+        <property name="newsubjectcode" type="string">
+            <column name="NEWSUBJECTCODE" length="20" />
+        </property>
+        <property name="newsubjectname" type="string">
+            <column name="NEWSUBJECTNAME" length="200" />
+        </property>
+        <property name="newsubjectcomponentid" type="string">
+            <column name="NEWSUBJECTCOMPONENTID" length="20" />
+        </property>
+        <property name="newsubjectcomponentdesc" type="string">
+            <column name="NEWSUBJECTCOMPONENTDESC" length="20" />
+        </property>
+        <property name="newattendancedate" type="date">
+            <column name="NEWATTENDANCEDATE" length="7" />
+        </property>
+        <property name="newallocationday" type="string">
+            <column name="NEWALLOCATIONDAY" length="20" />
+        </property>
+        <property name="newslotid" type="string">
+            <column name="NEWSLOTID" length="20" />
+        </property>
+        <property name="newfromtime" type="string">
+            <column name="NEWFROMTIME" length="20" />
+        </property>
+        <property name="newtotime" type="string">
+            <column name="NEWTOTIME" length="20" />
+        </property>
+        <property name="newstatus" type="string">
+            <column name="NEWSTATUS" length="1">
+                <comment>Attendance [N]ot Done,Attendance [D]one,[H]oliday,Class [S]uspended</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 1, 2010 2:00:29 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentShortAttendance" table="STUDENTSHORTATTENDANCE">
+    <composite-id class="com.jilit.irp.persistence.dto.StudentShortAttendanceId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="studentid" type="string">
+        <column length="20" name="STUDENTID"/>
+      </key-property>
+      <key-property name="subjectid" type="string">
+        <column length="20" name="SUBJECTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.SubjectMaster" fetch="select" insert="false" lazy="false" name="subjectmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SUBJECTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <property name="attendancepercent" type="big_decimal">
+      <column name="ATTENDANCEPERCENT" precision="6"/>
+    </property>
+    <property name="letterprinted" type="string">
+      <column length="1" name="LETTERPRINTED"/>
+    </property>
+    <property name="lastprintdate" type="date">
+      <column length="7" name="LASTPRINTDATE"/>
+    </property>
+    <property name="allowforexamappearing" type="string">
+      <column length="1" name="ALLOWFOREXAMAPPEARING"/>
+    </property>
+    <property name="allowby" type="string">
+      <column length="1" name="ALLOWBY"/>
+    </property>
+    <property name="allowdate" type="timestamp">
+      <column length="7" name="ALLOWDATE"/>
+    </property>
+    <property name="allowremarks" type="string">
+      <column length="1" name="ALLOWREMARKS"/>
+    </property>
+    <property name="entrybyuserid" type="string">
+      <column length="1" name="ENTRYBYUSERID"/>
+    </property>
+    <property name="entrybyuserdate" type="timestamp">
+      <column length="7" name="ENTRYBYUSERDATE"/>
+    </property>
+    <property name="entryremarks" type="string">
+      <column length="1" name="ENTRYREMARKS"/>
+    </property>
+  </class>
+</hibernate-mapping>

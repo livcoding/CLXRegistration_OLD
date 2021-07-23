@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 4:28:16 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.InstituteRegistrationEvents" table="INSTITUTEREGISTRATIONEVENTS">
+    <comment>This table will beused to maintain list of required Registration ID for respective events</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.InstituteRegistrationEventsId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="preregistrationallowed" type="string">
+      <column length="1" name="PREREGISTRATIONALLOWED"/>
+    </property>
+    <property name="gradeentryallowed" type="string">
+      <column length="1" name="GRADEENTRYALLOWED"/>
+    </property>
+    <property name="marksentryallowed" type="string">
+      <column length="1" name="MARKSENTRYALLOWED"/>
+    </property>
+    <property name="attendentryallowed" type="string">
+      <column length="1" name="ATTENDENTRYALLOWED"/>
+    </property>
+    <property name="srsallowed" type="string">
+      <column length="1" name="SRSALLOWED"/>
+    </property>
+    <property name="supplymentryrequestallowed" type="string">
+      <column length="1" name="SUPPLYMENTRYREQUESTALLOWED"/>
+    </property>
+    <property name="hostelallocationallowed" type="string">
+      <column length="1" name="HOSTELALLOCATIONALLOWED"/>
+    </property>
+  </class>
+  <query name="getRegistrationCodeDetails_IRE">
+    Select a.id.registrationid,a.registrationcode,a.registrationdesc
+   from RegistrationMaster a
+        where a.id.instituteid=?
+        and a.id.registrationid= ?
+    </query>
+</hibernate-mapping>

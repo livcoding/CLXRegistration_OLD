@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 4:04:05 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.DesignationMasterDetail" table="DESIGNATIONMASTERDETAIL">
+    <comment>Designation Wise Teaching Load Detail</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.DesignationMasterDetailId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="designationid" type="string">
+        <column length="20" name="DESIGNATIONID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+     
+    <property name="minteachingload" type="big_decimal">
+      <column name="MINTEACHINGLOAD" precision="6"/>
+    </property>
+    <property name="maxteachingload" type="big_decimal">
+      <column name="MAXTEACHINGLOAD" precision="6"/>
+    </property>
+    <property name="examminduty" type="big_decimal">
+      <column name="EXAMMINDUTY" precision="6"/>
+    </property>
+    <property name="exammaxduty" type="big_decimal">
+      <column name="EXAMMAXDUTY" precision="6"/>
+    </property>
+    <property name="timetablepreference" type="string">
+      <column length="1" name="TIMETABLEPREFERENCE"/>
+    </property>
+    <property name="teachingondwmye" type="string">
+      <column length="1" name="TEACHINGONDWMYE"/>
+    </property>
+    <property name="examondwmye" type="string">
+      <column length="1" name="EXAMONDWMYE"/>
+    </property>
+    <!--<property name="deactive" type="java.lang.Character">
+      <column length="1" name="DEACTIVE"/>
+    </property>-->
+  </class>
+</hibernate-mapping>

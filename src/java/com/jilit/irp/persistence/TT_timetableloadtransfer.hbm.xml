@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 2, 2014 2:59:10 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.TT_TimeTableLoadTransfer" table="TT_TIMETABLELOADTRANSFER">
+        <id name="loadtransferid" type="string">
+            <column length="20" name="LOADTRANSFERID"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="com.jilit.irp.persistence.dto.TT_TimeTableAllocation" fetch="select" insert="false" lazy="false" name="tt_timetableallocation" update="false">
+            <column length="20" name="TTTRANSID" not-null="true"/>
+            <column length="20" name="REGISTRATIONID" not-null="true"/>
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+        </many-to-one>
+        <property name="tttransid" type="string">
+            <column length="20" name="TTTRANSID"/>
+        </property>
+        <property name="registrationid" type="string">
+            <column length="20" name="REGISTRATIONID"/>
+        </property>
+        <property name="instituteid" type="string">
+            <column length="20" name="INSTITUTEID"/>
+        </property>
+        <property name="allocationday" type="string">
+            <column length="10" name="ALLOCATIONDAY"/>
+        </property>
+        <property name="slotid" type="string">
+            <column length="20" name="SLOTID"/>
+        </property>
+        <property name="stafftype" type="string">
+            <column length="10" name="STAFFTYPE"/>
+        </property>
+        <property name="staffid" type="string">
+            <column length="20" name="STAFFID"/>
+        </property>
+        <property name="loadtransfertostaffid" type="string">
+            <column length="20" name="LOADTRANSFERTOSTAFFID"/>
+        </property>
+        <property name="loadtransfertostafftype" type="string">
+            <column length="1" name="LOADTRANSFERTOSTAFFTYPE"/>
+        </property>
+        <property name="loadtransferfrom" type="date">
+            <column length="7" name="LOADTRANSFERFROM"/>
+        </property>
+        <property name="loadtransferupto" type="date">
+            <column length="7" name="LOADTRANSFERUPTO"/>
+        </property>
+        <property name="loadtransferremarks" type="string">
+            <column length="500" name="LOADTRANSFERREMARKS"/>
+        </property>
+        <property name="loadtransferapproved" type="string">
+            <column length="1" name="LOADTRANSFERAPPROVED"/>
+        </property>
+        <property name="approvedby" type="string">
+            <column length="20" name="APPROVEDBY"/>
+        </property>
+        <property name="approveddate" type="date">
+            <column length="7" name="APPROVEDDATE"/>
+        </property>
+        <property name="approveremarks" type="string">
+            <column length="160" name="APPROVEREMARKS"/>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="entryby" type="string">
+            <column length="20" name="ENTRYBY"/>
+        </property>
+        <property name="entrydate" type="date">
+            <column length="7" name="ENTRYDATE"/>
+        </property>
+    </class>
+</hibernate-mapping>

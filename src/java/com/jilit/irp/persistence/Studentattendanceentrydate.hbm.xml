@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.StudentAttendanceEntryDate" select-before-update="true" table="STUDENTATTENDANCEENTRYDATE">
+        <composite-id class="com.jilit.irp.persistence.dto.StudentAttendanceEntryDateId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="registrationid" type="string">
+                <column length="20" name="REGISTRATIONID"/>
+            </key-property>
+            <key-property name="programid" type="string">
+                <column length="20" name="PROGRAMID"/>
+            </key-property>
+            <key-property name="stynumber" type="integer">
+                <column precision="2" name="STYNUMBER"/>
+            </key-property>
+           <!-- <key-property name="stytypeid" type="string">
+                <column length="20" name="STYTYPEID"/>
+            </key-property>-->
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="REGISTRATIONID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" lazy="false" name="programmaster" update="false">
+             <column length="20" name="INSTITUTEID" not-null="true"/>
+            <column length="20" name="PROGRAMID" not-null="true"/>
+        </many-to-one>
+
+
+        <property name="attendanceenddate" type="date">
+            <column length="7" name="ATTENDANCEENDDATE"/>
+        </property>
+         <property name="attendancestartdate" type="date">
+                <column length="7" name="ATTENDANCESTARTDATE"/>
+         </property>
+
+        <property name="closedattendance" type="string">
+            <column length="1" name="CLOSEDATTENDANCE"/>
+        </property>
+
+    </class>
+    </hibernate-mapping>

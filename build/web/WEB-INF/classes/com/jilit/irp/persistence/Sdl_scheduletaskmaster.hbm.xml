@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17 Sep, 2016 3:23:02 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.Sdl_ScheduleTaskMaster" table="SDL_SCHEDULETASKMASTER">
+    <comment>To maintains list of task scheduled from Applications</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.Sdl_ScheduleTaskMasterId" name="id">
+      <key-property name="schedularid" type="string">
+        <column length="20" name="SCHEDULARID"/>
+      </key-property>
+      <key-property name="taskid" type="string">
+        <column length="20" name="TASKID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.Sdl_SchedularMaster" fetch="select" insert="false" name="sdl_schedularmaster" update="false">
+      <column length="20" name="SCHEDULARID" not-null="true">
+        <comment>SchedularID;</comment>
+      </column>
+    </many-to-one>
+    <property name="taskdesc" type="string">
+      <column length="100" name="TASKDESC"/>
+    </property>
+    <property name="lastrundate" type="date">
+      <column length="7" name="LASTRUNDATE"/>
+    </property>
+    <property name="taskcreationdate" type="date">
+      <column length="7" name="TASKCREATIONDATE">
+        <comment>Task Creation Date &amp; Time</comment>
+      </column>
+    </property>
+    <property name="taskcreatedby" type="string">
+      <column length="30" name="TASKCREATEDBY">
+        <comment>Task Created By</comment>
+      </column>
+    </property>
+    <property name="taskexecutiondate" type="date">
+      <column length="7" name="TASKEXECUTIONDATE">
+        <comment>Task Execution Date &amp; Time</comment>
+      </column>
+    </property>
+    <property name="taskactualstartdate" type="date">
+      <column length="7" name="TASKACTUALSTARTDATE">
+        <comment>Task Actual Start Date</comment>
+      </column>
+    </property>
+    <property name="taskactualenddate" type="date">
+      <column length="7" name="TASKACTUALENDDATE">
+        <comment>Task Actual End Date</comment>
+      </column>
+    </property>
+    <property name="taskstatus" type="string">
+      <column length="1" name="TASKSTATUS">
+        <comment>Task Status - [P]ending / Par[T]ial / [C]ompleted</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <property name="referenceid" type="string">
+      <column length="20" name="REFERENCEID"/>
+    </property>
+    <property name="referencetype" type="string">
+      <column length="1" name="REFERENCETYPE"/>
+    </property>
+    <property name="ccemailid" type="string">
+      <column length="100" name="CCEMAILID">
+        <comment>Task Created By</comment>
+      </column>
+    </property>
+    <set inverse="true" name="sdl_schedulemailattachements">
+      <key>
+        <column length="20" name="SCHEDULARID" not-null="true">
+          <comment>SchedularID</comment>
+        </column>
+        <column length="20" name="TASKID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Sdl_ScheduleMailAttachement"/>
+    </set>
+    <set cascade="save-update, delete" inverse="true" name="sdl_schedulemailtasks">
+      <key>
+        <column length="20" name="SCHEDULARID" not-null="true">
+          <comment>SchedularID</comment>
+        </column>
+        <column length="20" name="TASKID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.Sdl_ScheduleMailTask"/>
+    </set>
+     <set cascade="save-update, delete" inverse="true" name="sdl_schedulesmstasks">
+      <key>
+        <column length="20" name="SCHEDULARID" not-null="true">
+          <comment>SchedularID</comment>
+        </column>
+        <column length="20" name="TASKID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.SDL_ScheduleSMSTask"/>
+    </set>
+  </class>
+</hibernate-mapping>

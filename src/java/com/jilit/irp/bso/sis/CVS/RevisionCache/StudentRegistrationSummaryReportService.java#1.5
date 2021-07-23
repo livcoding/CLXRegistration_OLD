@@ -1,0 +1,220 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.jilit.irp.bso.sis;
+
+import com.jilit.irp.Report.ReportManager;
+import com.jilit.irp.bso.biz.BusinessService;
+import com.jilit.irp.iservice.RegistrationSummaryReportIservice;
+import com.jilit.irp.persistence.dao.DAOFactory;
+import com.jilit.irp.persistence.dto.InstituteMaster;
+import com.jilit.irp.persistence.dto.StudentMaster;
+import com.jilit.irp.util.JIRPSession;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.servlet.ServletContext;
+import org.springframework.web.context.ServletContextAware;
+import java.util.List;
+import java.util.Map;
+import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+/**
+ *
+ * @author ashutosh1.kumar
+ */
+@Service
+public class StudentRegistrationSummaryReportService extends ReportManager implements RegistrationSummaryReportIservice, ServletContextAware {
+
+    @Autowired
+    DAOFactory daoFactory;
+
+    private ServletContext context;
+
+    @Autowired
+    JIRPSession jirpsession;
+
+    public void setServletContext(ServletContext context) {
+        this.context = context;
+    }
+
+    public void getFormData(Model model) {
+        String instituteid = jirpsession.getJsessionInfo().getSelectedinstituteid();
+        try {
+            List<Object[]> reg = (List<Object[]>) daoFactory.getRegistrationMasterDAO().getRegistrationCodeForAcademicDataReset(instituteid);
+            model.addAttribute("registration", reg);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public List getAcademicYear(HttpServletRequest request) {
+        String registrationid = request.getParameter("registrationCode").split("~@~")[0];
+        List list = null;
+        try {
+            String instituteid = jirpsession.getJsessionInfo().getSelectedinstituteid();
+            list = (List) daoFactory.getStudentRegistrationDAO().getAcadYear(instituteid, registrationid);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return list;
+    }
+
+    public void getReport(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            BusinessService bs = new BusinessService(context, daoFactory);
+            String username = jirpsession.getJsessionInfo().getUsername();
+            String exportto = request.getParameter("exportto");
+            String level = request.getParameter("level");
+            String registrationid = "";
+            String registrationcode = "";
+            String acadYear = "";
+            String pendingStatus = "";
+            String compStatus = "";
+//            Date regCurrentDate = null;
+            String reportfor = "";
+            if (level.equals("one")) {
+                String[] regid = request.getParameter("registrationid").split("~@~");
+                registrationid = regid[0];
+                registrationcode = regid[1];
+            }
+            if (level.equals("two")) {
+                registrationid = request.getParameter("registrationid");
+                registrationcode = request.getParameter("registrationcode");
+                reportfor = request.getParameter("parameter");
+            }
+            if (level.equals("three")) {
+                String[] regid = request.getParameter("registrationid").split("~@~");
+                registrationid = regid[0];
+                registrationcode = regid[1];
+                acadYear = request.getParameter("acadYear");
+                pendingStatus = request.getParameter("pendingStatus");
+                compStatus = request.getParameter("compStatus");
+//                regCurrentDate = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("regCurrentDate"));
+//                String dateason = request.getParameter("regCurrentDate");
+
+            }
+            String programid = request.getParameter("programid");
+            String branchid = request.getParameter("branchid");
+            String parameter = request.getParameter("parameter");
+            String instituteid = jirpsession.getJsessionInfo().getSelectedinstituteid();
+            String url = request.getRequestURL().toString();
+            String programcode = "";
+            String branchcode = "";
+            String path = null;
+            HashMap parameters = null;
+            List data = null;
+            parameters = new HashMap();
+            Map map = null;
+            map = getStudentRegistrationDateBaseList(instituteid, registrationid, acadYear, compStatus, pendingStatus);
+            data = (List) map.get("list");
+            InstituteMaster ims = (InstituteMaster) daoFactory.getInstituteMasterDAO().findByPrimaryKey(instituteid);
+            parameters.put("institutename", (ims.getInstitutename() == null) ? "" : ims.getInstitutename());
+            parameters.put("address1", (ims.getAddress1() == null) ? "" : ims.getAddress1());
+            parameters.put("address2", (ims.getAddress2() == null) ? "" : ims.getAddress2());
+            parameters.put("address3", (ims.getAddress3() == null) ? "" : ims.getAddress3());
+            parameters.put("state", (ims.getState() == null) ? "" : ims.getState());
+            parameters.put("city", (ims.getCity() == null) ? "" : ims.getCity());
+            parameters.put("pin", (ims.getPin() == null) ? "" : ims.getPin());
+            parameters.put("instituteid", (instituteid == null) ? "" : instituteid);
+            parameters.put("username", bs.getPropertyValue("reportby", "campuslynx.properties") + ": " + username);
+            parameters.put("image", context.getRealPath(ims.getLogofilename()));
+            parameters.put("imageback", context.getRealPath(ims.getWatermarkfilename()));
+            parameters.put("url", url);
+
+            if (level.equals("one")) {
+                data = (List<StudentMaster>) daoFactory.getStudentMasterDAO().getStudentRegistrationSummaryList(registrationid);
+                path = request.getRealPath("/jrxml/StudentRegistrationSummaryFinalTotal.jrxml");
+                parameters.put("registrationcode", registrationcode);
+                parameters.put("exportto", exportto);
+                parameters.put("registrationid", registrationid);
+            }
+            if (level.equals("two")) {
+                Byte stynumber = Byte.decode(request.getParameter("stynumber"));
+                data = (List) daoFactory.getStudentMasterDAO().getRegistrationAllowedList(programid, branchid, registrationid, stynumber, parameter);
+                path = request.getRealPath("/jrxml/StudentRegistrationAllowedStudent.jrxml");
+                parameters.put("registrationcode", registrationcode);
+                parameters.put("programcode", programcode);
+                parameters.put("branchcode", branchcode);
+                if (reportfor.equals("totalstudent")) {
+                    reportfor = "List of Total Students";
+                } else if (reportfor.equals("regallow")) {
+                    reportfor = "List of Registration Allowed Students";
+                } else if (reportfor.equals("regnotallow")) {
+                    reportfor = "List of Registration Not Allowed Students";
+                } else {
+                    reportfor = "List of Registration Confirmed Students";
+                }
+                parameters.put("reportfor", reportfor);
+                if (!data.isEmpty()) {
+                    for (int i = 0; i < 1; i++) {
+                        HashMap object = (HashMap) data.get(i);
+                        programcode = object.get("programcode").toString();
+                        branchcode = object.get("branchcode").toString();
+                    }
+                }
+            }
+
+            if (level.equals("three")) {
+                path = request.getRealPath("/jrxml/StudentRegistrationDateBaseReport.jrxml");
+                parameters.put("registrationcode", registrationcode);
+                parameters.put("acadYear", acadYear);
+                pendingStatus = request.getParameter("pendingStatus");
+                compStatus = request.getParameter("compStatus");
+                parameters.put("exportto", exportto);
+                parameters.put("registrationid", registrationid);
+            }
+            if (exportto.contains("P")) {
+                if (level.equals("three")) {
+                    renderReport(PDF, path, data, response, parameters, "StudentRegistrationDateBaseReport");
+                } else {
+                    renderReport(PDF, path, data, response, parameters, "StudentRegistrationSummaryReport");
+                }
+            } else if (exportto.contains("H")) {
+                renderReport(HTML, path, data, response, parameters, "StudentRegistrationSummaryReport");
+            } else if (exportto.contains("W")) {
+                renderReport(RTF, path, data, response, parameters, "StudentRegistrationSummaryReport");
+            } else if (exportto.contains("E")) {
+                renderReport(EXCEL, path, data, response, parameters, "StudentRegistrationSummaryReport");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Map getStudentRegistrationDateBaseList(String instituteid, String registrationid, String acadYear, String compStatus, String pendingStatus) {
+        List returnList = new ArrayList();
+        try {
+            List<Object[]> data = (List<Object[]>) daoFactory.getStudentMasterDAO().getStudentRegistrationDateBaseList(instituteid, registrationid, acadYear, compStatus, pendingStatus);
+            for (int i = 0; i < data.size(); i++) {
+                Map map = new HashMap();
+                Object[] obj = (Object[]) data.get(i);
+                map.put("acadYear", obj[0] == null ? "" : obj[0].toString());
+                map.put("enrollmentno", obj[1] == null ? "" : obj[1].toString());
+                map.put("name", obj[2] == null ? "" : obj[2].toString());
+                map.put("program", obj[3] == null ? "" : obj[3].toString());
+                map.put("branch", obj[4] == null ? "" : obj[4].toString());
+                map.put("styNo", obj[5] == null ? "" : obj[5].toString());
+                
+                map.put("status", obj[6] == null ? "" : obj[6].toString());
+                map.put("planRegDate", obj[7] == null ? null : obj[7].toString());
+                map.put("activeRegDate", obj[8] == null ? null : obj[8].toString());
+                
+                returnList.add(map);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Map finalmap = new HashMap();
+        finalmap.put("list", returnList);
+        return finalmap;
+    }
+}

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 6, 2011 11:20:11 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ScholarshipCriteria" table="SCHOLARSHIPCRITERIA">
+    <composite-id class="com.jilit.irp.persistence.dto.ScholarshipCriteriaId" name="id">
+      <key-property name="sessionid" type="string">
+        <column length="20" name="SESSIONID"/>
+      </key-property>
+      <key-property name="categoryid" type="string">
+        <column length="20" name="CATEGORYID"/>
+      </key-property>
+      <key-property name="scholarshiptypeid" type="string">
+        <column length="20" name="SCHOLARSHIPTYPEID"/>
+      </key-property>
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="academicyear" type="string">
+        <column length="8" name="ACADEMICYEAR"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="branchid" type="string">
+        <column length="20" name="BRANCHID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ScholarshipType" fetch="select" insert="false" lazy="false" name="scholarshiptype" update="false">
+      <column length="20" name="SCHOLARSHIPTYPEID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.BranchMaster" fetch="select" insert="false" lazy="false" name="branchmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+      <column length="20" name="BRANCHID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentCategory" fetch="select" insert="false" lazy="false" name="studentcategory" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="CATEGORYID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.ScholarshipSessionMaster" fetch="select" insert="false" lazy="false" name="scholarshipsessionmaster" update="false">
+      <column length="20" name="SESSIONID" not-null="true"/>
+    </many-to-one>
+    <property name="scholarshipamount" type="big_decimal">
+      <column name="SCHOLARSHIPAMOUNT" precision="6"/>
+    </property>
+    <property name="parentsgrossincome" type="big_decimal">
+      <column name="PARENTSGROSSINCOME" precision="6"/>
+    </property>
+    <property name="cgpa" type="big_decimal">
+      <column name="CGPA" precision="6"/>
+    </property>
+    <property name="sgpa" type="big_decimal">
+      <column name="SGPA" precision="6"/>
+    </property>
+    <property name="earnedcredits" type="big_decimal">
+      <column name="EARNEDCREDITS" precision="6"/>
+    </property>
+    <property name="branchwisestudentpercentage" type="big_decimal">
+      <column name="BRANCHWISESTUDENTPERCENTAGE" precision="6"/>
+    </property>
+    <property name="maximumprogramlimit" type="big_decimal">
+      <column name="MAXIMUMPROGRAMLIMIT" precision="6"/>
+    </property>
+    <property name="exemptedfromfee" type="string">
+      <column length="80" name="EXEMPTEDFROMFEE"/>
+    </property>
+    <property name="noticeno" type="string">
+      <column length="80" name="NOTICENO"/>
+    </property>
+    <property name="noticedate" type="date">
+      <column length="7" name="NOTICEDATE"/>
+    </property>
+    <property name="locksession" type="string">
+      <column length="1" name="LOCKSESSION"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

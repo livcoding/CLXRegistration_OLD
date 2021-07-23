@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.PRSubjectFinalizationCriteria" table="PRSUBJECTFINALIZATIONCRITERIA">
+    <comment>This table will store the criteria on which the elective subjects gets alloted to the selected students.</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.PRSubjectFinalizationCriteriaId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="academicyear" type="string">
+        <column length="8" name="ACADEMICYEAR"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="sectionid" type="string">
+        <column length="20" name="SECTIONID"/>
+      </key-property>
+      <key-property name="stynumber" type="byte">
+        <column name="STYNUMBER" precision="2" scale="0"/>
+      </key-property>
+      <key-property name="basketid" type="string">
+        <column length="20" name="BASKETID"/>
+      </key-property>
+      <key-property name="subjectid" type="string">
+        <column length="20" name="SUBJECTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <!--  <many-to-one class="com.jilit.irp.persistence.dto.BasketMaster" fetch="select" insert="false" name="basketmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="BASKETID" not-null="true"/>
+    </many-to-one>-->
+    <many-to-one class="com.jilit.irp.persistence.dto.StyType" fetch="select" insert="false" name="stytype" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="STYTYPEID"/>
+    </many-to-one>
+    <property name="minimumfailedsubjects" type="java.lang.Byte">
+      <column name="MINIMUMFAILEDSUBJECTS" precision="2" scale="0"/>
+    </property>
+    <property name="firstcomefirstbasis" type="string">
+      <column length="1" name="FIRSTCOMEFIRSTBASIS">
+        <comment>Yes / No</comment>
+      </column>
+    </property>
+    <property name="overallcriteriavalue" type="big_decimal">
+      <column name="OVERALLCRITERIAVALUE" precision="10">
+        <comment>CGPA or Final Marks</comment>
+      </column>
+    </property>
+    <property name="stybasecriteriavalue" type="big_decimal">
+      <column name="STYBASECRITERIAVALUE" precision="10">
+        <comment>SGPA or STY Marks</comment>
+      </column>
+    </property>
+    <property name="marksearnedcreditvalue" type="big_decimal">
+      <column name="MARKSEARNEDCREDITVALUE" precision="10">
+        <comment>Total Earned Credit or Marks</comment>
+      </column>
+    </property>
+    <property name="noofstudents" type="java.lang.Integer">
+      <column name="NOOFSTUDENTS" precision="6" scale="0">
+        <comment>Total no of students to be permitted to opt for this subject</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+</hibernate-mapping>

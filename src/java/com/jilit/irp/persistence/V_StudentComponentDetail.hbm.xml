@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class lazy="false" mutable="false" name="com.jilit.irp.persistence.dto.V_StudentComponentDetail" optimistic-lock="none" table="V_STUDENTCOMPONENTDETAIL">
+    <synchronize table="FACULTYSUBJECTTAGGING"/>
+    <synchronize table="FACULTYSTUDENTTAGGING"/>
+    <synchronize table="V_STAFF"/>
+    <synchronize table="SUBJECTMASTER"/>
+    <synchronize table="STUDENTMASTER"/>
+    <synchronize table="BASKETMASTER"/>
+    <synchronize table="BASKETMASTERDETAIL"/>
+    <synchronize table="PROGRAMMASTER"/>
+    <synchronize table="SECTIONMASTER"/>
+    <synchronize table="PROGRAMWISESUBSECTION"/>
+    <composite-id>
+      <key-property column="INSTITUTEID" name="instituteid"/>
+      <key-property column="STUDENTFSTID" name="studentfstid"/>
+      <key-property column="STUDENTID" name="studentid"/>
+    </composite-id>
+    <property name="stafftype" type="string">
+      <column length="1" name="STAFFTYPE"/>
+    </property>
+    <property name="staffid" type="string">
+      <column length="20" name="STAFFID"/>
+    </property>
+    <property name="employeename" type="string">
+      <column length="100" name="EMPLOYEENAME"/>
+    </property>
+    <property name="employeecode" type="string">
+      <column length="20" name="EMPLOYEECODE"/>
+    </property>
+    <property name="registrationid" type="string">
+      <column length="20" name="REGISTRATIONID"/>
+    </property>
+    <property name="academicyear" type="string">
+      <column length="8" name="ACADEMICYEAR"/>
+    </property>
+    <property name="programid" type="string">
+      <column length="20" name="PROGRAMID"/>
+    </property>
+    <property name="programcode" type="string">
+      <column length="20" name="PROGRAMCODE"/>
+    </property>
+    <property name="programdesc" type="string">
+      <column length="100" name="PROGRAMDESC"/>
+    </property>
+    <property name="branchid" type="string">
+      <column length="20" name="BRANCHID"/>
+    </property>
+    <property name="sectionid" type="string">
+      <column length="20" name="SECTIONID"/>
+    </property>
+    <property name="sectioncode" type="string">
+      <column length="20" name="SECTIONCODE"/>
+    </property>
+    <property name="subsectionid" type="string">
+      <column length="20" name="SUBSECTIONID"/>
+    </property>
+    <property name="subsectioncode" type="string">
+      <column length="20" name="SUBSECTIONCODE"/>
+    </property>
+    <property name="stynumber" type="java.lang.Short">
+      <column name="STYNUMBER" precision="2" scale="0"/>
+    </property>
+    <property name="stytypeid" type="string">
+      <column length="20" name="STYTYPEID"/>
+    </property>
+    <property name="stytype" type="string">
+      <column length="20" name="STYTYPE"/>
+    </property>
+    <property name="basketid" type="string">
+      <column length="20" name="BASKETID"/>
+    </property>
+    <property name="basketcode" type="string">
+      <column length="20" name="BASKETCODE"/>
+    </property>
+    <property name="subjectid" type="string">
+      <column length="20" name="SUBJECTID"/>
+    </property>
+    <property name="subjectcode" type="string">
+      <column length="20" name="SUBJECTCODE"/>
+    </property>
+    <property name="subjectdesc" type="string">
+      <column length="160" name="SUBJECTDESC"/>
+    </property>
+    <property name="subjectcomponentid" type="string">
+      <column length="20" name="SUBJECTCOMPONENTID"/>
+    </property>
+    <property name="subjectcomponentcode" type="string">
+      <column length="20" name="SUBJECTCOMPONENTCODE"/>
+    </property>
+    <property name="subjectcomponentdesc" type="string">
+      <column length="60" name="SUBJECTCOMPONENTDESC"/>
+    </property>
+    <property name="classperweekformula" type="java.lang.Short">
+      <column name="CLASSPERWEEKFORMULA" precision="3" scale="0"/>
+    </property>
+    <property name="mergewithfstid" type="string">
+      <column length="20" name="MERGEWITHFSTID"/>
+    </property>
+    <property name="durationofclass" type="java.lang.Short">
+      <column name="DURATIONOFCLASS" precision="5" scale="2"/>
+    </property>
+    <property name="noofclassinaweek" type="java.lang.Short">
+      <column name="NOOFCLASSINAWEEK" precision="5" scale="2"/>
+    </property>
+    <property name="enrollmentno" type="string">
+      <column length="20" name="ENROLLMENTNO"/>
+    </property>
+    <property name="name" type="string">
+      <column length="60" name="NAME"/>
+    </property>
+    <property name="tempenrollmentno" type="string">
+      <column length="20" name="TEMPENROLLMENTNO"/>
+    </property>
+    <property name="studentactivestatus" type="string">
+      <column length="1" name="STUDENTACTIVESTATUS"/>
+    </property>
+    <property name="fstid" type="string">
+      <column length="20" name="FSTID"/>
+    </property>
+  </class>
+  <query name="findStudentByRegIdSubjectId">
+
+         select a
+         from V_StudentComponentDetail a
+        where a.id.instituteid= ?
+                and a.registrationid= ?
+                and a.subjectid= ?
+                order by a.enrollmentno
+  </query>
+  <query name="findSubjectsforFaculty">
+        select a.subjectcode, a.subjectdesc
+        from V_StudentComponentDetail a
+        where a.registrationid = ?
+        and a.staffid= ?
+        and a.stafftype= ?
+        and a.instituteid= ?
+        group by a.subjectcode, a.subjectdesc
+        order by a.subjectdesc
+    </query>
+</hibernate-mapping>

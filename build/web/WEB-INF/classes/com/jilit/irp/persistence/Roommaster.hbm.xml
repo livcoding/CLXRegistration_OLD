@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="com.jilit.irp.persistence.dto.RoomMaster" select-before-update="true" table="ROOMMASTER">
+    <composite-id class="com.jilit.irp.persistence.dto.RoomMasterId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="roomid" type="string">
+        <column length="20" name="ROOMID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+    </many-to-one>
+    <property name="roomcode" type="string">
+      <column length="20" name="ROOMCODE" not-null="true"/>
+    </property>
+    <property name="roomtypeid" type="string">
+      <column length="20" name="ROOMTYPEID" not-null="true"/>
+    </property>
+    <property name="roomdesc" type="string">
+      <column length="80" name="ROOMDESC" not-null="true"/>
+    </property>
+    <property name="roomcapacityx" type="java.lang.Integer">
+      <column name="ROOMCAPACITYX" precision="5" scale="0"/>
+    </property>
+    <property name="roomcapacityy" type="java.lang.Integer">
+      <column name="ROOMCAPACITYY" precision="5" scale="0"/>
+    </property>
+    <property name="totalroomcapicity" type="java.lang.Integer">
+      <column name="TOTALROOMCAPICITY" precision="5" scale="0"/>
+    </property>
+    <property name="usedforexam" type="string">
+      <column length="1" name="USEDFOREXAM"/>
+    </property>
+    <property name="examcapicityx" type="java.lang.Integer">
+      <column name="EXAMCAPICITYX" precision="5" scale="0"/>
+    </property>
+    <property name="examcapacityy" type="java.lang.Integer">
+      <column name="EXAMCAPACITYY" precision="5" scale="0"/>
+    </property>
+    <property name="minexamseatingcapicity" type="java.lang.Integer">
+      <column name="MINEXAMSEATINGCAPICITY" precision="5" scale="0"/>
+    </property>
+    <property name="totalexamcapacity" type="java.lang.Integer">
+      <column name="TOTALEXAMCAPACITY" precision="5" scale="0"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set cascade="delete,save-update" inverse="true" lazy="extra" name="roomusedfortaggings">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="ROOMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.RoomUsedForTagging"/>
+    </set>
+    <set inverse="true" lazy="extra" name="examcenterwiseroomses">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="ROOMID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.ExamCenterWiseRooms"/>
+    </set>
+   
+     
+  </class>
+  <query name="findAllRoomCode">
+      select a
+         from RoomMaster a
+            where a.id.instituteid = ?
+                  and coalesce(a.deactive,'N')='N'
+                  order by roomcode desc
+  </query>
+  <query name="checkIfRoomCodeExist">
+      select a
+         from RoomMaster a
+            where a.id.instituteid = ?
+                  and a.roomcode=?
+                  and coalesce(a.deactive,'N')='N'
+  </query>
+</hibernate-mapping>

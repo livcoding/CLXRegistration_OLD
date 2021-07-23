@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.CategoryProgramDocumentTagging" table="CATEGORYPROGRAMDOCUMENTTAGGING">
+    <comment>Category wise Program wise Student Documents which is either Retained or Checked</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.CategoryProgramDocumentTaggingId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="categoryid" type="string">
+        <column length="20" name="CATEGORYID"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="documentid" type="string">
+        <column length="20" name="DOCUMENTID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" lazy="false" name="programmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentCategory" fetch="select" insert="false" lazy="false" name="studentcategory" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="CATEGORYID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentDocumentMaster" fetch="select" insert="false" lazy="false" name="studentdocumentmaster" update="false">
+      <column length="20" name="DOCUMENTID" not-null="true"/>
+    </many-to-one>
+    <property name="documentkept" type="string">
+      <column length="1" name="DOCUMENTKEPT" not-null="true">
+        <comment>[O]riginal / [P]hotocopy</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="studentdocumentdetails">
+      <key>
+        <column length="20" name="INSTITUTEID" not-null="true"/>
+        <column length="20" name="CATEGORYID" not-null="true"/>
+        <column length="20" name="PROGRAMID" not-null="true"/>
+        <column length="20" name="DOCUMENTID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentDocumentDetail"/>
+    </set>
+     
+  </class>
+</hibernate-mapping>

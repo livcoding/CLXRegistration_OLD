@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 31 Oct, 2011 5:41:32 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.ExamGradeMasterDetail" table="EXAMGRADEMASTERDETAIL">
+    <composite-id class="com.jilit.irp.persistence.dto.ExamGradeMasterDetailId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="gradeid" type="string">
+        <column length="20" name="GRADEID"/>
+      </key-property>
+      <key-property name="academicyear" type="string">
+        <column length="8" name="ACADEMICYEAR"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" lazy="false" name="programmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Academicyear" fetch="select" insert="false" lazy="false" name="academicyear" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.ExamGradeMaster" fetch="select" insert="false" lazy="false" name="examgrademaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="GRADEID" not-null="true"/>
+    </many-to-one>
+    <!-- <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID"/>
+    </many-to-one>-->
+    <property name="highgradecalclimit" type="big_decimal">
+      <column name="HIGHGRADECALCLIMIT" precision="6"/>
+    </property>
+    <property name="lowgradecalclimit" type="big_decimal">
+      <column name="LOWGRADECALCLIMIT" precision="6">
+        <comment>Grade Range To</comment>
+      </column>
+    </property>
+    <property name="hideingradesheet" type="string">
+      <column length="1" name="HIDEINGRADESHEET">
+        <comment>[Y]es / [N]o</comment>
+      </column>
+    </property>
+    <property name="eccalculation" type="string">
+      <column length="1" name="ECCALCULATION">
+        <comment>[Y]es / [N]o, Earned Credit Calculation</comment>
+      </column>
+    </property>
+    <property name="cccalculation" type="string">
+      <column length="1" name="CCCALCULATION">
+        <comment>[Y]es / [N]o Course Credit Calculation</comment>
+      </column>
+    </property>
+    <property name="sgpacalculationbasedon" type="string">
+      <column length="1" name="SGPACALCULATIONBASEDON" not-null="true">
+        <comment>[C]ourse Credit / [E]arned Credit</comment>
+      </column>
+    </property>
+    <property name="cgpacalculationbasedon" type="string">
+      <column length="1" name="CGPACALCULATIONBASEDON" not-null="true">
+        <comment>[C]ourse Credit / [E]arned Credit</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE">
+        <comment>[Y]es / [N]o</comment>
+      </column>
+    </property>
+    <property name="gradepoints" type="big_decimal">
+      <column name="GRADEPOINTS" precision="7"/>
+    </property>
+    <property name="calculationvalue" type="big_decimal">
+      <column name="CALCULATIONVALUE" precision="7"/>
+    </property>
+    <property name="calculationtype" type="string">
+      <column length="1" name="CALCULATIONTYPE">
+        <comment>[P]ercentage / [V]alue</comment>
+      </column>
+    </property>
+    <property name="entrydate" type="timestamp">
+      <column length="7" name="ENTRYDATE">
+      </column>
+    </property>
+    <property name="failtype" type="string">
+      <column length="1" name="FAILTYPE">
+        <comment>[Y]es / [N]o</comment>
+      </column>
+    </property>
+  </class>
+</hibernate-mapping>

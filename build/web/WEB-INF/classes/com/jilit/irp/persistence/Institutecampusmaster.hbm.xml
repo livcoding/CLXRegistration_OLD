@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.InstituteCampusMaster" table="INSTITUTECAMPUSMASTER">
+    <id name="campusid" type="string">
+      <column length="20" name="CAMPUSID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="campuscode" type="string">
+      <column length="20" name="CAMPUSCODE" not-null="true" unique="true"/>
+    </property>
+    <property name="campusname" type="string">
+      <column length="60" name="CAMPUSNAME"/>
+    </property>
+    <property name="campusaddress" type="string">
+      <column length="100" name="CAMPUSADDRESS"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="studentMasters">
+      <key>
+        <column length="20" name="CAMPUSID" not-null="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentMaster"/>
+    </set>
+    
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2009 11:04:23 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.jilit.irp.persistence.dto.StudentQuota" table="STUDENTQUOTA">
+        <composite-id class="com.jilit.irp.persistence.dto.StudentQuotaId" name="id">
+            <key-property name="instituteid" type="string">
+                <column length="20" name="INSTITUTEID"/>
+            </key-property>
+            <key-property name="quotaid" type="string">
+                <column length="20" name="QUOTAID"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.jilit.irp.persistence.dto.InstituteMaster" fetch="select" insert="false" lazy="false" name="institutemaster" update="false">
+            <column length="20" name="INSTITUTEID" not-null="true"/>
+        </many-to-one>
+        <property name="quotacode" type="string">
+            <column length="20" name="QUOTACODE" not-null="true"/>
+        </property>
+        <property name="deactive" type="string">
+            <column length="1" name="DEACTIVE"/>
+        </property>
+        <property name="quota" type="string">
+            <column length="50" name="QUOTA" not-null="true"/>
+        </property>
+        <property name="seqid" type="java.lang.Short">
+            <column name="SEQID" precision="4" scale="0"/>
+        </property>
+        <set inverse="true" lazy="extra" name="studentmasters">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="QUOTAID"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.StudentMaster"/>
+        </set>
+    
+        <set inverse="true" lazy="extra" name="studentregistration">
+            <key>
+                <column length="20" name="INSTITUTEID" not-null="true"/>
+                <column length="20" name="QUOTAID" not-null="true"/>
+            </key>
+            <one-to-many class="com.jilit.irp.persistence.dto.StudentRegistration"/>
+        </set>
+    </class>
+</hibernate-mapping>

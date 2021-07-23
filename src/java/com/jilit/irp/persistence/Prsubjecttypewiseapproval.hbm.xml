@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2009 12:18:03 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.PRSubjectTypeWiseApproval" table="PRSUBJECTTYPEWISEAPPROVAL">
+    <comment>This table is used to approve Elective, Free Elective, Dept.Elective etc finalization</comment>
+    <composite-id class="com.jilit.irp.persistence.dto.PRSubjectTypeWiseApprovalId" name="id">
+      <key-property name="instituteid" type="string">
+        <column length="20" name="INSTITUTEID"/>
+      </key-property>
+      <key-property name="registrationid" type="string">
+        <column length="20" name="REGISTRATIONID"/>
+      </key-property>
+      <key-property name="eventno" type="java.lang.Short">
+        <column name="EVENTNO" precision="4" scale="0"/>
+      </key-property>
+      <key-property name="departmentid" type="string">
+        <column length="20" name="DEPARTMENTID"/>
+      </key-property>
+      <key-property name="academicyear" type="string">
+        <column length="8" name="ACADEMICYEAR"/>
+      </key-property>
+      <key-property name="programid" type="string">
+        <column length="20" name="PROGRAMID"/>
+      </key-property>
+      <key-property name="sectionid" type="string">
+        <column length="20" name="SECTIONID"/>
+      </key-property>
+      <key-property name="basketid" type="string">
+        <column length="20" name="BASKETID"/>
+      </key-property>
+    </composite-id>
+    <!--   <many-to-one class="com.jilit.irp.persistence.dto.BasketMaster" fetch="select" insert="false" name="basketmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="BASKETID" not-null="true"/>
+    </many-to-one>-->
+    <many-to-one class="com.jilit.irp.persistence.dto.ProgramMaster" fetch="select" insert="false" lazy="false" name="programmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="PROGRAMID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.SectionMaster" fetch="select" insert="false" lazy="false" name="sectionmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="SECTIONID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.Academicyear" fetch="select" insert="false" lazy="false" name="academicyear" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="8" name="ACADEMICYEAR" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.DepartmentMaster" fetch="select" insert="false" lazy="false" name="departmentmaster" update="false">
+      <column length="20" name="DEPARTMENTID" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.jilit.irp.persistence.dto.RegistrationMaster" fetch="select" insert="false" lazy="false" name="registrationmaster" update="false">
+      <column length="20" name="INSTITUTEID" not-null="true"/>
+      <column length="20" name="REGISTRATIONID" not-null="true"/>
+    </many-to-one>
+    <property name="finalized" type="string">
+      <column length="1" name="FINALIZED">
+        <comment>Yes / No</comment>
+      </column>
+    </property>
+    <property name="finalizedby" type="string">
+      <column length="20" name="FINALIZEDBY"/>
+    </property>
+    <property name="finalizeddate" type="timestamp">
+      <column length="7" name="FINALIZEDDATE"/>
+    </property>
+    <property name="approved" type="string">
+      <column length="1" name="APPROVED">
+        <comment>Yes / No</comment>
+      </column>
+    </property>
+    <property name="approvedby" type="string">
+      <column length="20" name="APPROVEDBY"/>
+    </property>
+    <property name="approvaldate" type="timestamp">
+      <column length="7" name="APPROVALDATE"/>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+  </class>
+  <query name="findDepartmentsApprovedStatus">
+           select
+            distinct
+                dm.department,
+                psta.approved,
+                psta.id.departmentid
+            from DepartmentMaster dm, PRSubjectTypeWiseApproval psta
+            where
+            dm.departmentid =  psta.id.departmentid
+            and psta.id.instituteid = ?
+            and psta.id.registrationid = ?
+            and psta.id.eventno = ?
+            and coalesce(psta.deactive,'N') = 'N'
+    </query>
+</hibernate-mapping>

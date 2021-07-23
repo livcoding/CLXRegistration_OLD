@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Nov, 2013 4:13:30 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.jilit.irp.persistence.dto.StudentOtherAchievementReq" table="STUDENTOTHERACHIEVEMENTREQ">
+    <comment>Award/achievement and seminar detail - Request Table</comment>
+    <id name="requestid" type="string">
+      <column length="20" name="REQUESTID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.jilit.irp.persistence.dto.StudentMaster" fetch="select" insert="false" lazy="false" name="studentmaster" update="false">
+      <column length="20" name="STUDENTID" not-null="true">
+        <comment>Student ID</comment>
+      </column>
+    </many-to-one>
+    <property name="dateofrequest" type="date">
+      <column length="7" name="DATEOFREQUEST" not-null="true">
+        <comment>Date &amp; Time of Request</comment>
+      </column>
+    </property>
+    <property name="achievementtype" type="string">
+      <column length="1" name="ACHIEVEMENTTYPE" not-null="true">
+        <comment>Achievement Type - [A]ward / A[C]ievement / [S]eminar / [B]ooks / [J]ournals / [O]thers</comment>
+      </column>
+    </property>
+    <property name="achievementtypeothers" type="string">
+      <column length="50" name="ACHIEVEMENTTYPEOTHERS"/>
+    </property>
+    <property name="achievementdetail" type="string">
+      <column length="500" name="ACHIEVEMENTDETAIL" not-null="true">
+        <comment>Achievement Detail</comment>
+      </column>
+    </property>
+    <property name="achievementdate" type="date">
+      <column length="7" name="ACHIEVEMENTDATE">
+        <comment>Date of Achievement</comment>
+      </column>
+    </property>
+    <property name="documentattached" type="string">
+      <column length="1" name="DOCUMENTATTACHED">
+        <comment>Document Attached - Yes / No</comment>
+      </column>
+    </property>
+    <property name="docmode" type="string">
+      <column length="1" name="DOCMODE">
+        <comment>[D]raft / [F]inal /[A]pproved / [C]ancel</comment>
+      </column>
+    </property>
+    <property name="deactive" type="string">
+      <column length="1" name="DEACTIVE"/>
+    </property>
+    <set inverse="true" lazy="extra" name="studentotherachievementfinals">
+      <key>
+        <column length="20" name="REQUESTID" not-null="true" unique="true"/>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentOtherAchievementFinal"/>
+    </set>
+    <set inverse="true" lazy="extra" name="studentotherachievementdocs">
+      <key>
+        <column length="20" name="REQUESTID" not-null="true">
+          <comment>Request ID</comment>
+        </column>
+      </key>
+      <one-to-many class="com.jilit.irp.persistence.dto.StudentOtherAchievementDoc"/>
+    </set>
+  </class>
+</hibernate-mapping>
